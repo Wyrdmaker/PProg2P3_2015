@@ -304,6 +304,7 @@ class UI (game: Game) extends MainFrame {
 		def generic_game_starter (): Unit ={
 			game.game_action_restart()
 
+			game.in_game = false
 			game.game_beginning_time = new Date()
 			val game_frame_content = new Game_Frame_Content[game.Game_Label_Class](game)
 			game.game_frame_content = game_frame_content

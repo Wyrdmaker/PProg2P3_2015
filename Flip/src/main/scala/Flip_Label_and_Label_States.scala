@@ -5,145 +5,70 @@ import java.text.DateFormat
 import java.text.DateFormat._
 import java.text.SimpleDateFormat
 
-abstract class Demineur_Label_State extends Label_State[Demineur_Label] {
-	//val size_x = Demineur.square_size_x
-	//val size_y = Demineur.square_size_y
+abstract class Flip_Label_State extends Label_State[Flip_Label] {
+	//val size_x = Flip.square_size_x
+	//val size_y = Flip.square_size_y
 	val opaque = true
-	val foreground = GUI_GE.black
+	val foreground = FGE.black
 }
 
-class Label_State_Unexplored extends Demineur_Label_State{
-	val state_name = "unexplored"
+class Label_State_Black extends Flip_Label_State{
+	val state_name = "black"
 
-	val label_border = DGE.border(DGE.black)
-	val background = DGE.label_color_unexplored
+	val label_border = FGE.border(FGE.black_dim)
+	val background = FGE.label_color_black
 	val text = ""
 }
 
-class Label_State_Explored extends Demineur_Label_State {
-	val state_name = "explored"
+class Label_State_White extends Flip_Label_State {
+	val state_name = "white"
 
-	val label_border = DGE.border(DGE.black_dim)
-	val background = DGE.label_color_explored
+	val label_border = FGE.border(FGE.black_dim)
+	val background = FGE.label_color_white
 	val text = ""
-	override def change_to_state(d_label: Demineur_Label) = {
-		super.change_to_state(d_label)
-		d_label.value match {
-			case "b" =>
-				d_label.text = d_label.value
-			case "0" =>
-				d_label.text = ""
-			case _   =>
-				d_label.text = d_label.value
-				d_label.foreground = DGE.demineur_color_list(d_label.text.toInt)
-		}
-	}
 }
 
-class Label_State_Flagged extends Demineur_Label_State {
-	val state_name = "flagged"
+trait Flip_Label_States_Manager {
+	val Label_State_Black = new Label_State_Black
+	val Label_State_White = new Label_State_White
 
-	val label_border = DGE.border(DGE.black)
-	val background = DGE.label_color_flagged
-	val text = ""
-	def f_custom_painting (g:Graphics2D, label:Label) = {
-		if (Demineur.color_parameter == "Ocean") {
-			val center = ((label.size.width/2).toInt, ((label.size.height/2).toInt))
-			g.setColor(DGE.green)
-			val radius = 15
-			g.fillOval(center._1-(radius/2),center._2-(radius/2),radius,radius)
-		}		
-	}
-	custom_painting = f_custom_painting
-}
-
-trait Demineur_Label_States_Manager {
-	val Label_State_Unexplored = new Label_State_Unexplored
-	val Label_State_Explored = new Label_State_Explored
-	val Label_State_Flagged = new Label_State_Flagged
-
-	def change_to_state(d_label: Demineur_Label, state_name: String) = {
-		d_label.state = state_name
+	def change_to_state(f_label: Flip_Label, state_name: String) = {
+		f_label.state = state_name
 		state_name match {
-			case Label_State_Unexplored.state_name => Label_State_Unexplored.change_to_state(d_label)
-			case Label_State_Explored.state_name => Label_State_Explored.change_to_state(d_label)
-			case Label_State_Flagged.state_name => Label_State_Flagged.change_to_state(d_label)
+			case Label_State_Black.state_name => Label_State_Black.change_to_state(f_label)
+			case Label_State_White.state_name => Label_State_White.change_to_state(f_label)
 		}
 	}
 }
 
-class Demineur_Label extends Grid_Label with Demineur_Label_States_Manager /*with Demineur_Graphical_Elements*/{
-	var state = "unexplored" //valeur nécessaire pour que les Demineurs_Label puissent etre instanciés par Grid main, inutile sinon
-	var discovered = false
-	var flag = false
-	var value = "?"
-	font = new Font("Arial", 1, 32) // 0 pour normal, 1 pour gras, 2 pour italique ...
-	preferredSize = new Dimension(Demineur.square_size_x, Demineur.square_size_y)
+class Flip_Label extends Grid_Label with Flip_Label_States_Manager{
+	var state = "black" //valeur nécessaire pour que les Flip_Label puissent etre instanciés par Grid main, inutile sinon
+	preferredSize = new Dimension(Flip.square_size_x, Flip.square_size_y)
 
-	init()
-
-	def init() : Unit = {
-		change_to_state(this,"unexplored")
-		discovered = false
-		flag = false
-		text = ""
+	def init(colour: Boolean, influence_list: List[Boolean]) : Unit = {
+		if (colour) {change_to_state(this, "white")}
+		else {change_to_state(this, "black")}
 		listenTo(mouse.moves, mouse.clicks)
 	}
 
 	override def mouse_enter_reaction () ={
-		if (!discovered)
-			border = DGE.highlighted_border
+
 	}
 	override def mouse_exit_reaction () ={
-		if (!discovered)
-			border = DGE.border(DGE.black)
+
 	}
 	override def mouse_leftclic_reaction () ={
-		if (!flag)
-			discover()
+		Flip.flip(x,y)
+		if (!Flip.game_begun) {Flip.game_frame_content.timer_label.restart(new Date()); Flip.game_begun = true} //lance le timer au premier clic sur une case de l'utilisateur}
 	}
 	override def mouse_rightclic_reaction () = {
-		flag_unflag()
-	}
-	
-	def flag_unflag() : Unit = {
-		if (!discovered) { //Pas utile car seuls les label non découverts écoutent les clics de souris, mais plus clair
-			if (flag) {
-				change_to_state(this,"unexplored")
-				Demineur.maj_nb_flag(-1)
-				flag = false
-			}
-			else {
-				change_to_state(this,"flagged")
-				Demineur.maj_nb_flag(1)
-				flag = true
-			}
-		}
-	}
 
-	def discover() : Unit = {
-		if (!discovered) {	//pas utile car seuls les label non découverts écoutent les clics de souris, mais plus clair
-			deafTo(mouse.moves, mouse.clicks)
-			discovered = true
-			Demineur.increment_nb_discovered_square()
-			if (value == "?") {//ie ce label est le premier à etre cliqué dans cette partie
-				Demineur.place_bombs(numero)
-				Demineur.game_frame_content.timer_label.restart(new Date()) //lance le timer au premier clic sur une case de l'utilisateur
-			}
-			change_to_state(this,"explored")
-			value match {
-				case "b" =>
-					text = "X"
-					background = DGE.red
-					Demineur.lose()
-				case "0" =>
-					text = ""
-					Demineur.spread(numero)
-				case _   =>
-					text = value
-					foreground = DGE.demineur_color_list(text.toInt)
-			}
-		}
 	}
 	
+	def turn (): Unit ={
+		state match {
+			case "black" => change_to_state(this, "white")
+			case "white" => change_to_state(this, "black")
+		}
+	}
 }
