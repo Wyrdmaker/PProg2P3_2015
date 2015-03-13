@@ -6,6 +6,7 @@ import java.text.DateFormat
 import java.text.DateFormat._
 import java.text.SimpleDateFormat
 import java.awt.event.{ActionEvent, ActionListener}
+import java.awt.event._
 import scala.swing.ComboBox
 //import javax.swing.{ImageIcon, Icon}
 
@@ -102,7 +103,9 @@ abstract class Game{
 	val square_size_y: Int	//hauteur des cases
 
 	var game_beginning_time: Date //date de début de la partie pour le chronomètre
-	var in_game = false
+
+	var playing = false //Vaut true si une partie est en cours (ie : le chrono tourne) et faux sinon
+	var in_game = false	//Vaut true si une partie a jamais été lancée, faux sinon (ie on est à l'écran "Welcome ;)" )
 
 	var numeric_game_parameters_def_list: IndexedSeq[(String, Int, Int, Int)]		//liste des paramètres numériques du jeu sous la forme de tuples 
 																				//(nom, valeur, borne_inf_pour_mode_custom, borne_sup_pour_mode_custom) et dont les deux 
@@ -129,26 +132,40 @@ abstract class Game{
 								//est fait dans generic_game_starter
 	def game_action_restart (): Unit 	//game_action_restart ne contient que les choses à faire avant de relancer une partie qui sont spécifique au jeu, le reste 
 										//est fait dans generic_action_restart
+	def launch_game_timer() = {
+		if (!playing && !end_lock) {
+			playing = true
+			game_beginning_time = new Date()
+			game_frame_content.timer_label.restart(game_beginning_time)			
+		}
+
+	}
+
+	var end_lock = false
 
 	def win() = {
-		in_game = false
+		end_lock = true
 		val outcome_label = game_frame_content.outcome_label
-		val timer_label = game_frame_content.timer_label
+		//val timer_label = game_frame_content.timer_label
 		val grid_content = game_frame_content.grid.get_contents
 		outcome_label.text = "WIN !"
 		outcome_label.background = new Color(0,200,0)
-		timer_label.stop()
+		//timer_label.stop()
+		game_frame_content.timer_label.stop()
 		grid_content.foreach(label => label.deafTo(label.mouse.moves, label.mouse.clicks))
+		playing = false
 	}
 	def lose() = {
-		in_game = false
+		end_lock = true
 		val outcome_label = game_frame_content.outcome_label
-		val timer_label = game_frame_content.timer_label
+		//val timer_label = game_frame_content.timer_label
 		val grid_content = game_frame_content.grid.get_contents
 		outcome_label.text = "GAME OVER !"
 		outcome_label.background = new Color(255,0,0)
-		timer_label.stop()
-		grid_content.foreach(label => label.deafTo(label.mouse.moves, label.mouse.clicks))		
+		//timer_label.stop()
+		game_frame_content.timer_label.stop()
+		grid_content.foreach(label => label.deafTo(label.mouse.moves, label.mouse.clicks))	
+		playing = false	
 	}
 }
 
@@ -170,7 +187,6 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label] (game: Game) extends Gr
       c
     }
 
-
 	val label_1 = new Label()
 	val label_2 = new Label()
 	val outcome_label = new Label()
@@ -184,12 +200,10 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label] (game: Game) extends Gr
 		contents += timer_label
 	}
 
-    add(bottom_panel, 
-    	constraints(0, 1, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
-    add(grid,
+	add(bottom_panel, 
+		constraints(0, 1, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
+	add(grid,
     	constraints(0, 0, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1))
-
-
 	//val final_content = this
 }
 
@@ -200,6 +214,17 @@ case class Custom_Mode_Exception(value: String) extends Throwable{}
 
 //UI est la fenetre principale des jeux
 class UI (game: Game) extends MainFrame {
+	val timer_listener = new ActionListener{
+		def actionPerformed(e: ActionEvent) {
+			thisui.minimumSize = thisui.preferredSize
+		}
+	}
+	val timer = new javax.swing.Timer(1000, timer_listener)
+	timer.start()
+
+
+
+
 	val thisui = this
 	title = game.title
 	//resizable = false
@@ -210,7 +235,7 @@ class UI (game: Game) extends MainFrame {
 	val Action_Restart = new Generic_Action_Restart(game)
 
 	def action_generic_random_seed() {
-		if (game.game_frame_content != null){
+		if (game.in_game){
 			var random_seed_form = new Form(
 				"Random Seed",
 				IndexedSeq(("Random Seed",0,0)),
@@ -219,7 +244,8 @@ class UI (game: Game) extends MainFrame {
 			val asked_random_seed = random_seed_form.nb_fields_results(0)
 			game.random_gen = new scala.util.Random(asked_random_seed)
 
-			Game_Starter.generic_game_starter()
+			Action_Restart.action_restart()
+			//Game_Starter.generic_game_starter()
 		}	
 	}
 
@@ -286,13 +312,20 @@ class UI (game: Game) extends MainFrame {
 
 	class Generic_Action_Restart (game: Game) {
 		def action_restart() ={
-			if (game.game_frame_content != null) {
+			if (game.in_game) {
+				game.playing = false
+				game.end_lock = false
 				game.game_action_restart()
 				val outcome_label = game.game_frame_content.outcome_label
 				outcome_label.text = ""
 
-				game.game_beginning_time = new Date()
-				game.in_game = true
+				game.game_frame_content.timer_label.reset_text()
+				game.game_frame_content.timer_label.restart(new Date())
+				game.game_frame_content.timer_label.stop()
+				/*game.game_beginning_time = new Date()
+				game.game_frame_content.timer_label.restart(game.game_beginning_time)
+				game.game_frame_content.timer_label.stop()*/
+				
 
 				//MODIF
 				/*val timer_label = game.game_frame_content.timer_label
@@ -303,26 +336,30 @@ class UI (game: Game) extends MainFrame {
 
 	class Generic_Game_Starter (game: Game, ui: Frame) {
 		def generic_game_starter (): Unit ={
+			game.in_game = true
+			game.end_lock = false
+			restart_menuitem.enabled = true //Dégrise les menuItem restart et random_seed
+			randomseed_menuitem.enabled = true
+			game.playing = false
 			game.game_beginning_time = new Date()
-			val game_frame_content = new Game_Frame_Content[game.Game_Label_Class](game)
-			game.game_frame_content = game_frame_content
+
+			game.game_frame_content = new Game_Frame_Content[game.Game_Label_Class](game)
+			//game.game_frame_content.timer_label.restart(game.game_beginning_time)
+			//game.game_frame_content.timer_label.stop()
 
 			//MODIF
 			val outcome_label = game.game_frame_content.outcome_label
 			outcome_label.text = ""
 			
-			ui.contents = game_frame_content//.final_content
+			ui.contents = game.game_frame_content//.final_content
 			///game_frame_content.timer_label.restart(new Date())
 			//game_frame_content.timer_label.stop() //Le jeu doit lancer le timer label quand il veut
 
 			//MODIF
 			/*game.game_action_restart()
 			game.in_game = false*/
-			game.in_game = false
 			game.game_starter()
-			game.in_game = true
-			restart_menuitem.enabled = true //Dégrise les menuItem restart et random_seed
-			randomseed_menuitem.enabled = true
+
 
 
 			//game_frame_content.bottom_panel.maximumSize = game_frame_content.bottom_panel.preferredSize

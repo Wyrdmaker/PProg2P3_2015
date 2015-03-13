@@ -107,18 +107,19 @@ object Demineur extends Game{
 	}	
 
 	def game_starter () = {
+		Demineur.nb_discovered_square = 0
+		Demineur.nb_flagged_square = 0
 		Demineur.maj_nb_flag(0)
 		game_frame_content.bottom_panel.background = DGE.bottom_panel_color_list(DGE.no_color_mode)
+		game_frame_content.grid.get_contents.foreach(label => label.init())
 	}
 	def game_action_restart() : Unit = {
-		if (Demineur.game_frame_content != null) {
-			val grid_contents = Demineur.game_frame_content.grid.get_contents
-			grid_contents.foreach(label => label.init())
+		val grid_contents = Demineur.game_frame_content.grid.get_contents
+		grid_contents.foreach(label => label.init())
 
-			Demineur.nb_discovered_square = 0
-			Demineur.nb_flagged_square = 0
-			Demineur.maj_nb_flag(0)
-		}
+		Demineur.nb_discovered_square = 0
+		Demineur.nb_flagged_square = 0
+		Demineur.maj_nb_flag(0)
 	}
 	//Définit ce qui se passe en cas de victoire du joueur -> voir Game
 	override def win() = {

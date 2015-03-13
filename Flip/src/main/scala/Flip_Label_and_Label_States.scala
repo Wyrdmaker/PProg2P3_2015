@@ -59,7 +59,8 @@ class Flip_Label extends Grid_Label with Flip_Label_States_Manager{
 	}
 	override def mouse_leftclic_reaction () ={
 		Flip.flip(x,y)
-		if (!Flip.game_begun) {Flip.game_frame_content.timer_label.restart(new Date()); Flip.game_begun = true} //lance le timer au premier clic sur une case de l'utilisateur}
+		Flip.launch_game_timer()
+		//if (!Flip.playing) {println("label_start"); Flip.launch_game_timer()/*Flip.game_frame_content.timer_label.restart(new Date()); Flip.playing = true*/} //lance le timer au premier clic sur une case de l'utilisateur}
 	}
 	override def mouse_rightclic_reaction () = {
 

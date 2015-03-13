@@ -23,6 +23,10 @@ class Timer_Label (time_origin_arg : Date) extends Label{
 	var secondes = ((new Date).getTime() - time_origin.getTime()) / 1000 % 60
 	text = "00:00"
 
+	def reset_text() ={
+		text = "00:00"
+	}
+
 	def restart (new_time_origin: Date) = {
 		time_origin = new_time_origin
 		timer.start()

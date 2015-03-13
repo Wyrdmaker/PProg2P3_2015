@@ -92,8 +92,6 @@ object Flip extends Game{
 	}	
 
 	def game_starter () = {
-		Flip.game_frame_content.timer_label.stop() //Le timer ne fait que se réinitialiser
-		Flip.game_begun = false
 		Flip.nb_of_moves = 0
 		Flip.maj_nb_of_moves(0)
 		game_frame_content.bottom_panel.background = FGE.bottom_panel_color_list(FGE.no_color_mode)
@@ -143,6 +141,7 @@ object Flip extends Game{
 				flip(random_x, random_y)
 			}
 		}
+		Flip.initial_nb_of_white_square = Flip.nb_of_white_square
 		Flip.nb_of_moves = 0	//Car les flips initiaux ne comptent pas dans les flips effectués par le joueur
 		Flip.maj_nb_of_moves(0)
 		Flip.initial_board = Flip.board
@@ -158,21 +157,18 @@ object Flip extends Game{
 
 	}
 	def game_action_restart() : Unit = {
-		if (Flip.in_game) {
-			Flip.game_frame_content.timer_label.stop() //Le timer ne fait que se réinitialiser
-			Flip.game_begun = false
-			Flip.nb_of_moves = 0
-			Flip.maj_nb_of_moves(0)
-			Flip.nb_of_white_square = nb_of_rows * nb_of_cols
-			Flip.board = Flip.initial_board
-			//Initialise chaque label selon le board
-			for (y <- 0 until nb_of_rows) {
-				for (x <- 0 until nb_of_cols) {
-					val case_colour = board(x)(y)._1
-					val case_infl_list = board(x)(y)._2
-					game_frame_content.grid.access_xy(x,y).init(case_colour, case_infl_list)
-				}
-			}			
+		Flip.nb_of_moves = 0
+		Flip.maj_nb_of_moves(0)
+		Flip.nb_of_white_square = initial_nb_of_white_square
+		Flip.board = Flip.initial_board
+		//Initialise chaque label selon le board
+		for (y <- 0 until nb_of_rows) {
+			for (x <- 0 until nb_of_cols) {
+				val case_colour = board(x)(y)._1
+				val case_infl_list = board(x)(y)._2
+				game_frame_content.grid.access_xy(x,y).init(case_colour, case_infl_list)
+			}
+					
 		}
 
 
@@ -190,8 +186,8 @@ object Flip extends Game{
 	var board: List[List[(Boolean, List[Boolean])]] = List()
 	var initial_board: List[List[(Boolean, List[Boolean])]] = List()
 	var nb_of_white_square = 0
+	var initial_nb_of_white_square = 0
 	var nb_of_moves = 0
-	var game_begun = false
 	//##Flip Functions## //Fonctions internes au Flip
 	//turn change la couleur de la case (x,y) dans board
 	def turn (x: Int, y: Int) = {
@@ -257,7 +253,7 @@ object Flip extends Game{
 	}
 
 	def check_win () ={
-		if (nb_of_white_square == nb_of_rows * nb_of_cols && in_game) {
+		if (nb_of_white_square == nb_of_rows * nb_of_cols && playing) {
 			Flip.win()
 		}
 	}

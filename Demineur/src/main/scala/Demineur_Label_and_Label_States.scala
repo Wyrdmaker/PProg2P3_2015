@@ -100,6 +100,7 @@ class Demineur_Label extends Grid_Label with Demineur_Label_States_Manager /*wit
 	}
 	override def mouse_leftclic_reaction () ={
 		if (!flag)
+			Demineur.launch_game_timer() //lance le timer au premier clic sur une case de l'utilisateur
 			discover()
 	}
 	override def mouse_rightclic_reaction () = {
@@ -128,7 +129,6 @@ class Demineur_Label extends Grid_Label with Demineur_Label_States_Manager /*wit
 			Demineur.increment_nb_discovered_square()
 			if (value == "?") {//ie ce label est le premier à etre cliqué dans cette partie
 				Demineur.place_bombs(numero)
-				Demineur.game_frame_content.timer_label.restart(new Date()) //lance le timer au premier clic sur une case de l'utilisateur
 			}
 			change_to_state(this,"explored")
 			value match {
