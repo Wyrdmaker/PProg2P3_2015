@@ -27,10 +27,10 @@ object FGE extends GUI_Graphical_Elements{
 		label_color_white_list(no_color_mode)
 	}
 
-	val label_color_black_list = Vector(grey)
+	val label_color_black_list = IndexedSeq(grey)
 	val label_color_white_list = IndexedSeq(white)
 
-	val bottom_panel_color_list = IndexedSeq(grey)
+	val bottom_panel_color_list = IndexedSeq(white)
 
 }
 
@@ -96,7 +96,7 @@ object Flip extends Game{
 		Flip.game_begun = false
 		Flip.nb_of_moves = 0
 		Flip.maj_nb_of_moves(0)
-		game_frame_content.bottom_panel.background = DGE.bottom_panel_color_list(DGE.no_color_mode)
+		game_frame_content.bottom_panel.background = FGE.bottom_panel_color_list(FGE.no_color_mode)
 		nb_of_white_square = nb_of_rows * nb_of_cols
 		board = List()
 		//Représente le plateau d'une partie: Une matrice de couples (Couleur, Cases_voisines_sous_influence)
