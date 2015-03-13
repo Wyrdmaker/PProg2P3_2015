@@ -92,7 +92,10 @@ object Flip extends Game{
 	}	
 
 	def game_starter () = {
+		Flip.game_frame_content.timer_label.stop() //Le timer ne fait que se réinitialiser
 		Flip.game_begun = false
+		Flip.nb_of_moves = 0
+		Flip.maj_nb_of_moves(0)
 		game_frame_content.bottom_panel.background = DGE.bottom_panel_color_list(DGE.no_color_mode)
 		nb_of_white_square = nb_of_rows * nb_of_cols
 		board = List()
@@ -103,19 +106,19 @@ object Flip extends Game{
 		//etre retournée lorsque la case centrale est cliquée
 		//Convention: Les cases sont comptées de gauche à droite et de haut en bas
 		var infl_list : List[Boolean] = List()
-		for (x <- 0 until nb_of_rows){
+		for (x <- 0 until nb_of_cols){
 			var x_col: List[(Boolean, List[Boolean])] = List()
-			for (y <- 0 until nb_of_cols){
+			for (y <- 0 until nb_of_rows){
 				infl_list = List()
 				if (shape_type == "Crosses") {
 					infl_list = /*(x < (nb_of_cols - 1) && y < (nb_of_rows - 1))*/ false :: infl_list	//bottom right
-					infl_list = (y < (nb_of_rows - 1)) :: infl_list							//bottom
-					infl_list = /*(x > 0 && y < (nb_of_rows - 1))*/ false :: infl_list				//bottom left
-					infl_list = (x < (nb_of_cols - 1)) :: infl_list							//right
-					infl_list = (x > 0) :: infl_list										//left
-					infl_list = /*(x < (nb_of_cols - 1) && y > 0)*/ false :: infl_list				//top right
-					infl_list = (y > 0) :: infl_list										//top
-					infl_list = /*(x > 0 && y > 0)*/ false :: infl_list								//top left
+					infl_list = (y < (nb_of_rows - 1)) :: infl_list										//bottom
+					infl_list = /*(x > 0 && y < (nb_of_rows - 1))*/ false :: infl_list					//bottom left
+					infl_list = (x < (nb_of_cols - 1)) :: infl_list										//right
+					infl_list = (x > 0) :: infl_list													//left
+					infl_list = /*(x < (nb_of_cols - 1) && y > 0)*/ false :: infl_list					//top right
+					infl_list = (y > 0) :: infl_list													//top
+					infl_list = /*(x > 0 && y > 0)*/ false :: infl_list									//top left
 				}
 				var xy_case: (Boolean,List[Boolean]) = (true,infl_list)
 				x_col = xy_case :: x_col
@@ -123,13 +126,13 @@ object Flip extends Game{
 			board = x_col.reverse :: board
 		}
 		board = board.reverse
+
 		//board printer
 		/*println(board.length)
 		 for (i <- 0 until nb_of_cols) {
 		 for ( j <- 0 until nb_of_rows) {
-			print(" " + board(i)(j));
+			println(board(i)(j));
 		 }
-		 println();
 		}*/
 
 		//Applique des flips au board (autant que spécifié dans les paramètres du jeu) avant que le joueur puisse jouer
@@ -140,7 +143,10 @@ object Flip extends Game{
 				flip(random_x, random_y)
 			}
 		}
+		Flip.nb_of_moves = 0	//Car les flips initiaux ne comptent pas dans les flips effectués par le joueur
+		Flip.maj_nb_of_moves(0)
 		Flip.initial_board = Flip.board
+
 		//Initialise chaque label selon le board
 		for (y <- 0 until nb_of_rows) {
 			for (x <- 0 until nb_of_cols) {
@@ -155,6 +161,9 @@ object Flip extends Game{
 		if (Flip.in_game) {
 			Flip.game_frame_content.timer_label.stop() //Le timer ne fait que se réinitialiser
 			Flip.game_begun = false
+			Flip.nb_of_moves = 0
+			Flip.maj_nb_of_moves(0)
+			Flip.nb_of_white_square = nb_of_rows * nb_of_cols
 			Flip.board = Flip.initial_board
 			//Initialise chaque label selon le board
 			for (y <- 0 until nb_of_rows) {
@@ -177,12 +186,13 @@ object Flip extends Game{
 		super.lose()
 	}
 
-	//##Flip Variables## // Variables internes au Démineur
+	//##Flip Variables## // Variables internes au Flip
 	var board: List[List[(Boolean, List[Boolean])]] = List()
 	var initial_board: List[List[(Boolean, List[Boolean])]] = List()
 	var nb_of_white_square = 0
+	var nb_of_moves = 0
 	var game_begun = false
-	//##Flip Functions## //Fonctions internes au Démineur
+	//##Flip Functions## //Fonctions internes au Flip
 	//turn change la couleur de la case (x,y) dans board
 	def turn (x: Int, y: Int) = {
 		//println("a_turn called with: " + x + ", " + y)
@@ -231,8 +241,19 @@ object Flip extends Game{
 				turn(square_to_turn._1, square_to_turn._2)
 			}
 		}
+		maj_nb_of_moves(1)
 		turn(x,y)
 		check_win()
+	}
+
+	def maj_nb_of_moves(n : Int /*normalement 1 ou 0*/) = {
+		n match {
+			case 1 => nb_of_moves = nb_of_moves + n 
+			case 0 => nb_of_moves = nb_of_moves + n
+			case _ => println("anormal: la fonction maj_nb_of_moves de l'objet Flip a été appelée avec un argument différent de 1 ou 0:" + n)
+		}
+		val label_1 = game_frame_content.label_1
+		label_1.text = "Moves : " + nb_of_moves.toString
 	}
 
 	def check_win () ={

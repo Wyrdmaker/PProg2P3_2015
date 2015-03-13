@@ -294,23 +294,32 @@ class UI (game: Game) extends MainFrame {
 				game.game_beginning_time = new Date()
 				game.in_game = true
 
-				val timer_label = game.game_frame_content.timer_label
-				timer_label.restart(game.game_beginning_time)
+				//MODIF
+				/*val timer_label = game.game_frame_content.timer_label
+				timer_label.restart(game.game_beginning_time)*/
 			}
 		}
 	}
 
 	class Generic_Game_Starter (game: Game, ui: Frame) {
 		def generic_game_starter (): Unit ={
-			game.game_action_restart()
 
-			game.in_game = false
 			game.game_beginning_time = new Date()
 			val game_frame_content = new Game_Frame_Content[game.Game_Label_Class](game)
 			game.game_frame_content = game_frame_content
+
+			//MODIF
+			val outcome_label = game.game_frame_content.outcome_label
+			outcome_label.text = ""
+
 			ui.contents = game_frame_content//.final_content
 			///game_frame_content.timer_label.restart(new Date())
 			//game_frame_content.timer_label.stop() //Le jeu doit lancer le timer label quand il veut
+
+			//MODIF
+			/*game.game_action_restart()
+			game.in_game = false*/
+
 			game.game_starter()
 			game.in_game = true
 			restart_menuitem.enabled = true //Dégrise les menuItem restart et random_seed
