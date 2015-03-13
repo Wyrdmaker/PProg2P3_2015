@@ -27,10 +27,10 @@ object FGE extends GUI_Graphical_Elements{
 		label_color_white_list(no_color_mode)
 	}
 
-	val label_color_black_list = IndexedSeq(grey)
-	val label_color_white_list = IndexedSeq(white)
+	val label_color_black_list = IndexedSeq(grey, violet_fluo)
+	val label_color_white_list = IndexedSeq(white, cyan)
 
-	val bottom_panel_color_list = IndexedSeq(white)
+	val bottom_panel_color_list = IndexedSeq(white, grey)
 
 }
 
@@ -56,7 +56,7 @@ object Flip extends Game{
 
 	//##Game parameters##
 	var numeric_game_parameters_def_list = IndexedSeq(("Width", 0, 3, 25), ("Height", 0, 3, 25), ("Starting Flips", 0, 10, 10))
-	var string_game_parameters_def_list = IndexedSeq(("Shape Type", "Crosses", IndexedSeq("Crosses", "Random")), ("Colour Mode", "Classic", IndexedSeq("Classic")))
+	var string_game_parameters_def_list = IndexedSeq(("Shape Type", "Crosses", IndexedSeq("Crosses", "Random")), ("Colour Mode", "Classic", IndexedSeq("Classic", "Creepy-Glauque")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def nb_of_starting_flips = numeric_game_parameters_def_list(2)._2
