@@ -9,11 +9,7 @@ object Main {
 	var launcher_mainframe : MainFrame = null
 	def main(args: Array[String]) {
 		launcher_mainframe = new MainFrame{
-			//iconImage = toolkit.getImage("srv/main/ressources/Ten_sided_dice.png")
-			val icon = new ImageIcon("srv/main/ressources/Ten_sided_dice.png")
 			iconImage = toolkit.getImage("src/main/ressources/my_purple_dice_20.png")
-			//iconify()
-			//visible = true
 			centerOnScreen()
 			title = "Lanceur TDGH"
 		}
