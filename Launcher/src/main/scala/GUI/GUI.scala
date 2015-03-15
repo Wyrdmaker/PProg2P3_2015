@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat
 import java.awt.event.{ActionEvent, ActionListener}
 import java.awt.event._
 import scala.swing.ComboBox
-//import javax.swing.{ImageIcon, Icon}
+import javax.swing.{ImageIcon, Icon}
 
 object GUI_Mood{	//définit les couleurs de l'interface graphique
 	val f_colour = GUI_GE.dark_golden_rod1	//couleur des textes ("foreground")
@@ -154,7 +154,7 @@ abstract class Game{
 		val outcome_label = game_frame_content.outcome_label
 		//val timer_label = game_frame_content.timer_label
 		val grid_content = game_frame_content.grid.get_contents
-		outcome_label.text = "WIN !"
+		outcome_label.text = "GAGNÉ !"
 		outcome_label.background = new Color(0,139,0)
 		//timer_label.stop()
 		game_frame_content.timer_label.stop()
@@ -166,7 +166,7 @@ abstract class Game{
 		val outcome_label = game_frame_content.outcome_label
 		//val timer_label = game_frame_content.timer_label
 		val grid_content = game_frame_content.grid.get_contents
-		outcome_label.text = "GAME OVER !"
+		outcome_label.text = "PERDU !"
 		outcome_label.background = new Color(255,0,0)
 		//timer_label.stop()
 		game_frame_content.timer_label.stop()
@@ -222,6 +222,7 @@ case class Custom_Mode_Exception(value: String) extends Throwable{}
 
 //UI est la fenetre principale des jeux
 class UI (game: Game) extends Frame {
+	iconImage = toolkit.getImage("src/main/ressources/my_purple_dice_20.png")
 	val timer_listener = new ActionListener{
 		def actionPerformed(e: ActionEvent) {
 			thisui.minimumSize = thisui.preferredSize
@@ -244,11 +245,11 @@ class UI (game: Game) extends Frame {
 		val darker_maroon4 = new Color(109, 0, 68)
 		val width = 300
 		val height = 300
-		val background_gradientpaint = new java.awt.GradientPaint(0, 0, lighter_maroon4, 0, 300, darker_maroon4)
 		this.peer.setOpaque(false);				//Cetteligne dit à la méthode paint de ne pas changer le background
 		override def paint(g: Graphics2D)={
+			val background_gradientpaint = new java.awt.GradientPaint(0, 0, lighter_maroon4, 0, thisui.size.height, darker_maroon4)
 			g.setPaint(background_gradientpaint)
-			g.fillRect(0, 0, width, height)
+			g.fillRect(0, 0, thisui.size.width, thisui.size.height)
 			super.paint(g)
 		}
 		preferredSize = new Dimension(width,height)
@@ -262,7 +263,7 @@ class UI (game: Game) extends Frame {
 	def action_generic_random_seed() {
 		if (game.in_game){
 			var random_seed_form = new Form(
-				"Random Seed",
+				"Graine Aléatoire",
 				IndexedSeq(("Random Seed",0,0)),
 				null,
 				any => "OK")
@@ -288,7 +289,7 @@ class UI (game: Game) extends Frame {
 			}
 		)
 			val custom_game_form = new Form(
-				"Custom Game",
+				"Partie Personnalisée",
 				nb_fields_def_list,
 				comboboxes_def_list,
 				game.custom_game_parameters_conditions)
@@ -313,19 +314,19 @@ class UI (game: Game) extends Frame {
 	}
 
 	//Définition préventive de ces deux MenuItem pour que Generic_Game_Starter les dégrisent (enabled = true) lorsqu'une partie est lancé
-	val restart_menuitem = new MenuItem(""){action = Action("Restart")(Action_Restart.action_restart())
+	val restart_menuitem = new MenuItem(""){action = Action("Recommencer")(Action_Restart.action_restart())
 											enabled = false
 											background = GUI_Mood.b_colour
 											foreground = GUI_Mood.f_colour
 											}
-	val randomseed_menuitem = new MenuItem("")	{action = Action("Random Seed...")(action_generic_random_seed())
+	val randomseed_menuitem = new MenuItem("")	{action = Action("Graine Aléatoire...")(action_generic_random_seed())
 												enabled = false
 												background = GUI_Mood.b_colour
 												foreground = GUI_Mood.f_colour
 											}
 	menuBar = new MenuBar {
 		background = GUI_Mood.b_colour
-		contents += new Menu("Play") {
+		contents += new Menu("Jouer") {
 			foreground = GUI_Mood.f_colour
 			game.game_game_mode_list.foreach(game_mode =>
 				contents += new Playmenu_MIM(game_mode){
@@ -334,21 +335,21 @@ class UI (game: Game) extends Frame {
 				}
 			)
 			contents += new MenuItem(""){background = GUI_Mood.b_colour}
-			contents += new MenuItem(""){action = Action("Custom...")(action_generic_custom_mode()); background = GUI_Mood.b_colour; foreground= GUI_Mood.f_colour}
+			contents += new MenuItem(""){action = Action("Partie Personalisée...")(action_generic_custom_mode()); background = GUI_Mood.b_colour; foreground= GUI_Mood.f_colour}
 		}
-		contents += new Menu("Game") {
+		contents += new Menu("Partie") {
 			background = GUI_Mood.b_colour
 			foreground = GUI_Mood.f_colour
 			contents += restart_menuitem
 			contents += randomseed_menuitem
 			contents += new MenuItem(""){background = GUI_Mood.b_colour}
-			contents += new MenuItem(""){action = Action("Exit") {System.exit(0)}; background = GUI_Mood.b_colour; foreground = GUI_Mood.f_colour}
+			contents += new MenuItem(""){action = Action("Quitter") {System.exit(0)}; background = GUI_Mood.b_colour; foreground = GUI_Mood.f_colour}
 		}
-		contents += new Menu("Help") {
+		contents += new Menu("Aide") {
 			background = GUI_Mood.b_colour
 			foreground = GUI_Mood.f_colour
-			contents += new MenuItem(""){action = Action("About")(game.about_frame_factory()); background = GUI_Mood.b_colour; foreground = GUI_Mood.f_colour}
-			contents += new MenuItem(""){action = Action("Help on " + game.title)(game.help_frame_factory()); background = GUI_Mood.b_colour; foreground = GUI_Mood.f_colour}
+			contents += new MenuItem(""){action = Action("A Propos")(game.about_frame_factory()); background = GUI_Mood.b_colour; foreground = GUI_Mood.f_colour}
+			contents += new MenuItem(""){action = Action("Aide du " + game.title)(game.help_frame_factory()); background = GUI_Mood.b_colour; foreground = GUI_Mood.f_colour}
 		}
 	}
 

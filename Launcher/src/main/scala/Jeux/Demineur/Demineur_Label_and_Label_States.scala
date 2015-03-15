@@ -47,7 +47,7 @@ class Label_State_Flagged extends Demineur_Label_State {
 	val background = DGE.label_color_flagged
 	val text = ""
 	def f_custom_painting (g:Graphics2D, label:Label) = {
-		if (Demineur.color_parameter == "Ocean") {
+		if (Demineur.color_parameter == "Océan") {
 			val center = ((label.size.width/2).toInt, ((label.size.height/2).toInt))
 			g.setColor(DGE.green)
 			val radius = 15

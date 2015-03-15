@@ -17,7 +17,7 @@ object FGE extends GUI_Graphical_Elements{
 	def no_color_mode () = {
 		//Le max est une sécurité. Si IndexOf ne trouve pas la chaine correspondant au mode de couleur dans la liste de ses valeurs possibles, il renvoie -1.
 		//Ainsi, en cas de faute de frappe, le mode de couleur utilisé est le Normal
-		max(0,Flip.string_game_parameters_def_list(1)._3.indexOf(Flip.string_game_parameters_def_list(1)._2))
+		max(0,Flip.string_game_parameters_def_list(0)._3.indexOf(Flip.string_game_parameters_def_list(0)._2))
 	}
 
 	def label_color_black () = {
@@ -35,8 +35,8 @@ object FGE extends GUI_Graphical_Elements{
 }
 
 class Flip_Help_Frame extends Frame {
-	title = "Help"
-	contents = new Label("Flip the squares by clicking at them so that they are all white"){
+	title = "Aide"
+	contents = new Label("Retournez les cases en leur cliquant dessus jusqu'à ce qu'elles soient toutes blanches"){
 		background = GUI_Mood.b_colour
 		foreground = GUI_Mood.f_colour
 		opaque = true
@@ -45,8 +45,8 @@ class Flip_Help_Frame extends Frame {
 }
 
 class Flip_About_Frame extends Frame{
-	title = "About"
-	contents = new Label("Graphical Interface by G.Hocquet and T.Dupriez"){
+	title = "A Propos"
+	contents = new Label("Interface Graphique par T.Dupriez et G.Hocquet"){
 		background = GUI_Mood.b_colour
 		foreground = GUI_Mood.f_colour
 		opaque = true
@@ -63,8 +63,8 @@ object Flip extends Game{
 	//var in_game = false héritée de Game
 
 	//##Game parameters##
-	var numeric_game_parameters_def_list = IndexedSeq(("Width", 0, 3, 25), ("Height", 0, 3, 25), ("Starting Flips", 0, 20, 20))
-	var string_game_parameters_def_list = IndexedSeq(("Shape Type", "Crosses", IndexedSeq("Crosses", "Random")), ("Colour Mode", "Classic", IndexedSeq("Classic", "Creepy-Glauque")))
+	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 3, 25), ("Hauteur", 0, 3, 25), ("Retournements Initiaux", 0, 20, 20))
+	var string_game_parameters_def_list = IndexedSeq(("Mode de Couleur", "Classique", IndexedSeq("Classique", "Creepy-Glauque")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def nb_of_starting_flips = numeric_game_parameters_def_list(2)._2
@@ -84,17 +84,12 @@ object Flip extends Game{
 	//var game_frame_content héritée de Game
 
 	val game_game_mode_list = IndexedSeq(
-		Game_Mode(IndexedSeq(3,3,10),IndexedSeq("Crosses", "Classic")),
-		Game_Mode(IndexedSeq(4,4,10),IndexedSeq("Crosses", "Classic")),
-		Game_Mode(IndexedSeq(5,5,10),IndexedSeq("Crosses", "Classic"))
+		Game_Mode(IndexedSeq(3,3,10),IndexedSeq("Classique")),
+		Game_Mode(IndexedSeq(4,4,10),IndexedSeq("Classique")),
+		Game_Mode(IndexedSeq(5,5,10),IndexedSeq("Classique"))
 	)
-	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]) ={ //form_nb_fields_result(0) = nb_of_cols, form_nb_fields_result(1) = nb_of_rows, form_nb_fields_result(2) = nb_of_bombs
-		//val return_value = form_nb_fields_result(1) * form_nb_fields_result(0) > 9 && form_nb_fields_result(2) + 9 <= form_nb_fields_result(1) * form_nb_fields_result(0)
+	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]) ={
 		var return_value = "OK"
-		if (form_nb_fields_result(1) * form_nb_fields_result(0) <= 9) 
-			return_value = "Grille trop petite"
-		if (form_nb_fields_result(2) + 9 > form_nb_fields_result(1) * form_nb_fields_result(0))
-			return_value = "Pas assez de place dans la grille pour les mines"
 		return_value
 				
 	}	
@@ -116,16 +111,16 @@ object Flip extends Game{
 			var x_col: List[(Boolean, List[Boolean])] = List()
 			for (y <- 0 until nb_of_rows){
 				infl_list = List()
-				if (shape_type == "Crosses") {
-					infl_list = /*(x < (nb_of_cols - 1) && y < (nb_of_rows - 1))*/ false :: infl_list	//bottom right
-					infl_list = (y < (nb_of_rows - 1)) :: infl_list										//bottom
-					infl_list = /*(x > 0 && y < (nb_of_rows - 1))*/ false :: infl_list					//bottom left
-					infl_list = (x < (nb_of_cols - 1)) :: infl_list										//right
-					infl_list = (x > 0) :: infl_list													//left
-					infl_list = /*(x < (nb_of_cols - 1) && y > 0)*/ false :: infl_list					//top right
-					infl_list = (y > 0) :: infl_list													//top
-					infl_list = /*(x > 0 && y > 0)*/ false :: infl_list									//top left
-				}
+
+				infl_list = /*(x < (nb_of_cols - 1) && y < (nb_of_rows - 1))*/ false :: infl_list	//bottom right
+				infl_list = (y < (nb_of_rows - 1)) :: infl_list										//bottom
+				infl_list = /*(x > 0 && y < (nb_of_rows - 1))*/ false :: infl_list					//bottom left
+				infl_list = (x < (nb_of_cols - 1)) :: infl_list										//right
+				infl_list = (x > 0) :: infl_list													//left
+				infl_list = /*(x < (nb_of_cols - 1) && y > 0)*/ false :: infl_list					//top right
+				infl_list = (y > 0) :: infl_list													//top
+				infl_list = /*(x > 0 && y > 0)*/ false :: infl_list									//top left
+
 				var xy_case: (Boolean,List[Boolean]) = (true,infl_list)
 				x_col = xy_case :: x_col
 			}
@@ -257,7 +252,7 @@ object Flip extends Game{
 			case _ => println("anormal: la fonction maj_nb_of_moves de l'objet Flip a été appelée avec un argument différent de 1 ou 0:" + n)
 		}
 		val label_1 = game_frame_content.label_1
-		label_1.text = "Moves : " + nb_of_moves.toString
+		label_1.text = "Retournements : " + nb_of_moves.toString
 	}
 
 	def check_win () ={

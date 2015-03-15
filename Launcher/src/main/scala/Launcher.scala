@@ -9,6 +9,9 @@ import java.io._
 
 object Main {
 	var game_list = new File("src/main/scala/Jeux").listFiles.filter(_.isDirectory).map(_.getName)
+	//Pour ajouter des jeux, ajouter dans le dossier Jeux un dossier contenant les fichiers <nom_du_jeu>.scala et
+	// <nom_du_jeu>_Label_and_Label_States.scala. Le dossier ajouté doit porter le meme nom que le nom de la classe 
+	//étendant la classe Game dans le jeu ajouté.
 	var launcher_mainframe : MainFrame = null
 	def main(args: Array[String]) {
 		launcher_mainframe = new MainFrame{
@@ -156,7 +159,7 @@ class Launcher_Content extends GridBagPanel {
 			game_frame.visible = true
 			game_frame.location = Main.launcher_mainframe.location
 			Main.launcher_mainframe.dispose()
-			reinit_game_button_list_custompainting()
+			reinit_game_button_list_custompainting()	//Sert à ce que le bouton cliqué reprenne l'apparence d'un bouton non survolé
 		}
 		var game_button = new Game_Button{
 			text = game_class.title

@@ -51,8 +51,8 @@ object DGE extends GUI_Graphical_Elements{
 }
 
 class Demineur_Help_Frame extends Frame {
-	title = "Help"
-	contents = new Label("Come on, you know the rules of this game. ;)"){
+	title = "Aide"
+	contents = new Label("Allez, avouez que vous savez déjà jouer à ce jeu ! ;)"){
 		background = GUI_Mood.b_colour
 		foreground = GUI_Mood.f_colour
 		opaque = true
@@ -61,8 +61,8 @@ class Demineur_Help_Frame extends Frame {
 }
 
 class Demineur_About_Frame extends Frame{
-	title = "About"
-	contents = new Label("Graphical Interface by G.Hocquet and T.Dupriez"){
+	title = "A Propos"
+	contents = new Label("Interface Graphique par T.Dupriez et G.Hocquet"){
 		background = GUI_Mood.b_colour
 		foreground = GUI_Mood.f_colour
 		opaque = true
@@ -79,8 +79,8 @@ object Demineur extends Game{
 	//var in_game = false héritée de Game
 
 	//##Game parameters##
-	var numeric_game_parameters_def_list = IndexedSeq(("Width", 0, 4, 25), ("Height", 0, 4, 25), ("Mines", 0, 10, 10))
-	var string_game_parameters_def_list = IndexedSeq(("Difficulty", "Easy", IndexedSeq("Easy", "Medium", "Hard", "Tricky")), ("Colour Mode", "Classic", IndexedSeq("Classic", "Creepy-Glauque", "RVB", "Automne", "Ocean")))
+	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 4, 25), ("Hauteur", 0, 4, 25), ("Mines", 0, 10, 10))
+	var string_game_parameters_def_list = IndexedSeq(("Difficulté", "Facile", IndexedSeq("Facile", "Moyenne", "Difficile", "Absurde")), ("Mode de Couleur", "Classique", IndexedSeq("Classique", "Creepy-Glauque", "RVB", "Automne", "Océan")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def nb_of_bombs = numeric_game_parameters_def_list(2)._2 //Ces deux fonctions réalisent un alias du champd valeur du 3ième paramètre numérique du Démineur
@@ -99,9 +99,9 @@ object Demineur extends Game{
 	//var game_frame_content héritée de Game
 
 	val game_game_mode_list = IndexedSeq(
-		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Easy", "Classic")),
-		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Medium", "Classic")),
-		Game_Mode(IndexedSeq(16, 16, 99),IndexedSeq("Hard", "Classic"))	
+		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique")),
+		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique")),
+		Game_Mode(IndexedSeq(16, 16, 99),IndexedSeq("Difficile", "Classique"))	
 	)
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]) ={ //form_nb_fields_result(0) = nb_of_cols, form_nb_fields_result(1) = nb_of_rows, form_nb_fields_result(2) = nb_of_bombs
 		//val return_value = form_nb_fields_result(1) * form_nb_fields_result(0) > 9 && form_nb_fields_result(2) + 9 <= form_nb_fields_result(1) * form_nb_fields_result(0)
