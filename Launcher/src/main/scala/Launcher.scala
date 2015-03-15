@@ -60,6 +60,82 @@ class Launcher_Content extends GridBagPanel {
 		foreground = GUI_Mood.f_colour
 	}
 
+	//Définition des caractèristiques de tailles des game_buttons
+	val width = 160
+	val height = 160
+	val inner_border_thickness = 2
+	val outer_border_thickness = 4
+	val b_th = inner_border_thickness + outer_border_thickness 	//border_thickness
+
+	//Définition des méthodes de peinture custom pour les game_buttons
+	val lighter_dark_orchid = new Color(193,90,244)
+	val darker_dark_orchid = new Color(123,20,174)
+	val unoverflyed_background_gradientpaint = new java.awt.GradientPaint(b_th, b_th, lighter_dark_orchid, 0, height-2*b_th, darker_dark_orchid)
+	val overflyed_background_gradientpaint = new java.awt.GradientPaint(b_th, b_th, darker_dark_orchid, 0, height-2*b_th, lighter_dark_orchid)
+
+	def unoverflyed_custom_painting (g:Graphics2D) ={
+		//définit un dégradé (x_origin, y_origin, origin_colour, x_destination, y_destination, destination_colour)
+		g.setPaint(unoverflyed_background_gradientpaint)
+		g.fillRect(b_th, b_th, width-2*b_th, height-2*b_th)				
+	}
+	def overflyed_custom_painting (g:Graphics2D) ={
+		g.setPaint(overflyed_background_gradientpaint)
+		g.fillRect(b_th, b_th, width-2*b_th, height-2*b_th)	
+	}
+
+	class Game_Button extends Button {
+		this.peer.setOpaque(false);				//Ces deux lignes disent à la méthode paint de ne pas changer le background
+		this.peer.setContentAreaFilled(false);
+		var custom_painting: ((Graphics2D) => Unit) = ((g:Graphics2D) => ())
+		override def paint(g: Graphics2D)={
+			custom_painting(g)
+			super.paint(g)
+		}
+		custom_painting = unoverflyed_custom_painting
+		foreground = GUI_GE.silver
+		border = Swing.MatteBorder(4, 4, 4, 4, GUI_Mood.f_colour)
+		//INUTILE, mais conservé pour référence future
+		/*border = javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.dark_orchid)
+		border = javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.yellow)
+		border = javax.swing.BorderFactory.createCompoundBorder(outside = Swing.LineBorder(GUI_GE.maroon4, 2), inside = Swing.LineBorder(GUI_GE.dark_golden_rod1, 2))*/
+		border = Swing.CompoundBorder(outside = Swing.LineBorder(GUI_Mood.b_colour, outer_border_thickness)
+										,inside = Swing.LineBorder(GUI_Mood.f_colour, inner_border_thickness))
+		font = new Font("Impact", 0, 20)
+		minimumSize = new Dimension(width, height)
+		preferredSize = new Dimension(width, height)
+
+		//val foreground_gradientpaint = new java.awt.GradientPaint(0, 0, GUI_GE.silver, 0, 10, darker_silver) //Inutile mais conservé
+		listenTo(mouse.moves, mouse.clicks)
+		def mouse_enter_reaction () ={	//Lorsque la souris entre dans la zone du label
+			this.custom_painting = overflyed_custom_painting
+		}
+		def mouse_exit_reaction () ={	//Lorsque la souris quitte la zone du label
+			this.custom_painting = unoverflyed_custom_painting
+		}
+		def mouse_leftclic_reaction () ={	//Lorsque le label est cliqué avec le clic gauche
+		}
+		def mouse_middleclic_reaction () ={	//Lorsque le label est cliqué avec le clic central
+		}
+		def mouse_rightclic_reaction () ={	//Lorsque le label est cliqué avec le clic droit
+		}
+		reactions += {
+			case e: MouseEntered =>
+				mouse_enter_reaction()
+			case e: MouseExited =>
+				mouse_exit_reaction()
+			case e: MouseClicked =>
+				e.peer.getButton match {
+					case java.awt.event.MouseEvent.BUTTON1 =>
+						mouse_leftclic_reaction()
+					case java.awt.event.MouseEvent.BUTTON2 =>
+						mouse_middleclic_reaction()
+					case java.awt.event.MouseEvent.BUTTON3 =>
+						mouse_rightclic_reaction()
+				}					
+		}
+	}
+
+	var game_button_list: IndexedSeq[Game_Button] = IndexedSeq()
 	val nb_of_games = Main.game_list.length
 	val nb_of_cols = (ceil(sqrt(nb_of_games))).toInt	//Calcul le nombre de colonnes dans le lanceur
 	var row_number = 1	//La ligne et la colonne du gridbagpanel auxquelles on va ajouter le bouton de jeu
@@ -78,42 +154,15 @@ class Launcher_Content extends GridBagPanel {
 			game_frame.visible = true
 			game_frame.location = Main.launcher_mainframe.location
 			Main.launcher_mainframe.dispose()
+			reinit_game_button_list_custompainting()
 		}
-		var game_button = new Button(Main.game_list(i).title){
-			//background = GUI_GE.dark_orchid
-			foreground = GUI_GE.silver
-			border = Swing.MatteBorder(4, 4, 4, 4, GUI_Mood.f_colour)
-			//INUTILE, mais conservé pour référence future
-			/*border = javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.dark_orchid)
-			border = javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.yellow)
-			border = javax.swing.BorderFactory.createCompoundBorder(outside = Swing.LineBorder(GUI_GE.maroon4, 2), inside = Swing.LineBorder(GUI_GE.dark_golden_rod1, 2))*/
-			val inner_border_thickness = 2
-			val outer_border_thickness = 4
-			border = Swing.CompoundBorder(outside = Swing.LineBorder(GUI_Mood.b_colour, outer_border_thickness)
-											,inside = Swing.LineBorder(GUI_Mood.f_colour, inner_border_thickness))
-			font = new Font("Impact", 0, 20)
+		var game_button = new Game_Button{
+			text = Main.game_list(i).title
 			action = Action(Main.game_list(i).title)(game_button_action)
-			val width = 160
-			val height = 160
-			val b_th = inner_border_thickness + outer_border_thickness 	//border_thickness
-			minimumSize = new Dimension(width, height)
-			preferredSize = new Dimension(width, height)
-			val lighter_dark_orchid = new Color(193,90,244)
-			val darker_dark_orchid = new Color(123,20,174)
-			val background_gradientpaint = new java.awt.GradientPaint(b_th, b_th, lighter_dark_orchid, 0, height-2*b_th, darker_dark_orchid)
-			//définit un dégradé (x_origin, y_origin, origin_colour, x_destination, y_destination, destination_colour)
-			val darker_silver= new Color(180,182,200)
-			//val foreground_gradientpaint = new java.awt.GradientPaint(0, 0, GUI_GE.silver, 0, 10, darker_silver) //Inutile mais conservé
-			this.peer.setOpaque(false);				//Ces deux lignes disent à la méthode paint de ne pas changer le background
-			this.peer.setContentAreaFilled(false);
-			override def paint(g: Graphics2D)={
-				g.setPaint(background_gradientpaint)
-				g.fillRect(b_th, b_th, width-2*b_th, height-2*b_th)
-				super.paint(g)
-			}
 		}
 		add(game_button,
 			constraints(col_number, row_number))
+		game_button_list = game_button_list :+ game_button
 		col_number = col_number + 1
 		if (col_number == nb_of_cols) {
 			col_number = 0
@@ -123,4 +172,10 @@ class Launcher_Content extends GridBagPanel {
 	add(title_label,
 		constraints(0,0,gridwidth = nb_of_cols, fill = GridBagPanel.Fill.Horizontal))
 	Main.launcher_mainframe.resizable = false
+
+	def reinit_game_button_list_custompainting () ={
+		game_button_list.foreach{game_button =>
+			game_button.custom_painting = unoverflyed_custom_painting
+		}
+	}
 }
