@@ -12,7 +12,7 @@ import scala.swing.ComboBox
 
 object GUI_Mood{	//définit les couleurs de l'interface graphique
 	val f_colour = GUI_GE.dark_golden_rod1	//couleur des textes ("foreground")
-	val b_colour = GUI_GE.maroon4			//couleur des arrières-plans ("background")
+	val b_colour = GUI_GE.maroon4		//couleur des arrières-plans ("background")
 }
 
 
@@ -155,7 +155,7 @@ abstract class Game{
 		//val timer_label = game_frame_content.timer_label
 		val grid_content = game_frame_content.grid.get_contents
 		outcome_label.text = "WIN !"
-		outcome_label.background = new Color(0,200,0)
+		outcome_label.background = new Color(0,139,0)
 		//timer_label.stop()
 		game_frame_content.timer_label.stop()
 		grid_content.foreach(label => label.deafTo(label.mouse.moves, label.mouse.clicks))
@@ -240,9 +240,20 @@ class UI (game: Game) extends Frame {
 		font = new Font("Arial", 1, 20)
 		//text = "Welcome to " + game.title + " ! ;)"
 		text = game.title
-		preferredSize = new Dimension(300,300)
-		background = GUI_Mood.b_colour
-		opaque = true
+		val lighter_maroon4 = new Color(179, 70, 138)
+		val darker_maroon4 = new Color(109, 0, 68)
+		val width = 300
+		val height = 300
+		val background_gradientpaint = new java.awt.GradientPaint(0, 0, lighter_maroon4, 0, 300, darker_maroon4)
+		this.peer.setOpaque(false);				//Cetteligne dit à la méthode paint de ne pas changer le background
+		override def paint(g: Graphics2D)={
+			g.setPaint(background_gradientpaint)
+			g.fillRect(0, 0, width, height)
+			super.paint(g)
+		}
+		preferredSize = new Dimension(width,height)
+		//background = GUI_Mood.b_colour
+		//opaque = true
 		foreground = GUI_Mood.f_colour
 	}
 	val Game_Starter = new Generic_Game_Starter(game,thisui)

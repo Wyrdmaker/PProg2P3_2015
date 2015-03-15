@@ -24,8 +24,11 @@ trait GUI_Graphical_Elements {
 	val yellow = new Color(255,255,0)
 	val maroon = new Color(176, 48, 96)
 	val maroon4 = new Color(139, 28, 98)
+	val hunter_green = new Color(142,35,35) //ressemble à maroon4 en plus marron
 	val dark_purple = new Color(135,31,120)
 	val dark_golden_rod1 = new Color(255,185,15)
+	val silver = new Color(230,232,250)
+	val silver_grey = new Color(192,192,192)
 	//#Bordures#//
 	def border(colour: Color = black, thickness: Int = 1) = Swing.LineBorder(colour, thickness)
 }

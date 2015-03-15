@@ -3,6 +3,8 @@ import scala.math._
 import scala.swing.event._
 import javax.swing.{ImageIcon, Icon}
 import java.awt.event.{ActionEvent, ActionListener}
+import javax.swing.border
+import java.awt.GradientPaint;
 
 object Main {
 	val game_list: IndexedSeq[Game] = IndexedSeq( Demineur, Flip, Flip, Demineur)
@@ -32,7 +34,7 @@ object Main {
 	}
 }
 
-class Launcher_Content extends GridBagPanel {
+class Launcher_Content extends GridBagPanel { 
 	opaque = true
 	border = Swing.MatteBorder(5, 5, 5, 5, GUI_Mood.b_colour)	//MatteBorder permet de spécifier la largeur de la bordure sur chaque coté (haut, bas, gauche, droite)
 																//(Ici, on aurait juste pu mettre LineBorder)
@@ -78,13 +80,37 @@ class Launcher_Content extends GridBagPanel {
 			Main.launcher_mainframe.dispose()
 		}
 		var game_button = new Button(Main.game_list(i).title){
-			background = GUI_GE.dark_orchid
-			foreground = GUI_Mood.f_colour
-			border = Swing.MatteBorder(5, 5, 5, 5, GUI_Mood.b_colour)
+			//background = GUI_GE.dark_orchid
+			foreground = GUI_GE.silver
+			border = Swing.MatteBorder(4, 4, 4, 4, GUI_Mood.f_colour)
+			//INUTILE, mais conservé pour référence future
+			/*border = javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.dark_orchid)
+			border = javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.yellow)
+			border = javax.swing.BorderFactory.createCompoundBorder(outside = Swing.LineBorder(GUI_GE.maroon4, 2), inside = Swing.LineBorder(GUI_GE.dark_golden_rod1, 2))*/
+			val inner_border_thickness = 2
+			val outer_border_thickness = 4
+			border = Swing.CompoundBorder(outside = Swing.LineBorder(GUI_Mood.b_colour, outer_border_thickness)
+											,inside = Swing.LineBorder(GUI_Mood.f_colour, inner_border_thickness))
 			font = new Font("Impact", 0, 20)
 			action = Action(Main.game_list(i).title)(game_button_action)
-			minimumSize = new Dimension(160, 160)
-			preferredSize = new Dimension(160, 160)
+			val width = 160
+			val height = 160
+			val b_th = inner_border_thickness + outer_border_thickness 	//border_thickness
+			minimumSize = new Dimension(width, height)
+			preferredSize = new Dimension(width, height)
+			val lighter_dark_orchid = new Color(193,90,244)
+			val darker_dark_orchid = new Color(123,20,174)
+			val background_gradientpaint = new java.awt.GradientPaint(b_th, b_th, lighter_dark_orchid, 0, height-2*b_th, darker_dark_orchid)
+			//définit un dégradé (x_origin, y_origin, origin_colour, x_destination, y_destination, destination_colour)
+			val darker_silver= new Color(180,182,200)
+			//val foreground_gradientpaint = new java.awt.GradientPaint(0, 0, GUI_GE.silver, 0, 10, darker_silver) //Inutile mais conservé
+			this.peer.setOpaque(false);				//Ces deux lignes disent à la méthode paint de ne pas changer le background
+			this.peer.setContentAreaFilled(false);
+			override def paint(g: Graphics2D)={
+				g.setPaint(background_gradientpaint)
+				g.fillRect(b_th, b_th, width-2*b_th, height-2*b_th)
+				super.paint(g)
+			}
 		}
 		add(game_button,
 			constraints(col_number, row_number))
