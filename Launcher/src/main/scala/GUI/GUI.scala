@@ -270,8 +270,8 @@ class UI (game: Game) extends Frame {
 			val asked_random_seed = random_seed_form.nb_fields_results(0)
 			game.random_gen = new scala.util.Random(asked_random_seed)
 
-			Action_Restart.action_restart()
-			//Game_Starter.generic_game_starter()
+			//Action_Restart.action_restart()
+			Game_Starter.generic_game_starter()
 		}	
 	}
 
