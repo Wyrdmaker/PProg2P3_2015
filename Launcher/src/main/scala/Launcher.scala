@@ -4,10 +4,11 @@ import scala.swing.event._
 import javax.swing.{ImageIcon, Icon}
 import java.awt.event.{ActionEvent, ActionListener}
 import javax.swing.border
-import java.awt.GradientPaint;
+import java.awt.GradientPaint
+import java.io._
 
 object Main {
-	val game_list: IndexedSeq[Game] = IndexedSeq( Demineur, Flip, Flip, Demineur)
+	var game_list = new File("src/main/scala/Jeux").listFiles.filter(_.isDirectory).map(_.getName)
 	var launcher_mainframe : MainFrame = null
 	def main(args: Array[String]) {
 		launcher_mainframe = new MainFrame{
@@ -142,8 +143,9 @@ class Launcher_Content extends GridBagPanel {
 	var col_number = 0
 	for (i <- 0 until nb_of_games) {	//Ajoute chacun des jeux de Main.game_list au GridBagPanel
 
+		var game_class = Class.forName(Main.game_list(i) + "$").getField("MODULE$").get(classOf[Game]).asInstanceOf[Game]
 		def game_button_action() :Unit = {
-			val game_frame = new UI(Main.game_list(i))
+			val game_frame = new UI(game_class)
 			Main.launcher_mainframe.listenTo(game_frame)
 			Main.launcher_mainframe.reactions += {
 				case e: WindowClosing => {
@@ -157,8 +159,8 @@ class Launcher_Content extends GridBagPanel {
 			reinit_game_button_list_custompainting()
 		}
 		var game_button = new Game_Button{
-			text = Main.game_list(i).title
-			action = Action(Main.game_list(i).title)(game_button_action)
+			text = game_class.title
+			action = Action(game_class.title)(game_button_action)
 		}
 		add(game_button,
 			constraints(col_number, row_number))
