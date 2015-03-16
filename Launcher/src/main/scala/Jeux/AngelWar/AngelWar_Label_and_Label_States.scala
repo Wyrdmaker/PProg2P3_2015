@@ -19,8 +19,14 @@ abstract class AngelWar_Label_State extends Label_State[AngelWar_Label] {
 	val opaque = true
 	val foreground = AWGE.black
 	val margin = 2
-	val background_icon = new ImageIcon("src/main/ressources/AngelWar/k2908634.jpg")
-	val background_image = background_icon.getImage()
+	val hell_background_icon = new ImageIcon("src/main/ressources/AngelWar/k2908634.jpg")
+	val hell_background_image = hell_background_icon.getImage()
+	val heaven_background_icon = new ImageIcon("src/main/ressources/AngelWar/heaven_abstract-blue.jpg")
+	val heaven_background_image = heaven_background_icon.getImage()
+	val white_angel_icon = new ImageIcon("src/main/ressources/AngelWar/white_angel_by_sandara-d7v34ye(reduite).jpg")
+	val white_angel_image = white_angel_icon.getImage()
+	val black_angel_icon = new ImageIcon("src/main/ressources/AngelWar/black_angel_by_sandara-d7oontj(reduite).jpg")
+	val black_angel_image = black_angel_icon.getImage()
 }
 
 class Label_State_Empty extends AngelWar_Label_State{
@@ -28,8 +34,14 @@ class Label_State_Empty extends AngelWar_Label_State{
 	val background = AWGE.sandy_brown
 	val text = ""
 	val label_border = AWGE.border(AWGE.black, 2)
+	var img = hell_background_image
+	AWGE.no_color_mode() match {
+		case 1 => img = heaven_background_image
+		case 0 => img = hell_background_image
+		case _ => img = hell_background_image
+	}
 	def f_custom_painting (g: Graphics2D, l:Label) ={
-		g.drawImage(background_image, margin, margin, l.size.width - 2*margin, l.size.height - 2*margin, null)		
+		g.drawImage(img, margin, margin, l.size.width - 2*margin, l.size.height - 2*margin, null)		
 	}
 	custom_painting = f_custom_painting	
 }
@@ -39,8 +51,12 @@ class Label_State_Tent extends AngelWar_Label_State{
 	val background = AWGE.sandy_brown
 	val text = ""
 	val label_border = AWGE.border(AWGE.black, 2)
-	var myicon = new ImageIcon("src/main/ressources/AngelWar/white_angel_by_sandara-d7v34ye(reduite).jpg")
-	val img = myicon.getImage()
+	var img = white_angel_image
+	AWGE.no_color_mode() match {
+		case 1 => img = black_angel_image
+		case 0 => img = white_angel_image
+		case _ => img = white_angel_image
+	}
 	def f_custom_painting (g: Graphics2D, l:Label) ={
 		g.drawImage(img, margin, margin, l.size.width - 2*margin, l.size.height - 2*margin, null)		
 	}
@@ -52,8 +68,12 @@ class Label_State_Tree extends AngelWar_Label_State{
 	val background = AWGE.sandy_brown
 	val text = ""
 	val label_border = AWGE.border(AWGE.black, 2)
-	var myicon = new ImageIcon("src/main/ressources/AngelWar/black_angel_by_sandara-d7oontj(reduite).jpg")
-	val img = myicon.getImage()
+	var img = black_angel_image
+	AWGE.no_color_mode() match {
+		case 1 => img = white_angel_image
+		case 0 => img = black_angel_image
+		case _ => img = black_angel_image
+	}
 	def f_custom_painting (g: Graphics2D, l:Label) ={
 		g.drawImage(img, margin, margin, l.size.width - 2*margin, l.size.height - 2*margin, null)		
 	}
@@ -191,11 +211,19 @@ class AngelWar_Label extends Grid_Label with AngelWar_Label_States_Manager{
 		else {change_to_state(this, state)}
 	}
 
-	var locked_icon = new ImageIcon("src/main/ressources/AngelWar/halo(transparent).png")
-	val locked_image = locked_icon.getImage()
-	def locked_custom_painting(g:Graphics2D, l:Label)={ 
-		g.drawImage(locked_image, 5, 5, l.size.width - 10, l.size.height - 10, null)		
-	}
+	val hell_locked_icon = new ImageIcon("src/main/ressources/AngelWar/n_a7(transparent).png")
+	val hell_locked_image = hell_locked_icon.getImage()
+	val heaven_locked_icon = new ImageIcon("src/main/ressources/AngelWar/halo(transparent).png")
+	val heaven_locked_image = heaven_locked_icon.getImage()
+
+	def locked_custom_painting(g:Graphics2D, l:Label)={
+		var img = AWGE.no_color_mode() match{
+			case 1 => hell_locked_image
+			case 0 => heaven_locked_image
+			case _ => heaven_locked_image	
+		}
+		g.drawImage(img, 5, 5, l.size.width - 10, l.size.height - 10, null)		
+	}	
 
 	def add_to_custom_painting(f: (Graphics2D, Label) => Unit) = {
 		val old_custom_painting = custom_painting
@@ -229,6 +257,8 @@ class AngelWar_Label extends Grid_Label with AngelWar_Label_States_Manager{
 				else{
 					locked=true
 					//custom_painting = locked_custom_painting
+
+					//add_to_custom_painting(create_locked_custom_painting())
 					add_to_custom_painting(locked_custom_painting)
 				}
 			}

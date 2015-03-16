@@ -42,7 +42,14 @@ object AWGE extends GUI_Graphical_Elements{
 
 class AngelWar_Help_Frame extends Frame {
 	title = "Aide"
-	contents = new Label("Retournez les cases en leur cliquant dessus jusqu'à ce qu'elles soient toutes blanches"){
+	contents = new Label(){
+		text = (<html> <body> <p> Aidez les anges blancs à vaincre leurs homologues déchus en les disposant dans certaines des case de telles 
+		sorte que les conditions suivantes soient remplies: </p>
+		<p>      - Il y a autant d'anges blancs que de noirs </p>
+		<p>		- Les Anges doivent etre associés de telle sorte que chaque ange blanc est directement adjacent (diagonales exclues) à son 
+		ange noir. Cependant, l'ange blanc peut etre adjacent à d'autres anges noirs que le sien. </p>
+		<p>		- Il n'y a pas d'anges blancs adjacents (diagonales comprises) à d'autres ange blancs </p>
+		<p>		- Le nombre d'anges blancs de chaque ligne et chaque colonne correspond aux nombres des bords de la grille </p> </body> </html>).toString
 		background = GUI_Mood.b_colour
 		foreground = GUI_Mood.f_colour
 		opaque = true
@@ -70,7 +77,7 @@ object AngelWar extends Game{
 
 	//##Game parameters##
 	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 8, 20), ("Hauteur", 0, 8, 20))
-	var string_game_parameters_def_list = IndexedSeq(("Mode de Couleur", "Classique", IndexedSeq("Classique")))
+	var string_game_parameters_def_list = IndexedSeq(("Ambiance", "Assaut Céleste", IndexedSeq("Assaut Céleste", "Revanche Infernale")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def color_parameter = string_game_parameters_def_list(0)._2
@@ -88,9 +95,9 @@ object AngelWar extends Game{
 	//var game_frame_content héritée de Game
 
 	val game_game_mode_list = IndexedSeq(
-		Game_Mode(IndexedSeq(8,8),IndexedSeq("Classique")),
-		Game_Mode(IndexedSeq(10,10),IndexedSeq("Classique")),
-		Game_Mode(IndexedSeq(15,15),IndexedSeq("Classique"))
+		Game_Mode(IndexedSeq(8,8),IndexedSeq("Assaut Céleste")),
+		Game_Mode(IndexedSeq(10,10),IndexedSeq("Assaut Céleste")),
+		Game_Mode(IndexedSeq(15,15),IndexedSeq("Assaut Céleste"))
 	)
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]) ={
 		var return_value = "OK"
