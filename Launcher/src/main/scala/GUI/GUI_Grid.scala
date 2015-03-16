@@ -6,7 +6,7 @@ import java.text.DateFormat
 import java.text.DateFormat._
 import java.text.SimpleDateFormat
 import java.awt.event.{ActionEvent, ActionListener}
-//import javax.swing.{ImageIcon, Icon}
+import javax.swing.{ImageIcon, Icon}
 
 package GUI{
 
@@ -85,6 +85,26 @@ class Grid[Game_Label_Class <: Grid_Label] (game: Game) extends GridPanel(game.n
 	def get_contents() = {
 		contents.map((x) => x.asInstanceOf[Game_Label_Class])
 	}
+
+	background = GUI_Mood.b_colour
+
+	//Permet au jeu de peindre sur le background du gridpanel (par exemple pour y mettre des images)
+	var background_painting: (Graphics2D, UIElement)=>Unit = (g:Graphics2D, uie:UIElement)=>()
+	override def paintComponent(g:Graphics2D){
+		super.paintComponent(g)
+		background_painting(g, this)
+	}
+
+	def set_image_background(img: java.awt.Image, left_margin: Int = 0, top_margin: Int = 0, right_margin: Int = 0, bottom_margin: Int=0)={
+		//Façon pratique de définir une image de background pour le GridPanel
+		val old_background_painting = background_painting
+		def new_background_painting(g:Graphics2D, uie:UIElement)={
+			old_background_painting(g,uie)
+			g.drawImage(img, left_margin, top_margin, uie.size.width - right_margin, uie.size.height - bottom_margin, null)
+		}
+		background_painting = new_background_painting
+	}
+
 }
 
 }	//Accolade fermante du package GUI

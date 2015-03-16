@@ -18,11 +18,8 @@ abstract class AngelWar_Label_State extends Label_State[AngelWar_Label] {
 	//val size_y = AngelWar.square_size_y
 	val opaque = true
 	val foreground = AWGE.black
+	val background: java.awt.Color = null
 	val margin = 2
-	val hell_background_icon = new ImageIcon("src/main/ressources/AngelWar/k2908634.jpg")
-	val hell_background_image = hell_background_icon.getImage()
-	val heaven_background_icon = new ImageIcon("src/main/ressources/AngelWar/heaven_abstract-blue.jpg")
-	val heaven_background_image = heaven_background_icon.getImage()
 	val white_angel_icon = new ImageIcon("src/main/ressources/AngelWar/white_angel_by_sandara-d7v34ye(reduite).jpg")
 	val white_angel_image = white_angel_icon.getImage()
 	val black_angel_icon = new ImageIcon("src/main/ressources/AngelWar/black_angel_by_sandara-d7oontj(reduite).jpg")
@@ -31,24 +28,14 @@ abstract class AngelWar_Label_State extends Label_State[AngelWar_Label] {
 
 class Label_State_Empty extends AngelWar_Label_State{
 	val state_name = "empty"
-	val background = AWGE.sandy_brown
+	override val opaque = false
+
 	val text = ""
 	val label_border = AWGE.border(AWGE.black, 2)
-	var img = hell_background_image
-	AWGE.no_color_mode() match {
-		case 1 => img = heaven_background_image
-		case 0 => img = hell_background_image
-		case _ => img = hell_background_image
-	}
-	def f_custom_painting (g: Graphics2D, l:Label) ={
-		g.drawImage(img, margin, margin, l.size.width - 2*margin, l.size.height - 2*margin, null)		
-	}
-	custom_painting = f_custom_painting	
 }
 
 class Label_State_Tent extends AngelWar_Label_State{
 	val state_name = "tent"
-	val background = AWGE.sandy_brown
 	val text = ""
 	val label_border = AWGE.border(AWGE.black, 2)
 	var img = white_angel_image
@@ -65,7 +52,6 @@ class Label_State_Tent extends AngelWar_Label_State{
 
 class Label_State_Tree extends AngelWar_Label_State{
 	val state_name = "tree"
-	val background = AWGE.sandy_brown
 	val text = ""
 	val label_border = AWGE.border(AWGE.black, 2)
 	var img = black_angel_image
@@ -82,7 +68,7 @@ class Label_State_Tree extends AngelWar_Label_State{
 
 class Label_State_Condition extends AngelWar_Label_State{
 	val state_name = "condition"
-	val background = AWGE.firebrick4
+	override val background = AWGE.firebrick4
 	val text = ""
 	val label_border = Swing.EmptyBorder(0)
 	override val foreground = AWGE.dark_golden_rod1

@@ -7,7 +7,7 @@ import java.text.DateFormat._
 import java.text.SimpleDateFormat
 import scala.math._
 //import java.awt.event.{ActionEvent, ActionListener}
-//import javax.swing.{ImageIcon, Icon}
+import javax.swing.{ImageIcon, Icon}
 
 import Games.AngelWar._
 import GUI._
@@ -162,16 +162,6 @@ object AngelWar extends Game{
 	}
 
 	def game_starter () = {
-		/*for (i <- 0 until nb_of_cols) {
-			for ( j <- 0 until nb_of_rows) {
-				for( k <- 0 to 3) {
-					print(" " + solved_board(i)(j)(k))	
-				}
-				print(" / ")
-
-			}
-			println()
-		}*/
 		def f_available_spaces_for_tent (x:Int, y:Int) : Array[(Int, Int)] = {
 			//renvoie l'ensemble des case adjacentes(diagonales exclues) pouvant accueillir une tente (cases vides et non-adjacentes(diagonales incluses) à d'autres tentes)
 			var result: Array[(Int, Int)] = Array()
@@ -291,6 +281,19 @@ object AngelWar extends Game{
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(1, nb_of_rows - 1, AngelWar)
 		UI_Link.actual_ui.contents = game_frame_content
 
+		//Définir l'image de background du gridpanel
+		val hell_background_icon = new ImageIcon("src/main/ressources/AngelWar/pics-of-hell.png")
+		val hell_background_image = hell_background_icon.getImage()
+		val heaven_background_icon = new ImageIcon("src/main/ressources/AngelWar/Nature-Clouds-Heaven-.jpg")
+		val heaven_background_image = heaven_background_icon.getImage()
+		var img = hell_background_image
+		AWGE.no_color_mode() match {
+			case 1 => img = heaven_background_image
+			case 0 => img = hell_background_image
+			case _ => img = hell_background_image
+		}
+		game_frame_content.grid.set_image_background(img, 2, 2, square_size_x, square_size_y)
+
 
 		//nettoyer game_board et initial_game_board des élèments de solution et initialiser les labels (autres que les labels de condition) de la grille
 		for (x<- 0 until nb_of_cols){
@@ -333,11 +336,6 @@ object AngelWar extends Game{
 				game_frame_content.grid.access_xy(x, y).init(game_board(x)(y)(0))
 			}	
 		}
-		/*for(x<-0 until nb_of_cols){
-			print("gb: " + x + "; ")
-			game_board(x)(0).foreach(a => print(", " +a))
-			println()
-		}*/
 		AngelWar.launch_game_timer()
 	}
 	//Définit ce qui se passe en cas de victoire du joueur -> voir Game
@@ -406,7 +404,6 @@ object AngelWar extends Game{
 		//modifie x_ass et y_ass de game_board pour que les deux cases spécifiées soient associées
 		mod_game_board(x1, y1, x_ass=x2, y_ass=y2)
 		mod_game_board(x2, y2, x_ass=x1, y_ass=y1)
-		//println("assoc: " + x1 + ", " + y1 + "; " + x2 + ", " + y2)
 	}
 
 	def unassoc(x:Int, y:Int)={
@@ -414,10 +411,8 @@ object AngelWar extends Game{
 		val x2 = game_board(x)(y)(2)
 		val y2 = game_board(x)(y)(3)
 		mod_game_board(x, y, x_ass= -1, y_ass= -1)
-		//println("unassoc: " + x + ", " + y)
 		if (x2 >=0 && y2 >= 0){
 			mod_game_board(x2, y2, x_ass= -1, y_ass= -1)
-			//println("unassoc2: " + x2 + ", " + y2)
 		}
 
 	}
@@ -563,13 +558,6 @@ object AngelWar extends Game{
 		mod_game_board(x, y, free=0)
 	}
 
-	/*def check_errors () ={
-		for (x<- 0 until nb_of_cols){
-			for(y<-0 until nb_of_rows){
-
-			}
-		}
-	}*/
 	def check_rows_condition(x:Int, y:Int) =  {
 		//vérification de la rows condition sur la rangée de la case (x,y)
 		var nb_of_tents = 0
@@ -614,10 +602,6 @@ object AngelWar extends Game{
 	}
 
 	def add_tent(x:Int, y:Int) = {	//appelée par un label se changeant en tente à la case (x, y)
-		//print("add_tent_before: ")
-		//game_board(x)(y).foreach(n => print(n + ", "))
-		//println()
-		//if (game_board(x)(y)(1) == 0){game_frame_content.grid.access_xy(x,y).set_adj_tent_error()}
 		mod_game_board(x, y, tipe = 2, free=0)
 		unfree_adjacent_squares_game_board(x,y)
 		check_rows_condition(x,y)
@@ -643,10 +627,6 @@ object AngelWar extends Game{
 			}
 		}
 		check_win()
-		//print("add_tent_after: ")
-		//game_board(x)(y).foreach(n => print(n + ", "))
-		//println()
-		//println()
 	}
 
 	def restore_square_freedom(x:Int, y:Int) ={
@@ -655,23 +635,6 @@ object AngelWar extends Game{
 			mod_game_board(x,y,free=1)
 			game_frame_content.grid.access_xy(x,y).unset_adj_tent_error()
 		}
-		/*if(game_board(x)(y)(0) == 0){
-			var adjacent_tent_nb = 0
-			if (y > 0) {
-				if(x > 0) {if(solved_board(x-1)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}				//top left
-				if(solved_board(x)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}							//top
-				if(x < nb_of_cols-1){if(solved_board(x+1)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}	//top right
-			}
-			if(x > 0){if(solved_board(x-1)(y)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}					//left
-			if(x < nb_of_cols-1){if(solved_board(x+1)(y)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}			//right
-			if(y < nb_of_rows-1){
-				if(x > 0){if(solved_board(x-1)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}				//bottom left
-				if(solved_board(x)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}							//bottom
-				if(x < nb_of_cols-1){if(solved_board(x+1)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}	//bottom right
-			}
-			if (adjacent_tent_nb>0){}
-			else{mod_game_board(x, y, free=1)}
-		}*/
 	}
 
 	def restore_adjacent_square_freedom(x:Int, y:Int) ={
@@ -712,20 +675,10 @@ object AngelWar extends Game{
 	}
 
 	def remove_tent(x:Int, y:Int) = {	//est appelée par un label se débarassant de sa tente à la case (x,y)
-		//print("remove_tent_before: ")
-		//game_board(x)(y).foreach(n => print(n + ", "))
-		//println()
 		unassoc(x,y)
 		mod_game_board(x, y, tipe = 0, free=1)
 		restore_adjacent_square_freedom(x,y)
 		check_error(x,y)
-		/*check_rows_condition(x,y)
-		check_cols_condition(x,y)
-		val adj_tents = check_adj_tent(x,y)
-		if(adj_tents._1){
-			adj_tents._2.foreach(xy => game_frame_content.grid.access_xy(xy._1,xy._2).set_adj_tent_error())
-			game_frame_content.grid.access_xy(x,y).set_adj_tent_error()
-		}*/
 		if(y>0){
 			adj_find_tree(x,y-1,false)
 		}
@@ -740,10 +693,6 @@ object AngelWar extends Game{
 		}
 		clear_no_assoc_tree_error()
 		check_win()
-		//print("remove_tent_after: ")
-		//game_board(x)(y).foreach(n => print(n + ", "))
-		//println()
-		//println()
 	}
 
 	def check_win() ={
@@ -763,76 +712,6 @@ object AngelWar extends Game{
 		}
 
 	}
-	//turn change la couleur de la case (x,y) dans board
-	/*
-	def turn (x: Int, y: Int) = {
-		//println("a_turn called with: " + x + ", " + y)
-		val previous_color = board(x)(y)._1
-		if (previous_color) {	//la case était blanche
-			//board(x)(y)._1 = false
-			board = board.updated(x, board(x).updated(y, (false, board(x)(y)._2)))
-			game_frame_content.grid.access_xy(x,y).turn()
-			nb_of_white_square = nb_of_white_square - 1
-		}
-		else {					//la case était noire
-			//board(x)(y)._1 = true
-			board = board.updated(x, board(x).updated(y, (true, board(x)(y)._2)))
-			nb_of_white_square = nb_of_white_square + 1
-			game_frame_content.grid.access_xy(x,y).turn()
-		}
-	}
-	//Renvoie les coordonnées de la case numéro i dans la liste d'influence de la case (x_base, y_base)
-	def neighbour_square_xy (i: Int, x_base: Int, y_base: Int) ={
-		var x_result = x_base
-		var y_result = y_base
-		def xpp () ={x_result = x_result + 1}
-		def xmm () ={x_result = x_result - 1}
-		def ypp () ={y_result = y_result + 1}
-		def ymm () ={y_result = y_result - 1}
-		i match {
-			case 0 => {xmm; ymm}
-			case 1 => {ymm}
-			case 2 => {xpp; ymm}
-			case 3 => {xmm}
-			case 4 => {xpp}
-			case 5 => {xmm; ypp}
-			case 6 => {ypp}
-			case 7 => {xpp; ypp}
-		}
-		(x_result, y_result)
-	}
-	//flip applique le résultat d'un clic sur la case (x,y) de board
-	def flip (x: Int, y: Int) ={
-		//println("a_flip called with: " + x + ", " + y)
-		//println("infl_list: " + board(x)(y)._2)
-		val infl_list = board(x)(y)._2
-		for (i <- 0 to 7) {
-			if (infl_list(i) == true) {
-				val square_to_turn = neighbour_square_xy(i, x, y)
-				turn(square_to_turn._1, square_to_turn._2)
-			}
-		}
-		maj_nb_of_moves(1)
-		turn(x,y)
-		check_win()
-	}
-
-	def maj_nb_of_moves(n : Int /*normalement 1 ou 0*/) = {
-		n match {
-			case 1 => nb_of_moves = nb_of_moves + n 
-			case 0 => nb_of_moves = nb_of_moves + n
-			case _ => println("anormal: la fonction maj_nb_of_moves de l'objet AngelWar a été appelée avec un argument différent de 1 ou 0:" + n)
-		}
-		val label_1 = game_frame_content.label_1
-		label_1.text = "Retournements : " + nb_of_moves.toString
-	}
-
-	def check_win () ={
-		if (nb_of_white_square == nb_of_rows * nb_of_cols && playing) {
-			AngelWar.win()
-		}
-	}
-	*/
 }
 
 } //accolade fermante du package AngelWar
