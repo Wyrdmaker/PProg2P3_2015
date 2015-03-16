@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat
 import java.awt.event.{ActionEvent, ActionListener}
 //import javax.swing.{ImageIcon, Icon}
 
+package GUI{
+
 //DÉFAUT: le thread utilisé par le timer ne s'arrète pas, m^eme après avoir fermé le jeu (écrire un println("tick") dans la fonction actionPerformed)
 
 //Idée: écrire un truc pour qu'on puisse dire à une action de s'éxécuter dans n secondes (lance un timer avec timeout puis execute l'action)
@@ -54,3 +56,5 @@ class Timer_Label (time_origin_arg : Date) extends Label{
 
 	val timer = new javax.swing.Timer(1000, timer_listener)
 }
+
+}	//Accolade fermante du package GUI

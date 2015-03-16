@@ -1,5 +1,7 @@
 import scala.swing._
 
+package GUI{
+
 trait GUI_Graphical_Elements {
 	//#Couleurs#//
 	//Pour pouvoir utiliser les couleurs en indiquant juste leurs noms (black et pas ???.black)
@@ -40,3 +42,5 @@ trait GUI_Graphical_Elements {
 object GUI_GE extends GUI_Graphical_Elements{
 	//Pour disposer d'une couleur ou d'une bordure sans avoir à hériter de GUI_Graphics
 }
+
+}	//Accolade fermante du package GUI

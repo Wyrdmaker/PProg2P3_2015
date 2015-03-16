@@ -10,6 +10,8 @@ import java.awt.event._
 import scala.swing.ComboBox
 import javax.swing.{ImageIcon, Icon}
 
+package GUI{
+
 object GUI_Mood{	//définit les couleurs de l'interface graphique
 	val f_colour = GUI_GE.dark_golden_rod1	//couleur des textes ("foreground")
 	val b_colour = GUI_GE.maroon4		//couleur des arrières-plans ("background")
@@ -363,13 +365,14 @@ class UI (game: Game) extends Frame {
 			if (game.in_game) {
 				game.playing = false
 				game.end_lock = false
+				game.game_frame_content.timer_label.reset_text()
+				game.game_frame_content.timer_label.restart(new Date())
+				game.game_frame_content.timer_label.stop()
 				game.game_action_restart()
 				val outcome_label = game.game_frame_content.outcome_label
 				outcome_label.text = ""
 
-				game.game_frame_content.timer_label.reset_text()
-				game.game_frame_content.timer_label.restart(new Date())
-				game.game_frame_content.timer_label.stop()
+
 				/*game.game_beginning_time = new Date()
 				game.game_frame_content.timer_label.restart(game.game_beginning_time)
 				game.game_frame_content.timer_label.stop()*/
@@ -428,4 +431,6 @@ class UI (game: Game) extends Frame {
 		}
 	}*/
 }
+
+}	//Accolade fermante du package GUI
 

@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat
 import java.awt.event.{ActionEvent, ActionListener}
 //import javax.swing.{ImageIcon, Icon}
 
+package GUI{
+
 abstract class Grid_Label extends Label{
 	var x = 0
 	var y = 0
@@ -84,3 +86,5 @@ class Grid[Game_Label_Class <: Grid_Label] (game: Game) extends GridPanel(game.n
 		contents.map((x) => x.asInstanceOf[Game_Label_Class])
 	}
 }
+
+}	//Accolade fermante du package GUI

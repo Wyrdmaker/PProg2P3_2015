@@ -9,6 +9,12 @@ import scala.math._
 //import java.awt.event.{ActionEvent, ActionListener}
 //import javax.swing.{ImageIcon, Icon}
 
+import GUI._
+import Games.Flip._
+
+package Games{
+package Flip{
+
 //"FGE" -> "Flip_Graphical_Element"
 object FGE extends GUI_Graphical_Elements{
 	val grey = new Color(96,96,96)
@@ -268,3 +274,7 @@ object Main {
 		ui.visible = true
 	}
 }*/
+
+
+}	//accolade fermante du package Flip
+}	//accolade fermante du package Games

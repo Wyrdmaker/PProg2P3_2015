@@ -7,27 +7,39 @@ import java.text.SimpleDateFormat
 import javax.swing.{ImageIcon, Icon}
 import java.awt.image.BufferedImage
 
+import Games.AngelWar._
+import GUI._
+
+package Games{
+package AngelWar{
+
 abstract class AngelWar_Label_State extends Label_State[AngelWar_Label] {
 	//val size_x = AngelWar.square_size_x
 	//val size_y = AngelWar.square_size_y
 	val opaque = true
 	val foreground = AWGE.black
 	val margin = 2
+	val background_icon = new ImageIcon("src/main/ressources/AngelWar/k2908634.jpg")
+	val background_image = background_icon.getImage()
 }
 
 class Label_State_Empty extends AngelWar_Label_State{
 	val state_name = "empty"
 	val background = AWGE.sandy_brown
 	val text = ""
-	val label_border = AWGE.border(AWGE.black, 1)
+	val label_border = AWGE.border(AWGE.black, 2)
+	def f_custom_painting (g: Graphics2D, l:Label) ={
+		g.drawImage(background_image, margin, margin, l.size.width - 2*margin, l.size.height - 2*margin, null)		
+	}
+	custom_painting = f_custom_painting	
 }
 
 class Label_State_Tent extends AngelWar_Label_State{
 	val state_name = "tent"
 	val background = AWGE.sandy_brown
 	val text = ""
-	val label_border = AWGE.border(AWGE.black, 1)
-	var myicon = new ImageIcon("src/main/ressources/AngelWar/white_angel_by_sandara-d7v34ye.jpg")
+	val label_border = AWGE.border(AWGE.black, 2)
+	var myicon = new ImageIcon("src/main/ressources/AngelWar/white_angel_by_sandara-d7v34ye(reduite).jpg")
 	val img = myicon.getImage()
 	def f_custom_painting (g: Graphics2D, l:Label) ={
 		g.drawImage(img, margin, margin, l.size.width - 2*margin, l.size.height - 2*margin, null)		
@@ -39,8 +51,8 @@ class Label_State_Tree extends AngelWar_Label_State{
 	val state_name = "tree"
 	val background = AWGE.sandy_brown
 	val text = ""
-	val label_border = AWGE.border(AWGE.black, 1)
-	var myicon = new ImageIcon("src/main/ressources/AngelWar/black_angel_by_sandara-d7oontj.jpg")
+	val label_border = AWGE.border(AWGE.black, 2)
+	var myicon = new ImageIcon("src/main/ressources/AngelWar/black_angel_by_sandara-d7oontj(reduite).jpg")
 	val img = myicon.getImage()
 	def f_custom_painting (g: Graphics2D, l:Label) ={
 		g.drawImage(img, margin, margin, l.size.width - 2*margin, l.size.height - 2*margin, null)		
@@ -91,42 +103,64 @@ class AngelWar_Label extends Grid_Label with AngelWar_Label_States_Manager{
 		//si la condition_value est différent de -1, alors c'est un label de condition
 		condition = condition_value
 		tipe match{
-			case 0 => {change_to_state(this, "empty")/*; println("init")*/}
+			case 0 => {change_to_state(this, "empty")/*; println("changing_to_empty: " + x + ", " + y)*/}
 			case 1 => {change_to_state(this, "tree")/*; println("init")*/}
 			case 2 => {change_to_state(this, "tent")/*; println("init")*/}
 			case 3 => {change_to_state(this, "condition")/*; println("init")*/}
 		}
+		adj_tent_error = false
+		no_adj_tree_error = false
 		listenTo(mouse.moves, mouse.clicks)
+		//println(state + ", " + x + ", " + y)
 	}
 
 	def set_adj_tent_error()={
-		if(!adj_tent_error){
-			border = AWGE.border(AWGE.red, 3)
+		//print("set_adj_tent_error, " + x + ", " + y)
+		if(!adj_tent_error /*&& state=="tent"*/){
+			//print("real_change")
+			//border = AWGE.border(AWGE.red, 3)
 			adj_tent_error = true
+			apply_errors()
+
 			AngelWar.error_nb = AngelWar.error_nb + 1
 		}
+		//println()
 	}
 	def unset_adj_tent_error() ={
-		if(adj_tent_error){
-		change_to_state(this, state)
-		adj_tent_error = false
-		AngelWar.error_nb = AngelWar.error_nb - 1			
+		//print("unset_adj_tent_error, " + x + ", " + y)
+		if(adj_tent_error /*&& state=="tent"*/){
+			//print("real_change")
+			//change_to_state(this, state)
+			adj_tent_error = false
+			apply_errors()
+
+			AngelWar.error_nb = AngelWar.error_nb - 1			
 		}
+		//println()
 	}
 
 	def set_no_adj_tree_error()={
-		if(!no_adj_tree_error){
-			border = AWGE.border(AWGE.red, 3)
+		//print("set_no_adj_tree_error, " + x + ", " + y)
+		if(!no_adj_tree_error /*&& state=="tent"*/){
+			//print("real_change")
+			//border = AWGE.border(AWGE.red, 3)
 			no_adj_tree_error = true
+			apply_errors()
 			AngelWar.error_nb = AngelWar.error_nb + 1
-		}		
+		}
+		//println()
 	}
 	def unset_no_adj_tree_error() ={
-		if(no_adj_tree_error){
-		change_to_state(this, state)
-		no_adj_tree_error = false
-		AngelWar.error_nb = AngelWar.error_nb - 1			
+		//print("unset_no_adj_tree_error, " + x + ", " + y)
+		if(no_adj_tree_error /*&& state=="tent"*/){
+			//print("real_change")
+			//change_to_state(this, state)
+			no_adj_tree_error = false
+			apply_errors()
+
+			AngelWar.error_nb = AngelWar.error_nb - 1			
 		}
+		//println()
 	}
 
 	def set_condition_error()={
@@ -149,6 +183,29 @@ class AngelWar_Label extends Grid_Label with AngelWar_Label_States_Manager{
 
 		}
 	}
+	def apply_errors() = {
+		//A appeler par le label pour applique les conséquences graphiques des erreurs
+		if(no_adj_tree_error || adj_tent_error){
+			border = AWGE.border(AWGE.red, 3)
+		}
+		else {change_to_state(this, state)}
+	}
+
+	var locked_icon = new ImageIcon("src/main/ressources/AngelWar/halo(transparent).png")
+	val locked_image = locked_icon.getImage()
+	def locked_custom_painting(g:Graphics2D, l:Label)={ 
+		g.drawImage(locked_image, 5, 5, l.size.width - 10, l.size.height - 10, null)		
+	}
+
+	def add_to_custom_painting(f: (Graphics2D, Label) => Unit) = {
+		val old_custom_painting = custom_painting
+		def new_custom_painting(g:Graphics2D, l:Label) = {
+			old_custom_painting(g, l)
+			f(g,l)
+		}
+		custom_painting = new_custom_painting
+		repaint()
+	}
 
 	override def mouse_enter_reaction () ={
 	}
@@ -156,14 +213,25 @@ class AngelWar_Label extends Grid_Label with AngelWar_Label_States_Manager{
 	}
 	override def mouse_leftclic_reaction () ={
 		state match{
-			case "empty" => if(!locked){change_to_state(this,"tent"); AngelWar.add_tent(x,y)}
-			case "tent" => {change_to_state(this, "empty"); AngelWar.remove_tent(x,y)}
+			case "empty" => if(!locked){change_to_state(this,"tent"); AngelWar.add_tent(x,y); apply_errors()}
+			case "tent" => {change_to_state(this, "empty"); AngelWar.remove_tent(x,y); unset_no_adj_tree_error(); unset_adj_tent_error()}
 			case _ => ()
 		}
 	}
 	override def mouse_rightclic_reaction () = {
 		state match{
-			case "empty" => if(locked){locked=false; background = AWGE.sandy_brown}else{locked=true; background = locked_background}
+			case "empty" => {
+				if(locked){
+					locked=false
+					change_to_state(this, "empty")
+					repaint()
+				}
+				else{
+					locked=true
+					//custom_painting = locked_custom_painting
+					add_to_custom_painting(locked_custom_painting)
+				}
+			}
 			case _ => ()
 		}
 	}
@@ -181,3 +249,6 @@ class AngelWar_Label extends Grid_Label with AngelWar_Label_States_Manager{
 	IconImage newIcon = new IconImage(bi);*/
 
 }
+
+}	//accolade fermante du package AngelWar
+}	//accolade fermante du package Games

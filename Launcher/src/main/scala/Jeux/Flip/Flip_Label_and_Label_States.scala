@@ -5,6 +5,12 @@ import java.text.DateFormat
 import java.text.DateFormat._
 import java.text.SimpleDateFormat
 
+import GUI._
+import Games.Flip._
+
+package Games{
+package Flip{
+
 abstract class Flip_Label_State extends Label_State[Flip_Label] {
 	//val size_x = Flip.square_size_x
 	//val size_y = Flip.square_size_y
@@ -73,3 +79,6 @@ class Flip_Label extends Grid_Label with Flip_Label_States_Manager{
 		}
 	}
 }
+
+}	//accolade fermante du package Flip
+}	//accolade fermante du package Games

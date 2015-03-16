@@ -5,6 +5,12 @@ import java.text.DateFormat
 import java.text.DateFormat._
 import java.text.SimpleDateFormat
 
+import GUI._
+import Games.Demineur
+
+package Games{
+package Demineur{
+
 abstract class Demineur_Label_State extends Label_State[Demineur_Label] {
 	//val size_x = Demineur.square_size_x
 	//val size_y = Demineur.square_size_y
@@ -147,3 +153,6 @@ class Demineur_Label extends Grid_Label with Demineur_Label_States_Manager /*wit
 	}
 	
 }
+
+}	//accolade fermante du package Demineur
+}	//accolade fermante du package Games

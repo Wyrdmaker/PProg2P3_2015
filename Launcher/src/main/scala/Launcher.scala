@@ -7,8 +7,14 @@ import javax.swing.border
 import java.awt.GradientPaint
 import java.io._
 
+import Games._
+import GUI._
+
 object Main {
-	var game_list = new File("src/main/scala/Jeux").listFiles.filter(_.isDirectory).map(_.getName)
+	//var game_list = new File("src/main/scala/Jeux").listFiles.filter(_.isDirectory).map(_.getName)
+
+	/* */var game_list = Array(AngelWar.AngelWar, Flip.Flip, Demineur.Demineur)/* */
+
 	//Pour ajouter des jeux, ajouter dans le dossier Jeux un dossier contenant les fichiers <nom_du_jeu>.scala et
 	// <nom_du_jeu>_Label_and_Label_States.scala. Le dossier ajouté doit porter le meme nom que le nom de la classe 
 	//étendant la classe Game dans le jeu ajouté.
@@ -146,7 +152,9 @@ class Launcher_Content extends GridBagPanel {
 	var col_number = 0
 	for (i <- 0 until nb_of_games) {	//Ajoute chacun des jeux de Main.game_list au GridBagPanel
 
-		var game_class = Class.forName(Main.game_list(i) + "$").getField("MODULE$").get(classOf[Game]).asInstanceOf[Game]
+		//var game_class = Class.forName(Main.game_list(i) + "$").getField("MODULE$").get(classOf[Game]).asInstanceOf[Game]
+
+		/* */var game_class = Main.game_list(i)/* */
 		def game_button_action() :Unit = {
 			val game_frame = new UI(game_class)
 			Main.launcher_mainframe.listenTo(game_frame)

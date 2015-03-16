@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat
 import java.awt.event.{ActionEvent, ActionListener}
 //import javax.swing.{ImageIcon, Icon}
 
+package GUI{
+
 //Les états de label sont des sets de paramètres graphiques et contienent une fonction permettant de changer les paramètres graphiques d'un 
 //	label pour qu'ils s'accordent à ceux de l'état
 abstract class Label_State[Game_Label_Class <: Grid_Label] {
@@ -33,5 +35,8 @@ abstract class Label_State[Game_Label_Class <: Grid_Label] {
 		game_label.text = text
 		game_label.custom_painting = custom_painting
 		game_label.icon = icon
+		game_label.repaint()
 	}
 }
+
+}	//Accolade fermante du package GUI

@@ -9,6 +9,12 @@ import scala.math._
 //import java.awt.event.{ActionEvent, ActionListener}
 //import javax.swing.{ImageIcon, Icon}
 
+import GUI._
+import Games.Demineur._
+
+package Games{
+package Demineur{
+
 //"DGE" -> "Demineur_Graphical_Element"
 object DGE extends GUI_Graphical_Elements{
 	def no_color_mode () = {
@@ -228,3 +234,6 @@ object Main {
 		ui.visible = true
 	}
 }*/
+
+}	//accolade fermante du package Demineur
+}	//accolade fermante du package Games

@@ -9,6 +9,8 @@ import java.awt.event.{ActionEvent, ActionListener}
 
 //import javax.swing.{ImageIcon, Icon}
 
+package GUI{
+
 class Number_Field(init_string : String) extends TextField(init_string) {
 	listenTo(keys)
 	reactions += {
@@ -258,3 +260,4 @@ class Form(titre : String, nb_fields_def_list: IndexedSeq[(String,Int,Int)], com
 	contents = form_panel
 	visible = true
 }
+}	//Accolade fermante du package GUI

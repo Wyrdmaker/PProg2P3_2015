@@ -9,6 +9,12 @@ import scala.math._
 //import java.awt.event.{ActionEvent, ActionListener}
 //import javax.swing.{ImageIcon, Icon}
 
+import Games.AngelWar._
+import GUI._
+
+package Games{
+package AngelWar{
+
 //"AWGE" -> "AngelWar_Graphical_Element"
 object AWGE extends GUI_Graphical_Elements{
 	val grey = new Color(96,96,96)
@@ -63,7 +69,7 @@ object AngelWar extends Game{
 	//var in_game = false héritée de Game
 
 	//##Game parameters##
-	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 8, 25), ("Hauteur", 0, 8, 25))
+	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 8, 20), ("Hauteur", 0, 8, 20))
 	var string_game_parameters_def_list = IndexedSeq(("Mode de Couleur", "Classique", IndexedSeq("Classique")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
@@ -92,7 +98,7 @@ object AngelWar extends Game{
 				
 	}	
 
-	def unfree_adjacent_squares(x:Int, y:Int) = {
+	def unfree_adjacent_squares_solved_board(x:Int, y:Int) = {
 		//met à 0 le caractère free des cases adjacentes (diagonales incluses)
 		if (y > 0) {
 			if(x > 0) {mod_solved_board(x-1, y-1, free=0)}				//top left
@@ -133,6 +139,19 @@ object AngelWar extends Game{
 		if(x_ass == -5){x_assb = game_board(x)(y)(2)} else {x_assb = x_ass}
 		if(y_ass == -5){y_assb = game_board(x)(y)(3)} else {y_assb = y_ass}
 		game_board.update(x, game_board(x).updated(y, Array(tipeb, freeb, x_assb, y_assb)))
+	}
+
+	def mod_initial_game_board(x:Int, y:Int, tipe:Int = -5, free:Int = -5, x_ass:Int = -5, y_ass:Int = -5) ={
+		//Pour modifier des éléments de solved_board
+		var tipeb = 0
+		var freeb = 0
+		var x_assb = 0
+		var y_assb = 0
+		if(tipe == -5){tipeb = initial_game_board(x)(y)(0)} else {tipeb = tipe}
+		if(free == -5){freeb = initial_game_board(x)(y)(1)} else {freeb = free}
+		if(x_ass == -5){x_assb = initial_game_board(x)(y)(2)} else {x_assb = x_ass}
+		if(y_ass == -5){y_assb = initial_game_board(x)(y)(3)} else {y_assb = y_ass}
+		initial_game_board.update(x, initial_game_board(x).updated(y, Array(tipeb, freeb, x_assb, y_assb)))
 	}
 
 	def game_starter () = {
@@ -219,7 +238,7 @@ object AngelWar extends Game{
 						else {random_place = available_spaces_for_tent(0)}
 						mod_solved_board(x, y, tipe=1, free=0, x_ass = random_place._1, y_ass= random_place._2)	//ajouter l'arbre			
 						mod_solved_board(random_place._1, random_place._2, tipe=2, free =0, x_ass=x, y_ass=y)	//ajouter la tente
-						unfree_adjacent_squares(random_place._1, random_place._2)
+						unfree_adjacent_squares_solved_board(random_place._1, random_place._2)
 						nb_of_trees = nb_of_trees - 1
 					}
 
@@ -233,7 +252,6 @@ object AngelWar extends Game{
 			}
 		}
 		game_board = solved_board
-		initial_game_board = game_board
 
 		//Construire les tableaux rows_conditions et cols_conditions en comptant les tentes
 		rows_conditions = Array()
@@ -267,12 +285,18 @@ object AngelWar extends Game{
 		UI_Link.actual_ui.contents = game_frame_content
 
 
-		//nettoyer game_board des élèments de solution et initialiser les labels (autres que les labels de condition) de la grille
+		//nettoyer game_board et initial_game_board des élèments de solution et initialiser les labels (autres que les labels de condition) de la grille
 		for (x<- 0 until nb_of_cols){
 			for (y <- 0 until nb_of_rows){
 				game_board(x)(y)(0) match {
-					case 1 => mod_game_board(x, y, free=0, x_ass= -1, y_ass= -1)	//arbre
-					case _ => mod_game_board(x, y, tipe = 0, free = 1, x_ass = -1, y_ass = -1)	//tente
+					case 1 => {
+						mod_game_board(x, y, free=0, x_ass= -1, y_ass= -1)	//arbre
+						//mod_initial_game_board(x, y, free=0, x_ass= -1, y_ass= -1)
+					}
+					case _ => {
+						mod_game_board(x, y, tipe = 0, free = 1, x_ass = -1, y_ass = -1)	//tente ou vide
+						//mod_initial_game_board(x, y, tipe = 0, free = 1, x_ass = -1, y_ass = -1)
+					}
 				}
 				game_frame_content.grid.access_xy(x, y).init(game_board(x)(y)(0))
 			}	
@@ -286,18 +310,28 @@ object AngelWar extends Game{
 			game_frame_content.grid.access_xy(x, nb_of_rows).init(3, cols_conditions(x))
 		}
 		game_frame_content.grid.access_xy(nb_of_cols, nb_of_rows).init(3, -1)
-	
+
+		initial_game_board = game_board.clone()
+
 		AngelWar.launch_game_timer()
 
 	}
 	def game_action_restart() : Unit = {
-		AngelWar.game_board = AngelWar.initial_game_board
+		game_board = initial_game_board.clone()
 		//Initialise chaque label selon le board
 		for (x<- 0 until nb_of_cols){
+			check_rows_condition(0,x)//c'est bien x mais vu comme un y
+			check_cols_condition(x,0)
 			for (y <- 0 until nb_of_rows){
 				game_frame_content.grid.access_xy(x, y).init(game_board(x)(y)(0))
 			}	
 		}
+		/*for(x<-0 until nb_of_cols){
+			print("gb: " + x + "; ")
+			game_board(x)(0).foreach(a => print(", " +a))
+			println()
+		}*/
+		AngelWar.launch_game_timer()
 	}
 	//Définit ce qui se passe en cas de victoire du joueur -> voir Game
 	override def win() = {
@@ -365,16 +399,20 @@ object AngelWar extends Game{
 		//modifie x_ass et y_ass de game_board pour que les deux cases spécifiées soient associées
 		mod_game_board(x1, y1, x_ass=x2, y_ass=y2)
 		mod_game_board(x2, y2, x_ass=x1, y_ass=y1)
+		//println("assoc: " + x1 + ", " + y1 + "; " + x2 + ", " + y2)
 	}
 
 	def unassoc(x:Int, y:Int)={
 		//modifie x_ass et y_ass de game_board pour que la case (x,y) et sa case associée ne le soient plus
-		val x2 = game_board(x)(y)(3)
+		val x2 = game_board(x)(y)(2)
 		val y2 = game_board(x)(y)(3)
 		mod_game_board(x, y, x_ass= -1, y_ass= -1)
+		//println("unassoc: " + x + ", " + y)
 		if (x2 >=0 && y2 >= 0){
 			mod_game_board(x2, y2, x_ass= -1, y_ass= -1)
+			//println("unassoc2: " + x2 + ", " + y2)
 		}
+
 	}
 
 	def find_tree(x:Int, y:Int, reserved_tree_xy_list: Array[(Int,Int)] = Array()) :Boolean={
@@ -383,12 +421,22 @@ object AngelWar extends Game{
 		//Si il n'y a pas d'arbre adjacent, indique au label de se mettre en mode erreur
 		//Si il y a des arbres adjacents mais qu'ils sont déjà associé, cf plus loin
 		//le paramètre reserved_tree_xy_list liste les coordonnée des arbres volés, que les fonctions appelées ne peuvent donc pas revoler
+		val this_square = game_board(x)(y)
+		if(this_square(0) != 2){return(false)}	//ce n'est pas une tente
+		if(this_square(2) != -1 && this_square(3) != -1){
+			val assoc_square = game_board(this_square(2))(this_square(3))
+			if(assoc_square(2) == x && assoc_square(3) == y && reserved_tree_xy_list.indexOf((assoc_square(2),assoc_square(3))) == -1){
+				game_frame_content.grid.access_xy(x,y).unset_no_adj_tree_error
+				return(true) //cette tente est déja associée à un arbre n'étant pas dans la liste des arbres interdits
+			}
+		}
 		var assoc_tree_xy_list : Array[(Int, Int)] =Array()
 		if (y != 0) {//la case n'est pas tout en haut
 			val pot_tree = game_board(x)(y-1)
 			if (pot_tree(0)==1){	//pot_tree est bien un arbre
 				if (pot_tree(2) + pot_tree(3) == -2){	//arbre libre trouvé
 					assoc(x,y,x,y-1)
+					game_frame_content.grid.access_xy(x,y).unset_no_adj_tree_error
 					return(true)
 				}
 				else {assoc_tree_xy_list = assoc_tree_xy_list :+ (x,y-1)}	//arbre associé trouvé
@@ -400,6 +448,7 @@ object AngelWar extends Game{
 			if (pot_tree(0)==1){	//pot_tree est bien un arbre
 				if (pot_tree(2) + pot_tree(3) == -2){	//arbre libre trouvé
 					assoc(x,y,x-1,y)
+					game_frame_content.grid.access_xy(x,y).unset_no_adj_tree_error
 					return(true)
 				}
 				else {assoc_tree_xy_list = assoc_tree_xy_list :+ (x-1,y)}	//arbre associé trouvé
@@ -410,6 +459,7 @@ object AngelWar extends Game{
 			if (pot_tree(0)==1){	//pot_tree est bien un arbre
 				if (pot_tree(2) + pot_tree(3) == -2){	//arbre libre trouvé
 					assoc(x,y,x+1,y)
+					game_frame_content.grid.access_xy(x,y).unset_no_adj_tree_error
 					return(true)
 				}
 				else {assoc_tree_xy_list = assoc_tree_xy_list :+ (x+1, y)}	//arbre associé trouvé
@@ -420,6 +470,7 @@ object AngelWar extends Game{
 			if (pot_tree(0)==1){	//pot_tree est bien un arbre
 				if (pot_tree(2) + pot_tree(3) == -2){	//arbre libre trouvé
 					assoc(x,y,x,y+1)
+					game_frame_content.grid.access_xy(x,y).unset_no_adj_tree_error
 					return(true)
 				}
 				else {assoc_tree_xy_list = assoc_tree_xy_list :+ (x,y+1)}	//arbre associé trouvé
@@ -442,6 +493,7 @@ object AngelWar extends Game{
 					unassoc(assoc_tree_xy._1, assoc_tree_xy._2)
 					assoc(x, y, assoc_tree_xy._1, assoc_tree_xy._2)
 					if(find_tree(other_tent_x, other_tent_y, reserved_tree_xy_list :+ assoc_tree_xy_list(i))){//l'autre tente a réussi à se trouver un autre arbre, on garde celui qu'on avait volé
+						game_frame_content.grid.access_xy(x,y).unset_no_adj_tree_error
 						return(true)
 					}
 					else{	//l'autre tente n'a pas réussi à se trouver un autre arbre, on restore les associations et on continue avec l'arbre associé suivant
@@ -457,31 +509,162 @@ object AngelWar extends Game{
 
 	}
 
+	def adj_find_tree(x:Int, y:Int, not_this_one:Boolean) = {
+		//Les tentes adjacentes à cet arbre doivent se trouver un autre arbre, si elles échouent, set_error_no_adj_tree
+		var reserved_list: Array[(Int,Int)] = Array()
+		if(not_this_one){
+			reserved_list = Array((x,y))
+		}
+		if(game_board(x)(y)(0) == 1){
+			if(y>0){
+				if(!find_tree(x,y-1,reserved_list) && game_board(x)(y-1)(0) == 2){
+					game_frame_content.grid.access_xy(x,y-1).set_no_adj_tree_error()
+				}
+			}
+			if(x>0){
+				if(!find_tree(x-1,y,reserved_list) && game_board(x-1)(y)(0) == 2){
+					game_frame_content.grid.access_xy(x-1,y).set_no_adj_tree_error()
+				}
+			}
+			if(x< nb_of_cols - 1){
+				if(!find_tree(x+1, y, reserved_list) && game_board(x+1)(y)(0) == 2){
+					game_frame_content.grid.access_xy(x+1,y).set_no_adj_tree_error()
+				}
+			}
+			if(y< nb_of_rows - 1){
+				if(!find_tree(x,y+1, reserved_list) && game_board(x)(y+1)(0) == 2){
+					game_frame_content.grid.access_xy(x,y+1).set_no_adj_tree_error()
+				}
+			}
+		}
+	}
+
+	def unfree_adjacent_squares_game_board(x:Int, y:Int) = {
+		//met à 0 le caractère free des cases adjacentes (diagonales incluses)
+		if (y > 0) {
+			if(x > 0) {mod_game_board(x-1, y-1, free=0)}				//top left
+			mod_game_board(x, y-1, free=0)							//top
+			if(x < nb_of_cols-1){mod_game_board(x+1, y-1, free=0)}	//top right
+		}
+		if(x > 0){ mod_game_board(x-1, y, free=0)}					//left
+		if(x < nb_of_cols-1){mod_game_board(x+1, y, free=0)}			//right
+		if(y < nb_of_rows-1){
+			if(x > 0){mod_game_board(x-1, y+1, free=0)}				//bottom left
+			mod_game_board(x, y+1, free=0)							//bottom
+			if(x < nb_of_cols-1){mod_game_board(x+1, y+1, free=0)}	//bottom right
+		}
+		mod_game_board(x, y, free=0)
+	}
+
+	/*def check_errors () ={
+		for (x<- 0 until nb_of_cols){
+			for(y<-0 until nb_of_rows){
+
+			}
+		}
+	}*/
+	def check_rows_condition(x:Int, y:Int) =  {
+		//vérification de la rows condition sur la rangée de la case (x,y)
+		var nb_of_tents = 0
+		for (cx<- 0 until nb_of_cols){
+			if (game_board(cx)(y)(0) == 2){
+				nb_of_tents = nb_of_tents + 1
+			}
+		}
+		if(nb_of_tents > rows_conditions(y)){game_frame_content.grid.access_xy(nb_of_cols,y).set_condition_error}
+		else {game_frame_content.grid.access_xy(nb_of_cols,y).unset_condition_error}
+	}
+
+	def check_cols_condition(x:Int, y:Int) = {
+		//vérification de la cols condition sur la colonne de la case (x,y)
+		var nb_of_tents = 0
+		for (cy<- 0 until nb_of_rows){
+			if (game_board(x)(cy)(0) == 2){
+				nb_of_tents = nb_of_tents + 1
+			}
+		}
+		if(nb_of_tents > cols_conditions(x)){game_frame_content.grid.access_xy(x,nb_of_rows).set_condition_error}
+		else {game_frame_content.grid.access_xy(x,nb_of_rows).unset_condition_error}		
+	}
+
+	def check_adj_tent (x:Int, y:Int) :(Boolean, Array[(Int, Int)])= {
+		//renvoie vrai s'il y à une tente adjacente, faux sinon et renvoie également la liste des coordonnées des tentes adjacentes
+		var adjacent_tents: Array[(Int, Int)] = Array()
+		if (y > 0) {
+			if(x > 0) {if(game_board(x-1)(y-1)(0)==2){adjacent_tents = adjacent_tents :+ (x-1, y-1)}}				//top left
+			if(game_board(x)(y-1)(0)==2){adjacent_tents = adjacent_tents :+ (x, y-1)}							//top
+			if(x < nb_of_cols-1){if(game_board(x+1)(y-1)(0)==2){adjacent_tents = adjacent_tents :+ (x+1, y-1)}}	//top right
+		}
+		if(x > 0){if(game_board(x-1)(y)(0)==2){adjacent_tents = adjacent_tents :+ (x-1, y)}}					//left
+		if(x < nb_of_cols-1){if(game_board(x+1)(y)(0)==2){adjacent_tents = adjacent_tents :+ (x+1, y)}}			//right
+		if(y < nb_of_rows-1){
+			if(x > 0){if(game_board(x-1)(y+1)(0)==2){adjacent_tents = adjacent_tents :+ (x-1, y+1)}}				//bottom left
+			if(game_board(x)(y+1)(0)==2){adjacent_tents = adjacent_tents :+ (x, y+1)}							//bottom
+			if(x < nb_of_cols-1){if(game_board(x+1)(y+1)(0)==2){adjacent_tents = adjacent_tents :+ (x+1, y+1)}}	//bottom right
+		}
+		if (adjacent_tents.length>0){return((true, adjacent_tents))}
+		else{return((false, adjacent_tents))}		
+	}
+
 	def add_tent(x:Int, y:Int) = {	//appelée par un label se changeant en tente à la case (x, y)
-		if (game_board(x)(y)(1) == 0){}
+		//print("add_tent_before: ")
+		//game_board(x)(y).foreach(n => print(n + ", "))
+		//println()
+		//if (game_board(x)(y)(1) == 0){game_frame_content.grid.access_xy(x,y).set_adj_tent_error()}
 		mod_game_board(x, y, tipe = 2, free=0)
-		unfree_adjacent_squares(x,y)
-		check_error(x, y)
-		find_tree(x,y)
+		unfree_adjacent_squares_game_board(x,y)
+		check_rows_condition(x,y)
+		check_cols_condition(x,y)
+		val adj_tents = check_adj_tent(x,y)
+		if(adj_tents._1){
+			adj_tents._2.foreach(xy => game_frame_content.grid.access_xy(xy._1,xy._2).set_adj_tent_error())
+			game_frame_content.grid.access_xy(x,y).set_adj_tent_error()
+		}
+		//check_error(x, y)
+		if(! find_tree(x,y)) {
+			if(y>0){
+				adj_find_tree(x,y-1,true)
+			}
+			if(x>0){
+				adj_find_tree(x-1,y,true)
+			}
+			if(x< nb_of_cols - 1){
+				adj_find_tree(x+1,y,true)
+			}
+			if(y< nb_of_rows - 1){
+				adj_find_tree(x,y+1,true)
+			}
+		}
 		check_win()
+		//print("add_tent_after: ")
+		//game_board(x)(y).foreach(n => print(n + ", "))
+		//println()
+		//println()
 	}
 
 	def restore_square_freedom(x:Int, y:Int) ={
-		var adjacent_tent_nb = 0
-		if (y > 0) {
-			if(x > 0) {if(solved_board(x-1)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}				//top left
-			if(solved_board(x)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}							//top
-			if(x < nb_of_cols-1){if(solved_board(x+1)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}	//top right
+		val adjacent_tents = check_adj_tent(x,y)
+		if(!adjacent_tents._1){	//pas de tentes adjacentes
+			mod_game_board(x,y,free=1)
+			game_frame_content.grid.access_xy(x,y).unset_adj_tent_error()
 		}
-		if(x > 0){if(solved_board(x-1)(y)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}					//left
-		if(x < nb_of_cols-1){if(solved_board(x+1)(y)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}			//right
-		if(y < nb_of_rows-1){
-			if(x > 0){if(solved_board(x-1)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}				//bottom left
-			if(solved_board(x)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}							//bottom
-			if(x < nb_of_cols-1){if(solved_board(x+1)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}	//bottom right
-		}
-		if (adjacent_tent_nb>0){}
-		else{if (game_board(x)(y)(0) != 1) {mod_game_board(x, y, free=1)}}
+		/*if(game_board(x)(y)(0) == 0){
+			var adjacent_tent_nb = 0
+			if (y > 0) {
+				if(x > 0) {if(solved_board(x-1)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}				//top left
+				if(solved_board(x)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}							//top
+				if(x < nb_of_cols-1){if(solved_board(x+1)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}	//top right
+			}
+			if(x > 0){if(solved_board(x-1)(y)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}					//left
+			if(x < nb_of_cols-1){if(solved_board(x+1)(y)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}			//right
+			if(y < nb_of_rows-1){
+				if(x > 0){if(solved_board(x-1)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}				//bottom left
+				if(solved_board(x)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}							//bottom
+				if(x < nb_of_cols-1){if(solved_board(x+1)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}	//bottom right
+			}
+			if (adjacent_tent_nb>0){}
+			else{mod_game_board(x, y, free=1)}
+		}*/
 	}
 
 	def restore_adjacent_square_freedom(x:Int, y:Int) ={
@@ -522,12 +705,38 @@ object AngelWar extends Game{
 	}
 
 	def remove_tent(x:Int, y:Int) = {	//est appelée par un label se débarassant de sa tente à la case (x,y)
+		//print("remove_tent_before: ")
+		//game_board(x)(y).foreach(n => print(n + ", "))
+		//println()
 		unassoc(x,y)
 		mod_game_board(x, y, tipe = 0, free=1)
 		restore_adjacent_square_freedom(x,y)
 		check_error(x,y)
+		/*check_rows_condition(x,y)
+		check_cols_condition(x,y)
+		val adj_tents = check_adj_tent(x,y)
+		if(adj_tents._1){
+			adj_tents._2.foreach(xy => game_frame_content.grid.access_xy(xy._1,xy._2).set_adj_tent_error())
+			game_frame_content.grid.access_xy(x,y).set_adj_tent_error()
+		}*/
+		if(y>0){
+			adj_find_tree(x,y-1,false)
+		}
+		if(x>0){
+			adj_find_tree(x-1,y,false)
+		}
+		if(x< nb_of_cols - 1){
+			adj_find_tree(x+1,y,false)
+		}
+		if(y< nb_of_rows - 1){
+			adj_find_tree(x,y+1,false)
+		}
 		clear_no_assoc_tree_error()
 		check_win()
+		//print("remove_tent_after: ")
+		//game_board(x)(y).foreach(n => print(n + ", "))
+		//println()
+		//println()
 	}
 
 	def check_win() ={
@@ -619,10 +828,6 @@ object AngelWar extends Game{
 	*/
 }
 
-/*
-object Main {
-	def main(args: Array[String]) {
-		val ui = new UI(AngelWar)
-		ui.visible = true
-	}
-}*/
+} //accolade fermante du package AngelWar
+
+} //accolade fermante du package Games
