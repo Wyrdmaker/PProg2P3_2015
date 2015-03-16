@@ -198,7 +198,7 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label] (game: Game) extends Gr
 	val outcome_label = new Label(){background = GUI_Mood.b_colour; foreground = GUI_Mood.f_colour}
 		outcome_label.opaque = true
 	val timer_label = new Timer_Label(game.game_beginning_time){background = GUI_Mood.b_colour; foreground = GUI_Mood.f_colour; opaque = true}
-	val grid = new Grid[Game_Label_Class](game)
+	var grid = new Grid[Game_Label_Class](game)
 	val bottom_panel = new FlowPanel() {
 		background = GUI_Mood.b_colour
 		foreground = GUI_Mood.f_colour
@@ -207,11 +207,10 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label] (game: Game) extends Gr
 		contents += outcome_label
 		contents += timer_label
 	}
-
 	add(bottom_panel, 
 		constraints(0, 1, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
 	add(grid,
-    	constraints(0, 0, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1))
+    	constraints(0, 0, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1))		
 	//val final_content = this
 }
 
@@ -219,6 +218,12 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label] (game: Game) extends Gr
 //Une exception lancée par la fonction game_custom_mode d'un jeu lorsque les paramètres numériques renvoyés par le formulaire ne permettent pas de créer une partie du jeu
 case class Custom_Mode_Exception(value: String) extends Throwable{}
 */
+
+//Cet objet permet au jeu d'accéder à son ui. Utilisation déconseillée mais on a parfois pas le choix
+object UI_Link {
+	var actual_ui: Frame = null
+}
+
 
 //UI est la fenetre principale des jeux
 class UI (game: Game) extends Frame {
@@ -395,6 +400,7 @@ class UI (game: Game) extends Frame {
 			outcome_label.text = ""
 			
 			ui.contents = game.game_frame_content//.final_content
+			UI_Link.actual_ui = thisui
 			///game_frame_content.timer_label.restart(new Date())
 			//game_frame_content.timer_label.stop() //Le jeu doit lancer le timer label quand il veut
 
