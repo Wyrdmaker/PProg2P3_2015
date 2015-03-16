@@ -46,10 +46,12 @@ class AngelWar_Help_Frame extends Frame {
 		text = (<html> <body> <p> Aidez les anges blancs à vaincre leurs homologues déchus en les disposant dans certaines des case de telles 
 		sorte que les conditions suivantes soient remplies: </p>
 		<p>      - Il y a autant d'anges blancs que de noirs </p>
-		<p>		- Les Anges doivent etre associés de telle sorte que chaque ange blanc est directement adjacent (diagonales exclues) à son 
+		<p>		- Les anges doivent etre associés de telle sorte que chaque ange blanc est directement adjacent (diagonales exclues) à son 
 		ange noir. Cependant, l'ange blanc peut etre adjacent à d'autres anges noirs que le sien. </p>
 		<p>		- Il n'y a pas d'anges blancs adjacents (diagonales comprises) à d'autres ange blancs </p>
-		<p>		- Le nombre d'anges blancs de chaque ligne et chaque colonne correspond aux nombres des bords de la grille </p> </body> </html>).toString
+		<p>		- Le nombre d'anges blancs de chaque ligne et chaque colonne correspond aux nombres des bords de la grille </p> 
+		<p> </p>
+		<p> Pour vous aider, vous pouvez poser des marqueurs sur certaines cases, lorsque vous pensez qu'aucun ange ne devrait etre sur cette case. </p> </body> </html>).toString
 		background = GUI_Mood.b_colour
 		foreground = GUI_Mood.f_colour
 		opaque = true
