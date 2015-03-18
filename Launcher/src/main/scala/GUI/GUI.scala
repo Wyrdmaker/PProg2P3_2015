@@ -10,6 +10,14 @@ import java.awt.event._
 import scala.swing.ComboBox
 import javax.swing.{ImageIcon, Icon}
 
+//import scalafx._
+
+//import javafx.scene.media.Media
+//import javafx.scene.media.MediaPlayer
+
+//import javax.sound._
+//import java.io._
+
 package GUI{
 
 object GUI_Mood{	//définit les couleurs de l'interface graphique
@@ -229,6 +237,44 @@ object UI_Link {
 
 //UI est la fenetre principale des jeux
 class UI (game: Game) extends Frame {
+
+	/*music = "Enticement.mp3"
+	media_music = new Media(music)
+	media_player = new MediaPlayer(media_music)
+	media_player.play()*/
+
+	/*var audioInputStream : javax.sound.sampled.AudioInputStream = null;
+	var musicfile = new File("src/main/ressources/AngelWar/08McCann-VigiloConfido.wav")
+	println(musicfile)
+ 	try{
+ 			//obtention d'un flux audio à partir d'un fichier (objet File)
+      audioInputStream = javax.sound.sampled.AudioSystem.getAudioInputStream(musicfile);
+
+    } catch {
+    	case e: javax.sound.sampled.UnsupportedAudioFileException => {e.printStackTrace()}
+    	case e: IOException => {e.printStackTrace()}
+    }
+	//Il est nécessaire de connaître le format audio du fichier
+	// d'entrée
+	// pour permettre à java de créer l'objet DataLine adéquat
+	val audioFormat : javax.sound.sampled.AudioFormat= audioInputStream.getFormat();
+	 // En plus du format du flux audio d'entrée il est nécessaire de
+	 // spécifier le type de DataLine qu'on veut
+	 // ici le DataLine qu'on souhaite est un SourceDataLine qui permet
+	 // la
+	 // lecture (targetDataLine permet l'enregistrement).
+	var info : javax.sound.sampled.DataLine.Info = new javax.sound.sampled.DataLine.Info(javax.sound.sampled.SourceDataLine.class, audioFormat);
+	 // On récupère le DataLine adéquat et on l'ouvre
+	var line:  javax.sound.sampled.SourceDataLine ;
+	 try {
+	 line = javax.sound.sampled.AudioSystem.getLine(info).asInstanceOf[javax.sound.sampled.SourceDataLine];
+	           
+	 } catch  {
+	 	case e: javax.sound.sampled.LineUnavailableException => e.printStackTrace();
+	 }*/
+
+
+
 	iconImage = toolkit.getImage("src/main/ressources/my_purple_dice_20.png")
 	val timer_listener = new ActionListener{
 		def actionPerformed(e: ActionEvent) {

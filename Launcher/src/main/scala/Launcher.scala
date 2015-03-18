@@ -20,6 +20,9 @@ object Main {
 	//étendant la classe Game dans le jeu ajouté.
 	var launcher_mainframe : MainFrame = null
 	def main(args: Array[String]) {
+
+		val chara_frame = new Character_Frame(Larissa)
+
 		launcher_mainframe = new MainFrame{
 			iconImage = toolkit.getImage("src/main/ressources/my_purple_dice_20.png")
 			centerOnScreen()
