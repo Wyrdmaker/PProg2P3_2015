@@ -22,7 +22,7 @@ abstract class Label_State[Game_Label_Class <: Grid_Label] {
 	val background: Color
 	val foreground: Color
 	val text: String
-	var custom_painting: ((Graphics2D,Label) => Unit) = ((g:Graphics2D, l:Label) => ())
+	var custom_painting: ((Graphics2D,Label) => Unit) = ((g:Graphics2D, l:UIElement) => ())
 	//var icon: javax.swing.Icon = null
 
 	def change_to_state(game_label: Game_Label_Class) = {

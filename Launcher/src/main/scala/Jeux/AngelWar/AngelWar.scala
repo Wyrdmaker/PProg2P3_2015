@@ -294,6 +294,7 @@ object AngelWar extends Game{
 			cols_conditions = cols_conditions :+ nb_of_tents
 		}
 		
+		
 		//Construire une nouvelle grille avec une rangée et une colonne en plus pour les labels affichant les rows/cols conditions
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(0, nb_of_cols + 1, AngelWar)
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(1, nb_of_rows + 1, AngelWar)
@@ -301,6 +302,17 @@ object AngelWar extends Game{
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(0, nb_of_cols - 1, AngelWar)
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(1, nb_of_rows - 1, AngelWar)
 		UI_Link.actual_ui.contents = game_frame_content
+
+		/*##
+		val gfc = game_frame_content
+		val right_labels_array = Array.fill(nb_of_cols)(new Game_Label_Class )	//Le tableau des labels de condition droits
+		val bottom_labels_array = Array.fill(nb_of_rows)(new Game_Label_Class )	//Le tableau des labels de condition du bas
+		for (y <- 0 until right_labels_array.length){
+			print(right_labels_array(y))
+			gfc.add_border_label(right_labels_array(y), GFC_Right(), y+1, y+2)
+			right_labels_array(y).init(3, 2)
+		}
+		##*/
 
 		//Définir l'image de background du gridpanel
 		val hell_background_icon = new ImageIcon("src/main/ressources/AngelWar/pics-of-hell.png")
@@ -345,7 +357,6 @@ object AngelWar extends Game{
 		initial_game_board = game_board.clone()
 
 		AngelWar.launch_game_timer()
-
 	}
 	def game_action_restart() : Unit = {
 		game_board = initial_game_board.clone()

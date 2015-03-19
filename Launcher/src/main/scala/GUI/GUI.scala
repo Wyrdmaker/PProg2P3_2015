@@ -218,11 +218,143 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label] (game: Game) extends Gr
 		contents += timer_label
 	}
 	add(bottom_panel, 
-		constraints(0, 1, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
+		constraints(1, 3, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
 	add(grid,
-    	constraints(0, 0, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1))		
-	//val final_content = this
+    	constraints(1, 1, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1))
+
+	/*##
+	//bad
+	add(grid,
+    	constraints(1, 1, 9, 9, fill = GridBagPanel.Fill.None/*, weightx = 1, weighty = 1*/))
+	add(bottom_panel, 
+		constraints(x=0, y=11, gridwidth=nb_of_cols+2,gridheight=1, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
+	
+	
+	val l = new Label("l"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
+	val m = new Label("m"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
+	val n = new Label("n"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
+	val o = new Label("o"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
+	val p = new Label("p"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
+	val q = new Label("q"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
+	val r = new Label("r"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
+	val s = new Label("s"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
+	val t = new Label("t"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
+	
+	add(l,
+		constraints(1,10,1,1))
+	add(m, 
+		constraints(2,10,1,1))
+	add(n, 
+		constraints(3,10,1,1))
+	add(o,
+		constraints(4,10,1,1))
+	add(p, 
+		constraints(5,10,1,1))
+	add(q, 
+		constraints(6,10,1,1))
+	add(r,
+		constraints(7,10,1,1))
+	add(s, 
+		constraints(8,10,1,1))
+	add(t, 
+		constraints(9,10,1,1))
+	##*/
+
+	/*
+	//Ces tableaux contiennent les Interactive Labels ajoutés au GridBagPanel via add_border_int_label, chaque tableau correspond
+	//aux Interactive_Label ajoutés dans une certaine location
+	var top_components_array : Array[Interactive_Label] = Array()
+	var bottom_components_array : Array[Interactive_Label] = Array()	
+	var right_components_array : Array[Interactive_Label] = Array()
+	var left_components_array : Array[Interactive_Label] = Array()
+	*/
+
+	val nb_of_cols = game.numeric_game_parameters_def_list(0)._2
+	val nb_of_rows = game.numeric_game_parameters_def_list(1)._2
+	def add_border_label (label: Label, location: GFC_Location, starting_coordinate: Int, ending_coordinate: Int)/*: Int*/={
+		//Ajoute au Game_Frame_Content un Label donnée en argument sur le pourtour de la grille (au_dessus, à droite, en dessous ou à 
+		//gauche selon le paramètre location)
+		//Les paramètres "starting_coordinate" et "ending_coordinate" définissent le nombre de cases de jeu sur lesquelles le label doit s'étendre.
+		//(la coordinate est x si location vaut top ou bottom et y si location vaut right ou left)
+		//Le label peut s'étendre de 0(case juste à gauche de la grille) à nb_of_cols+1(case juste à droite de la grille) si location vaut 
+		//GFC_Top ou GFC_Bottom.
+		//Exemple: si location = top, starting_coordinate = 0 et ending_coordinate = 1, alors la fonction ajoutera un label dns la case tout
+		//en haut à gauche (une case au dessus de la première ligne de la grille et une case à gauche de la première colonne de la grille)
+		//Le label peut s'étendre de 0(case juste au dessus de la grille) à nb_of_rows+1(case juste en dessous de la grille) si location vaut 
+		//GFC_Right ou GFC_Left
+
+		//"free_dimension" permet de spécifier la valeur de la dimension du label qui s'éloigne de la grille.
+
+		/*
+		//La fonction ajoute le label demandé au GridBagPanel, ajoute le label au <location>_components_array correspondant à la location demandée
+		//et renvoie l'indice dans le tableau auquel on trouvera le label ajouté
+		*/
+		if (starting_coordinate > ending_coordinate){
+			println("Anormal: On a demandé au Game_Frame_Content d'ajouter" +
+			 "un label interactif de la coordonnée " + starting_coordinate + " à la coordonnée " + ending_coordinate)
+			//return(-1)
+		}
+		else{
+			println(this.contents)
+			val int_label = new Interactive_Label
+			var x = 0
+			var y = 0
+			var width = 0
+			var height = 0
+			//var return_value = -1
+			location match{
+				case GFC_Top() =>{
+					x = starting_coordinate
+					y = 0
+					width = ending_coordinate - starting_coordinate
+					height = 1
+					//return_value = top_components_array.length
+					//top_components_array = top_components_array :+ int_label
+				}
+				case GFC_Bottom() =>{
+					x = starting_coordinate
+					y = nb_of_rows + 1
+					width = ending_coordinate - starting_coordinate
+					height = 1
+					//return_value = bottom_components_array.length
+					//bottom_components_array = bottom_components_array :+ int_label
+				}
+				case GFC_Right() =>{
+					x = nb_of_cols + 1
+					y = starting_coordinate
+					width = 1
+					height = ending_coordinate - starting_coordinate
+					//return_value = right_components_array.length
+					//right_components_array = right_components_array :+ int_label
+
+				}
+				case GFC_Left() =>{
+					x = 0
+					y = starting_coordinate
+					width = 1
+					height = ending_coordinate - starting_coordinate
+					//return_value = left_components_array.length
+					//left_components_array = left_components_array :+ int_label					
+				}
+			}
+			add( int_label,
+				constraints(x, y, width, height))
+			println()
+			println(this.contents)
+			//return(return_value)
+
+		}
+
+
+	}
 }
+
+//A class used in the method add_border_int_label in class Game_Frame_Content for the parameter location.
+abstract class GFC_Location{}
+case class GFC_Top extends GFC_Location
+case class GFC_Bottom extends GFC_Location
+case class GFC_Right extends GFC_Location
+case class GFC_Left extends GFC_Location
 
 /*Inutile Ici, conservé pour références futures
 //Une exception lancée par la fonction game_custom_mode d'un jeu lorsque les paramètres numériques renvoyés par le formulaire ne permettent pas de créer une partie du jeu
