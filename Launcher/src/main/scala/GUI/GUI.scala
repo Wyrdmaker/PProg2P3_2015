@@ -217,6 +217,12 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label] (game: Game) extends Gr
 		contents += outcome_label
 		contents += timer_label
 	}
+	val game_glb_factory = game.glb_factory
+	def glb_factory () ={
+		game_glb_factory()
+	}
+	val top_grid = new Border_Grid[Game_Label_Class] (nb_of_cols, glb_factory)
+
 	add(bottom_panel, 
 		constraints(1, 3, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
 	add(grid,
