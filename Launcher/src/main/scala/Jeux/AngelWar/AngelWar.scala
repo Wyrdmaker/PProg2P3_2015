@@ -250,7 +250,6 @@ object AngelWar extends Game{
 				val x = random_square._1
 				val y = random_square._2
 				if (solved_board(x)(y)(0) == 0){	//case vide
-					//println(x); println(y)
 					val available_spaces_for_tent = f_available_spaces_for_tent(x, y)
 					if (available_spaces_for_tent.length != 0) {
 						var random_place = (0,0)
@@ -296,16 +295,6 @@ object AngelWar extends Game{
 			cols_conditions = cols_conditions :+ nb_of_tents
 		}
 		
-		/*
-		//Construire une nouvelle grille avec une rangée et une colonne en plus pour les labels affichant les rows/cols conditions
-		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(0, nb_of_cols + 1, AngelWar)
-		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(1, nb_of_rows + 1, AngelWar)
-		game_frame_content = new Game_Frame_Content[AngelWar_Label, AngelWar_Label] (AngelWar)
-		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(0, nb_of_cols - 1, AngelWar)
-		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(1, nb_of_rows - 1, AngelWar)
-		UI_Link.actual_ui.contents = game_frame_content
-		*/
-
 		game_frame_content.set_right_border_grid()
 		right_border_labels = game_frame_content.right_border_grid.get_contents()
 		game_frame_content.set_bottom_border_grid()
@@ -322,7 +311,7 @@ object AngelWar extends Game{
 			case 0 => img = hell_background_image
 			case _ => img = hell_background_image
 		}
-		game_frame_content.grid.set_image_background(img, 2, 2, square_size_x, square_size_y)
+		game_frame_content.grid.set_image_background(img, 2, 2, 2, 2)
 
 
 		//nettoyer game_board et initial_game_board des élèments de solution et initialiser les labels (autres que les labels de condition) de la grille
@@ -401,16 +390,16 @@ object AngelWar extends Game{
 		//vérification du nb de tentes adjacentes
 		var adjacent_tent_nb = 0
 		if (y > 0) {
-			if(x > 0) {if(solved_board(x-1)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}				//top left
-			if(solved_board(x)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}							//top
-			if(x < nb_of_cols-1){if(solved_board(x+1)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}	//top right
+			if(x > 0) {if(game_board(x-1)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}				//top left
+			if(game_board(x)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}							//top
+			if(x < nb_of_cols-1){if(game_board(x+1)(y-1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}	//top right
 		}
-		if(x > 0){if(solved_board(x-1)(y)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}					//left
-		if(x < nb_of_cols-1){if(solved_board(x+1)(y)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}			//right
+		if(x > 0){if(game_board(x-1)(y)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}					//left
+		if(x < nb_of_cols-1){if(game_board(x+1)(y)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}			//right
 		if(y < nb_of_rows-1){
-			if(x > 0){if(solved_board(x-1)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}				//bottom left
-			if(solved_board(x)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}							//bottom
-			if(x < nb_of_cols-1){if(solved_board(x+1)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}	//bottom right
+			if(x > 0){if(game_board(x-1)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}				//bottom left
+			if(game_board(x)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}							//bottom
+			if(x < nb_of_cols-1){if(game_board(x+1)(y+1)(0)==2){adjacent_tent_nb = adjacent_tent_nb+1}}	//bottom right
 		}
 		if (adjacent_tent_nb>0){game_frame_content.grid.access_xy(x,y).set_adj_tent_error}
 		else{game_frame_content.grid.access_xy(x,y).unset_adj_tent_error}
@@ -422,8 +411,8 @@ object AngelWar extends Game{
 				nb_of_tents = nb_of_tents + 1
 			}
 		}
-		if(nb_of_tents > rows_conditions(y)){/*game_frame_content.grid.access_xy(nb_of_cols,y)*/right_border_labels(y).set_condition_error}
-		else {game_frame_content.grid.access_xy(nb_of_cols,y).unset_condition_error}
+		if(nb_of_tents > rows_conditions(y)){right_border_labels(y).set_condition_error}
+		else {right_border_labels(y).unset_condition_error}
 
 		//vérification de la cols condition sur la colonne de la case (x,y)
 		nb_of_tents = 0
@@ -432,8 +421,8 @@ object AngelWar extends Game{
 				nb_of_tents = nb_of_tents + 1
 			}
 		}
-		if(nb_of_tents > cols_conditions(x)){/*game_frame_content.grid.access_xy(x,nb_of_rows)*/bottom_border_labels(x).set_condition_error}
-		else {game_frame_content.grid.access_xy(x,nb_of_rows).unset_condition_error}
+		if(nb_of_tents > cols_conditions(x)){bottom_border_labels(x).set_condition_error}
+		else {bottom_border_labels(x).unset_condition_error}
 	}
 
 	def assoc(x1:Int, y1:Int, x2:Int, y2:Int)={
@@ -602,8 +591,8 @@ object AngelWar extends Game{
 				nb_of_tents = nb_of_tents + 1
 			}
 		}
-		if(nb_of_tents > rows_conditions(y)){game_frame_content.grid.access_xy(nb_of_cols,y).set_condition_error}
-		else {game_frame_content.grid.access_xy(nb_of_cols,y).unset_condition_error}
+		if(nb_of_tents > rows_conditions(y)){right_border_labels(y).set_condition_error}
+		else {right_border_labels(y).unset_condition_error}
 	}
 
 	def check_cols_condition(x:Int, y:Int) = {
@@ -614,8 +603,8 @@ object AngelWar extends Game{
 				nb_of_tents = nb_of_tents + 1
 			}
 		}
-		if(nb_of_tents > cols_conditions(x)){game_frame_content.grid.access_xy(x,nb_of_rows).set_condition_error}
-		else {game_frame_content.grid.access_xy(x,nb_of_rows).unset_condition_error}		
+		if(nb_of_tents > cols_conditions(x)){bottom_border_labels(x).set_condition_error}
+		else {bottom_border_labels(x).unset_condition_error}		
 	}
 
 	def check_adj_tent (x:Int, y:Int) :(Boolean, Array[(Int, Int)])= {
@@ -647,7 +636,6 @@ object AngelWar extends Game{
 			adj_tents._2.foreach(xy => game_frame_content.grid.access_xy(xy._1,xy._2).set_adj_tent_error())
 			game_frame_content.grid.access_xy(x,y).set_adj_tent_error()
 		}
-		//check_error(x, y)
 		if(! find_tree(x,y)) {
 			if(y>0){
 				adj_find_tree(x,y-1,true)
@@ -746,7 +734,6 @@ object AngelWar extends Game{
 		if (!unassociated_tree){
 			if (error_nb == 0){win()}	
 		}
-
 	}
 }
 

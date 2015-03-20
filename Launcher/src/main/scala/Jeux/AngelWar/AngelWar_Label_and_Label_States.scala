@@ -97,7 +97,7 @@ trait AngelWar_Label_States_Manager {
 }
 
 class AngelWar_Label extends Grid_Label with AngelWar_Label_States_Manager{
-	//var state = "empty" //valeur nécessaire pour que les AngelWar_Label puissent etre instanciés par Grid main, inutile sinon
+	state = "empty" //valeur nécessaire pour que les AngelWar_Label puissent etre instanciés par Grid main, inutile sinon
 	preferredSize = new Dimension(AngelWar.square_size_x, AngelWar.square_size_y)
 	var condition = 0
 	var adj_tent_error = false
@@ -109,64 +109,46 @@ class AngelWar_Label extends Grid_Label with AngelWar_Label_States_Manager{
 		//si la condition_value est différent de -1, alors c'est un label de condition
 		condition = condition_value
 		tipe match{
-			case 0 => {change_to_state(this, "empty")/*; println("changing_to_empty: " + x + ", " + y)*/}
-			case 1 => {change_to_state(this, "tree")/*; println("init")*/}
-			case 2 => {change_to_state(this, "tent")/*; println("init")*/}
-			case 3 => {change_to_state(this, "condition")/*; println("init")*/}
+			case 0 => {change_to_state(this, "empty")}
+			case 1 => {change_to_state(this, "tree")}
+			case 2 => {change_to_state(this, "tent")}
+			case 3 => {change_to_state(this, "condition")}
 		}
 		adj_tent_error = false
 		no_adj_tree_error = false
 		listenTo(mouse.moves, mouse.clicks)
-		//println(state + ", " + x + ", " + y)
 	}
 
 	def set_adj_tent_error()={
-		//print("set_adj_tent_error, " + x + ", " + y)
-		if(!adj_tent_error /*&& state=="tent"*/){
-			//print("real_change")
-			//border = AWGE.border(AWGE.red, 3)
+		if(!adj_tent_error){
 			adj_tent_error = true
 			apply_errors()
 
 			AngelWar.error_nb = AngelWar.error_nb + 1
 		}
-		//println()
 	}
 	def unset_adj_tent_error() ={
-		//print("unset_adj_tent_error, " + x + ", " + y)
-		if(adj_tent_error /*&& state=="tent"*/){
-			//print("real_change")
-			//change_to_state(this, state)
+		if(adj_tent_error){
 			adj_tent_error = false
 			apply_errors()
 
 			AngelWar.error_nb = AngelWar.error_nb - 1			
 		}
-		//println()
 	}
 
 	def set_no_adj_tree_error()={
-		//print("set_no_adj_tree_error, " + x + ", " + y)
-		if(!no_adj_tree_error /*&& state=="tent"*/){
-			//print("real_change")
-			//border = AWGE.border(AWGE.red, 3)
+		if(!no_adj_tree_error){
 			no_adj_tree_error = true
 			apply_errors()
 			AngelWar.error_nb = AngelWar.error_nb + 1
 		}
-		//println()
 	}
 	def unset_no_adj_tree_error() ={
-		//print("unset_no_adj_tree_error, " + x + ", " + y)
-		if(no_adj_tree_error /*&& state=="tent"*/){
-			//print("real_change")
-			//change_to_state(this, state)
+		if(no_adj_tree_error){
 			no_adj_tree_error = false
 			apply_errors()
-
 			AngelWar.error_nb = AngelWar.error_nb - 1			
 		}
-		//println()
 	}
 
 	def set_condition_error()={
