@@ -98,6 +98,8 @@ object Demineur extends Game{
 
 	type Game_Label_Class = Demineur_Label
 	def glb_factory () = { new Game_Label_Class } // "glb" -> "Game_Label_Class"
+	type Game_Border_Label_Class = Demineur_Label //Label
+	def gblb_factory () = { new Game_Border_Label_Class }
 	def about_frame_factory () = { new Demineur_About_Frame }
 	def help_frame_factory () = { new Demineur_Help_Frame }
 
@@ -124,6 +126,16 @@ object Demineur extends Game{
 		Demineur.nb_discovered_square = 0
 		Demineur.nb_flagged_square = 0
 		Demineur.maj_nb_flag(0)
+
+		game_frame_content.set_right_border_grid()
+		game_frame_content.set_bottom_border_grid()
+		game_frame_content.set_top_border_grid()
+		game_frame_content.set_left_border_grid()		
+		game_frame_content.set_top_right_border_label()
+		game_frame_content.set_top_left_border_label()
+		game_frame_content.set_bottom_right_border_label()
+		game_frame_content.set_bottom_left_border_label()
+
 		//game_frame_content.bottom_panel.background = DGE.bottom_panel_color_list(DGE.no_color_mode)
 		game_frame_content.grid.get_contents.foreach(label => label.init())
 	}

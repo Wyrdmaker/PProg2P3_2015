@@ -20,9 +20,9 @@ abstract class AngelWar_Label_State extends Label_State[AngelWar_Label] {
 	val foreground = AWGE.black
 	val background: java.awt.Color = null
 	val margin = 2
-	val white_angel_icon = new ImageIcon("src/main/ressources/AngelWar/white_angel_by_sandara-d7v34ye(reduite).jpg")
+	val white_angel_icon = new ImageIcon(getClass.getResource("/AngelWar/white_angel_by_sandara-d7v34ye(reduite).jpg"))
 	val white_angel_image = white_angel_icon.getImage()
-	val black_angel_icon = new ImageIcon("src/main/ressources/AngelWar/black_angel_by_sandara-d7oontj(reduite).jpg")
+	val black_angel_icon = new ImageIcon(getClass.getResource("/AngelWar/black_angel_by_sandara-d7oontj(reduite).jpg"))
 	val black_angel_image = black_angel_icon.getImage()
 }
 
@@ -97,7 +97,7 @@ trait AngelWar_Label_States_Manager {
 }
 
 class AngelWar_Label extends Grid_Label with AngelWar_Label_States_Manager{
-	var state = "empty" //valeur nécessaire pour que les AngelWar_Label puissent etre instanciés par Grid main, inutile sinon
+	//var state = "empty" //valeur nécessaire pour que les AngelWar_Label puissent etre instanciés par Grid main, inutile sinon
 	preferredSize = new Dimension(AngelWar.square_size_x, AngelWar.square_size_y)
 	var condition = 0
 	var adj_tent_error = false
@@ -197,9 +197,9 @@ class AngelWar_Label extends Grid_Label with AngelWar_Label_States_Manager{
 		else {change_to_state(this, state)}
 	}
 
-	val hell_locked_icon = new ImageIcon("src/main/ressources/AngelWar/n_a7(transparent).png")
+	val hell_locked_icon = new ImageIcon(getClass.getResource("/AngelWar/n_a7(transparent).png"))
 	val hell_locked_image = hell_locked_icon.getImage()
-	val heaven_locked_icon = new ImageIcon("src/main/ressources/AngelWar/halo(transparent).png")
+	val heaven_locked_icon = new ImageIcon(getClass.getResource("/AngelWar/halo(transparent).png"))
 	val heaven_locked_image = heaven_locked_icon.getImage()
 
 	def locked_custom_painting(g:Graphics2D, l:Label)={

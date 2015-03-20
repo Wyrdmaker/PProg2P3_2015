@@ -82,6 +82,8 @@ object Flip extends Game{
 
 	type Game_Label_Class = Flip_Label
 	def glb_factory () = { new Game_Label_Class } // "glb" -> "Game_Label_Class"
+	type Game_Border_Label_Class = Label
+	def gblb_factory () : Game_Border_Label_Class = {new Game_Border_Label_Class }
 	def about_frame_factory () = { new Flip_About_Frame }
 	def help_frame_factory () = { new Flip_Help_Frame }
 

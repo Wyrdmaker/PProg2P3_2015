@@ -109,6 +109,8 @@ object AngelWar extends Game{
 
 	type Game_Label_Class = AngelWar_Label
 	def glb_factory () = { new Game_Label_Class } // "glb" -> "Game_Label_Class"
+	type Game_Border_Label_Class = AngelWar_Label
+	def gblb_factory () = {new Game_Border_Label_Class}
 	def about_frame_factory () = { new AngelWar_About_Frame }
 	def help_frame_factory () = { new AngelWar_Help_Frame }
 
@@ -298,26 +300,20 @@ object AngelWar extends Game{
 		//Construire une nouvelle grille avec une rangée et une colonne en plus pour les labels affichant les rows/cols conditions
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(0, nb_of_cols + 1, AngelWar)
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(1, nb_of_rows + 1, AngelWar)
-		game_frame_content = new Game_Frame_Content[AngelWar_Label] (AngelWar)
+		game_frame_content = new Game_Frame_Content[AngelWar_Label, AngelWar_Label] (AngelWar)
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(0, nb_of_cols - 1, AngelWar)
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(1, nb_of_rows - 1, AngelWar)
 		UI_Link.actual_ui.contents = game_frame_content
 
-		/*##
-		val gfc = game_frame_content
-		val right_labels_array = Array.fill(nb_of_cols)(new Game_Label_Class )	//Le tableau des labels de condition droits
-		val bottom_labels_array = Array.fill(nb_of_rows)(new Game_Label_Class )	//Le tableau des labels de condition du bas
-		for (y <- 0 until right_labels_array.length){
-			print(right_labels_array(y))
-			gfc.add_border_label(right_labels_array(y), GFC_Right(), y+1, y+2)
-			right_labels_array(y).init(3, 2)
-		}
-		##*/
+		game_frame_content.set_right_border_grid()
+		val right_border_labels = game_frame_content.right_border_grid.get_contents()
+		game_frame_content.set_bottom_border_grid()
+		val bottom_border_labels =game_frame_content.bottom_border_grid.get_contents()
 
 		//Définir l'image de background du gridpanel
-		val hell_background_icon = new ImageIcon("src/main/ressources/AngelWar/pics-of-hell.png")
+		val hell_background_icon = new ImageIcon(getClass.getResource("/AngelWar/pics-of-hell.png"))
 		val hell_background_image = hell_background_icon.getImage()
-		val heaven_background_icon = new ImageIcon("src/main/ressources/AngelWar/Nature-Clouds-Heaven-.jpg")
+		val heaven_background_icon = new ImageIcon(getClass.getResource("/AngelWar/Nature-Clouds-Heaven-.jpg"))
 		val heaven_background_image = heaven_background_icon.getImage()
 		var img = hell_background_image
 		AWGE.no_color_mode() match {
@@ -347,7 +343,8 @@ object AngelWar extends Game{
 		
 		//initialiser les labels de conditions de la grille
 		for (y <- 0 until nb_of_rows){
-			game_frame_content.grid.access_xy(nb_of_cols, y).init(3, rows_conditions(y))
+			right_border_labels(y).init(3, rows_conditions(y))
+			//game_frame_content.grid.access_xy(nb_of_cols, y).init(3, rows_conditions(y))
 		}
 		for (x <- 0 until nb_of_cols){
 			game_frame_content.grid.access_xy(x, nb_of_rows).init(3, cols_conditions(x))

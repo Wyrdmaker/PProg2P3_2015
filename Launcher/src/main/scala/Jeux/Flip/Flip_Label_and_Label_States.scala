@@ -48,7 +48,7 @@ trait Flip_Label_States_Manager {
 }
 
 class Flip_Label extends Grid_Label with Flip_Label_States_Manager{
-	var state = "black" //valeur nécessaire pour que les Flip_Label puissent etre instanciés par Grid main, inutile sinon
+	//var state = "black" //valeur nécessaire pour que les Flip_Label puissent etre instanciés par Grid main, inutile sinon
 	preferredSize = new Dimension(Flip.square_size_x, Flip.square_size_y)
 
 	def init(colour: Boolean, influence_list: List[Boolean]) : Unit = {

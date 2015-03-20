@@ -14,7 +14,7 @@ abstract class Grid_Label extends Interactive_Label{
 	var x = 0
 	var y = 0
 	var numero = 0
-	var state: String
+	var state: String =""
 }
 
 //Est ce qu'on pourrait se défaire du paramètrage de Grid avec Game_Label_Class en allant chercher le type Game_Label_Class de game ??
@@ -94,13 +94,31 @@ class Grid[Game_Label_Class <: Grid_Label] (game: Game) extends GridPanel(game.n
 	}
 
 }
+abstract class Border_Grid_Orientation
+case class Border_Grid_Horizontal extends Border_Grid_Orientation
+case class Border_Grid_Vertical extends Border_Grid_Orientation
 
-class Border_Grid[Label_Class <: Grid_Label] (length:Int, lb_factory: (() => Label_Class)) extends GridPanel(1, length) /*GridPanel prend le nb de lignes puis le nb de colonnes de la grille*/{
+/*
+def get_grid_border(length:Int, lb_factory: (() => Label_Class), orientation: Border_Grid_Orientation, square_size_x:Int, square_size_y:Int) : Grid_Border ={
+	var return_value : Grid_Border =null
+	orientation match {
+		case Border_Grid_Horizontal => return_value = new Grid_Border(length, lb_factory, square_size_x, square_size_y, length, 1)
+		case Border_Grid_Vertical => return_value = new Grid_Border(length, lb_factory, square_size_x, square_size_y, 1, length)
+	}
+	return(return_value)
+}
+*/
 
+class Border_Grid[+Label_Class <: Label] (length:Int, lb_factory: (() => Label_Class), orientation: Border_Grid_Orientation, square_size_x:Int, square_size_y:Int) extends GridPanel(1, 1){
+	//Une grille linéaire destinée à etre accolée à la grille de jeu
+	orientation match {
+		case Border_Grid_Horizontal() => {rows = 1; columns = length}
+		case Border_Grid_Vertical() => {rows = length; columns = 1}
+	}	
 	for (c <- 0 until length){
 		contents += {lb_factory()}
 	}
-	//minimumSize = new Dimension(game.square_size_x * game.numeric_game_parameters_def_list(0)._2, game.square_size_y * game.numeric_game_parameters_def_list(1)._2 )
+	minimumSize = new Dimension(square_size_x * length, square_size_y)
 
 	/*//Test
 	revalidate()

@@ -2,5 +2,4 @@ Pour créer une archive jar executable:
 Le fichier assembly.sbt dans /project permet d'appeler la commande "assembly" dans sbt.
 Assembly crée une archive jar éxecutable <nom_du_projet>-assembly-0.1-SNAPSHOT.jar dans /target/scala-2.10/
 
-Problème:
-L'icône ne marche pas quand on exécute l'archive (je ne sais pas d'où ça vient)
+la jar est à lancer avec "java -jar <la jar>"

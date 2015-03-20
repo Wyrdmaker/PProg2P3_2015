@@ -131,12 +131,14 @@ abstract class Game{
 																							//(nom, valeur, IndexedSeq_des_valeurs_possibles_de_ce_paramètre)
 
 	type Game_Label_Class <: Grid_Label	//Les labels avec lesquels sera remplis la grille (par la classe Grid)
-	def glb_factory () : Game_Label_Class	//Une usine à labels de la classe Game_Label_Class
+	def glb_factory () : Game_Label_Class //Une usine à labels de la classe Game_Label_Class
+	type Game_Border_Label_Class <: Label 	//Les labels avec lesquels seront remplis les bords de la grille
+	def gblb_factory () : Game_Border_Label_Class	//une usine à labels de la classe Game_Border_Label_Class
 	def about_frame_factory (): Frame 		//une fonction qui fournit la fenetre "About" du jeu
 	def help_frame_factory (): Frame 		//une fonction qui fournit la fenetre "Help" du jeu
 
 	var random_gen = new scala.util.Random()	//Le générateur aléatoire utilisé par le jeu
-	var game_frame_content : Game_Frame_Content[Game_Label_Class] = null 	//Variable stockant le contenu graphique de la fenetre de jeu lors d'une partie
+	var game_frame_content : Game_Frame_Content[Game_Label_Class, Game_Border_Label_Class] = null 	//Variable stockant le contenu graphique de la fenetre de jeu lors d'une partie
 
 	val game_game_mode_list : IndexedSeq[Game_Mode] 	//Liste des modes de difficulté que le jeu veut proposer
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]): String	//Une fonction qui, aux résultat des champs numériques d'un formulaire
@@ -186,7 +188,7 @@ abstract class Game{
 }
 
 //Crée le contenu de la fenetre de jeu (labels du bandeau inférieur et grille)
-class Game_Frame_Content[Game_Label_Class <: Grid_Label] (game: Game) extends GridBagPanel {
+class Game_Frame_Content[Game_Label_Class <: Grid_Label, Game_Border_Label_Class <: Label] (game: Game) extends GridBagPanel {
     def constraints(x: Int, y: Int, 
 		    gridwidth: Int = 1, gridheight: Int = 1,
 		    weightx: Double = 0.0, weighty: Double = 0.0,
@@ -217,142 +219,80 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label] (game: Game) extends Gr
 		contents += outcome_label
 		contents += timer_label
 	}
-	val game_glb_factory = game.glb_factory
-	def glb_factory () ={
-		game_glb_factory()
-	}
-	val top_grid = new Border_Grid[Game_Label_Class] (nb_of_cols, glb_factory)
+	val gfc_game = game
+	/*var top_grid = new Border_Grid[gfc_game.Game_Border_Label_Class] (nb_of_cols, gfc_game.gblb_factory)
+	var right_grid = new Border_Grid[gfc_game.Game_Border_Label_Class] (nb_of_rows, gfc_game.gblb_factory)
+	var bottom_grid = new Border_Grid[gfc_game.Game_Border_Label_Class] (nb_of_cols, gfc_game.gblb_factory)
+	var left_grid = new Border_Grid[gfc_game.Game_Border_Label_Class] (nb_of_rows, gfc_game.gblb_factory)
+	*/
+	val vertical = Border_Grid_Vertical()
+	val horizontal = Border_Grid_Horizontal()
+
+	def label_factory () ={new Label }
+	/*var top_border_grid   = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
+	var right_border_grid  = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
+	var bottom_border_grid  = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
+	var left_border_grid  = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
+	*/
+	var top_border_grid : Border_Grid[Game_Border_Label_Class] = null
+	var right_border_grid : Border_Grid[Game_Border_Label_Class] = null
+	var bottom_border_grid : Border_Grid[Game_Border_Label_Class] = null
+	var left_border_grid : Border_Grid[Game_Border_Label_Class] = null
+	var top_left_label = new Label
+	var top_right_label = new Label
+	var bottom_left_label= new Label
+	var bottom_right_label = new Label
 
 	add(bottom_panel, 
 		constraints(1, 3, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
 	add(grid,
     	constraints(1, 1, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1))
 
-	/*##
-	//bad
-	add(grid,
-    	constraints(1, 1, 9, 9, fill = GridBagPanel.Fill.None/*, weightx = 1, weighty = 1*/))
-	add(bottom_panel, 
-		constraints(x=0, y=11, gridwidth=nb_of_cols+2,gridheight=1, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
+	def set_top_border_grid () ={
+		top_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, horizontal, game.square_size_x, game.square_size_y)
+		add(top_border_grid,
+			constraints(1, 0, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1.0/nb_of_rows))
+	}
+	def set_right_border_grid () ={
+		right_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
+		add(right_border_grid,
+			constraints(2, 1, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1))
+		revalidate()
+	}
+	def set_bottom_border_grid () ={
+		bottom_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, horizontal, game.square_size_x, game.square_size_y)
+		add(bottom_border_grid,
+			constraints(1, 2, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1.0/nb_of_rows))
+	}
+	def set_left_border_grid () ={
+		left_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
+		add(left_border_grid,
+			constraints(0, 1, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1))
+	}
+	def set_top_left_border_label () ={
+		top_left_label = game.gblb_factory()
+		add(top_left_label,
+			constraints(0, 0, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1.0/nb_of_rows))
+	}
+	def set_top_right_border_label () ={
+		top_right_label = game.gblb_factory()
+		add(top_right_label,
+			constraints(2, 0, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1.0/nb_of_rows))
+	}
+	def set_bottom_left_border_label () ={
+		bottom_left_label = game.gblb_factory()
+		add(bottom_left_label,
+			constraints(0, 2, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1.0/nb_of_rows))
+	}
+	def set_bottom_right_border_label () ={
+		bottom_right_label = game.gblb_factory()
+		add(bottom_right_label,
+			constraints(2, 2, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1.0/nb_of_rows))
+	}
 	
-	
-	val l = new Label("l"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
-	val m = new Label("m"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
-	val n = new Label("n"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
-	val o = new Label("o"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
-	val p = new Label("p"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
-	val q = new Label("q"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
-	val r = new Label("r"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
-	val s = new Label("s"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
-	val t = new Label("t"){background = GUI_GE.cyan; opaque = true; preferredSize=new Dimension(25,25)}
-	
-	add(l,
-		constraints(1,10,1,1))
-	add(m, 
-		constraints(2,10,1,1))
-	add(n, 
-		constraints(3,10,1,1))
-	add(o,
-		constraints(4,10,1,1))
-	add(p, 
-		constraints(5,10,1,1))
-	add(q, 
-		constraints(6,10,1,1))
-	add(r,
-		constraints(7,10,1,1))
-	add(s, 
-		constraints(8,10,1,1))
-	add(t, 
-		constraints(9,10,1,1))
-	##*/
-
-	/*
-	//Ces tableaux contiennent les Interactive Labels ajoutés au GridBagPanel via add_border_int_label, chaque tableau correspond
-	//aux Interactive_Label ajoutés dans une certaine location
-	var top_components_array : Array[Interactive_Label] = Array()
-	var bottom_components_array : Array[Interactive_Label] = Array()	
-	var right_components_array : Array[Interactive_Label] = Array()
-	var left_components_array : Array[Interactive_Label] = Array()
-	*/
-
 	val nb_of_cols = game.numeric_game_parameters_def_list(0)._2
 	val nb_of_rows = game.numeric_game_parameters_def_list(1)._2
-	def add_border_label (label: Label, location: GFC_Location, starting_coordinate: Int, ending_coordinate: Int)/*: Int*/={
-		//Ajoute au Game_Frame_Content un Label donnée en argument sur le pourtour de la grille (au_dessus, à droite, en dessous ou à 
-		//gauche selon le paramètre location)
-		//Les paramètres "starting_coordinate" et "ending_coordinate" définissent le nombre de cases de jeu sur lesquelles le label doit s'étendre.
-		//(la coordinate est x si location vaut top ou bottom et y si location vaut right ou left)
-		//Le label peut s'étendre de 0(case juste à gauche de la grille) à nb_of_cols+1(case juste à droite de la grille) si location vaut 
-		//GFC_Top ou GFC_Bottom.
-		//Exemple: si location = top, starting_coordinate = 0 et ending_coordinate = 1, alors la fonction ajoutera un label dns la case tout
-		//en haut à gauche (une case au dessus de la première ligne de la grille et une case à gauche de la première colonne de la grille)
-		//Le label peut s'étendre de 0(case juste au dessus de la grille) à nb_of_rows+1(case juste en dessous de la grille) si location vaut 
-		//GFC_Right ou GFC_Left
-
-		//"free_dimension" permet de spécifier la valeur de la dimension du label qui s'éloigne de la grille.
-
-		/*
-		//La fonction ajoute le label demandé au GridBagPanel, ajoute le label au <location>_components_array correspondant à la location demandée
-		//et renvoie l'indice dans le tableau auquel on trouvera le label ajouté
-		*/
-		if (starting_coordinate > ending_coordinate){
-			println("Anormal: On a demandé au Game_Frame_Content d'ajouter" +
-			 "un label interactif de la coordonnée " + starting_coordinate + " à la coordonnée " + ending_coordinate)
-			//return(-1)
-		}
-		else{
-			println(this.contents)
-			val int_label = new Interactive_Label
-			var x = 0
-			var y = 0
-			var width = 0
-			var height = 0
-			//var return_value = -1
-			location match{
-				case GFC_Top() =>{
-					x = starting_coordinate
-					y = 0
-					width = ending_coordinate - starting_coordinate
-					height = 1
-					//return_value = top_components_array.length
-					//top_components_array = top_components_array :+ int_label
-				}
-				case GFC_Bottom() =>{
-					x = starting_coordinate
-					y = nb_of_rows + 1
-					width = ending_coordinate - starting_coordinate
-					height = 1
-					//return_value = bottom_components_array.length
-					//bottom_components_array = bottom_components_array :+ int_label
-				}
-				case GFC_Right() =>{
-					x = nb_of_cols + 1
-					y = starting_coordinate
-					width = 1
-					height = ending_coordinate - starting_coordinate
-					//return_value = right_components_array.length
-					//right_components_array = right_components_array :+ int_label
-
-				}
-				case GFC_Left() =>{
-					x = 0
-					y = starting_coordinate
-					width = 1
-					height = ending_coordinate - starting_coordinate
-					//return_value = left_components_array.length
-					//left_components_array = left_components_array :+ int_label					
-				}
-			}
-			add( int_label,
-				constraints(x, y, width, height))
-			println()
-			println(this.contents)
-			//return(return_value)
-
-		}
-
-
-	}
+	background = GUI_Mood.b_colour
 }
 
 //A class used in the method add_border_int_label in class Game_Frame_Content for the parameter location.
@@ -413,7 +353,7 @@ class UI (game: Game) extends Frame {
 
 
 
-	iconImage = toolkit.getImage("src/main/ressources/my_purple_dice_20.png")
+	iconImage = toolkit.getImage(getClass.getResource("/my_purple_dice_20.png"))
 	val timer_listener = new ActionListener{
 		def actionPerformed(e: ActionEvent) {
 			thisui.minimumSize = thisui.preferredSize
@@ -578,7 +518,7 @@ class UI (game: Game) extends Frame {
 			game.playing = false
 			game.game_beginning_time = new Date()
 
-			game.game_frame_content = new Game_Frame_Content[game.Game_Label_Class](game)
+			game.game_frame_content = new Game_Frame_Content[game.Game_Label_Class,game.Game_Border_Label_Class](game)
 			//game.game_frame_content.timer_label.restart(game.game_beginning_time)
 			//game.game_frame_content.timer_label.stop()
 

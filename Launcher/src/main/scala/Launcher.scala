@@ -24,7 +24,7 @@ object Main {
 		val chara_frame = new Character_Frame(Larissa)
 
 		launcher_mainframe = new MainFrame{
-			iconImage = toolkit.getImage("src/main/ressources/my_purple_dice_20.png")
+			iconImage = toolkit.getImage(getClass.getResource("/my_purple_dice_20.png"))
 			centerOnScreen()
 			title = "Lanceur TDGH"
 		}
