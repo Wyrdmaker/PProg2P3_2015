@@ -109,16 +109,19 @@ def get_grid_border(length:Int, lb_factory: (() => Label_Class), orientation: Bo
 }
 */
 
-class Border_Grid[+Label_Class <: Label] (length:Int, lb_factory: (() => Label_Class), orientation: Border_Grid_Orientation, square_size_x:Int, square_size_y:Int) extends GridPanel(1, 1){
+class Border_Grid[Label_Class <: Label] (game: Game, /*length:Int, lb_factory: (() => Label_Class),*/ orientation: Border_Grid_Orientation/*, square_size_x:Int, square_size_y:Int*/) extends GridPanel(1, 1){
+	val nb_of_cols = game.numeric_game_parameters_def_list(0)._2
+	val nb_of_rows = game.numeric_game_parameters_def_list(1)._2
+	var length: Int = 0 
 	//Une grille linéaire destinée à etre accolée à la grille de jeu
 	orientation match {
-		case Border_Grid_Horizontal() => {rows = 1; columns = length}
-		case Border_Grid_Vertical() => {rows = length; columns = 1}
+		case Border_Grid_Horizontal() => {rows = 1; columns = nb_of_cols; length = nb_of_cols}
+		case Border_Grid_Vertical() => {rows = nb_of_rows; columns = 1; length = nb_of_rows}
 	}	
 	for (c <- 0 until length){
-		contents += {lb_factory()}
+		contents += {game.gblb_factory}
 	}
-	minimumSize = new Dimension(square_size_x * length, square_size_y)
+	minimumSize = new Dimension(game.square_size_x * length, game.square_size_y)
 
 	/*//Test
 	revalidate()

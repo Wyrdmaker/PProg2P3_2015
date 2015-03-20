@@ -234,10 +234,10 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label, Game_Border_Label_Class
 	var bottom_border_grid  = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
 	var left_border_grid  = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
 	*/
-	var top_border_grid : Border_Grid[Game_Border_Label_Class] = null
-	var right_border_grid : Border_Grid[Game_Border_Label_Class] = null
-	var bottom_border_grid : Border_Grid[Game_Border_Label_Class] = null
-	var left_border_grid : Border_Grid[Game_Border_Label_Class] = null
+	var top_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, horizontal)
+	var right_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, vertical)
+	var bottom_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, horizontal)
+	var left_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, vertical)
 	var top_left_label = new Label
 	var top_right_label = new Label
 	var bottom_left_label= new Label
@@ -249,23 +249,27 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label, Game_Border_Label_Class
     	constraints(1, 1, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1))
 
 	def set_top_border_grid () ={
-		top_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, horizontal, game.square_size_x, game.square_size_y)
+		//top_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, horizontal, game.square_size_x, game.square_size_y)
+		top_border_grid = new Border_Grid[Game_Border_Label_Class] (game, horizontal)
 		add(top_border_grid,
 			constraints(1, 0, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1.0/nb_of_rows))
 	}
 	def set_right_border_grid () ={
-		right_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
+		//right_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
+		right_border_grid = new Border_Grid[Game_Border_Label_Class] (game, vertical)
 		add(right_border_grid,
 			constraints(2, 1, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1))
 		revalidate()
 	}
 	def set_bottom_border_grid () ={
-		bottom_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, horizontal, game.square_size_x, game.square_size_y)
+		//bottom_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, horizontal, game.square_size_x, game.square_size_y)
+		bottom_border_grid = new Border_Grid[Game_Border_Label_Class] (game, horizontal)
 		add(bottom_border_grid,
 			constraints(1, 2, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1.0/nb_of_rows))
 	}
 	def set_left_border_grid () ={
-		left_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
+		//left_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
+		left_border_grid = new Border_Grid[Game_Border_Label_Class] (game, vertical)
 		add(left_border_grid,
 			constraints(0, 1, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1))
 	}

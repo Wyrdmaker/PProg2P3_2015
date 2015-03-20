@@ -296,7 +296,7 @@ object AngelWar extends Game{
 			cols_conditions = cols_conditions :+ nb_of_tents
 		}
 		
-		
+		/*
 		//Construire une nouvelle grille avec une rangée et une colonne en plus pour les labels affichant les rows/cols conditions
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(0, nb_of_cols + 1, AngelWar)
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(1, nb_of_rows + 1, AngelWar)
@@ -304,11 +304,12 @@ object AngelWar extends Game{
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(0, nb_of_cols - 1, AngelWar)
 		Game_Parameters_Value_Setters.numeric_game_parameter_value_setter(1, nb_of_rows - 1, AngelWar)
 		UI_Link.actual_ui.contents = game_frame_content
+		*/
 
 		game_frame_content.set_right_border_grid()
-		val right_border_labels = game_frame_content.right_border_grid.get_contents()
+		right_border_labels = game_frame_content.right_border_grid.get_contents()
 		game_frame_content.set_bottom_border_grid()
-		val bottom_border_labels =game_frame_content.bottom_border_grid.get_contents()
+		bottom_border_labels =game_frame_content.bottom_border_grid.get_contents()
 
 		//Définir l'image de background du gridpanel
 		val hell_background_icon = new ImageIcon(getClass.getResource("/AngelWar/pics-of-hell.png"))
@@ -347,9 +348,13 @@ object AngelWar extends Game{
 			//game_frame_content.grid.access_xy(nb_of_cols, y).init(3, rows_conditions(y))
 		}
 		for (x <- 0 until nb_of_cols){
-			game_frame_content.grid.access_xy(x, nb_of_rows).init(3, cols_conditions(x))
+			bottom_border_labels(x).init(3, cols_conditions(x))
+			//game_frame_content.grid.access_xy(nb_of_cols, y).init(3, rows_conditions(y))
 		}
-		game_frame_content.grid.access_xy(nb_of_cols, nb_of_rows).init(3, -1)
+		/*for (x <- 0 until nb_of_cols){
+			game_frame_content.grid.access_xy(x, nb_of_rows).init(3, cols_conditions(x))
+		}*/
+		//game_frame_content.grid.access_xy(nb_of_cols, nb_of_rows).init(3, -1)
 
 		initial_game_board = game_board.clone()
 
@@ -388,6 +393,8 @@ object AngelWar extends Game{
 	var rows_conditions: Array[Int] = Array()	//Liste des nb de tentes pour chaque ligne
 	var cols_conditions: Array[Int] = Array()	//Liste des nb de tentes pour chaque colonnes
 	var error_nb: Int = 0 //Nombre d'erreurs, empèche de gagner, géré par les labels
+	var right_border_labels :	Seq[Game_Border_Label_Class] = null
+	var bottom_border_labels: Seq[Game_Border_Label_Class] = null
 	//##AngelWar Functions## //Fonctions internes au AngelWar
 
 	def check_error(x:Int, y:Int) ={
@@ -415,7 +422,7 @@ object AngelWar extends Game{
 				nb_of_tents = nb_of_tents + 1
 			}
 		}
-		if(nb_of_tents > rows_conditions(y)){game_frame_content.grid.access_xy(nb_of_cols,y).set_condition_error}
+		if(nb_of_tents > rows_conditions(y)){/*game_frame_content.grid.access_xy(nb_of_cols,y)*/right_border_labels(y).set_condition_error}
 		else {game_frame_content.grid.access_xy(nb_of_cols,y).unset_condition_error}
 
 		//vérification de la cols condition sur la colonne de la case (x,y)
@@ -425,7 +432,7 @@ object AngelWar extends Game{
 				nb_of_tents = nb_of_tents + 1
 			}
 		}
-		if(nb_of_tents > cols_conditions(x)){game_frame_content.grid.access_xy(x,nb_of_rows).set_condition_error}
+		if(nb_of_tents > cols_conditions(x)){/*game_frame_content.grid.access_xy(x,nb_of_rows)*/bottom_border_labels(x).set_condition_error}
 		else {game_frame_content.grid.access_xy(x,nb_of_rows).unset_condition_error}
 	}
 
