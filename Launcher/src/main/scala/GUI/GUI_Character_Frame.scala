@@ -12,8 +12,8 @@ object Larissa extends Frame{
 	def say(text_to_say: String){	//Fait dire au personnage la chaine donnée en argument. Celle-ci peut contenir de l'html, notamment <br>
 		if(random_gen.nextInt(100) == 0){/*Easter_Egg*/ balloon_label.text = html_prefix + "Antonin Penon n'est pas un palyndrome" + html_suffix}
 		else{/*Normal*/balloon_label.text = html_prefix + text_to_say + html_suffix}
-		balloon_flowpanel.border = Swing.LineBorder(GUI_GE.medium_violet_red,10)
-		new Delayed_Action(1000, Unit=> {balloon_flowpanel.border = null})
+		balloon_flowpanel.border = Swing.LineBorder(GUI_GE.medium_violet_red, 10)
+		new Delayed_Action(1000, Unit=> {balloon_flowpanel.border = Swing.LineBorder(GUI_GE.transparent, 10)})
 	}
 
 	def say_smth(word_list: Array[String]) = {	//Le personnage va choisir une des chaines de caractères du tableau et la dire
@@ -81,6 +81,7 @@ object Larissa extends Frame{
 		/*private val*/ balloon_flowpanel = new FlowPanel{
 			contents += left_balloon_label
 			contents += balloon_label
+			border = Swing.LineBorder(GUI_GE.transparent,10)
 			preferredSize = new Dimension(balloon_width, balloon_height)
 			override def paint(g: Graphics2D)={
 				super.paint(g)

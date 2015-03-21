@@ -5,6 +5,7 @@ package GUI{
 trait GUI_Graphical_Elements {
 	//#Couleurs#//
 	//Pour pouvoir utiliser les couleurs en indiquant juste leurs noms (black et pas ???.black)
+	val transparent = new Color(0,0,0,0)
 	val black = new Color(0,0,0,255)
 	val black_dim = new Color(0,0,0,50)
 	val white = new Color(255,255,255)
