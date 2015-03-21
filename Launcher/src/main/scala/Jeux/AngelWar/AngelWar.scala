@@ -118,7 +118,7 @@ object AngelWar extends Game{
 	//var game_frame_content héritée de Game
 
 	main_character_text_on_launching = main_character_text_on_launching ++ Array("Ces anges...<br>Toujours en guerre.<br>Moi, ça ferait longtemps que j'aurais gagné","Si tu en as marre de jouer les gentils, essaie le mode \"Revanche Infernale\".")
-	main_character_text_on_win = Array("Un vrai général !")
+	main_character_text_on_win = Array("Un vrai stratège !")
 
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(8,8),IndexedSeq("Assaut Céleste")),
@@ -302,6 +302,9 @@ object AngelWar extends Game{
 		right_border_labels = game_frame_content.right_border_grid.get_contents()
 		game_frame_content.set_bottom_border_grid()
 		bottom_border_labels =game_frame_content.bottom_border_grid.get_contents()
+		game_frame_content.set_bottom_right_border_label()
+		game_frame_content.bottom_right_border_label.background = AWGE.firebrick4
+		game_frame_content.bottom_right_border_label.opaque = true
 
 		//Définir l'image de background du gridpanel
 		val hell_background_icon = new ImageIcon(getClass.getResource("/AngelWar/pics-of-hell.png"))

@@ -45,7 +45,7 @@ object Main {
 
 	val main_character = Larissa
 	main_character.visible = true
-	main_character.say_smth(Array("Bienvenue dans mon monde !","J'ai hâte de commencer à jouer !","Alors ?<br>A quoi va-t-on jouer aujourd'hui ?"))
+	main_character.say_smth(Array("Bienvenue dans mon monde !","J'ai hâte de commencer à jouer !","Alors ?<br>A quoi va-t-on jouer aujourd'hui ?", "Enchantée,<br>Moi, c'est Larissa"))
 }
 
 class Launcher_Content extends GridBagPanel { 
@@ -54,7 +54,7 @@ class Launcher_Content extends GridBagPanel {
 																//(Ici, on aurait juste pu mettre LineBorder)
 	background = GUI_Mood.b_colour
 
-	val launcher_return_messages = Array("Changeons de jeu !<br>A moins que tu n'ai envie de t'arrêter ?", "Envie de changer de jeu ?","Tu ne vas pas t'arrêter maintenant quand même ?")
+	val launcher_return_messages = Array("Changeons de jeu !<br>A moins que tu n'aies envie de t'arrêter ?", "Envie de changer de jeu ?","Tu ne vas pas t'arrêter maintenant quand même ?")
 
 	def constraints(x: Int, y: Int, 
 			gridwidth: Int = 1, gridheight: Int = 1,
