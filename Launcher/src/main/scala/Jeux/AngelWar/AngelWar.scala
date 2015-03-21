@@ -116,7 +116,9 @@ object AngelWar extends Game{
 
 	//var random_gen héritée de Game
 	//var game_frame_content héritée de Game
-	character_text_on_launching = Array("Ces anges...<br>Toujours en guerre.<br>Moi, ça ferait longtemps que j'aurais gagné.")
+
+	main_character_text_on_launching = main_character_text_on_launching ++ Array("Ces anges...<br>Toujours en guerre.<br>Moi, ça ferait longtemps que j'aurais gagné","Si tu en as marre de jouer les gentils, essaie le mode \"Revanche Infernale\".")
+	main_character_text_on_win = Array("Un vrai général !")
 
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(8,8),IndexedSeq("Assaut Céleste")),
@@ -364,7 +366,7 @@ object AngelWar extends Game{
 	}
 	//Définit ce qui se passe en cas de victoire du joueur -> voir Game
 	override def win() = {
-		super.win()		
+		super.win()
 	}
 	//Définit ce qui se passe en cas de défaite du joueur -> voir Game
 	override def lose() = {

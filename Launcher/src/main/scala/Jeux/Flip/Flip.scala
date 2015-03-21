@@ -33,8 +33,8 @@ object FGE extends GUI_Graphical_Elements{
 		label_color_white_list(no_color_mode)
 	}
 
-	val label_color_black_list = IndexedSeq(grey, violet_fluo)
-	val label_color_white_list = IndexedSeq(white, cyan)
+	val label_color_black_list = IndexedSeq(grey, violet_fluo, white)
+	val label_color_white_list = IndexedSeq(white, cyan, grey)
 
 	//val bottom_panel_color_list = IndexedSeq(white, grey)
 
@@ -70,7 +70,7 @@ object Flip extends Game{
 
 	//##Game parameters##
 	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 3, 25), ("Hauteur", 0, 3, 25), ("Retournements Initiaux", 0, 20, 20))
-	var string_game_parameters_def_list = IndexedSeq(("Mode de Couleur", "Classique", IndexedSeq("Classique", "Creepy-Glauque")))
+	var string_game_parameters_def_list = IndexedSeq(("Mode de Couleur", "Classique", IndexedSeq("Classique", "Creepy-Glauque", "Reversed")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def nb_of_starting_flips = numeric_game_parameters_def_list(2)._2
@@ -89,6 +89,8 @@ object Flip extends Game{
 
 	//var random_gen héritée de Game
 	//var game_frame_content héritée de Game
+	main_character_text_on_launching = main_character_text_on_launching ++ Array("Si tu préfére remplir la grille de cases noires, le mode \"Reversed\" est fait pour toi", "Flip Flip Flip...")
+	main_character_text_on_win = main_character_text_on_win ++ Array("Enfin...<br>Ce n'était pourtant pas si compliqué<br>Il suffisait de fliper la troisième case au début")
 
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(3,3,10),IndexedSeq("Classique")),

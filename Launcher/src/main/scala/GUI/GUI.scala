@@ -139,7 +139,10 @@ abstract class Game{
 
 	var random_gen = new scala.util.Random()	//Le générateur aléatoire utilisé par le jeu
 	var game_frame_content : Game_Frame_Content[Game_Label_Class, Game_Border_Label_Class] = null 	//Variable stockant le contenu graphique de la fenetre de jeu lors d'une partie
-	var character_text_on_launching : Array[String] = null 	//Cette variable contient les textes que peut dire le personnage principal lors du lancement du jeu
+
+	var main_character_text_on_launching : Array[String] = Array() 	//Cette variable contient les textes que peut dire le personnage principal lors du lancement du jeu
+	var main_character_text_on_win: Array[String] = Array("Bravo !", "Bien joué !", "Toutes mes félicitations !")
+	var main_character_text_on_lose: Array[String] = Array("Dommage", "Pas de chance", "Ce sont des choses qui arrivent...")
 
 	val game_game_mode_list : IndexedSeq[Game_Mode] 	//Liste des modes de difficulté que le jeu veut proposer
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]): String	//Une fonction qui, aux résultat des champs numériques d'un formulaire
@@ -173,6 +176,7 @@ abstract class Game{
 		game_frame_content.timer_label.stop()
 		grid_content.foreach(label => label.deafTo(label.mouse.moves, label.mouse.clicks))
 		playing = false
+		Main.main_character.say_smth(main_character_text_on_win)
 	}
 	def lose() = {
 		end_lock = true
@@ -184,8 +188,12 @@ abstract class Game{
 		//timer_label.stop()
 		game_frame_content.timer_label.stop()
 		grid_content.foreach(label => label.deafTo(label.mouse.moves, label.mouse.clicks))	
-		playing = false	
+		playing = false
+		Main.main_character.say_smth(main_character_text_on_lose)
 	}
+	//Ces deux fonctions permettent au jeu de faire dire des choses au personnage principal
+	def main_character_say(text_to_say:String) = Main.main_character.say(text_to_say)
+	def main_character_say_smth(word_array: Array[String]) = Main.main_character.say_smth(word_array)
 }
 
 //Crée le contenu de la fenetre de jeu (labels du bandeau inférieur et grille)
@@ -357,8 +365,8 @@ class UI (game: Game) extends Frame {
 	 }*/
 
 	 //Fait dire au personnage principal quelque chose lors du lancement du jeu (soit un message par défaut soit un des messages d'ouverture définis par le jeu)
-	if(game.character_text_on_launching == null){Main.main_character.say("C'est parti pour une partie de " + game.title + ".")}
-	else{Main.main_character.say_smth(game.character_text_on_launching :+ ("C'est parti pour une partie de " + game.title + "."))}
+	if(game.main_character_text_on_launching == null){Main.main_character.say("C'est parti pour une partie de " + game.title + ".")}
+	else{Main.main_character.say_smth(game.main_character_text_on_launching :+ ("C'est parti pour une partie de " + game.title + "."))}
 
 	iconImage = toolkit.getImage(getClass.getResource("/my_purple_dice_20.png"))
 	val timer_listener = new ActionListener{

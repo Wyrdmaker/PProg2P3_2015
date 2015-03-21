@@ -106,6 +106,9 @@ object Demineur extends Game{
 	//var random_gen héritée de Game
 	//var game_frame_content héritée de Game
 
+	main_character_text_on_lose = main_character_text_on_lose ++ Array("Eeeeeet Boum !<br>J'adore les explosions !", "Ah non !<br>Ça, c'était une mine !")
+	main_character_text_on_win = main_character_text_on_win ++ Array("Et un champ de mines nettoyé. Un !")
+
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique")),
 		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique")),
