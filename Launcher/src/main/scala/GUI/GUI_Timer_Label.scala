@@ -57,4 +57,18 @@ class Timer_Label (time_origin_arg : Date) extends Label{
 	val timer = new javax.swing.Timer(1000, timer_listener)
 }
 
+//Voici une classe pour exécuter une action une fois, lorsque le délai sera écoulé:
+//Exemple d'utilisation: "new Delayed_Action(500, Unit=> println("coucou"))"
+class Delayed_Action(delay: Int, action_to_perform: (Unit=> Unit)){
+	val timer_listener = new ActionListener{
+		def actionPerformed(e: ActionEvent) {
+			action_to_perform()
+		}
+	}
+	val timer : javax.swing.Timer = new javax.swing.Timer(delay, timer_listener){setRepeats(false)}
+	timer.start()	
+}
+
+
+
 }	//Accolade fermante du package GUI

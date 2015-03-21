@@ -20,9 +20,6 @@ object Main {
 	//étendant la classe Game dans le jeu ajouté.
 	var launcher_mainframe : MainFrame = null
 	def main(args: Array[String]) {
-
-		val chara_frame = new Character_Frame(Larissa)
-
 		launcher_mainframe = new MainFrame{
 			iconImage = toolkit.getImage(getClass.getResource("/my_purple_dice_20.png"))
 			centerOnScreen()
@@ -45,6 +42,9 @@ object Main {
 		launcher_mainframe.size = launcher_mainframe.preferredSize
 		//En l'absence de cette séquence bizarre, la MatteBorder du GridBagPanel de Launcher_Content n'est pas affichée juste après le "run" de sbt
 	}
+
+	Larissa.visible = true
+	Larissa.say_smth(Array("Bienvenue dans mon monde !","J'ai hâte de commencer à jouer !","Alors ?<br>A quoi va-t-on jouer aujourd'hui ?"))
 }
 
 class Launcher_Content extends GridBagPanel { 
