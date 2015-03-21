@@ -7,10 +7,11 @@ import java.awt.event.{ActionEvent, ActionListener}
 
 package GUI{
 
-
-object Larissa extends MainFrame{
+//caractères à copier-coller: espace insécable " ", "â", "ê"
+object Larissa extends Frame{
 	def say(text_to_say: String){	//Fait dire au personnage la chaine donnée en argument. Celle-ci peut contenir de l'html, notamment <br>
-		balloon_label.text = html_prefix + text_to_say + html_suffix
+		if(random_gen.nextInt(100) == 0){/*Easter_Egg*/ balloon_label.text = html_prefix + "Antonin Penon n'est pas un palyndrome" + html_suffix}
+		else{/*Normal*/balloon_label.text = html_prefix + text_to_say + html_suffix}
 		balloon_flowpanel.border = Swing.LineBorder(GUI_GE.medium_violet_red,10)
 		new Delayed_Action(1000, Unit=> {balloon_flowpanel.border = null})
 	}
@@ -24,14 +25,14 @@ object Larissa extends MainFrame{
 
 	title = "Larissa"
 	iconImage = toolkit.getImage(getClass.getResource("/Larissa(cut).png"))
-	/*listenTo(this)
+	peer.setDefaultCloseOperation(0);
+
+	listenTo(this)
 	reactions +={
 		case e: WindowClosing => {
-			this.dispose()
-			this.init()
-			this.visible = true
+			say("Ce n'est pas très gentil.<br>Si vous voulez vraiment arrêter de jouer, fermez le jeu, puis le lanceur.")
 		}
-	}*/
+	}
 
 	private val balloon_font = new Font("Utopia", 1, 22)
 	private val balloon_foreground = GUI_GE.medium_violet_red

@@ -116,6 +116,7 @@ object AngelWar extends Game{
 
 	//var random_gen héritée de Game
 	//var game_frame_content héritée de Game
+	character_text_on_launching = Array("Ces anges...<br>Toujours en guerre.<br>Moi, ça ferait longtemps que j'aurais gagné.")
 
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(8,8),IndexedSeq("Assaut Céleste")),

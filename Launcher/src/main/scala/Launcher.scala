@@ -43,8 +43,9 @@ object Main {
 		//En l'absence de cette séquence bizarre, la MatteBorder du GridBagPanel de Launcher_Content n'est pas affichée juste après le "run" de sbt
 	}
 
-	Larissa.visible = true
-	Larissa.say_smth(Array("Bienvenue dans mon monde !","J'ai hâte de commencer à jouer !","Alors ?<br>A quoi va-t-on jouer aujourd'hui ?"))
+	val main_character = Larissa
+	main_character.visible = true
+	main_character.say_smth(Array("Bienvenue dans mon monde !","J'ai hâte de commencer à jouer !","Alors ?<br>A quoi va-t-on jouer aujourd'hui ?"))
 }
 
 class Launcher_Content extends GridBagPanel { 
@@ -52,6 +53,9 @@ class Launcher_Content extends GridBagPanel {
 	border = Swing.MatteBorder(5, 5, 5, 5, GUI_Mood.b_colour)	//MatteBorder permet de spécifier la largeur de la bordure sur chaque coté (haut, bas, gauche, droite)
 																//(Ici, on aurait juste pu mettre LineBorder)
 	background = GUI_Mood.b_colour
+
+	val launcher_return_messages = Array("Changeons de jeu !<br>A moins que tu n'ai envie de t'arrêter ?", "Envie de changer de jeu ?","Tu ne vas pas t'arrêter maintenant quand même ?")
+
 	def constraints(x: Int, y: Int, 
 			gridwidth: Int = 1, gridheight: Int = 1,
 			weightx: Double = 0.0, weighty: Double = 0.0,
@@ -165,6 +169,7 @@ class Launcher_Content extends GridBagPanel {
 				case e: WindowClosing => {
 					Main.launcher_mainframe.visible = true
 					Main.launcher_mainframe.size = Main.launcher_mainframe.preferredSize
+					Main.main_character.say_smth(launcher_return_messages)
 				}
 			}
 			game_frame.visible = true

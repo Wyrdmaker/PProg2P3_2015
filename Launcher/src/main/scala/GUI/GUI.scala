@@ -139,6 +139,7 @@ abstract class Game{
 
 	var random_gen = new scala.util.Random()	//Le générateur aléatoire utilisé par le jeu
 	var game_frame_content : Game_Frame_Content[Game_Label_Class, Game_Border_Label_Class] = null 	//Variable stockant le contenu graphique de la fenetre de jeu lors d'une partie
+	var character_text_on_launching : Array[String] = null 	//Cette variable contient les textes que peut dire le personnage principal lors du lancement du jeu
 
 	val game_game_mode_list : IndexedSeq[Game_Mode] 	//Liste des modes de difficulté que le jeu veut proposer
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]): String	//Une fonction qui, aux résultat des champs numériques d'un formulaire
@@ -355,7 +356,9 @@ class UI (game: Game) extends Frame {
 	 	case e: javax.sound.sampled.LineUnavailableException => e.printStackTrace();
 	 }*/
 
-
+	 //Fait dire au personnage principal quelque chose lors du lancement du jeu (soit un message par défaut soit un des messages d'ouverture définis par le jeu)
+	if(game.character_text_on_launching == null){Main.main_character.say("C'est parti pour une partie de " + game.title + ".")}
+	else{Main.main_character.say_smth(game.character_text_on_launching :+ ("C'est parti pour une partie de " + game.title + "."))}
 
 	iconImage = toolkit.getImage(getClass.getResource("/my_purple_dice_20.png"))
 	val timer_listener = new ActionListener{
