@@ -58,8 +58,9 @@ class Life_Help_Frame extends Frame {
 		"		- Une cellule morte avec exactement trois voisines en vie revient à la vie (reproduction).<br>" +
 		"<br>" +
 		"Le bouton Évolution/Pause permet de lancer ou d'arrêter le processus d'évolution.<br>" +
-		"Le bouton Sauvegarder permet de sauvegarder l'état de la grille. Vous pouvez revenir plus tard à cet état via le bouton restart du menu Jeu.<br>" +
+		"Le bouton Sauvegarder permet de sauvegarder l'état de la grille. Vous pouvez revenir plus tard à cet état via le bouton Charger.<br>" +
 		"Le bouton Lent/Normal/Rapide permet de configurer la vitesse d'évolution.<br>"+
+		"Le bouton Recommencer du menu Jeu permet de nettoyer la grille.<br>"+
 		"</p> </body> </html>"
 	}
 	visible = true
@@ -207,6 +208,24 @@ object Life extends Game{
 		evolution_timer.start()
 	}
 
+	def build_empty_board() ={	//Construit board en le remplissant de cellules mortes
+		board = Buffer()
+		for (x <- 0 until nb_of_cols) {
+			board += Buffer()
+			for (y <- 0 until nb_of_rows) {
+				board(x) += Buffer(false,false)
+			}
+		}	
+	}
+
+	def apply_board_to_the_grid()={
+		for (x <- 0 until nb_of_cols) {
+			for (y <- 0 until nb_of_rows) {
+				game_frame_content.grid.access_xy(x,y).init(board(x)(y)(0))
+			}
+		}			
+	}
+
 	def game_starter () = {
 		board = Buffer()
 
@@ -214,57 +233,53 @@ object Life extends Game{
 		go_stop_label = game_frame_content.left_border_grid.access_n(0)
 		go_stop_label.init("go/stop_label")
 		game_frame_content.left_border_grid.access_n(2).init("save_label")
+		game_frame_content.left_border_grid.access_n(3).init("load_label")
 		game_frame_content.left_border_grid.access_n(4).init("speed_label")
 		//Remplit le board et initialise chaque label selon le board
-		for (x <- 0 until nb_of_cols) {
-			board += Buffer()
-			for (y <- 0 until nb_of_rows) {
-				board(x) += Buffer(false,false)
-				game_frame_content.grid.access_xy(x,y).init(board(x)(y)(0))
-			}
-		}
-		make_initial_board_as_board()
-		//initial_board = board.clone()	Alias les deux tableaux (pourquoi ?)
+		build_empty_board()
+		apply_board_to_the_grid()
+		make_saved_board_as_board()
+		//saved_board = board.clone()	Alias les deux tableaux (pourquoi ?)
 		evolution_timer.start()
 	}
 
-	def make_board_as_initial_board() ={
+	def stop_evolution()={	//Met running à false et dit au label go/stop de refléter ce changement
+		running = false
+		go_stop_label.text="Évolution"
+
+	}
+
+	def make_board_as_saved_board() ={
 		board = Buffer()
 		for (x <- 0 until nb_of_cols) {
 			board += Buffer()
 			for (y <- 0 until nb_of_rows) {
-				board(x) += Buffer(initial_board(x)(y)(0),initial_board(x)(y)(1))
+				board(x) += Buffer(saved_board(x)(y)(0),saved_board(x)(y)(1))
 			}
 		}		
 	}
 
-	def make_initial_board_as_board() ={
-		initial_board = Buffer()
+	def make_saved_board_as_board() ={
+		saved_board = Buffer()
 		for (x <- 0 until nb_of_cols) {
-			initial_board += Buffer()
+			saved_board += Buffer()
 			for (y <- 0 until nb_of_rows) {
-				initial_board(x) += Buffer(board(x)(y)(0),board(x)(y)(1))
+				saved_board(x) += Buffer(board(x)(y)(0),board(x)(y)(1))
 			}
 		}		
 	}
 
 	def game_action_restart() : Unit = {
-		running = false
-		go_stop_label.text = "Évolution"
-		make_board_as_initial_board()
-		/*for(x<-0 until nb_of_cols){
-			for (y<- 0 until nb_of_rows){
-				//println("ib " + initial_board(x)(y)(0))
-				println("b " + board(x)(y)(0))
-			}
-		}*/
-		//Initialise chaque label selon le initial_board
-		for (y <- 0 until nb_of_rows) {
+		stop_evolution()
+		build_empty_board()
+		apply_board_to_the_grid()
+		//Initialise chaque label selon le board
+		/*for (y <- 0 until nb_of_rows) {
 			for (x <- 0 until nb_of_cols) {
 				game_frame_content.grid.access_xy(x,y).init(board(x)(y)(0))
 			}
 					
-		}
+		}*/
 
 
 	}
@@ -278,10 +293,10 @@ object Life extends Game{
 	}
 
 	//##Life Variables## // Variables internes au Life
-	//board et initial_board sont des tableaux 2D de couples de booléens (enregistrés comme des Buffers). La première valeur du couple est
+	//board et saved_board sont des tableaux 2D de couples de booléens (enregistrés comme des Buffers). La première valeur du couple est
 	//l'état actuel de la cellule (true => en vie, false => morte). La seconde valeur est l'état dans lequel sera la cellule après le prochain tick
 	var board: Buffer[Buffer[Buffer[Boolean]]] = Buffer()
-	var initial_board: Buffer[Buffer[Buffer[Boolean]]] = Buffer()
+	var saved_board: Buffer[Buffer[Buffer[Boolean]]] = Buffer()
 	var running:Boolean = false
 	var go_stop_label: Game_Border_Label_Class = null
 	//##Life Functions## //Fonctions internes au Life

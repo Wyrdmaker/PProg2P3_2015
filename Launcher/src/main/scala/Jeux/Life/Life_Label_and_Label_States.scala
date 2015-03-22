@@ -57,7 +57,7 @@ class Life_Label extends Grid_Label with Life_Label_States_Manager{
 	}
 	override def mouse_leftclic_reaction () ={
 		if(!Life.running){
-			if(state=="dead"){change_to_state(this,"alive");/* println(Life.initial_board(x)(y)(0));*/ Life.board(x)(y)(0) = true;Life.board(x)(y)(1)=true/*; println(Life.initial_board(x)(y)(0))*/}
+			if(state=="dead"){change_to_state(this,"alive");/* println(Life.saved_board(x)(y)(0));*/ Life.board(x)(y)(0) = true;Life.board(x)(y)(1)=true/*; println(Life.saved_board(x)(y)(0))*/}
 			else{change_to_state(this,"dead"); Life.board(x)(y)(0) = false; Life.board(x)(y)(1)=false}
 		}
 		//Life.launch_game_timer()
@@ -102,9 +102,19 @@ class Life_Border_Label extends Interactive_Label{
 				foreground = LGE.dark_golden_rod1
 				text = "Sauvegarder"
 				left_click_action = (Unit =>{
-					if(!Life.running){
-						Life.make_initial_board_as_board()					
-					}
+					Life.stop_evolution()
+					Life.make_saved_board_as_board()
+				})
+			}
+			case "load_label" =>{
+				preferredSize = new Dimension(100,Life.square_size_y)
+				border = Swing.LineBorder(LGE.dark_golden_rod1,1)
+				foreground = LGE.dark_golden_rod1
+				text = "Charger"
+				left_click_action = (Unit =>{
+						Life.stop_evolution()
+						Life.make_board_as_saved_board()	
+						Life.apply_board_to_the_grid()
 				})
 			}
 			case "speed_label" =>{

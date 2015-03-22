@@ -548,6 +548,7 @@ class UI (game: Game) extends Frame {
 				long_play_reactor.reactions += {
 					case Minute_Tick(minute) => {
 						if(minute == game.main_character_acceptable_time){
+							println(game.title)
 							Main.main_character.say_smth(game.main_character_text_on_long_play)
 						}
 					}
