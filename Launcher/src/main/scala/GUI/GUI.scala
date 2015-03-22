@@ -117,6 +117,7 @@ abstract class Game{
 	val title: String
 	val square_size_x: Int 	//largeur des cases
 	val square_size_y: Int	//hauteur des cases
+	var development_finished: Boolean = true 	//Indique si le développement du jeu est fini ou non (si non, empeche de le lancer)
 
 	var game_beginning_time: Date //date de début de la partie pour le chronomètre
 

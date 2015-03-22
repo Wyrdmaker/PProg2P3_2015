@@ -13,7 +13,7 @@ import GUI._
 object Main {
 	//var game_list = new File("src/main/scala/Jeux").listFiles.filter(_.isDirectory).map(_.getName)
 
-	/* */var game_list = Array(AngelWar.AngelWar, Flip.Flip, Demineur.Demineur)/* */
+	/* */var game_list = Array(AngelWar.AngelWar, Flip.Flip, Demineur.Demineur, AdvanceWars.AdvanceWars)/* */
 
 	//Pour ajouter des jeux, ajouter dans le dossier Jeux un dossier contenant les fichiers <nom_du_jeu>.scala et
 	// <nom_du_jeu>_Label_and_Label_States.scala. Le dossier ajouté doit porter le meme nom que le nom de la classe 
@@ -36,10 +36,10 @@ object Main {
 		else {
 			launcher_mainframe.contents = new Launcher_Content
 		}
-		launcher_mainframe.dispose()	//dispose() permet de renvoyer la fenètre en gardant la possibilité de la rappeler
-		launcher_mainframe.centerOnScreen
-		launcher_mainframe.visible = true
-		launcher_mainframe.size = launcher_mainframe.preferredSize
+		//launcher_mainframe.dispose()	//dispose() permet de renvoyer la fenètre en gardant la possibilité de la rappeler
+		//launcher_mainframe.centerOnScreen
+		//launcher_mainframe.visible = true
+		//launcher_mainframe.size = launcher_mainframe.preferredSize
 		//En l'absence de cette séquence bizarre, la MatteBorder du GridBagPanel de Launcher_Content n'est pas affichée juste après le "run" de sbt
 	}
 
@@ -50,8 +50,9 @@ object Main {
 
 class Launcher_Content extends GridBagPanel { 
 	opaque = true
-	border = Swing.MatteBorder(5, 5, 5, 5, GUI_Mood.b_colour)	//MatteBorder permet de spécifier la largeur de la bordure sur chaque coté (haut, bas, gauche, droite)
+	//border = Swing.MatteBorder(5, 5, 5, 5, GUI_Mood.b_colour)	//MatteBorder permet de spécifier la largeur de la bordure sur chaque coté (haut, bas, gauche, droite)
 																//(Ici, on aurait juste pu mettre LineBorder)
+	border = Swing.LineBorder(GUI_Mood.b_colour, 5)
 	background = GUI_Mood.b_colour
 
 	val launcher_return_messages = Array("Changeons de jeu !<br>A moins que tu n'aies envie de t'arrêter ?", "Envie de changer de jeu ?","Tu ne vas pas t'arrêter maintenant quand même ?")
@@ -110,7 +111,8 @@ class Launcher_Content extends GridBagPanel {
 		}
 		custom_painting = unoverflyed_custom_painting
 		foreground = GUI_GE.silver
-		border = Swing.MatteBorder(4, 4, 4, 4, GUI_Mood.f_colour)
+		//border = Swing.MatteBorder(4, 4, 4, 4, GUI_Mood.f_colour)
+		border = Swing.LineBorder(GUI_Mood.f_colour, 4)
 		//INUTILE, mais conservé pour référence future
 		/*border = javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.dark_orchid)
 		border = javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.yellow)
@@ -163,19 +165,22 @@ class Launcher_Content extends GridBagPanel {
 
 		/* */var game_class = Main.game_list(i)/* */
 		def game_button_action() :Unit = {
-			val game_frame = new UI(game_class)
-			Main.launcher_mainframe.listenTo(game_frame)
-			Main.launcher_mainframe.reactions += {
-				case e: WindowClosing => {
-					Main.launcher_mainframe.visible = true
-					Main.launcher_mainframe.size = Main.launcher_mainframe.preferredSize
-					Main.main_character.say_smth(launcher_return_messages)
+			if(game_class.development_finished == false){Main.main_character.say("Ce jeu n'est pas disponible pour le moment. Le développeur n'a pas fini son travail.")}
+			else{
+				val game_frame = new UI(game_class)
+				Main.launcher_mainframe.listenTo(game_frame)
+				Main.launcher_mainframe.reactions += {
+					case e: WindowClosing => {
+						Main.launcher_mainframe.visible = true
+						Main.launcher_mainframe.size = Main.launcher_mainframe.preferredSize
+						Main.main_character.say_smth(launcher_return_messages)
+					}
 				}
+				game_frame.visible = true
+				game_frame.location = Main.launcher_mainframe.location
+				Main.launcher_mainframe.dispose()
+				reinit_game_button_list_custompainting()	//Sert à ce que le bouton cliqué reprenne l'apparence d'un bouton non survolé
 			}
-			game_frame.visible = true
-			game_frame.location = Main.launcher_mainframe.location
-			Main.launcher_mainframe.dispose()
-			reinit_game_button_list_custompainting()	//Sert à ce que le bouton cliqué reprenne l'apparence d'un bouton non survolé
 		}
 		var game_button = new Game_Button{
 			text = game_class.title
