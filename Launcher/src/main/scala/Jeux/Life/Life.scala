@@ -88,7 +88,7 @@ object Life extends Game{
 	//var in_game = false héritée de Game
 
 	//##Game parameters##
-	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 5, 50), ("Hauteur", 0, 5, 50))
+	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 5, 50), ("Hauteur", 0, 6, 50))
 	var string_game_parameters_def_list = IndexedSeq(("Mode de Couleur", "Classique", IndexedSeq("Classique")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
@@ -112,7 +112,8 @@ object Life extends Game{
 
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(10,10),IndexedSeq("Classique")),
-		Game_Mode(IndexedSeq(25,25),IndexedSeq("Classique"))
+		Game_Mode(IndexedSeq(25,25),IndexedSeq("Classique")),
+		Game_Mode(IndexedSeq(50,50),IndexedSeq("Classique"))
 	)
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]) ={
 		var return_value = "OK"
@@ -234,7 +235,7 @@ object Life extends Game{
 		go_stop_label.init("go/stop_label")
 		game_frame_content.left_border_grid.access_n(2).init("save_label")
 		game_frame_content.left_border_grid.access_n(3).init("load_label")
-		game_frame_content.left_border_grid.access_n(4).init("speed_label")
+		game_frame_content.left_border_grid.access_n(5).init("speed_label")
 		//Remplit le board et initialise chaque label selon le board
 		build_empty_board()
 		apply_board_to_the_grid()
