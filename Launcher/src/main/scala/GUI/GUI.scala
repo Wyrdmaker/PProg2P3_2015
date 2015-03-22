@@ -118,6 +118,7 @@ abstract class Game{
 	val square_size_x: Int 	//largeur des cases
 	val square_size_y: Int	//hauteur des cases
 	var development_finished: Boolean = true 	//Indique si le développement du jeu est fini ou non (si non, empeche de le lancer)
+	var timer_needed: Boolean = true	//indique si le jeu veut un timer
 
 	var game_beginning_time: Date //date de début de la partie pour le chronomètre
 
@@ -227,7 +228,7 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label, Game_Border_Label_Class
 		contents += label_1
 		contents += label_2
 		contents += outcome_label
-		contents += timer_label
+		if(game.timer_needed){contents += timer_label}
 	}
 	val gfc_game = game
 	/*var top_grid = new Border_Grid[gfc_game.Game_Border_Label_Class] (nb_of_cols, gfc_game.gblb_factory)

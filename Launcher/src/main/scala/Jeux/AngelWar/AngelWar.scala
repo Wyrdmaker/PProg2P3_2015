@@ -46,17 +46,19 @@ object AWGE extends GUI_Graphical_Elements{
 class AngelWar_Help_Frame extends Frame {
 	title = "Aide"
 	contents = new Label(){
-	font = new Font("Arial", 0, 17)
-		text = "<html> <body> <head> <font size=\"25\"> Aide de AngelWar </font> </head> <br> " +
-		"<p> Aidez les anges blancs à vaincre leurs homologues déchus en les disposant dans certaines des case de telles " +
-		"sorte que les conditions suivantes soient remplies: </p> <br>" +
-		"<p>      - Il y a autant d'anges blancs que de noirs </p>" +
-		"<p>		- Les anges doivent etre associés de telle sorte que chaque ange blanc est directement adjacent (diagonales exclues) à son " +
-		"ange noir. Cependant, l'ange blanc peut etre adjacent à d'autres anges noirs que le sien. </p>" +
-		"<p>		- Il n'y a pas d'anges blancs adjacents (diagonales comprises) à d'autres anges blancs </p>" +
-		"<p>		- Le nombre d'anges blancs de chaque ligne et chaque colonne correspond aux nombres indiqués sur les bords de la grille </p>  <br>" +
-		"<p> Pour vous aider, vous pouvez poser des marqueurs sur certaines cases, lorsque vous pensez qu'aucun ange ne devrait etre sur cette case. </p> </body> " + 
-		"</html>"
+		background = GUI_Mood.b_colour
+		foreground = GUI_Mood.f_colour
+		opaque = true
+		text = "<html> <body> <head style=\"font-size:25px; font-family:arial;\"> <u> Aide de AngelWar </u> </head> <br> <p style=\"font-size:13px; font-family:arial;\">" +
+		"Aidez les anges blancs à vaincre leurs homologues déchus en les disposant dans certaines des case de telles " +
+		"sorte que les conditions suivantes soient remplies: <br>" +
+		"	- Il y a autant d'anges blancs que de noirs <br> " +
+		"	- Les anges doivent etre associés de telle sorte que chaque ange blanc est directement adjacent (diagonales exclues) à son " +
+		"ange noir.<br>Cependant, l'ange blanc peut etre adjacent à d'autres anges noirs que le sien. <br>" +
+		"	- Il n'y a pas d'anges blancs adjacents (diagonales comprises) à d'autres anges blancs <br>" +
+		"	- Le nombre d'anges blancs de chaque ligne et chaque colonne correspond aux nombres indiqués sur les bords de la grille <br>" +
+		" Pour vous aider, vous pouvez poser des marqueurs sur certaines cases, lorsque vous pensez qu'aucun ange ne devrait être sur cette case." + 
+		"</p> </body> </html>"
 		/*"<audio controls> " +
 		"<source src=\"src/main/ressources/AngelWar/Enticement.mp3\" type=\"audio/mpeg\"> " +
 		"Your browser does not support the audio element. " +
@@ -75,7 +77,9 @@ class AngelWar_Help_Frame extends Frame {
 	foreground = GUI_Mood.f_colour
 	opaque = true
 	}
+	resizable = false
 	visible = true
+	centerOnScreen()
 }
 
 class AngelWar_About_Frame extends Frame{

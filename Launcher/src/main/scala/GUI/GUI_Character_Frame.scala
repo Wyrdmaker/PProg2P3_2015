@@ -7,7 +7,7 @@ import java.awt.event.{ActionEvent, ActionListener}
 
 package GUI{
 
-//caractères à copier-coller: espace insécable " ", "â", "ê"
+//caractères à copier-coller: espace insécable " ", "â", "ê", black square "■", white square "□"
 object Larissa extends Frame{
 	def say(text_to_say: String){	//Fait dire au personnage la chaine donnée en argument. Celle-ci peut contenir de l'html, notamment <br>
 		if(random_gen.nextInt(100) == 0){/*Easter_Egg*/ balloon_label.text = html_prefix + "Antonin Penon n'est pas un palyndrome" + html_suffix}
