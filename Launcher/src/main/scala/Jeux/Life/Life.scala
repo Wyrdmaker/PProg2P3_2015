@@ -87,7 +87,7 @@ object Life extends Game{
 	//var in_game = false héritée de Game
 
 	//##Game parameters##
-	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 5, 40), ("Hauteur", 0, 5, 40))
+	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 5, 50), ("Hauteur", 0, 5, 50))
 	var string_game_parameters_def_list = IndexedSeq(("Mode de Couleur", "Classique", IndexedSeq("Classique")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
@@ -249,7 +249,7 @@ object Life extends Game{
 
 	def game_action_restart() : Unit = {
 		running = false
-		go_stop_label.text = "go"
+		go_stop_label.text = "Évolution"
 		make_board_as_initial_board()
 		/*for(x<-0 until nb_of_cols){
 			for (y<- 0 until nb_of_rows){

@@ -57,8 +57,8 @@ class Life_Label extends Grid_Label with Life_Label_States_Manager{
 	}
 	override def mouse_leftclic_reaction () ={
 		if(!Life.running){
-			if(state=="dead"){change_to_state(this,"alive");/* println(Life.initial_board(x)(y)(0));*/ Life.board(x)(y)(0) = true/*; println(Life.initial_board(x)(y)(0))*/}
-			else{change_to_state(this,"dead"); Life.board(x)(y)(0) = false}
+			if(state=="dead"){change_to_state(this,"alive");/* println(Life.initial_board(x)(y)(0));*/ Life.board(x)(y)(0) = true;Life.board(x)(y)(1)=true/*; println(Life.initial_board(x)(y)(0))*/}
+			else{change_to_state(this,"dead"); Life.board(x)(y)(0) = false; Life.board(x)(y)(1)=false}
 		}
 		//Life.launch_game_timer()
 		//if (!Life.playing) {println("label_start"); Life.launch_game_timer()/*Life.game_frame_content.timer_label.restart(new Date()); Life.playing = true*/} //lance le timer au premier clic sur une case de l'utilisateur}

@@ -17,6 +17,13 @@ abstract class Grid_Label extends Interactive_Label{
 	var state: String =""
 }
 
+/*trait Border_Label{
+	def blank()={	//Pour que Game_Frame_Contents puisse créer les variables 
+		opaque = false
+		text = ""
+	}
+}*/
+
 //Est ce qu'on pourrait se défaire du paramètrage de Grid avec Game_Label_Class en allant chercher le type Game_Label_Class de game ??
 
 //Crée un GridPanel d'une taille correspondant aux paramètres du jeu, puis le remplit avec des labels de la classe passée en argument.

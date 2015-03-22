@@ -249,10 +249,11 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label, Game_Border_Label_Class
 	var right_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, vertical)
 	var bottom_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, horizontal)
 	var left_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, vertical)
-	var top_left_border_label = new Label
-	var top_right_border_label = new Label
-	var bottom_left_border_label= new Label
-	var bottom_right_border_label = new Label
+	val init_border_label : Game_Border_Label_Class = game.gblb_factory().asInstanceOf[Game_Border_Label_Class]
+	var top_left_border_label = init_border_label
+	var top_right_border_label = init_border_label
+	var bottom_left_border_label = init_border_label
+	var bottom_right_border_label = init_border_label
 
 	add(bottom_panel, 
 		constraints(1, 3, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
@@ -285,22 +286,22 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label, Game_Border_Label_Class
 			constraints(0, 1, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1))
 	}
 	def set_top_left_border_label () ={
-		top_left_border_label = game.gblb_factory()
+		top_left_border_label = game.gblb_factory().asInstanceOf[Game_Border_Label_Class]
 		add(top_left_border_label,
 			constraints(0, 0, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1.0/nb_of_rows))
 	}
 	def set_top_right_border_label () ={
-		top_right_border_label = game.gblb_factory()
+		top_right_border_label = game.gblb_factory().asInstanceOf[Game_Border_Label_Class]
 		add(top_right_border_label,
 			constraints(2, 0, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1.0/nb_of_rows))
 	}
 	def set_bottom_left_border_label () ={
-		bottom_left_border_label = game.gblb_factory()
+		bottom_left_border_label = game.gblb_factory().asInstanceOf[Game_Border_Label_Class]
 		add(bottom_left_border_label,
 			constraints(0, 2, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1.0/nb_of_rows))
 	}
 	def set_bottom_right_border_label () ={
-		bottom_right_border_label = game.gblb_factory()
+		bottom_right_border_label = game.gblb_factory().asInstanceOf[Game_Border_Label_Class]
 		add(bottom_right_border_label,
 			constraints(2, 2, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1.0/nb_of_rows))
 	}
