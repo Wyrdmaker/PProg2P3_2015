@@ -22,6 +22,7 @@ abstract class Label_State[Game_Label_Class <: Grid_Label] {
 	val background: Color
 	val foreground: Color
 	val text: String
+	var changing_text_enabled: Boolean = true
 	var custom_painting: ((Graphics2D,Label) => Unit) = ((g:Graphics2D, l:UIElement) => ())
 	//var icon: javax.swing.Icon = null
 
@@ -32,7 +33,8 @@ abstract class Label_State[Game_Label_Class <: Grid_Label] {
 		game_label.opaque = opaque
 		game_label.background = background
 		game_label.foreground = foreground
-		game_label.text = text
+		if (changing_text_enabled)
+			game_label.text = text
 		game_label.custom_painting = custom_painting
 		//game_label.icon = icon
 		game_label.repaint()

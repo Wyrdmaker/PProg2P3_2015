@@ -13,7 +13,7 @@ import GUI._
 object Main {
 	//var game_list = new File("src/main/scala/Jeux").listFiles.filter(_.isDirectory).map(_.getName)
 
-	/* */var game_list = Array(AngelWar.AngelWar, Flip.Flip, Demineur.Demineur, AdvanceWars.AdvanceWars, Life.Life)/* */
+	/* */var game_list = Array(AngelWar.AngelWar, Flip.Flip, Demineur.Demineur, AdvanceWars.AdvanceWars, Life.Life, Towers.Towers)/* */
 
 	//Pour ajouter des jeux, ajouter dans le dossier Jeux un dossier contenant les fichiers <nom_du_jeu>.scala et
 	// <nom_du_jeu>_Label_and_Label_States.scala. Le dossier ajouté doit porter le meme nom que le nom de la classe 
