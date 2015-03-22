@@ -37,10 +37,10 @@ object Main {
 			launcher_mainframe.contents = new Launcher_Content
 			launcher_mainframe.centerOnScreen()
 		}
-		//launcher_mainframe.dispose()	//dispose() permet de renvoyer la fenètre en gardant la possibilité de la rappeler
-		//launcher_mainframe.centerOnScreen
-		//launcher_mainframe.visible = true
-		//launcher_mainframe.size = launcher_mainframe.preferredSize
+		launcher_mainframe.dispose()	//dispose() permet de renvoyer la fenètre en gardant la possibilité de la rappeler
+		launcher_mainframe.centerOnScreen
+		launcher_mainframe.visible = true
+		launcher_mainframe.size = launcher_mainframe.preferredSize
 		//En l'absence de cette séquence bizarre, la MatteBorder du GridBagPanel de Launcher_Content n'est pas affichée juste après le "run" de sbt
 	}
 
