@@ -31,7 +31,7 @@ object TGE extends GUI_Graphical_Elements{
 		highlighted_border_list(no_color_mode)
 	}
 
-	val normal_foreground_colour_list = IndexedSeq(new Color(255,200,100), cyan, blue, new Color(255,127,0), new Color(30, 144, 255))
+	val normal_foreground_colour_list = IndexedSeq(black, cyan, blue, new Color(255,127,0), new Color(30, 144, 255))
 	val background_colour_list = IndexedSeq(new Color(255,100,0), new Color(255, 0, 255), green, new Color(205,51,51), new Color(0,0,190))
 	val highlighted_border_list = IndexedSeq(border(blue,2), border(blue,2), border(blue,2), border(tan1,2), border(cyan,2))
 }

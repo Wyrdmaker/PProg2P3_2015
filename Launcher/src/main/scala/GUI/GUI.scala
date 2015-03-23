@@ -11,7 +11,8 @@ import scala.swing.ComboBox
 import javax.swing.{ImageIcon, Icon}
 
 //import scalafx._
-
+//import scalafx.scene.media.Media
+//import scalafx.scene.media.MediaPlayer
 //import javafx.scene.media.Media
 //import javafx.scene.media.MediaPlayer
 
@@ -346,6 +347,8 @@ object UI_Link {
 //UI est la fenetre principale des jeux
 class UI (game: Game) extends Frame {
 
+	//val music = new Media("src/main/resources/War_of_Angels.mp3")
+
 	/*music = "Enticement.mp3"
 	media_music = new Media(music)
 	media_player = new MediaPlayer(media_music)
@@ -543,6 +546,7 @@ class UI (game: Game) extends Frame {
 
 	class Generic_Game_Starter (game: Game, ui: Frame) {
 		def generic_game_starter (): Unit ={
+			if(game.in_game){game.game_frame_content.timer_label.stop()}
 			game.in_game = true
 			game.end_lock = false
 			restart_menuitem.enabled = true //Dégrise les menuItem restart et random_seed
