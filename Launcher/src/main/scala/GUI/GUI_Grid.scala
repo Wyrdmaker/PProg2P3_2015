@@ -28,16 +28,10 @@ abstract class Grid_Label extends Interactive_Label{
 
 //Crée un GridPanel d'une taille correspondant aux paramètres du jeu, puis le remplit avec des labels de la classe passée en argument.
 // Fournit aussi 3 fonctions pour accéder aux labels de la grille ainsi créée
-class Grid[Game_Label_Class <: Grid_Label] (game: Game) extends GridPanel(game.numeric_game_parameters_def_list(1)._2/* + 2*/, game.numeric_game_parameters_def_list(0)._2 /*+ 2*/) /*GridPanel prend le nb de lignes puis le nb de colonnes de la grille*/{
-	val nb_of_cols = game.numeric_game_parameters_def_list(0)._2
-	val nb_of_rows = game.numeric_game_parameters_def_list(1)._2
+class Grid[Game_Label_Class <: Grid_Label] (game: Game) extends GridPanel(game.nb_of_rows, game.nb_of_cols) /*GridPanel prend le nb de lignes puis le nb de colonnes de la grille*/{
+	val nb_of_cols = game.nb_of_cols //game.numeric_game_parameters_def_list(0)._2
+	val nb_of_rows = game.nb_of_rows //game.numeric_game_parameters_def_list(1)._2
 
-	/*
-	//Remplir la première ligne de labels blancs qui pourront etre utilisés pour en faire des labels de bords
-	for (cx <- 0 to nb_of_cols +1){
-		contents += {new Label() }
-	}
-	*/
 	//Remplir la grille d'objets de la classe Game_Label_Class, en créent des labels de bords à gauche et à droite de chaque ligne
 	for (cy<-1 to nb_of_rows) {
 		//contents += {new Label() }
@@ -49,13 +43,8 @@ class Grid[Game_Label_Class <: Grid_Label] (game: Game) extends GridPanel(game.n
 		}
 		//contents += {new Label }
 	}
-	/*
-	//Remplir la dernière ligne de labels blancs qui pourront etre utilisés pour en faire des labels de bords
-	for (cx <- 0 to nb_of_cols +1){
-		contents += {new Label() }
-	}
-	*/
-	minimumSize = new Dimension(game.square_size_x * game.numeric_game_parameters_def_list(0)._2, game.square_size_y * game.numeric_game_parameters_def_list(1)._2 )
+
+	minimumSize = new Dimension(game.square_size_x * nb_of_cols, game.square_size_y * nb_of_rows )
 
 	/*//Test
 	revalidate()
@@ -105,20 +94,10 @@ abstract class Border_Grid_Orientation
 case class Border_Grid_Horizontal extends Border_Grid_Orientation
 case class Border_Grid_Vertical extends Border_Grid_Orientation
 
-/*
-def get_grid_border(length:Int, lb_factory: (() => Label_Class), orientation: Border_Grid_Orientation, square_size_x:Int, square_size_y:Int) : Grid_Border ={
-	var return_value : Grid_Border =null
-	orientation match {
-		case Border_Grid_Horizontal => return_value = new Grid_Border(length, lb_factory, square_size_x, square_size_y, length, 1)
-		case Border_Grid_Vertical => return_value = new Grid_Border(length, lb_factory, square_size_x, square_size_y, 1, length)
-	}
-	return(return_value)
-}
-*/
 
 class Border_Grid[Label_Class <: Label] (game: Game, /*length:Int, lb_factory: (() => Label_Class),*/ orientation: Border_Grid_Orientation/*, square_size_x:Int, square_size_y:Int*/) extends GridPanel(1, 1){
-	val nb_of_cols = game.numeric_game_parameters_def_list(0)._2
-	val nb_of_rows = game.numeric_game_parameters_def_list(1)._2
+	val nb_of_cols = game.nb_of_cols
+	val nb_of_rows = game.nb_of_rows
 	var length: Int = 0 
 	//Une grille linéaire destinée à etre accolée à la grille de jeu
 	orientation match {

@@ -58,6 +58,7 @@ object AdvanceWars extends Game{
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def nb_of_starting_flips = numeric_game_parameters_def_list(2)._2
+	val has_numeric_parameters_0asWidth_1asHeight = false
 	//Conservé pour futurs références mais inutile dans le démineur
 	/*def nb_of_bombs = game_parameter_1 //Ces deux fonctions font de nb_of_bombs un alias de la variable game_parameter_1
 	def nb_of_bombs_=(newval: Int) { game_parameter_1 = newval }*/

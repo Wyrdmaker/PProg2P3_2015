@@ -32,7 +32,7 @@ class Label_State_1 extends Towers_Label_State {
 	changing_text_enabled = false
 	val label_border = TGE.border(TGE.black)
 	val background = TGE.label_color_unexplored
-	override val foreground = TGE.black
+	override val foreground = TGE.normal_foreground_colour//TGE.black
 }
 
 trait Towers_Label_States_Manager {

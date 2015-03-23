@@ -60,18 +60,26 @@ case class Game_Mode(numeric_game_parameters_values_list: IndexedSeq[Int], strin
 }
 object Canonical_Game_Mode_Namer{	//Sert à la méthode get_name de Game_Mode
 	def name(game:Game, numeric_game_parameters_values_list: IndexedSeq[Int], string_game_parameters_values_list: IndexedSeq[String]) :String={
-		var game_mode_name = numeric_game_parameters_values_list(0).toString + "x" + numeric_game_parameters_values_list(1).toString
+		var numeric_parameters_beginning_index = 0
+		var game_mode_name = ""
+		if(game.has_numeric_parameters_0asWidth_1asHeight){	//Si le jeu a comme deux premiers paramètres numérique la largeur et la hauteur de la grille, on écrit les valeurs de ces paramètres de façon spéciale
+			game_mode_name += numeric_game_parameters_values_list(0).toString + "x" + numeric_game_parameters_values_list(1).toString
+			numeric_parameters_beginning_index = 2
+		}
+
 		// Ce gros bloc sert à remplir la variable game_mode_name avec le nom du mode de difficulté, obtenu en mettant bout à bout
 		// les différents paramètres de jeu qui constitue le mode de difficulté
-		if (numeric_game_parameters_values_list.length > 2) {
-			for (i <- 2 until numeric_game_parameters_values_list.length) {
-				game_mode_name += ", " + numeric_game_parameters_values_list(i).toString + " " + game.numeric_game_parameters_def_list(i)._1
+		if (numeric_game_parameters_values_list.length > numeric_parameters_beginning_index) {
+			for (i <- numeric_parameters_beginning_index until numeric_game_parameters_values_list.length) {
+				if(i != numeric_parameters_beginning_index || numeric_parameters_beginning_index == 2){game_mode_name += ", "}
+				game_mode_name += game.numeric_game_parameters_def_list(i)._1 + " : " + numeric_game_parameters_values_list(i).toString
 				//Rajoute ", <nom_du_paramètre_numérique> <valeur_du_paramètre_numérique>" au nom du mode de difficulté
 			}
 		}
 		if (string_game_parameters_values_list.length > 0) {
 			for (i <- 0 until string_game_parameters_values_list.length) {
-				game_mode_name += ", " + string_game_parameters_values_list(i)
+				if(i != 0 || numeric_game_parameters_values_list.length != 0){game_mode_name += ", "}
+				game_mode_name += string_game_parameters_values_list(i)
 				//Rajoute ", <valeur_du_paramètre_textuel>" au nom du mode de difficulté
 			}
 		}
@@ -131,6 +139,9 @@ abstract class Game{
 																				//le nb de lignes de la grille)
 	var string_game_parameters_def_list: IndexedSeq[(String, String, IndexedSeq[String])]	//liste des paramètres chaines de caractères du jeu sous la forme de tuples 
 																							//(nom, valeur, IndexedSeq_des_valeurs_possibles_de_ce_paramètre)
+	val has_numeric_parameters_0asWidth_1asHeight:Boolean	//Définit si le jeu a défini comme premier paramètre numérique le nb_de_colonnes et en deuxième le nb_de_lignes (sert dans le nommage automatique des modes de difficulté)
+	def nb_of_rows: Int 	//Définit le nombre de lignes qui seront créées dans la grille par Grid
+	def nb_of_cols: Int 	//Définit le nombre de colonnes qui seront créées dans la grille par Grid
 
 	type Game_Label_Class <: Grid_Label	//Les labels avec lesquels sera remplis la grille (par la classe Grid)
 	def glb_factory () : Game_Label_Class //Une usine à labels de la classe Game_Label_Class
@@ -258,6 +269,10 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label, Game_Border_Label_Class
 	var bottom_left_border_label = init_border_label
 	var bottom_right_border_label = init_border_label
 
+	val nb_of_cols = game.nb_of_cols
+	val nb_of_rows = game.nb_of_rows
+	background = GUI_Mood.b_colour
+
 	add(bottom_panel, 
 		constraints(1, 3, fill = GridBagPanel.Fill.Horizontal, weightx = 1))
 	add(grid,
@@ -308,10 +323,6 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label, Game_Border_Label_Class
 		add(bottom_right_border_label,
 			constraints(2, 2, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1.0/nb_of_rows))
 	}
-	
-	val nb_of_cols = game.numeric_game_parameters_def_list(0)._2
-	val nb_of_rows = game.numeric_game_parameters_def_list(1)._2
-	background = GUI_Mood.b_colour
 }
 
 //A class used in the method add_border_int_label in class Game_Frame_Content for the parameter location.

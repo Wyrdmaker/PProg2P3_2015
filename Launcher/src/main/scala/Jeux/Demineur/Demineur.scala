@@ -91,6 +91,7 @@ object Demineur extends Game{
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def nb_of_bombs = numeric_game_parameters_def_list(2)._2 //Ces deux fonctions réalisent un alias du champd valeur du 3ième paramètre numérique du Démineur
 	def color_parameter = string_game_parameters_def_list(1)._2
+	val has_numeric_parameters_0asWidth_1asHeight = true
 		
 	//Conservé pour futurs références mais inutile dans le démineur
 	/*def nb_of_bombs = game_parameter_1 //Ces deux fonctions font de nb_of_bombs un alias de la variable game_parameter_1
