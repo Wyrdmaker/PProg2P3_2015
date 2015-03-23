@@ -21,7 +21,7 @@ class Label_State_2 extends Towers_Label_State{
 	val state_name = "2"
 	val label_border = TGE.border(TGE.red)
 	override val foreground = TGE.red
-	val background = TGE.label_color_unexplored
+	val background = TGE.background_colour
 	val text = ""
 	changing_text_enabled = false
 }
@@ -31,7 +31,7 @@ class Label_State_1 extends Towers_Label_State {
 	val text = ""
 	changing_text_enabled = false
 	val label_border = TGE.border(TGE.black)
-	val background = TGE.label_color_unexplored
+	val background = TGE.background_colour
 	override val foreground = TGE.normal_foreground_colour//TGE.black
 }
 

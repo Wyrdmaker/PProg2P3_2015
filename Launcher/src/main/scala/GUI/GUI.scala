@@ -555,14 +555,15 @@ class UI (game: Game) extends Frame {
 			//game.game_frame_content.timer_label.stop()
 			if(game.enabled_main_character_speak_on_long_play){
 				val long_play_reactor = new Object with Reactor 	//Cet objet va faire dire quelque chose au main character si la partie devient longue
+				var active = true
 				long_play_reactor.listenTo(game.game_frame_content.timer_label)
 				long_play_reactor.reactions += {
 					case Minute_Tick(minute) => {
-						if(minute == game.main_character_acceptable_time){
-							println(game.title)
+						if(minute == game.main_character_acceptable_time && active){
 							Main.main_character.say_smth(game.main_character_text_on_long_play)
 						}
 					}
+					case Timer_Stop() => active = false
 				}
 			}
 			//MODIF
