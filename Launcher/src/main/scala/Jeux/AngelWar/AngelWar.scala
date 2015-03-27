@@ -140,8 +140,8 @@ object AngelWar extends Game{
 	def mod_board(board: Buffer[Buffer[Buffer[Int]]],x:Int,y:Int,tipe:Int = -5,free:Int = -5,x_ass:Int = -5,y_ass:Int = -5) = {
 		if(tipe != -5){board(x)(y)(0) = tipe}
 		if(free != -5){board(x)(y)(1) = free}
-		if(x_ass != -5){board(x)(y)(1) = x_ass}
-		if(y_ass != -5){board(x)(y)(1) = y_ass}
+		if(x_ass != -5){board(x)(y)(2) = x_ass}
+		if(y_ass != -5){board(x)(y)(3) = y_ass}
 	}
 
 	def apply_f_to_adjacent_squares(xi:Int,yi:Int,include_diag:Boolean,f:((Int,Int) => Unit)) ={
@@ -397,22 +397,21 @@ object AngelWar extends Game{
 		}
 		var assoc_tree_xy_list : Array[(Int, Int)] =Array()
 		var return_true = false
-		def f_to_apply (x:Int,y:Int)={
+		def f_to_apply (x2:Int,y2:Int)={
 			if(!return_true){
-				val pot_tree = game_board(x)(y)	//"pot_tree" -> "Arbre potentiel"
+				val pot_tree = game_board(x2)(y2)	//"pot_tree" -> "Arbre potentiel"
 				if (pot_tree(0)==1){	//pot_tree est bien un arbre
-					if (pot_tree(2) + pot_tree(3) == -2){	//arbre libre trouvé
-						assoc(x,y,x,y)
+					if (pot_tree(2) == -1 && pot_tree(3) == -1){	//arbre libre trouvé
+						assoc(x,y,x2,y2)
 						game_frame_content.grid.access_xy(x,y).unset_no_adj_tree_error
 						return_true = true
 					}
-					else {assoc_tree_xy_list = assoc_tree_xy_list :+ (x,y)}	//arbre associé trouvé
+					else {assoc_tree_xy_list = assoc_tree_xy_list :+ (x2,y2)}	//arbre associé trouvé
 				}
 			}			
 		}
 		apply_f_to_adjacent_squares(x,y,false,f_to_apply)
 		if(return_true){return(true)}
-
 		//aucun arbre libre trouvé, on regarde si on a trouvé des arbres associés
 		if (assoc_tree_xy_list.length == 0) {	//La tente placée ne peut correspondre à aucun arbre
 			game_frame_content.grid.access_xy(x,y).set_no_adj_tree_error
@@ -440,7 +439,7 @@ object AngelWar extends Game{
 				}	
 			}
 			//cette tente ne peut s'associer à aucun arbre
-			game_frame_content.grid.access_xy(x,y).set_no_adj_tree_error
+			game_frame_content.grid.access_xy(x,y).set_no_adj_tree_error()
 			return(false)
 		}
 	}
@@ -456,7 +455,8 @@ object AngelWar extends Game{
 			def f_to_apply(x:Int,y:Int) ={
 				if(!find_tree(x,y,reserved_list) && game_board(x)(y)(0) == 2){
 					game_frame_content.grid.access_xy(x,y).set_no_adj_tree_error()
-				}				
+				}
+				else{game_frame_content.grid.access_xy(x,y).unset_no_adj_tree_error()}			
 			}
 			apply_f_to_adjacent_squares(x,y,false,f_to_apply)
 		}
@@ -499,22 +499,32 @@ object AngelWar extends Game{
 		else{return((false, adjacent_tents))}		
 	}
 
-	def add_tent(x:Int, y:Int) = {	//appelée par un label se changeant en tente à la case (x, y)
+	def add_tent(x:Int, y:Int) :Unit= {	//appelée par un label se changeant en tente à la case (x, y)
 		mod_board(game_board,x, y, tipe = 2, free=0)
 		unfree_adjacent_squares(game_board,x,y)
 		check_rows_condition(x,y)
 		check_cols_condition(x,y)
+		var adjacent_tent = false 	//Pour savoir s'il y  au moins une tente adjacente
+		def f_to_apply(x:Int,y:Int)={
+			if(game_board(x)(y)(0) == 2){
+				game_frame_content.grid.access_xy(x,y).set_adj_tent_error()
+				adjacent_tent = true
+			}
+		}
+		apply_f_to_adjacent_squares(x,y,true,f_to_apply)	//set_adj_tent_error pour les tentes adjacentes
+		if(adjacent_tent){game_frame_content.grid.access_xy(x,y).set_adj_tent_error()}	//set_adj_tent_error pour cette case s'il y a au moins une tente adjacente
 		val adj_tents = check_adj_tent(x,y)
 		if(! find_tree(x,y)){
 			if(adj_tents._1){
 				adj_tents._2.foreach(xy => game_frame_content.grid.access_xy(xy._1,xy._2).set_adj_tent_error())
 				game_frame_content.grid.access_xy(x,y).set_adj_tent_error()
 			}
-			def f_to_apply(x:Int,y:Int) ={
+			def f2_to_apply(x:Int,y:Int) ={
 				adj_find_tree(x,y,true)	
 			}
-			apply_f_to_adjacent_squares(x,y,false,f_to_apply)
+			apply_f_to_adjacent_squares(x,y,false,f2_to_apply)
 		}
+
 		check_win()
 	}
 
@@ -555,15 +565,18 @@ object AngelWar extends Game{
 	}
 
 	def remove_tent(x:Int, y:Int) = {	//est appelée par un label se débarassant de sa tente à la case (x,y)
+		val x_ass = game_board(x)(y)(2)
+		val y_ass = game_board(x)(y)(3)
 		unassoc(x,y)
 		mod_board(game_board,x, y, tipe = 0, free=1)
 		restore_adjacent_square_freedom(x,y)
 		check_error(x,y)
-		def f_to_apply(x:Int,y:Int) ={
+		if(x_ass != -1 && y_ass != -1){adj_find_tree(x_ass,y_ass,false)}
+		/*def f_to_apply(x:Int,y:Int) ={
 			adj_find_tree(x,y,false)
 		}
-		apply_f_to_adjacent_squares(x,y,false,f_to_apply)
-		clear_no_assoc_tree_error()
+		apply_f_to_adjacent_squares(x,y,false,f_to_apply)*/
+		//clear_no_assoc_tree_error()
 		check_win()
 	}
 
