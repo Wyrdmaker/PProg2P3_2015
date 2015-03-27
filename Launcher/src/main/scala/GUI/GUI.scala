@@ -157,9 +157,9 @@ abstract class Game{
 	var main_character_text_on_launching : Array[String] = Array() 	//Cette variable contient les textes que peut dire le personnage principal lors du lancement du jeu
 	var main_character_text_on_win: Array[String] = Array("Bravo !", "Bien joué !", "Toutes mes félicitations !")
 	var main_character_text_on_lose: Array[String] = Array("Dommage", "Pas de chance", "Ce sont des choses qui arrivent...")
-	var main_character_text_on_long_play: Array[String] = Array("Tu n'est pas très rapide...","Moi, à ta place, j'aurais déjà fini !")
-	var main_character_acceptable_time: Int = 3	//Le temps au bout duquel le personnage principal dit au joueur qu'il traine (en minutes)
-	var enabled_main_character_speak_on_long_play: Boolean = true	//Permet au jeu d'empecher le main_character de dire quelque chose quand la partie devient longue
+	//var main_character_text_on_long_play: Array[String] = Array("Tu n'est pas très rapide...","Moi, à ta place, j'aurais déjà fini !")
+	//var main_character_acceptable_time: Int = 3	//Le temps au bout duquel le personnage principal dit au joueur qu'il traine (en minutes)
+	//var enabled_main_character_speak_on_long_play: Boolean = true	//Permet au jeu d'empecher le main_character de dire quelque chose quand la partie devient longue
 
 	val game_game_mode_list : IndexedSeq[Game_Mode] 	//Liste des modes de difficulté que le jeu veut proposer
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]): String	//Une fonction qui, aux résultat des champs numériques d'un formulaire
@@ -530,19 +530,27 @@ class UI (game: Game) extends Frame {
 				game.game_action_restart()
 				val outcome_label = game.game_frame_content.outcome_label
 				outcome_label.text = ""
-
-
-				/*game.game_beginning_time = new Date()
-				game.game_frame_content.timer_label.restart(game.game_beginning_time)
-				game.game_frame_content.timer_label.stop()*/
-				
-
-				//MODIF
-				/*val timer_label = game.game_frame_content.timer_label
-				timer_label.restart(game.game_beginning_time)*/
 			}
 		}
 	}
+	//Code qui servait à faire dire au personnage qqchose quand la partie devenait longue, retiré car ça se produisait même si on changeait de jeu entre temps
+	//#
+	/*var long_play_reactor = new Object with Reactor{
+		var listened_timer : Timer_Label = null
+		override def listenTo (ps: Publisher) ={
+			super.listenTo(ps)
+			listened_timer = ps
+		}
+		def clear () ={
+			deafTo(listened_timer)
+		}
+	}
+	listenTo(this)
+	reactions +={
+		case e: WindowClosing => {println("wc");long_play_reactor = null}
+	}*/
+	//#
+
 
 	class Generic_Game_Starter (game: Game, ui: Frame) {
 		def generic_game_starter (): Unit ={
@@ -555,33 +563,33 @@ class UI (game: Game) extends Frame {
 			game.game_beginning_time = new Date()
 
 			game.game_frame_content = new Game_Frame_Content[game.Game_Label_Class,game.Game_Border_Label_Class](game)
-			//game.game_frame_content.timer_label.restart(game.game_beginning_time)
-			//game.game_frame_content.timer_label.stop()
-			if(game.enabled_main_character_speak_on_long_play){
-				val long_play_reactor = new Object with Reactor 	//Cet objet va faire dire quelque chose au main character si la partie devient longue
-				var active = true
-				long_play_reactor.listenTo(game.game_frame_content.timer_label)
-				long_play_reactor.reactions += {
-					case Minute_Tick(minute) => {
-						if(minute == game.main_character_acceptable_time && active){
-							Main.main_character.say_smth(game.main_character_text_on_long_play)
-						}
+				//Code qui servait à faire dire au personnage qqchose quand la partie devenait longue, retiré car ça se produisait même si on changeait de jeu entre temps
+				//#
+				/*if(game.enabled_main_character_speak_on_long_play){
+					//val long_play_reactor = new Object with Reactor 	//Cet objet va faire dire quelque chose au main character si la partie devient longue
+					//var active = true
+					long_play_reactor = new Object with Reactor{
+						listenTo(game.game_frame_content.timer_label)
+						reactions += {
+							case Minute_Tick(minute, timer) => {
+								if(minute == game.main_character_acceptable_time){
+									Main.main_character.say_smth(game.main_character_text_on_long_play)
+									deafTo(timer)
+								}
+							}
+							case Timer_Stop(timer_stopped) => {
+								deafTo(timer_stopped)
+							}
+						}		
 					}
-					case Timer_Stop() => active = false
-				}
-			}
+				}*/
+				//#
 			//MODIF
 			val outcome_label = game.game_frame_content.outcome_label
 			outcome_label.text = ""
 			
 			ui.contents = game.game_frame_content//.final_content
 			UI_Link.actual_ui = thisui
-			///game_frame_content.timer_label.restart(new Date())
-			//game_frame_content.timer_label.stop() //Le jeu doit lancer le timer label quand il veut
-
-			//MODIF
-			/*game.game_action_restart()
-			game.in_game = false*/
 			game.game_starter()
 
 

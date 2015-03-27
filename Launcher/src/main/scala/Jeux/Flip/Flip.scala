@@ -92,7 +92,7 @@ object Flip extends Game{
 	//var game_frame_content héritée de Game
 	main_character_text_on_launching = main_character_text_on_launching ++ Array("Si tu préfére remplir la grille de cases noires, le mode \"Reversed\" est fait pour toi", "Flip Flip Flip...")
 	main_character_text_on_win = main_character_text_on_win ++ Array("Enfin...<br>Ce n'était pourtant pas si compliqué<br>Il suffisait de fliper la troisième case au début")
-	main_character_acceptable_time = 1
+	//main_character_acceptable_time = 1
 
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(3,3,10),IndexedSeq("Classique")),

@@ -12,8 +12,8 @@ package GUI{
 
 //DÉFAUT: le thread utilisé par le timer ne s'arrète pas, m^eme après avoir fermé le jeu (écrire un println("tick") dans la fonction actionPerformed)
 
-case class Minute_Tick(minutes: Int) extends Event
-case class Timer_Stop() extends Event
+case class Minute_Tick(minutes: Int, timer: Timer_Label) extends Event
+case class Timer_Stop(timer_stopped: Timer_Label) extends Event
 
 //La classe Timer_Label fournit des labels chronomètres dotés de 3 fonctions: 
 //	restart -> change l'origine temporelle du chronomètre
@@ -41,14 +41,14 @@ class Timer_Label (time_origin_arg : Date) extends Label with Publisher{
 
 	def stop () = {
 		timer.stop()
-		publish(Timer_Stop())
+		publish(Timer_Stop(this_timer_label))
 	}
 	
 	val timer_listener = new ActionListener{
 		def actionPerformed(e: ActionEvent) {
 			val old_minutes = minutes
 			minutes  = ((new Date).getTime() - time_origin.getTime()) / 60000 % 60
-			if(minutes > old_minutes){publish(Minute_Tick(minutes.toInt))}
+			if(minutes > old_minutes){publish(Minute_Tick(minutes.toInt, this_timer_label))}
 			secondes = ((new Date).getTime() - time_origin.getTime()) / 1000 % 60
 			var string = if (minutes < 10) "0" else ""
 			string = string + minutes.toString + ":"

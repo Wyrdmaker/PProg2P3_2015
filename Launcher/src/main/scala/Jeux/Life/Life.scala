@@ -109,7 +109,7 @@ object Life extends Game{
 	//var random_gen héritée de Game
 	//var game_frame_content héritée de Game
 	main_character_text_on_launching = main_character_text_on_launching ++ Array("Ah, la vie...<br>Un jeu intriguant.", "Si tu crée le motif:<br> <Pre> o <br>  o<br>ooo</Pre>Tu obtiendra une sorte de vaisseau qui voyagera.")
-	enabled_main_character_speak_on_long_play = false
+	//enabled_main_character_speak_on_long_play = false
 
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(10,10),IndexedSeq("Classique")),
