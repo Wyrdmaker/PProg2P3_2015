@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{titling}
+
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
+
+\title{Projet Programmation 2}
+\subtitle{\emph{Phase 2}}
+
+\author{Thomas DUPRIEZ - Guillaume HOCQUET}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+\textbf{Abstract :} Dans cette phase, nous avons implémenté les jeux Tent, Towers, Flip et Life en utilisant les fonctionalités graphiques disponibles dans notre interface GUI.
+
+\subsection*{Modifications}
+\begin{itemize}
+\item Les nouveaux jeux requéraient l'ajout de bordures de label sur les côtés de la grille. Elles devaient être indépendantes du reste de la grille car leur comportement (non cliquable, couleur différente) différait des labels habituels. Par ailleurs, les options de génération d'une grille ne devaient pas changer (taille) et chaque jeu utilisait de façon différente cette nouvelle fonctionnalité (aucune bordure, seulement en bas et à droite, partout). Nous avons donc implémenté une nouvelle structure gérant ces différents cas sans altérer le fonctionnement habituel de GUI.
+\item Certains jeux n'étaient utilisables que dans une configuration de grille carrée, nous avons du gérer ce cas particuliers qui consistait à fixer une coordonnée en fonction de l'autre.
+\end{itemize}
+
+\end{document}
