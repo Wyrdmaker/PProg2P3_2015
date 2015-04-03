@@ -13,7 +13,7 @@ import GUI._
 object Main {
 	//var game_list = new File("src/main/scala/Jeux").listFiles.filter(_.isDirectory).map(_.getName)
 
-	/* */var game_list = Array(AngelWar.AngelWar, Flip.Flip, Demineur.Demineur, AdvanceWars.AdvanceWars, Life.Life, Towers.Towers)/* */
+	/* */var game_list = Array(AngelWar.AngelWar, Flip.Flip, Demineur.Demineur, Life.Life, Towers.Towers)/* */
 
 	//Pour ajouter des jeux, ajouter dans le dossier Jeux un dossier contenant les fichiers <nom_du_jeu>.scala et
 	// <nom_du_jeu>_Label_and_Label_States.scala. Le dossier ajouté doit porter le meme nom que le nom de la classe 
@@ -41,7 +41,7 @@ object Main {
 		launcher_mainframe.visible = true
 		launcher_mainframe.size = launcher_mainframe.preferredSize
 		launcher_mainframe.centerOnScreen
-		//En l'absence de cette séquence bizarre, la MatteBorder du GridBagPanel de Launcher_Content n'est pas affichée juste après le "run" de sbt
+		//En l'absence de cette séquence bizarre, la MatteBorder du GridBagPanel de Launcher_Content n'est parfois pas affichée juste après le "run" de sbt
 	}
 
 	val main_character = Larissa
@@ -51,8 +51,8 @@ object Main {
 
 class Launcher_Content extends GridBagPanel { 
 	opaque = true
+	//INUTILE, mais conservé pour références futures
 	//border = Swing.MatteBorder(5, 5, 5, 5, GUI_Mood.b_colour)	//MatteBorder permet de spécifier la largeur de la bordure sur chaque coté (haut, bas, gauche, droite)
-																//(Ici, on aurait juste pu mettre LineBorder)
 	border = Swing.LineBorder(GUI_Mood.b_colour, 5)
 	background = GUI_Mood.b_colour
 
@@ -112,7 +112,6 @@ class Launcher_Content extends GridBagPanel {
 		}
 		custom_painting = unoverflyed_custom_painting
 		foreground = GUI_GE.silver
-		//border = Swing.MatteBorder(4, 4, 4, 4, GUI_Mood.f_colour)
 		border = Swing.LineBorder(GUI_Mood.f_colour, 4)
 		//INUTILE, mais conservé pour référence future
 		/*border = javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.dark_orchid)
@@ -123,8 +122,8 @@ class Launcher_Content extends GridBagPanel {
 		font = new Font("Impact", 0, 20)
 		minimumSize = new Dimension(width, height)
 		preferredSize = new Dimension(width, height)
-
-		//val foreground_gradientpaint = new java.awt.GradientPaint(0, 0, GUI_GE.silver, 0, 10, darker_silver) //Inutile mais conservé
+		//INUTILE, mais conservé pour références futures
+		//val foreground_gradientpaint = new java.awt.GradientPaint(0, 0, GUI_GE.silver, 0, 10, darker_silver)
 		listenTo(mouse.moves, mouse.clicks)
 		def mouse_enter_reaction () ={	//Lorsque la souris entre dans la zone du label
 			this.custom_painting = overflyed_custom_painting

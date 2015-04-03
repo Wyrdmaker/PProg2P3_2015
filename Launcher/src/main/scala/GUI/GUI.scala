@@ -509,7 +509,7 @@ class UI (game: Game) extends Frame {
 			contents += restart_menuitem
 			contents += randomseed_menuitem
 			contents += new MenuItem(""){background = GUI_Mood.b_colour}
-			contents += new MenuItem(""){action = Action("Quitter") {System.exit(0)}; background = GUI_Mood.b_colour; foreground = GUI_Mood.f_colour}
+			contents += new MenuItem(""){action = Action("Revenir au lanceur") {System.exit(0)}; background = GUI_Mood.b_colour; foreground = GUI_Mood.f_colour}
 		}
 		contents += new Menu("Aide") {
 			background = GUI_Mood.b_colour

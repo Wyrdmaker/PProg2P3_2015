@@ -1,0 +1,1060 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+	<title>RGB to Color Name Mapping(Triplet and Hex)</title>
+	<link rel="SHORTCUT ICON" href="http://web.njit.edu/%7Ewalsh/images/rgb_favicon_v1.ico">
+</head>
+<body background="RGB%20to%20Color%20Name%20Mapping(Triplet%20and%20Hex)_fichiers/mybg.gif">
+<zimg src="http://counter.njit.edu/Count.cgi?df=kevin.rgb%7Csh=N">
+<a name="top"></a>
+		<table border="0"><tbody><tr><td>
+			<table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td valign="bottom" align="center"><font color="#FFDDDD" size="-5"><sub>FF0000</sub></font></td>
+				<td valign="bottom" align="center"><font color="#DDFFDD" size="-5"><sub>&nbsp;00FF00&nbsp;</sub></font></td>
+				<td valign="bottom" align="center"><font color="#DDDDFF" size="-5"><sub>0000FF</sub></font></td>
+			</tr>
+			<tr>
+				<td valign="center" align="center"><font color="#FF0000" size="+3"><b>R</b></font></td>
+				<td valign="center" align="center"><font color="#00FF00" size="+3"><b>G</b></font></td>
+				<td valign="center" align="center"><font color="#0000FF" size="+3"><b>B</b></font></td>
+			</tr>
+			<tr>
+				<td valign="top" align="center"><font color="#FFDDDD" size="-5"><sup>255;0;0</sup></font></td>
+				<td valign="top" align="center"><font color="#DDFFDD" size="-5"><sup>&nbsp;0;255;0&nbsp;</sup></font></td>
+				<td valign="top" align="center"><font color="#DDDDFF" size="-5"><sup>0;0;255</sup></font></td>
+			</tr>
+			</tbody></table>
+		</td><td>&nbsp;</td><td valign="bottom">
+<h1>RGB to Color Name Mapping (Triplet and Hex)</h1>
+		</td></tr></tbody></table>
+By Kevin J. Walsh;
+please click <a href="#copying">here</a> for copyright and copying policy.
+<p>
+The color table has been roughly divided up into shades.  
+Select one of these:
+<a href="#Black">Black</a>;
+<a href="#Blue">Blue</a>;
+<a href="#Brown">Brown</a>;
+<a href="#Black">Gray</a>;
+<a href="#Green">Green</a>;
+<a href="#Orange">Orange</a>;
+<a href="#Red">Red</a>;
+<a href="#Violet">Violet</a>;
+<a href="#White">White</a>;
+<a href="#Yellow">Yellow</a>;
+to jump to that division.  
+</p><p>
+Other sections show the <a href="#samples">HTML behind the BG/FG color samples</a> on this page,
+info about <a href="#printing">printing this page in color</a>,
+the problem with <a href="#metallic">metallic colors</a>, 
+<a href="#credits">credits</a>, 
+and some <a href="#other">other sources</a> of information.
+</p><p>
+<a href="#top" name="Gray">[Click for top]</a><a href="#top" name="Black"></a><a href="#top" name="Grey"></a>
+<table cols="4" width="100%" border="" cellpadding="3"><tbody><tr><th colspan="6">Shades of Black and Gray (see also <a href="#grayvsgrey"> Gray vs Grey</a>)</th></tr>
+<tr><th width="30%"><a href="#columns">Color Name</a></th><th width="10%"><a href="#credits">Credits</a></th><th width="10%"><a href="#columns">R;G;B Dec</a></th><th width="10%"><a href="#columns">RGB Hex</a></th><th width="10%"><a href="#columns">CSS Hex</a></th><th><a href="#samples">BG/FG color sample</a></th></tr>
+<!--022--><tr align="center"><td>Grey</td><td>N</td><td>84;84;84</td><td>545454</td><td>&nbsp;</td><td bgcolor="#545454"><font color="#545454">### SAMPLE ###<font></font></font></td></tr>
+<!--023--><tr align="center"><td>Grey,  Silver</td><td>V</td><td>192;192;192</td><td>C0C0C0</td><td>&nbsp;</td><td bgcolor="#C0C0C0"><font color="#C0C0C0">### SAMPLE ###<font></font></font></td></tr>
+<!--024--><tr align="center"><td>grey</td><td>X</td><td>190;190;190</td><td>BEBEBE</td><td>&nbsp;</td><td bgcolor="#BEBEBE"><font color="#BEBEBE">### SAMPLE ###<font></font></font></td></tr>
+<!--025--><tr align="center"><td>LightGray</td><td>X</td><td>211;211;211</td><td>D3D3D3</td><td>&nbsp;</td><td bgcolor="#D3D3D3"><font color="#D3D3D3">### SAMPLE ###<font></font></font></td></tr>
+<!--026--><tr align="center"><td>LightSlateGrey</td><td>X</td><td>119;136;153</td><td>778899</td><td>789</td><td bgcolor="#778899"><font color="#778899">### SAMPLE ###<font></font></font></td></tr>
+<!--027--><tr align="center"><td>SlateGray</td><td>X</td><td>112;128;144</td><td>708090</td><td>&nbsp;</td><td bgcolor="#708090"><font color="#708090">### SAMPLE ###<font></font></font></td></tr>
+<!--028--><tr align="center"><td>SlateGray1</td><td>X</td><td>198;226;255</td><td>C6E2FF</td><td>&nbsp;</td><td bgcolor="#C6E2FF"><font color="#C6E2FF">### SAMPLE ###<font></font></font></td></tr>
+<!--029--><tr align="center"><td>SlateGray2</td><td>X</td><td>185;211;238</td><td>B9D3EE</td><td>&nbsp;</td><td bgcolor="#B9D3EE"><font color="#B9D3EE">### SAMPLE ###<font></font></font></td></tr>
+<!--030--><tr align="center"><td>SlateGray3</td><td>X</td><td>159;182;205</td><td>9FB6CD</td><td>&nbsp;</td><td bgcolor="#9FB6CD"><font color="#9FB6CD">### SAMPLE ###<font></font></font></td></tr>
+<!--031--><tr align="center"><td>SlateGray4</td><td>X</td><td>108;123;139</td><td>6C7B8B</td><td>&nbsp;</td><td bgcolor="#6C7B8B"><font color="#6C7B8B">### SAMPLE ###<font></font></font></td></tr>
+<!--032--><tr align="center"><td>black</td><td>N,V,X</td><td>0;0;0</td><td>000000</td><td>000</td><td bgcolor="#000000"><font color="#000000">### SAMPLE ###<font></font></font></td></tr>
+<!--033--><tr align="center"><td>grey0</td><td>X</td><td>0;0;0</td><td>000000</td><td>000</td><td bgcolor="#000000"><font color="#000000">### SAMPLE ###<font></font></font></td></tr>
+<!--034--><tr align="center"><td>grey1</td><td>X</td><td>3;3;3</td><td>030303</td><td>&nbsp;</td><td bgcolor="#030303"><font color="#030303">### SAMPLE ###<font></font></font></td></tr>
+<!--035--><tr align="center"><td>grey2</td><td>X</td><td>5;5;5</td><td>050505</td><td>&nbsp;</td><td bgcolor="#050505"><font color="#050505">### SAMPLE ###<font></font></font></td></tr>
+<!--036--><tr align="center"><td>grey3</td><td>X</td><td>8;8;8</td><td>080808</td><td>&nbsp;</td><td bgcolor="#080808"><font color="#080808">### SAMPLE ###<font></font></font></td></tr>
+<!--037--><tr align="center"><td>grey4</td><td>X</td><td>10;10;10</td><td>0A0A0A</td><td>&nbsp;</td><td bgcolor="#0A0A0A"><font color="#0A0A0A">### SAMPLE ###<font></font></font></td></tr>
+<!--038--><tr align="center"><td>grey5</td><td>X</td><td>13;13;13</td><td>0D0D0D</td><td>&nbsp;</td><td bgcolor="#0D0D0D"><font color="#0D0D0D">### SAMPLE ###<font></font></font></td></tr>
+<!--039--><tr align="center"><td>grey6</td><td>X</td><td>15;15;15</td><td>0F0F0F</td><td>&nbsp;</td><td bgcolor="#0F0F0F"><font color="#0F0F0F">### SAMPLE ###<font></font></font></td></tr>
+<!--040--><tr align="center"><td>grey7</td><td>X</td><td>18;18;18</td><td>121212</td><td>&nbsp;</td><td bgcolor="#121212"><font color="#121212">### SAMPLE ###<font></font></font></td></tr>
+<!--041--><tr align="center"><td>grey8</td><td>X</td><td>20;20;20</td><td>141414</td><td>&nbsp;</td><td bgcolor="#141414"><font color="#141414">### SAMPLE ###<font></font></font></td></tr>
+<!--042--><tr align="center"><td>grey9</td><td>X</td><td>23;23;23</td><td>171717</td><td>&nbsp;</td><td bgcolor="#171717"><font color="#171717">### SAMPLE ###<font></font></font></td></tr>
+<!--043--><tr align="center"><td>grey10</td><td>X</td><td>26;26;26</td><td>1A1A1A</td><td>&nbsp;</td><td bgcolor="#1A1A1A"><font color="#1A1A1A">### SAMPLE ###<font></font></font></td></tr>
+<!--044--><tr align="center"><td>grey11</td><td>X</td><td>28;28;28</td><td>1C1C1C</td><td>&nbsp;</td><td bgcolor="#1C1C1C"><font color="#1C1C1C">### SAMPLE ###<font></font></font></td></tr>
+<!--045--><tr align="center"><td>grey12</td><td>X</td><td>31;31;31</td><td>1F1F1F</td><td>&nbsp;</td><td bgcolor="#1F1F1F"><font color="#1F1F1F">### SAMPLE ###<font></font></font></td></tr>
+<!--046--><tr align="center"><td>grey13</td><td>X</td><td>33;33;33</td><td>212121</td><td>&nbsp;</td><td bgcolor="#212121"><font color="#212121">### SAMPLE ###<font></font></font></td></tr>
+<!--047--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>34;34;34</td><td>222222</td><td>222</td><td bgcolor="#222222"><font color="#222222">### SAMPLE ###<font></font></font></td></tr>
+<!--048--><tr align="center"><td>grey14</td><td>X</td><td>36;36;36</td><td>242424</td><td>&nbsp;</td><td bgcolor="#242424"><font color="#242424">### SAMPLE ###<font></font></font></td></tr>
+<!--049--><tr align="center"><td>grey15</td><td>X</td><td>38;38;38</td><td>262626</td><td>&nbsp;</td><td bgcolor="#262626"><font color="#262626">### SAMPLE ###<font></font></font></td></tr>
+<!--050--><tr align="center"><td>grey16</td><td>X</td><td>41;41;41</td><td>292929</td><td>&nbsp;</td><td bgcolor="#292929"><font color="#292929">### SAMPLE ###<font></font></font></td></tr>
+<!--051--><tr align="center"><td>grey17</td><td>X</td><td>43;43;43</td><td>2B2B2B</td><td>&nbsp;</td><td bgcolor="#2B2B2B"><font color="#2B2B2B">### SAMPLE ###<font></font></font></td></tr>
+<!--052--><tr align="center"><td>grey18</td><td>X</td><td>46;46;46</td><td>2E2E2E</td><td>&nbsp;</td><td bgcolor="#2E2E2E"><font color="#2E2E2E">### SAMPLE ###<font></font></font></td></tr>
+<!--053--><tr align="center"><td>grey19</td><td>X</td><td>48;48;48</td><td>303030</td><td>&nbsp;</td><td bgcolor="#303030"><font color="#303030">### SAMPLE ###<font></font></font></td></tr>
+<!--054--><tr align="center"><td>grey20</td><td>X</td><td>51;51;51</td><td>333333</td><td>333</td><td bgcolor="#333333"><font color="#333333">### SAMPLE ###<font></font></font></td></tr>
+<!--055--><tr align="center"><td>grey21</td><td>X</td><td>54;54;54</td><td>363636</td><td>&nbsp;</td><td bgcolor="#363636"><font color="#363636">### SAMPLE ###<font></font></font></td></tr>
+<!--056--><tr align="center"><td>grey22</td><td>X</td><td>56;56;56</td><td>383838</td><td>&nbsp;</td><td bgcolor="#383838"><font color="#383838">### SAMPLE ###<font></font></font></td></tr>
+<!--057--><tr align="center"><td>grey23</td><td>X</td><td>59;59;59</td><td>3B3B3B</td><td>&nbsp;</td><td bgcolor="#3B3B3B"><font color="#3B3B3B">### SAMPLE ###<font></font></font></td></tr>
+<!--058--><tr align="center"><td>grey24</td><td>X</td><td>61;61;61</td><td>3D3D3D</td><td>&nbsp;</td><td bgcolor="#3D3D3D"><font color="#3D3D3D">### SAMPLE ###<font></font></font></td></tr>
+<!--059--><tr align="center"><td>grey25</td><td>X</td><td>64;64;64</td><td>404040</td><td>&nbsp;</td><td bgcolor="#404040"><font color="#404040">### SAMPLE ###<font></font></font></td></tr>
+<!--060--><tr align="center"><td>grey26</td><td>X</td><td>66;66;66</td><td>424242</td><td>&nbsp;</td><td bgcolor="#424242"><font color="#424242">### SAMPLE ###<font></font></font></td></tr>
+<!--061--><tr align="center"><td>grey27</td><td>X</td><td>69;69;69</td><td>454545</td><td>&nbsp;</td><td bgcolor="#454545"><font color="#454545">### SAMPLE ###<font></font></font></td></tr>
+<!--062--><tr align="center"><td>grey28</td><td>X</td><td>71;71;71</td><td>474747</td><td>&nbsp;</td><td bgcolor="#474747"><font color="#474747">### SAMPLE ###<font></font></font></td></tr>
+<!--063--><tr align="center"><td>grey29</td><td>X</td><td>74;74;74</td><td>4A4A4A</td><td>&nbsp;</td><td bgcolor="#4A4A4A"><font color="#4A4A4A">### SAMPLE ###<font></font></font></td></tr>
+<!--064--><tr align="center"><td>grey30</td><td>X</td><td>77;77;77</td><td>4D4D4D</td><td>&nbsp;</td><td bgcolor="#4D4D4D"><font color="#4D4D4D">### SAMPLE ###<font></font></font></td></tr>
+<!--065--><tr align="center"><td>grey31</td><td>X</td><td>79;79;79</td><td>4F4F4F</td><td>&nbsp;</td><td bgcolor="#4F4F4F"><font color="#4F4F4F">### SAMPLE ###<font></font></font></td></tr>
+<!--066--><tr align="center"><td>grey32</td><td>X</td><td>82;82;82</td><td>525252</td><td>&nbsp;</td><td bgcolor="#525252"><font color="#525252">### SAMPLE ###<font></font></font></td></tr>
+<!--067--><tr align="center"><td>grey33</td><td>X</td><td>84;84;84</td><td>545454</td><td>&nbsp;</td><td bgcolor="#545454"><font color="#545454">### SAMPLE ###<font></font></font></td></tr>
+<!--068--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>85;85;85</td><td>555555</td><td>555</td><td bgcolor="#555555"><font color="#555555">### SAMPLE ###<font></font></font></td></tr>
+<!--069--><tr align="center"><td>grey34</td><td>X</td><td>87;87;87</td><td>575757</td><td>&nbsp;</td><td bgcolor="#575757"><font color="#575757">### SAMPLE ###<font></font></font></td></tr>
+<!--070--><tr align="center"><td>grey35</td><td>X</td><td>89;89;89</td><td>595959</td><td>&nbsp;</td><td bgcolor="#595959"><font color="#595959">### SAMPLE ###<font></font></font></td></tr>
+<!--071--><tr align="center"><td>grey36</td><td>X</td><td>92;92;92</td><td>5C5C5C</td><td>&nbsp;</td><td bgcolor="#5C5C5C"><font color="#5C5C5C">### SAMPLE ###<font></font></font></td></tr>
+<!--072--><tr align="center"><td>grey37</td><td>X</td><td>94;94;94</td><td>5E5E5E</td><td>&nbsp;</td><td bgcolor="#5E5E5E"><font color="#5E5E5E">### SAMPLE ###<font></font></font></td></tr>
+<!--073--><tr align="center"><td>grey38</td><td>X</td><td>97;97;97</td><td>616161</td><td>&nbsp;</td><td bgcolor="#616161"><font color="#616161">### SAMPLE ###<font></font></font></td></tr>
+<!--074--><tr align="center"><td>grey39</td><td>X</td><td>99;99;99</td><td>636363</td><td>&nbsp;</td><td bgcolor="#636363"><font color="#636363">### SAMPLE ###<font></font></font></td></tr>
+<!--075--><tr align="center"><td>grey40</td><td>X</td><td>102;102;102</td><td>666666</td><td>666</td><td bgcolor="#666666"><font color="#666666">### SAMPLE ###<font></font></font></td></tr>
+<!--076--><tr align="center"><td>grey41, DimGrey</td><td>X</td><td>105;105;105</td><td>696969</td><td>&nbsp;</td><td bgcolor="#696969"><font color="#696969">### SAMPLE ###<font></font></font></td></tr>
+<!--077--><tr align="center"><td>grey42</td><td>X</td><td>107;107;107</td><td>6B6B6B</td><td>&nbsp;</td><td bgcolor="#6B6B6B"><font color="#6B6B6B">### SAMPLE ###<font></font></font></td></tr>
+<!--078--><tr align="center"><td>grey43</td><td>X</td><td>110;110;110</td><td>6E6E6E</td><td>&nbsp;</td><td bgcolor="#6E6E6E"><font color="#6E6E6E">### SAMPLE ###<font></font></font></td></tr>
+<!--079--><tr align="center"><td>grey44</td><td>X</td><td>112;112;112</td><td>707070</td><td>&nbsp;</td><td bgcolor="#707070"><font color="#707070">### SAMPLE ###<font></font></font></td></tr>
+<!--080--><tr align="center"><td>grey45</td><td>X</td><td>115;115;115</td><td>737373</td><td>&nbsp;</td><td bgcolor="#737373"><font color="#737373">### SAMPLE ###<font></font></font></td></tr>
+<!--081--><tr align="center"><td>grey46</td><td>X</td><td>117;117;117</td><td>757575</td><td>&nbsp;</td><td bgcolor="#757575"><font color="#757575">### SAMPLE ###<font></font></font></td></tr>
+<!--082--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>119;119;119</td><td>777777</td><td>777</td><td bgcolor="#777777"><font color="#777777">#©2006&nbsp;walsh@njit.edu#<font></font></font></td></tr>
+<!--083--><tr align="center"><td>grey47</td><td>X</td><td>120;120;120</td><td>787878</td><td>&nbsp;</td><td bgcolor="#787878"><font color="#787878">### SAMPLE ###<font></font></font></td></tr>
+<!--084--><tr align="center"><td>grey48</td><td>X</td><td>122;122;122</td><td>7A7A7A</td><td>&nbsp;</td><td bgcolor="#7A7A7A"><font color="#7A7A7A">### SAMPLE ###<font></font></font></td></tr>
+<!--085--><tr align="center"><td>grey49</td><td>X</td><td>125;125;125</td><td>7D7D7D</td><td>&nbsp;</td><td bgcolor="#7D7D7D"><font color="#7D7D7D">### SAMPLE ###<font></font></font></td></tr>
+<!--086--><tr align="center"><td>grey50</td><td>X</td><td>127;127;127</td><td>7F7F7F</td><td>&nbsp;</td><td bgcolor="#7F7F7F"><font color="#7F7F7F">### SAMPLE ###<font></font></font></td></tr>
+<!--087--><tr align="center"><td>grey51</td><td>X</td><td>130;130;130</td><td>828282</td><td>&nbsp;</td><td bgcolor="#828282"><font color="#828282">### SAMPLE ###<font></font></font></td></tr>
+<!--088--><tr align="center"><td>grey52</td><td>X</td><td>133;133;133</td><td>858585</td><td>&nbsp;</td><td bgcolor="#858585"><font color="#858585">### SAMPLE ###<font></font></font></td></tr>
+<!--089--><tr align="center"><td>grey53</td><td>X</td><td>135;135;135</td><td>878787</td><td>&nbsp;</td><td bgcolor="#878787"><font color="#878787">### SAMPLE ###<font></font></font></td></tr>
+<!--090--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>136;136;136</td><td>888888</td><td>888</td><td bgcolor="#888888"><font color="#888888">### SAMPLE ###<font></font></font></td></tr>
+<!--091--><tr align="center"><td>grey54</td><td>X</td><td>138;138;138</td><td>8A8A8A</td><td>&nbsp;</td><td bgcolor="#8A8A8A"><font color="#8A8A8A">### SAMPLE ###<font></font></font></td></tr>
+<!--092--><tr align="center"><td>grey55</td><td>X</td><td>140;140;140</td><td>8C8C8C</td><td>&nbsp;</td><td bgcolor="#8C8C8C"><font color="#8C8C8C">### SAMPLE ###<font></font></font></td></tr>
+<!--093--><tr align="center"><td>grey56</td><td>X</td><td>143;143;143</td><td>8F8F8F</td><td>&nbsp;</td><td bgcolor="#8F8F8F"><font color="#8F8F8F">### SAMPLE ###<font></font></font></td></tr>
+<!--094--><tr align="center"><td>grey57</td><td>X</td><td>145;145;145</td><td>919191</td><td>&nbsp;</td><td bgcolor="#919191"><font color="#919191">### SAMPLE ###<font></font></font></td></tr>
+<!--095--><tr align="center"><td>grey58</td><td>X</td><td>148;148;148</td><td>949494</td><td>&nbsp;</td><td bgcolor="#949494"><font color="#949494">### SAMPLE ###<font></font></font></td></tr>
+<!--096--><tr align="center"><td>grey59</td><td>X</td><td>150;150;150</td><td>969696</td><td>&nbsp;</td><td bgcolor="#969696"><font color="#969696">### SAMPLE ###<font></font></font></td></tr>
+<!--097--><tr align="center"><td>grey60</td><td>X</td><td>153;153;153</td><td>999999</td><td>999</td><td bgcolor="#999999"><font color="#999999">### SAMPLE ###<font></font></font></td></tr>
+<!--098--><tr align="center"><td>grey61</td><td>X</td><td>156;156;156</td><td>9C9C9C</td><td>&nbsp;</td><td bgcolor="#9C9C9C"><font color="#9C9C9C">### SAMPLE ###<font></font></font></td></tr>
+<!--099--><tr align="center"><td>grey62</td><td>X</td><td>158;158;158</td><td>9E9E9E</td><td>&nbsp;</td><td bgcolor="#9E9E9E"><font color="#9E9E9E">### SAMPLE ###<font></font></font></td></tr>
+<!--100--><tr align="center"><td>grey63</td><td>X</td><td>161;161;161</td><td>A1A1A1</td><td>&nbsp;</td><td bgcolor="#A1A1A1"><font color="#A1A1A1">### SAMPLE ###<font></font></font></td></tr>
+<!--101--><tr align="center"><td>grey64</td><td>X</td><td>163;163;163</td><td>A3A3A3</td><td>&nbsp;</td><td bgcolor="#A3A3A3"><font color="#A3A3A3">### SAMPLE ###<font></font></font></td></tr>
+<!--102--><tr align="center"><td>grey65</td><td>X</td><td>166;166;166</td><td>A6A6A6</td><td>&nbsp;</td><td bgcolor="#A6A6A6"><font color="#A6A6A6">### SAMPLE ###<font></font></font></td></tr>
+<!--103--><tr align="center"><td>grey66</td><td>X</td><td>168;168;168</td><td>A8A8A8</td><td>&nbsp;</td><td bgcolor="#A8A8A8"><font color="#A8A8A8">### SAMPLE ###<font></font></font></td></tr>
+<!--104--><tr align="center"><td>grey67</td><td>X</td><td>171;171;171</td><td>ABABAB</td><td>&nbsp;</td><td bgcolor="#ABABAB"><font color="#ABABAB">### SAMPLE ###<font></font></font></td></tr>
+<!--105--><tr align="center"><td>grey68</td><td>X</td><td>173;173;173</td><td>ADADAD</td><td>&nbsp;</td><td bgcolor="#ADADAD"><font color="#ADADAD">### SAMPLE ###<font></font></font></td></tr>
+<!--106--><tr align="center"><td>grey69</td><td>X</td><td>176;176;176</td><td>B0B0B0</td><td>&nbsp;</td><td bgcolor="#B0B0B0"><font color="#B0B0B0">### SAMPLE ###<font></font></font></td></tr>
+<!--107--><tr align="center"><td>grey70</td><td>X</td><td>179;179;179</td><td>B3B3B3</td><td>&nbsp;</td><td bgcolor="#B3B3B3"><font color="#B3B3B3">### SAMPLE ###<font></font></font></td></tr>
+<!--108--><tr align="center"><td>grey71</td><td>X</td><td>181;181;181</td><td>B5B5B5</td><td>&nbsp;</td><td bgcolor="#B5B5B5"><font color="#B5B5B5">### SAMPLE ###<font></font></font></td></tr>
+<!--109--><tr align="center"><td>grey72</td><td>X</td><td>184;184;184</td><td>B8B8B8</td><td>&nbsp;</td><td bgcolor="#B8B8B8"><font color="#B8B8B8">### SAMPLE ###<font></font></font></td></tr>
+<!--110--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>187;187;187</td><td>BBBBBB</td><td>bbb</td><td bgcolor="#BBBBBB"><font color="#BBBBBB">### SAMPLE ###<font></font></font></td></tr>
+<!--111--><tr align="center"><td>grey73</td><td>X</td><td>186;186;186</td><td>BABABA</td><td>&nbsp;</td><td bgcolor="#BABABA"><font color="#BABABA">### SAMPLE ###<font></font></font></td></tr>
+<!--112--><tr align="center"><td>grey74</td><td>X</td><td>189;189;189</td><td>BDBDBD</td><td>&nbsp;</td><td bgcolor="#BDBDBD"><font color="#BDBDBD">### SAMPLE ###<font></font></font></td></tr>
+<!--113--><tr align="center"><td>grey75</td><td>X</td><td>191;191;191</td><td>BFBFBF</td><td>&nbsp;</td><td bgcolor="#BFBFBF"><font color="#BFBFBF">### SAMPLE ###<font></font></font></td></tr>
+<!--114--><tr align="center"><td>grey76</td><td>X</td><td>194;194;194</td><td>C2C2C2</td><td>&nbsp;</td><td bgcolor="#C2C2C2"><font color="#C2C2C2">### SAMPLE ###<font></font></font></td></tr>
+<!--115--><tr align="center"><td>grey77</td><td>X</td><td>196;196;196</td><td>C4C4C4</td><td>&nbsp;</td><td bgcolor="#C4C4C4"><font color="#C4C4C4">### SAMPLE ###<font></font></font></td></tr>
+<!--116--><tr align="center"><td>grey78</td><td>X</td><td>199;199;199</td><td>C7C7C7</td><td>&nbsp;</td><td bgcolor="#C7C7C7"><font color="#C7C7C7">### SAMPLE ###<font></font></font></td></tr>
+<!--117--><tr align="center"><td>grey79</td><td>X</td><td>201;201;201</td><td>C9C9C9</td><td>&nbsp;</td><td bgcolor="#C9C9C9"><font color="#C9C9C9">### SAMPLE ###<font></font></font></td></tr>
+<!--118--><tr align="center"><td>grey80</td><td>X</td><td>204;204;204</td><td>CCCCCC</td><td>ccc</td><td bgcolor="#CCCCCC"><font color="#CCCCCC">### SAMPLE ###<font></font></font></td></tr>
+<!--119--><tr align="center"><td>grey81</td><td>X</td><td>207;207;207</td><td>CFCFCF</td><td>&nbsp;</td><td bgcolor="#CFCFCF"><font color="#CFCFCF">### SAMPLE ###<font></font></font></td></tr>
+<!--120--><tr align="center"><td>grey82</td><td>X</td><td>209;209;209</td><td>D1D1D1</td><td>&nbsp;</td><td bgcolor="#D1D1D1"><font color="#D1D1D1">### SAMPLE ###<font></font></font></td></tr>
+<!--121--><tr align="center"><td>grey83</td><td>X</td><td>212;212;212</td><td>D4D4D4</td><td>&nbsp;</td><td bgcolor="#D4D4D4"><font color="#D4D4D4">### SAMPLE ###<font></font></font></td></tr>
+<!--122--><tr align="center"><td>grey84</td><td>X</td><td>214;214;214</td><td>D6D6D6</td><td>&nbsp;</td><td bgcolor="#D6D6D6"><font color="#D6D6D6">### SAMPLE ###<font></font></font></td></tr>
+<!--123--><tr align="center"><td>grey85</td><td>X</td><td>217;217;217</td><td>D9D9D9</td><td>&nbsp;</td><td bgcolor="#D9D9D9"><font color="#D9D9D9">### SAMPLE ###<font></font></font></td></tr>
+<!--124--><tr align="center"><td>grey86</td><td>X</td><td>219;219;219</td><td>DBDBDB</td><td>&nbsp;</td><td bgcolor="#DBDBDB"><font color="#DBDBDB">### SAMPLE ###<font></font></font></td></tr>
+<!--125--><tr align="center"><td>grey87</td><td>X</td><td>222;222;222</td><td>DEDEDE</td><td>&nbsp;</td><td bgcolor="#DEDEDE"><font color="#DEDEDE">### SAMPLE ###<font></font></font></td></tr>
+<!--126--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>221;221;221</td><td>DDDDDD</td><td>ddd</td><td bgcolor="#DDDDDD"><font color="#DDDDDD">### SAMPLE ###<font></font></font></td></tr>
+<!--127--><tr align="center"><td>grey88</td><td>X</td><td>224;224;224</td><td>E0E0E0</td><td>&nbsp;</td><td bgcolor="#E0E0E0"><font color="#E0E0E0">### SAMPLE ###<font></font></font></td></tr>
+<!--128--><tr align="center"><td>grey89</td><td>X</td><td>227;227;227</td><td>E3E3E3</td><td>&nbsp;</td><td bgcolor="#E3E3E3"><font color="#E3E3E3">### SAMPLE ###<font></font></font></td></tr>
+<!--129--><tr align="center"><td>grey90</td><td>X</td><td>229;229;229</td><td>E5E5E5</td><td>&nbsp;</td><td bgcolor="#E5E5E5"><font color="#E5E5E5">### SAMPLE ###<font></font></font></td></tr>
+<!--130--><tr align="center"><td>grey91</td><td>X</td><td>232;232;232</td><td>E8E8E8</td><td>&nbsp;</td><td bgcolor="#E8E8E8"><font color="#E8E8E8">### SAMPLE ###<font></font></font></td></tr>
+<!--131--><tr align="center"><td>grey92</td><td>X</td><td>235;235;235</td><td>EBEBEB</td><td>&nbsp;</td><td bgcolor="#EBEBEB"><font color="#EBEBEB">### SAMPLE ###<font></font></font></td></tr>
+<!--132--><tr align="center"><td>grey93</td><td>X</td><td>237;237;237</td><td>EDEDED</td><td>&nbsp;</td><td bgcolor="#EDEDED"><font color="#EDEDED">### SAMPLE ###<font></font></font></td></tr>
+<!--133--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>238;238;238</td><td>EEEEEE</td><td>eee</td><td bgcolor="#EEEEEE"><font color="#EEEEEE">### SAMPLE ###<font></font></font></td></tr>
+<!--134--><tr align="center"><td>grey94</td><td>X</td><td>240;240;240</td><td>F0F0F0</td><td>&nbsp;</td><td bgcolor="#F0F0F0"><font color="#F0F0F0">### SAMPLE ###<font></font></font></td></tr>
+<!--135--><tr align="center"><td>grey95</td><td>X</td><td>242;242;242</td><td>F2F2F2</td><td>&nbsp;</td><td bgcolor="#F2F2F2"><font color="#F2F2F2">### SAMPLE ###<font></font></font></td></tr>
+<!--136--><tr align="center"><td>grey96</td><td>X</td><td>245;245;245</td><td>F5F5F5</td><td>&nbsp;</td><td bgcolor="#F5F5F5"><font color="#F5F5F5">### SAMPLE ###<font></font></font></td></tr>
+<!--137--><tr align="center"><td>grey97</td><td>X</td><td>247;247;247</td><td>F7F7F7</td><td>&nbsp;</td><td bgcolor="#F7F7F7"><font color="#F7F7F7">### SAMPLE ###<font></font></font></td></tr>
+<!--138--><tr align="center"><td>grey98</td><td>X</td><td>250;250;250</td><td>FAFAFA</td><td>&nbsp;</td><td bgcolor="#FAFAFA"><font color="#FAFAFA">### SAMPLE ###<font></font></font></td></tr>
+<!--139--><tr align="center"><td>grey99</td><td>X</td><td>252;252;252</td><td>FCFCFC</td><td>&nbsp;</td><td bgcolor="#FCFCFC"><font color="#FCFCFC">### SAMPLE ###<font></font></font></td></tr>
+<!--140--><tr align="center"><td>grey100, White</td><td>X</td><td>255;255;255</td><td>FFFFFF</td><td>fff</td><td bgcolor="#FFFFFF"><font color="#FFFFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--628--><tr align="center"><td>Dark Slate Grey</td><td>N</td><td>47;79;79</td><td>2F4F4F</td><td>&nbsp;</td><td bgcolor="#2F4F4F"><font color="#2F4F4F">### SAMPLE ###<font></font></font></td></tr>
+<!--632--><tr align="center"><td>Dim Grey</td><td>N</td><td>84;84;84</td><td>545454</td><td>&nbsp;</td><td bgcolor="#545454"><font color="#545454">### SAMPLE ###<font></font></font></td></tr>
+<!--683--><tr align="center"><td>Very Light Grey</td><td>N</td><td>205;205;205</td><td>CDCDCD</td><td>&nbsp;</td><td bgcolor="#CDCDCD"><font color="#CDCDCD">### SAMPLE ###<font></font></font></td></tr>
+<!--693--><tr align="center"><td>Free Speech Grey</td><td>F</td><td>99;86;136</td><td>635688</td><td>&nbsp;</td><td bgcolor="#635688"><font color="#635688">### SAMPLE ###<font></font></font></td></tr>
+</tbody></table>
+<a href="#top" name="Blue">[Click for top]</a>
+<table cols="4" width="100%" border="" cellpadding="3"><tbody><tr><th colspan="6">Shades of Blue</th></tr>
+<tr><th width="30%"><a href="#columns">Color Name</a></th><th width="10%"><a href="#credits">Credits</a></th><th width="10%"><a href="#columns">R;G;B Dec</a></th><th width="10%"><a href="#columns">RGB Hex</a></th><th width="10%"><a href="#columns">CSS Hex</a></th><th><a href="#samples">BG/FG color sample</a></th></tr>
+<!--141--><tr align="center"><td>AliceBlue</td><td>X</td><td>240;248;255</td><td>F0F8FF</td><td>&nbsp;</td><td bgcolor="#F0F8FF"><font color="#F0F8FF">### SAMPLE ###<font></font></font></td></tr>
+<!--142--><tr align="center"><td>BlueViolet</td><td>X</td><td>138;43;226</td><td>8A2BE2</td><td>&nbsp;</td><td bgcolor="#8A2BE2"><font color="#8A2BE2">### SAMPLE ###<font></font></font></td></tr>
+<!--143--><tr align="center"><td>Cadet Blue</td><td>N</td><td>95;159;159</td><td>5F9F9F</td><td>&nbsp;</td><td bgcolor="#5F9F9F"><font color="#5F9F9F">### SAMPLE ###<font></font></font></td></tr>
+<!--144--><tr align="center"><td>CadetBlue</td><td>X</td><td>95;158;160</td><td>5F9EA0</td><td>&nbsp;</td><td bgcolor="#5F9EA0"><font color="#5F9EA0">### SAMPLE ###<font></font></font></td></tr>
+<!--145--><tr align="center"><td>CadetBlue</td><td>X</td><td>95;158;160</td><td>5F9EA0</td><td>&nbsp;</td><td bgcolor="#5F9EA0"><font color="#5F9EA0">### SAMPLE ###<font></font></font></td></tr>
+<!--146--><tr align="center"><td>CadetBlue1</td><td>X</td><td>152;245;255</td><td>98F5FF</td><td>&nbsp;</td><td bgcolor="#98F5FF"><font color="#98F5FF">### SAMPLE ###<font></font></font></td></tr>
+<!--147--><tr align="center"><td>CadetBlue2</td><td>X</td><td>142;229;238</td><td>8EE5EE</td><td>&nbsp;</td><td bgcolor="#8EE5EE"><font color="#8EE5EE">### SAMPLE ###<font></font></font></td></tr>
+<!--148--><tr align="center"><td>CadetBlue3</td><td>X</td><td>122;197;205</td><td>7AC5CD</td><td>&nbsp;</td><td bgcolor="#7AC5CD"><font color="#7AC5CD">### SAMPLE ###<font></font></font></td></tr>
+<!--149--><tr align="center"><td>CadetBlue4</td><td>X</td><td>83;134;139</td><td>53868B</td><td>&nbsp;</td><td bgcolor="#53868B"><font color="#53868B">### SAMPLE ###<font></font></font></td></tr>
+<!--150--><tr align="center"><td>Corn Flower Blue</td><td>N</td><td>66;66;111</td><td>42426F</td><td>&nbsp;</td><td bgcolor="#42426F"><font color="#42426F">### SAMPLE ###<font></font></font></td></tr>
+<!--151--><tr align="center"><td>CornflowerBlue</td><td>X</td><td>100;149;237</td><td>6495ED</td><td>&nbsp;</td><td bgcolor="#6495ED"><font color="#6495ED">### SAMPLE ###<font></font></font></td></tr>
+<!--152--><tr align="center"><td>DarkSlateBlue</td><td>X</td><td>72;61;139</td><td>483D8B</td><td>&nbsp;</td><td bgcolor="#483D8B"><font color="#483D8B">### SAMPLE ###<font></font></font></td></tr>
+<!--153--><tr align="center"><td>DarkTurquoise</td><td>X</td><td>0;206;209</td><td>00CED1</td><td>&nbsp;</td><td bgcolor="#00CED1"><font color="#00CED1">### SAMPLE ###<font></font></font></td></tr>
+<!--154--><tr align="center"><td>DeepSkyBlue</td><td>X</td><td>0;191;255</td><td>00BFFF</td><td>&nbsp;</td><td bgcolor="#00BFFF"><font color="#00BFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--155--><tr align="center"><td>DeepSkyBlue1</td><td>X</td><td>0;191;255</td><td>00BFFF</td><td>&nbsp;</td><td bgcolor="#00BFFF"><font color="#00BFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--156--><tr align="center"><td>DeepSkyBlue2</td><td>X</td><td>0;178;238</td><td>00B2EE</td><td>&nbsp;</td><td bgcolor="#00B2EE"><font color="#00B2EE">### SAMPLE ###<font></font></font></td></tr>
+<!--157--><tr align="center"><td>DeepSkyBlue3</td><td>X</td><td>0;154;205</td><td>009ACD</td><td>&nbsp;</td><td bgcolor="#009ACD"><font color="#009ACD">### SAMPLE ###<font></font></font></td></tr>
+<!--158--><tr align="center"><td>DeepSkyBlue4</td><td>X</td><td>0;104;139</td><td>00688B</td><td>&nbsp;</td><td bgcolor="#00688B"><font color="#00688B">### SAMPLE ###<font></font></font></td></tr>
+<!--159--><tr align="center"><td>DodgerBlue</td><td>X</td><td>30;144;255</td><td>1E90FF</td><td>&nbsp;</td><td bgcolor="#1E90FF"><font color="#1E90FF">### SAMPLE ###<font></font></font></td></tr>
+<!--160--><tr align="center"><td>DodgerBlue1</td><td>X</td><td>30;144;255</td><td>1E90FF</td><td>&nbsp;</td><td bgcolor="#1E90FF"><font color="#1E90FF">### SAMPLE ###<font></font></font></td></tr>
+<!--161--><tr align="center"><td>DodgerBlue2</td><td>X</td><td>28;134;238</td><td>1C86EE</td><td>&nbsp;</td><td bgcolor="#1C86EE"><font color="#1C86EE">### SAMPLE ###<font></font></font></td></tr>
+<!--162--><tr align="center"><td>DodgerBlue3</td><td>X</td><td>24;116;205</td><td>1874CD</td><td>&nbsp;</td><td bgcolor="#1874CD"><font color="#1874CD">### SAMPLE ###<font></font></font></td></tr>
+<!--163--><tr align="center"><td>DodgerBlue4</td><td>X</td><td>16;78;139</td><td>104E8B</td><td>&nbsp;</td><td bgcolor="#104E8B"><font color="#104E8B">### SAMPLE ###<font></font></font></td></tr>
+<!--164--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>170;187;204</td><td>AABBCC</td><td>abc</td><td bgcolor="#AABBCC"><font color="#AABBCC">### SAMPLE ###<font></font></font></td></tr>
+<!--165--><tr align="center"><td>LightBlue</td><td>X</td><td>173;216;230</td><td>ADD8E6</td><td>&nbsp;</td><td bgcolor="#ADD8E6"><font color="#ADD8E6">### SAMPLE ###<font></font></font></td></tr>
+<!--166--><tr align="center"><td>LightBlue1</td><td>X</td><td>191;239;255</td><td>BFEFFF</td><td>&nbsp;</td><td bgcolor="#BFEFFF"><font color="#BFEFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--167--><tr align="center"><td>LightBlue2</td><td>X</td><td>178;223;238</td><td>B2DFEE</td><td>&nbsp;</td><td bgcolor="#B2DFEE"><font color="#B2DFEE">### SAMPLE ###<font></font></font></td></tr>
+<!--168--><tr align="center"><td>LightBlue3</td><td>X</td><td>154;192;205</td><td>9AC0CD</td><td>&nbsp;</td><td bgcolor="#9AC0CD"><font color="#9AC0CD">### SAMPLE ###<font></font></font></td></tr>
+<!--169--><tr align="center"><td>LightBlue4</td><td>X</td><td>104;131;139</td><td>68838B</td><td>&nbsp;</td><td bgcolor="#68838B"><font color="#68838B">### SAMPLE ###<font></font></font></td></tr>
+<!--170--><tr align="center"><td>LightCyan</td><td>X</td><td>224;255;255</td><td>E0FFFF</td><td>&nbsp;</td><td bgcolor="#E0FFFF"><font color="#E0FFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--171--><tr align="center"><td>LightCyan1</td><td>X</td><td>224;255;255</td><td>E0FFFF</td><td>&nbsp;</td><td bgcolor="#E0FFFF"><font color="#E0FFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--172--><tr align="center"><td>LightCyan2</td><td>X</td><td>209;238;238</td><td>D1EEEE</td><td>&nbsp;</td><td bgcolor="#D1EEEE"><font color="#D1EEEE">### SAMPLE ###<font></font></font></td></tr>
+<!--173--><tr align="center"><td>LightCyan3</td><td>X</td><td>180;205;205</td><td>B4CDCD</td><td>&nbsp;</td><td bgcolor="#B4CDCD"><font color="#B4CDCD">### SAMPLE ###<font></font></font></td></tr>
+<!--174--><tr align="center"><td>LightCyan4</td><td>X</td><td>122;139;139</td><td>7A8B8B</td><td>&nbsp;</td><td bgcolor="#7A8B8B"><font color="#7A8B8B">### SAMPLE ###<font></font></font></td></tr>
+<!--175--><tr align="center"><td>LightSkyBlue</td><td>X</td><td>135;206;250</td><td>87CEFA</td><td>&nbsp;</td><td bgcolor="#87CEFA"><font color="#87CEFA">### SAMPLE ###<font></font></font></td></tr>
+<!--176--><tr align="center"><td>LightSkyBlue1</td><td>X</td><td>176;226;255</td><td>B0E2FF</td><td>&nbsp;</td><td bgcolor="#B0E2FF"><font color="#B0E2FF">### SAMPLE ###<font></font></font></td></tr>
+<!--177--><tr align="center"><td>LightSkyBlue2</td><td>X</td><td>164;211;238</td><td>A4D3EE</td><td>&nbsp;</td><td bgcolor="#A4D3EE"><font color="#A4D3EE">### SAMPLE ###<font></font></font></td></tr>
+<!--178--><tr align="center"><td>LightSkyBlue3</td><td>X</td><td>141;182;205</td><td>8DB6CD</td><td>&nbsp;</td><td bgcolor="#8DB6CD"><font color="#8DB6CD">### SAMPLE ###<font></font></font></td></tr>
+<!--179--><tr align="center"><td>LightSkyBlue4</td><td>X</td><td>96;123;139</td><td>607B8B</td><td>&nbsp;</td><td bgcolor="#607B8B"><font color="#607B8B">### SAMPLE ###<font></font></font></td></tr>
+<!--180--><tr align="center"><td>LightSlateBlue</td><td>X</td><td>132;112;255</td><td>8470FF</td><td>&nbsp;</td><td bgcolor="#8470FF"><font color="#8470FF">### SAMPLE ###<font></font></font></td></tr>
+<!--181--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>153;204;255</td><td>99CCFF</td><td>9cf</td><td bgcolor="#99CCFF"><font color="#99CCFF">### SAMPLE ###<font></font></font></td></tr>
+<!--182--><tr align="center"><td>LightSteelBlue</td><td>X</td><td>176;196;222</td><td>B0C4DE</td><td>&nbsp;</td><td bgcolor="#B0C4DE"><font color="#B0C4DE">### SAMPLE ###<font></font></font></td></tr>
+<!--183--><tr align="center"><td>LightSteelBlue1</td><td>X</td><td>202;225;255</td><td>CAE1FF</td><td>&nbsp;</td><td bgcolor="#CAE1FF"><font color="#CAE1FF">### SAMPLE ###<font></font></font></td></tr>
+<!--184--><tr align="center"><td>LightSteelBlue2</td><td>X</td><td>188;210;238</td><td>BCD2EE</td><td>&nbsp;</td><td bgcolor="#BCD2EE"><font color="#BCD2EE">### SAMPLE ###<font></font></font></td></tr>
+<!--185--><tr align="center"><td>LightSteelBlue3</td><td>X</td><td>162;181;205</td><td>A2B5CD</td><td>&nbsp;</td><td bgcolor="#A2B5CD"><font color="#A2B5CD">### SAMPLE ###<font></font></font></td></tr>
+<!--186--><tr align="center"><td>LightSteelBlue4</td><td>X</td><td>110;123;139</td><td>6E7B8B</td><td>&nbsp;</td><td bgcolor="#6E7B8B"><font color="#6E7B8B">### SAMPLE ###<font></font></font></td></tr>
+<!--187--><tr align="center"><td>Aquamarine</td><td>N</td><td>112;219;147</td><td>70DB93</td><td>&nbsp;</td><td bgcolor="#70DB93"><font color="#70DB93">### SAMPLE ###<font></font></font></td></tr>
+<!--188--><tr align="center"><td>MediumBlue</td><td>X</td><td>0;0;205</td><td>0000CD</td><td>&nbsp;</td><td bgcolor="#0000CD"><font color="#0000CD">### SAMPLE ###<font></font></font></td></tr>
+<!--189--><tr align="center"><td>MediumSlateBlue</td><td>X</td><td>123;104;238</td><td>7B68EE</td><td>&nbsp;</td><td bgcolor="#7B68EE"><font color="#7B68EE">### SAMPLE ###<font></font></font></td></tr>
+<!--190--><tr align="center"><td>MediumTurquoise</td><td>X</td><td>72;209;204</td><td>48D1CC</td><td>&nbsp;</td><td bgcolor="#48D1CC"><font color="#48D1CC">### SAMPLE ###<font></font></font></td></tr>
+<!--191--><tr align="center"><td>MidnightBlue</td><td>X</td><td>25;25;112</td><td>191970</td><td>&nbsp;</td><td bgcolor="#191970"><font color="#191970">### SAMPLE ###<font></font></font></td></tr>
+<!--192--><tr align="center"><td>NavyBlue</td><td>X</td><td>0;0;128</td><td>000080</td><td>&nbsp;</td><td bgcolor="#000080"><font color="#000080">### SAMPLE ###<font></font></font></td></tr>
+<!--193--><tr align="center"><td>PaleTurquoise</td><td>X</td><td>175;238;238</td><td>AFEEEE</td><td>&nbsp;</td><td bgcolor="#AFEEEE"><font color="#AFEEEE">### SAMPLE ###<font></font></font></td></tr>
+<!--194--><tr align="center"><td>PaleTurquoise1</td><td>X</td><td>187;255;255</td><td>BBFFFF</td><td>bff</td><td bgcolor="#BBFFFF"><font color="#BBFFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--195--><tr align="center"><td>PaleTurquoise2</td><td>X</td><td>174;238;238</td><td>AEEEEE</td><td>&nbsp;</td><td bgcolor="#AEEEEE"><font color="#AEEEEE">### SAMPLE ###<font></font></font></td></tr>
+<!--196--><tr align="center"><td>PaleTurquoise3</td><td>X</td><td>150;205;205</td><td>96CDCD</td><td>&nbsp;</td><td bgcolor="#96CDCD"><font color="#96CDCD">### SAMPLE ###<font></font></font></td></tr>
+<!--197--><tr align="center"><td>PaleTurquoise4</td><td>X</td><td>102;139;139</td><td>668B8B</td><td>&nbsp;</td><td bgcolor="#668B8B"><font color="#668B8B">### SAMPLE ###<font></font></font></td></tr>
+<!--198--><tr align="center"><td>PowderBlue</td><td>X</td><td>176;224;230</td><td>B0E0E6</td><td>&nbsp;</td><td bgcolor="#B0E0E6"><font color="#B0E0E6">### SAMPLE ###<font></font></font></td></tr>
+<!--199--><tr align="center"><td>RoyalBlue</td><td>X</td><td>65;105;225</td><td>4169E1</td><td>&nbsp;</td><td bgcolor="#4169E1"><font color="#4169E1">### SAMPLE ###<font></font></font></td></tr>
+<!--200--><tr align="center"><td>RoyalBlue1</td><td>X</td><td>72;118;255</td><td>4876FF</td><td>&nbsp;</td><td bgcolor="#4876FF"><font color="#4876FF">### SAMPLE ###<font></font></font></td></tr>
+<!--201--><tr align="center"><td>RoyalBlue2</td><td>X</td><td>67;110;238</td><td>436EEE</td><td>&nbsp;</td><td bgcolor="#436EEE"><font color="#436EEE">### SAMPLE ###<font></font></font></td></tr>
+<!--202--><tr align="center"><td>RoyalBlue3</td><td>X</td><td>58;95;205</td><td>3A5FCD</td><td>&nbsp;</td><td bgcolor="#3A5FCD"><font color="#3A5FCD">### SAMPLE ###<font></font></font></td></tr>
+<!--203--><tr align="center"><td>RoyalBlue4</td><td>X</td><td>39;64;139</td><td>27408B</td><td>&nbsp;</td><td bgcolor="#27408B"><font color="#27408B">### SAMPLE ###<font></font></font></td></tr>
+<!--204--><tr align="center"><td>RoyalBlue5</td><td>X</td><td>0;34;102</td><td>002266</td><td>026</td><td bgcolor="#002266"><font color="#002266">### SAMPLE ###<font></font></font></td></tr>
+<!--205--><tr align="center"><td>SkyBlue</td><td>X</td><td>135;206;235</td><td>87CEEB</td><td>&nbsp;</td><td bgcolor="#87CEEB"><font color="#87CEEB">### SAMPLE ###<font></font></font></td></tr>
+<!--206--><tr align="center"><td>SkyBlue1</td><td>X</td><td>135;206;255</td><td>87CEFF</td><td>&nbsp;</td><td bgcolor="#87CEFF"><font color="#87CEFF">### SAMPLE ###<font></font></font></td></tr>
+<!--207--><tr align="center"><td>SkyBlue2</td><td>X</td><td>126;192;238</td><td>7EC0EE</td><td>&nbsp;</td><td bgcolor="#7EC0EE"><font color="#7EC0EE">### SAMPLE ###<font></font></font></td></tr>
+<!--208--><tr align="center"><td>SkyBlue3</td><td>X</td><td>108;166;205</td><td>6CA6CD</td><td>&nbsp;</td><td bgcolor="#6CA6CD"><font color="#6CA6CD">### SAMPLE ###<font></font></font></td></tr>
+<!--209--><tr align="center"><td>SkyBlue4</td><td>X</td><td>74;112;139</td><td>4A708B</td><td>&nbsp;</td><td bgcolor="#4A708B"><font color="#4A708B">### SAMPLE ###<font></font></font></td></tr>
+<!--210--><tr align="center"><td>SlateBlue</td><td>X</td><td>106;90;205</td><td>6A5ACD</td><td>&nbsp;</td><td bgcolor="#6A5ACD"><font color="#6A5ACD">### SAMPLE ###<font></font></font></td></tr>
+<!--211--><tr align="center"><td>SlateBlue1</td><td>X</td><td>131;111;255</td><td>836FFF</td><td>&nbsp;</td><td bgcolor="#836FFF"><font color="#836FFF">### SAMPLE ###<font></font></font></td></tr>
+<!--212--><tr align="center"><td>SlateBlue2</td><td>X</td><td>122;103;238</td><td>7A67EE</td><td>&nbsp;</td><td bgcolor="#7A67EE"><font color="#7A67EE">### SAMPLE ###<font></font></font></td></tr>
+<!--213--><tr align="center"><td>SlateBlue3</td><td>X</td><td>105;89;205</td><td>6959CD</td><td>&nbsp;</td><td bgcolor="#6959CD"><font color="#6959CD">### SAMPLE ###<font></font></font></td></tr>
+<!--214--><tr align="center"><td>SlateBlue4</td><td>X</td><td>71;60;139</td><td>473C8B</td><td>&nbsp;</td><td bgcolor="#473C8B"><font color="#473C8B">### SAMPLE ###<font></font></font></td></tr>
+<!--215--><tr align="center"><td>SteelBlue</td><td>X</td><td>70;130;180</td><td>4682B4</td><td>&nbsp;</td><td bgcolor="#4682B4"><font color="#4682B4">### SAMPLE ###<font></font></font></td></tr>
+<!--216--><tr align="center"><td>SteelBlue1</td><td>X</td><td>99;184;255</td><td>63B8FF</td><td>&nbsp;</td><td bgcolor="#63B8FF"><font color="#63B8FF">### SAMPLE ###<font></font></font></td></tr>
+<!--217--><tr align="center"><td>SteelBlue2</td><td>X</td><td>92;172;238</td><td>5CACEE</td><td>&nbsp;</td><td bgcolor="#5CACEE"><font color="#5CACEE">### SAMPLE ###<font></font></font></td></tr>
+<!--218--><tr align="center"><td>SteelBlue3</td><td>X</td><td>79;148;205</td><td>4F94CD</td><td>&nbsp;</td><td bgcolor="#4F94CD"><font color="#4F94CD">### SAMPLE ###<font></font></font></td></tr>
+<!--219--><tr align="center"><td>SteelBlue4</td><td>X</td><td>54;100;139</td><td>36648B</td><td>&nbsp;</td><td bgcolor="#36648B"><font color="#36648B">### SAMPLE ###<font></font></font></td></tr>
+<!--220--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>51;102;153</td><td>336699</td><td>369</td><td bgcolor="#336699"><font color="#336699">### SAMPLE ###<font></font></font></td></tr>
+<!--221--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>51;153;204</td><td>3399CC</td><td>39c</td><td bgcolor="#3399CC"><font color="#3399CC">### SAMPLE ###<font></font></font></td></tr>
+<!--222--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>102;153;204</td><td>6699CC</td><td>69c</td><td bgcolor="#6699CC"><font color="#6699CC">### SAMPLE ###<font></font></font></td></tr>
+<!--223--><tr align="center"><td>aquamarine</td><td>X</td><td>127;255;212</td><td>7FFFD4</td><td>&nbsp;</td><td bgcolor="#7FFFD4"><font color="#7FFFD4">### SAMPLE ###<font></font></font></td></tr>
+<!--224--><tr align="center"><td>aquamarine1</td><td>X</td><td>127;255;212</td><td>7FFFD4</td><td>&nbsp;</td><td bgcolor="#7FFFD4"><font color="#7FFFD4">### SAMPLE ###<font></font></font></td></tr>
+<!--225--><tr align="center"><td>aquamarine2</td><td>X</td><td>118;238;198</td><td>76EEC6</td><td>&nbsp;</td><td bgcolor="#76EEC6"><font color="#76EEC6">### SAMPLE ###<font></font></font></td></tr>
+<!--226--><tr align="center"><td>aquamarine3, MediumAquamarine</td><td>X</td><td>102;205;170</td><td>66CDAA</td><td>&nbsp;</td><td bgcolor="#66CDAA"><font color="#66CDAA">### SAMPLE ###<font></font></font></td></tr>
+<!--227--><tr align="center"><td>aquamarine4</td><td>X</td><td>69;139;116</td><td>458B74</td><td>&nbsp;</td><td bgcolor="#458B74"><font color="#458B74">### SAMPLE ###<font></font></font></td></tr>
+<!--229--><tr align="center"><td>azure</td><td>X</td><td>240;255;255</td><td>F0FFFF</td><td>&nbsp;</td><td bgcolor="#F0FFFF"><font color="#F0FFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--230--><tr align="center"><td>azure1</td><td>X</td><td>240;255;255</td><td>F0FFFF</td><td>&nbsp;</td><td bgcolor="#F0FFFF"><font color="#F0FFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--231--><tr align="center"><td>azure2</td><td>X</td><td>224;238;238</td><td>E0EEEE</td><td>&nbsp;</td><td bgcolor="#E0EEEE"><font color="#E0EEEE">### SAMPLE ###<font></font></font></td></tr>
+<!--232--><tr align="center"><td>azure3</td><td>X</td><td>193;205;205</td><td>C1CDCD</td><td>&nbsp;</td><td bgcolor="#C1CDCD"><font color="#C1CDCD">### SAMPLE ###<font></font></font></td></tr>
+<!--233--><tr align="center"><td>azure4</td><td>X</td><td>131;139;139</td><td>838B8B</td><td>&nbsp;</td><td bgcolor="#838B8B"><font color="#838B8B">### SAMPLE ###<font></font></font></td></tr>
+<!--234--><tr align="center"><td>blue</td><td>N,V,X</td><td>0;0;255</td><td>0000FF</td><td>00f</td><td bgcolor="#0000FF"><font color="#0000FF">### SAMPLE ###<font></font></font></td></tr>
+<!--235--><tr align="center"><td>blue1</td><td>X</td><td>0;0;255</td><td>0000FF</td><td>00f</td><td bgcolor="#0000FF"><font color="#0000FF">### SAMPLE ###<font></font></font></td></tr>
+<!--236--><tr align="center"><td>blue2</td><td>X</td><td>0;0;238</td><td>0000EE</td><td>00e</td><td bgcolor="#0000EE"><font color="#0000EE">### SAMPLE ###<font></font></font></td></tr>
+<!--237--><tr align="center"><td>blue3</td><td>X</td><td>0;0;205</td><td>0000CD</td><td>&nbsp;</td><td bgcolor="#0000CD"><font color="#0000CD">### SAMPLE ###<font></font></font></td></tr>
+<!--238--><tr align="center"><td>blue4</td><td>X</td><td>0;0;139</td><td>00008B</td><td>&nbsp;</td><td bgcolor="#00008B"><font color="#00008B">### SAMPLE ###<font></font></font></td></tr>
+<!--239--><tr align="center"><td>aqua</td><td>V</td><td>0;255;255</td><td>00FFFF</td><td>0ff</td><td bgcolor="#00FFFF"><font color="#00FFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--240--><tr align="center"><td>True Iris Blue</td><td>&nbsp;</td><td>3;180;204</td><td>03B4CC</td><td>&nbsp;</td><td bgcolor="#03B4CC"><font color="#03B4CC">#©2007&nbsp;walsh@njit.edu#<font></font></font></td></tr>
+<!--241--><tr align="center"><td>cyan</td><td>N,X</td><td>0;255;255</td><td>00FFFF</td><td>0ff</td><td bgcolor="#00FFFF"><font color="#00FFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--242--><tr align="center"><td>cyan1</td><td>X</td><td>0;255;255</td><td>00FFFF</td><td>0ff</td><td bgcolor="#00FFFF"><font color="#00FFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--243--><tr align="center"><td>cyan2</td><td>X</td><td>0;238;238</td><td>00EEEE</td><td>0ee</td><td bgcolor="#00EEEE"><font color="#00EEEE">### SAMPLE ###<font></font></font></td></tr>
+<!--244--><tr align="center"><td>cyan3</td><td>X</td><td>0;205;205</td><td>00CDCD</td><td>&nbsp;</td><td bgcolor="#00CDCD"><font color="#00CDCD">### SAMPLE ###<font></font></font></td></tr>
+<!--245--><tr align="center"><td>cyan4</td><td>X</td><td>0;139;139</td><td>008B8B</td><td>&nbsp;</td><td bgcolor="#008B8B"><font color="#008B8B">### SAMPLE ###<font></font></font></td></tr>
+<!--246--><tr align="center"><td>navy</td><td>V,X</td><td>0;0;128</td><td>000080</td><td>&nbsp;</td><td bgcolor="#000080"><font color="#000080">### SAMPLE ###<font></font></font></td></tr>
+<!--247--><tr align="center"><td>teal</td><td>V</td><td>0;128;128</td><td>008080</td><td>&nbsp;</td><td bgcolor="#008080"><font color="#008080">### SAMPLE ###<font></font></font></td></tr>
+<!--248--><tr align="center"><td>turquoise</td><td>X</td><td>64;224;208</td><td>40E0D0</td><td>&nbsp;</td><td bgcolor="#40E0D0"><font color="#40E0D0">### SAMPLE ###<font></font></font></td></tr>
+<!--249--><tr align="center"><td>turquoise1</td><td>X</td><td>0;245;255</td><td>00F5FF</td><td>&nbsp;</td><td bgcolor="#00F5FF"><font color="#00F5FF">### SAMPLE ###<font></font></font></td></tr>
+<!--250--><tr align="center"><td>turquoise2</td><td>X</td><td>0;229;238</td><td>00E5EE</td><td>&nbsp;</td><td bgcolor="#00E5EE"><font color="#00E5EE">### SAMPLE ###<font></font></font></td></tr>
+<!--251--><tr align="center"><td>turquoise3</td><td>X</td><td>0;197;205</td><td>00C5CD</td><td>&nbsp;</td><td bgcolor="#00C5CD"><font color="#00C5CD">### SAMPLE ###<font></font></font></td></tr>
+<!--252--><tr align="center"><td>turquoise4</td><td>X</td><td>0;134;139</td><td>00868B</td><td>&nbsp;</td><td bgcolor="#00868B"><font color="#00868B">### (c) 1999 walsh@njit.edu ###<font></font></font></td></tr>
+<!--253--><tr align="center"><td>DarkSlateGray</td><td>X</td><td>47;79;79</td><td>2F4F4F</td><td>&nbsp;</td><td bgcolor="#2F4F4F"><font color="#2F4F4F">### SAMPLE ###<font></font></font></td></tr>
+<!--254--><tr align="center"><td>DarkSlateGray1</td><td>X</td><td>151;255;255</td><td>97FFFF</td><td>&nbsp;</td><td bgcolor="#97FFFF"><font color="#97FFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--255--><tr align="center"><td>DarkSlateGray2</td><td>X</td><td>141;238;238</td><td>8DEEEE</td><td>&nbsp;</td><td bgcolor="#8DEEEE"><font color="#8DEEEE">### SAMPLE ###<font></font></font></td></tr>
+<!--256--><tr align="center"><td>DarkSlateGray3</td><td>X</td><td>121;205;205</td><td>79CDCD</td><td>&nbsp;</td><td bgcolor="#79CDCD"><font color="#79CDCD">### SAMPLE ###<font></font></font></td></tr>
+<!--257--><tr align="center"><td>DarkSlateGray4</td><td>X</td><td>82;139;139</td><td>528B8B</td><td>&nbsp;</td><td bgcolor="#528B8B"><font color="#528B8B">### SAMPLE ###<font></font></font></td></tr>
+<!--627--><tr align="center"><td>Dark Slate Blue</td><td>N</td><td>36;24;130</td><td>241882</td><td>&nbsp;</td><td bgcolor="#241882"><font color="#241882">### SAMPLE ###<font></font></font></td></tr>
+<!--630--><tr align="center"><td>Dark Turquoise</td><td>N</td><td>112;147;219</td><td>7093DB</td><td>&nbsp;</td><td bgcolor="#7093DB"><font color="#7093DB">### SAMPLE ###<font></font></font></td></tr>
+<!--651--><tr align="center"><td>Medium Slate Blue</td><td>N</td><td>127;0;255</td><td>7F00FF</td><td>&nbsp;</td><td bgcolor="#7F00FF"><font color="#7F00FF">### SAMPLE ###<font></font></font></td></tr>
+<!--653--><tr align="center"><td>Medium Turquoise</td><td>N</td><td>112;219;219</td><td>70DBDB</td><td>&nbsp;</td><td bgcolor="#70DBDB"><font color="#70DBDB">### SAMPLE ###<font></font></font></td></tr>
+<!--656--><tr align="center"><td>Midnight Blue</td><td>N</td><td>47;47;79</td><td>2F2F4F</td><td>&nbsp;</td><td bgcolor="#2F2F4F"><font color="#2F2F4F">### SAMPLE ###<font></font></font></td></tr>
+<!--657--><tr align="center"><td>Navy Blue</td><td>N</td><td>35;35;142</td><td>23238E</td><td>&nbsp;</td><td bgcolor="#23238E"><font color="#23238E">### SAMPLE ###<font></font></font></td></tr>
+<!--658--><tr align="center"><td>Neon Blue</td><td>N</td><td>77;77;255</td><td>4D4DFF</td><td>&nbsp;</td><td bgcolor="#4D4DFF"><font color="#4D4DFF">### SAMPLE ###<font></font></font></td></tr>
+<!--660--><tr align="center"><td>New Midnight Blue</td><td>N</td><td>0;0;156</td><td>00009C</td><td>&nbsp;</td><td bgcolor="#00009C"><font color="#00009C">### SAMPLE ###<font></font></font></td></tr>
+<!--668--><tr align="center"><td>Rich Blue</td><td>N</td><td>89;89;171</td><td>5959AB</td><td>&nbsp;</td><td bgcolor="#5959AB"><font color="#5959AB">### SAMPLE ###<font></font></font></td></tr>
+<!--674--><tr align="center"><td>Sky Blue</td><td>N</td><td>50;153;204</td><td>3299CC</td><td>&nbsp;</td><td bgcolor="#3299CC"><font color="#3299CC">### SAMPLE ###<font></font></font></td></tr>
+<!--675--><tr align="center"><td>Slate Blue</td><td>N</td><td>0;127;255</td><td>007FFF</td><td>&nbsp;</td><td bgcolor="#007FFF"><font color="#007FFF">### SAMPLE ###<font></font></font></td></tr>
+<!--678--><tr align="center"><td>Summer Sky</td><td>N</td><td>56;176;222</td><td>38B0DE</td><td>&nbsp;</td><td bgcolor="#38B0DE"><font color="#38B0DE">### SAMPLE ###<font></font></font></td></tr>
+<!--688--><tr align="center"><td>Iris Blue</td><td>&nbsp;</td><td>3;180;200</td><td>03B4C8</td><td>&nbsp;</td><td bgcolor="#03B4C8"><font color="#03B4C8">#©2007&nbsp;walsh@njit.edu#<font></font></font></td></tr>
+<!--692--><tr align="center"><td>Free Speech Blue</td><td>F</td><td>65;86;197</td><td>4156C5</td><td>&nbsp;</td><td bgcolor="#4156C5"><font color="#4156C5">### SAMPLE ###<font></font></font></td></tr>
+</tbody></table>
+<a href="#top" name="Brown">[Click for top]</a>
+<table cols="4" width="100%" border="" cellpadding="3"><tbody><tr><th colspan="6">Shades of Brown</th></tr>
+<tr><th width="30%"><a href="#columns">Color Name</a></th><th width="10%"><a href="#credits">Credits</a></th><th width="10%"><a href="#columns">R;G;B Dec</a></th><th width="10%"><a href="#columns">RGB Hex</a></th><th width="10%"><a href="#columns">CSS Hex</a></th><th><a href="#samples">BG/FG color sample</a></th></tr>
+<!--258--><tr align="center"><td>RosyBrown</td><td>X</td><td>188;143;143</td><td>BC8F8F</td><td>&nbsp;</td><td bgcolor="#BC8F8F"><font color="#BC8F8F">### SAMPLE ###<font></font></font></td></tr>
+<!--259--><tr align="center"><td>RosyBrown1</td><td>X</td><td>255;193;193</td><td>FFC1C1</td><td>&nbsp;</td><td bgcolor="#FFC1C1"><font color="#FFC1C1">### SAMPLE ###<font></font></font></td></tr>
+<!--260--><tr align="center"><td>RosyBrown2</td><td>X</td><td>238;180;180</td><td>EEB4B4</td><td>&nbsp;</td><td bgcolor="#EEB4B4"><font color="#EEB4B4">### SAMPLE ###<font></font></font></td></tr>
+<!--261--><tr align="center"><td>RosyBrown3</td><td>X</td><td>205;155;155</td><td>CD9B9B</td><td>&nbsp;</td><td bgcolor="#CD9B9B"><font color="#CD9B9B">### SAMPLE ###<font></font></font></td></tr>
+<!--262--><tr align="center"><td>RosyBrown4</td><td>X</td><td>139;105;105</td><td>8B6969</td><td>&nbsp;</td><td bgcolor="#8B6969"><font color="#8B6969">### SAMPLE ###<font></font></font></td></tr>
+<!--263--><tr align="center"><td>SaddleBrown</td><td>X</td><td>139;69;19</td><td>8B4513</td><td>&nbsp;</td><td bgcolor="#8B4513"><font color="#8B4513">### SAMPLE ###<font></font></font></td></tr>
+<!--264--><tr align="center"><td>SandyBrown</td><td>X</td><td>244;164;96</td><td>F4A460</td><td>&nbsp;</td><td bgcolor="#F4A460"><font color="#F4A460">### SAMPLE ###<font></font></font></td></tr>
+<!--265--><tr align="center"><td>beige</td><td>X</td><td>245;245;220</td><td>F5F5DC</td><td>&nbsp;</td><td bgcolor="#F5F5DC"><font color="#F5F5DC">### SAMPLE ###<font></font></font></td></tr>
+<!--266--><tr align="center"><td>brown</td><td>X</td><td>165;42;42</td><td>A52A2A</td><td>&nbsp;</td><td bgcolor="#A52A2A"><font color="#A52A2A">### SAMPLE ###<font></font></font></td></tr>
+<!--267--><tr align="center"><td>brown</td><td>N</td><td>166;42;42</td><td>A62A2A</td><td>&nbsp;</td><td bgcolor="#A62A2A"><font color="#A62A2A">### SAMPLE ###<font></font></font></td></tr>
+<!--268--><tr align="center"><td>brown1</td><td>X</td><td>255;64;64</td><td>FF4040</td><td>&nbsp;</td><td bgcolor="#FF4040"><font color="#FF4040">### SAMPLE ###<font></font></font></td></tr>
+<!--269--><tr align="center"><td>brown2</td><td>X</td><td>238;59;59</td><td>EE3B3B</td><td>&nbsp;</td><td bgcolor="#EE3B3B"><font color="#EE3B3B">### SAMPLE ###<font></font></font></td></tr>
+<!--270--><tr align="center"><td>brown3</td><td>X</td><td>205;51;51</td><td>CD3333</td><td>&nbsp;</td><td bgcolor="#CD3333"><font color="#CD3333">### SAMPLE ###<font></font></font></td></tr>
+<!--271--><tr align="center"><td>brown4</td><td>X</td><td>139;35;35</td><td>8B2323</td><td>&nbsp;</td><td bgcolor="#8B2323"><font color="#8B2323">### SAMPLE ###<font></font></font></td></tr>
+<!--272--><tr align="center"><td>dark brown</td><td>N</td><td>92;64;51</td><td>5C4033</td><td>&nbsp;</td><td bgcolor="#5C4033"><font color="#5C4033">### SAMPLE ###<font></font></font></td></tr>
+<!--273--><tr align="center"><td>burlywood</td><td>X</td><td>222;184;135</td><td>DEB887</td><td>&nbsp;</td><td bgcolor="#DEB887"><font color="#DEB887">### SAMPLE ###<font></font></font></td></tr>
+<!--274--><tr align="center"><td>burlywood1</td><td>X</td><td>255;211;155</td><td>FFD39B</td><td>&nbsp;</td><td bgcolor="#FFD39B"><font color="#FFD39B">### SAMPLE ###<font></font></font></td></tr>
+<!--275--><tr align="center"><td>burlywood2</td><td>X</td><td>238;197;145</td><td>EEC591</td><td>&nbsp;</td><td bgcolor="#EEC591"><font color="#EEC591">### SAMPLE ###<font></font></font></td></tr>
+<!--276--><tr align="center"><td>burlywood3</td><td>X</td><td>205;170;125</td><td>CDAA7D</td><td>&nbsp;</td><td bgcolor="#CDAA7D"><font color="#CDAA7D">### SAMPLE ###<font></font></font></td></tr>
+<!--277--><tr align="center"><td>burlywood4</td><td>X</td><td>139;115;85</td><td>8B7355</td><td>&nbsp;</td><td bgcolor="#8B7355"><font color="#8B7355">### SAMPLE ###<font></font></font></td></tr>
+<!--278--><tr align="center"><td>baker's chocolate</td><td>N</td><td>92;51;23</td><td>5C3317</td><td>&nbsp;</td><td bgcolor="#5C3317"><font color="#5C3317">### SAMPLE ###<font></font></font></td></tr>
+<!--279--><tr align="center"><td>chocolate</td><td>X</td><td>210;105;30</td><td>D2691E</td><td>&nbsp;</td><td bgcolor="#D2691E"><font color="#D2691E">### SAMPLE ###<font></font></font></td></tr>
+<!--280--><tr align="center"><td>chocolate1</td><td>X</td><td>255;127;36</td><td>FF7F24</td><td>&nbsp;</td><td bgcolor="#FF7F24"><font color="#FF7F24">### SAMPLE ###<font></font></font></td></tr>
+<!--281--><tr align="center"><td>chocolate2</td><td>X</td><td>238;118;33</td><td>EE7621</td><td>&nbsp;</td><td bgcolor="#EE7621"><font color="#EE7621">### SAMPLE ###<font></font></font></td></tr>
+<!--282--><tr align="center"><td>chocolate3</td><td>X</td><td>205;102;29</td><td>CD661D</td><td>&nbsp;</td><td bgcolor="#CD661D"><font color="#CD661D">### SAMPLE ###<font></font></font></td></tr>
+<!--283--><tr align="center"><td>chocolate4</td><td>X</td><td>139;69;19</td><td>8B4513</td><td>&nbsp;</td><td bgcolor="#8B4513"><font color="#8B4513">### SAMPLE ###<font></font></font></td></tr>
+<!--284--><tr align="center"><td>peru</td><td>X</td><td>205;133;63</td><td>CD853F</td><td>&nbsp;</td><td bgcolor="#CD853F"><font color="#CD853F">### SAMPLE ###<font></font></font></td></tr>
+<!--285--><tr align="center"><td>tan</td><td>X</td><td>210;180;140</td><td>D2B48C</td><td>&nbsp;</td><td bgcolor="#D2B48C"><font color="#D2B48C">### SAMPLE ###<font></font></font></td></tr>
+<!--286--><tr align="center"><td>tan1</td><td>X</td><td>255;165;79</td><td>FFA54F</td><td>&nbsp;</td><td bgcolor="#FFA54F"><font color="#FFA54F">### SAMPLE ###<font></font></font></td></tr>
+<!--287--><tr align="center"><td>tan2</td><td>X</td><td>238;154;73</td><td>EE9A49</td><td>&nbsp;</td><td bgcolor="#EE9A49"><font color="#EE9A49">### SAMPLE ###<font></font></font></td></tr>
+<!--288--><tr align="center"><td>tan3</td><td>X</td><td>205;133;63</td><td>CD853F</td><td>&nbsp;</td><td bgcolor="#CD853F"><font color="#CD853F">### SAMPLE ###<font></font></font></td></tr>
+<!--289--><tr align="center"><td>tan4</td><td>X</td><td>139;90;43</td><td>8B5A2B</td><td>&nbsp;</td><td bgcolor="#8B5A2B"><font color="#8B5A2B">### (c) 1999 walsh@njit.edu ###<font></font></font></td></tr>
+<!--629--><tr align="center"><td>Dark Tan</td><td>N</td><td>151;105;79</td><td>97694F</td><td>&nbsp;</td><td bgcolor="#97694F"><font color="#97694F">### SAMPLE ###<font></font></font></td></tr>
+<!--631--><tr align="center"><td>Dark Wood</td><td>N</td><td>133;94;66</td><td>855E42</td><td>&nbsp;</td><td bgcolor="#855E42"><font color="#855E42">### SAMPLE ###<font></font></font></td></tr>
+<!--642--><tr align="center"><td>Light Wood</td><td>N</td><td>133;99;99</td><td>856363</td><td>&nbsp;</td><td bgcolor="#856363"><font color="#856363">### SAMPLE ###<font></font></font></td></tr>
+<!--655--><tr align="center"><td>Medium Wood</td><td>N</td><td>166;128;100</td><td>A68064</td><td>&nbsp;</td><td bgcolor="#A68064"><font color="#A68064">### SAMPLE ###<font></font></font></td></tr>
+<!--661--><tr align="center"><td>New Tan</td><td>N</td><td>235;199;158</td><td>EBC79E</td><td>&nbsp;</td><td bgcolor="#EBC79E"><font color="#EBC79E">### SAMPLE ###<font></font></font></td></tr>
+<!--672--><tr align="center"><td>Semi-Sweet Chocolate</td><td>N</td><td>107;66;38</td><td>6B4226</td><td>&nbsp;</td><td bgcolor="#6B4226"><font color="#6B4226">### SAMPLE ###<font></font></font></td></tr>
+<!--673--><tr align="center"><td>Sienna</td><td>N</td><td>142;107;35</td><td>8E6B23</td><td>&nbsp;</td><td bgcolor="#8E6B23"><font color="#8E6B23">### SAMPLE ###<font></font></font></td></tr>
+<!--679--><tr align="center"><td>Tan</td><td>N</td><td>219;147;112</td><td>DB9370</td><td>&nbsp;</td><td bgcolor="#DB9370"><font color="#DB9370">### SAMPLE ###<font></font></font></td></tr>
+<!--682--><tr align="center"><td>Very Dark Brown</td><td>N</td><td>92;64;51</td><td>5C4033</td><td>&nbsp;</td><td bgcolor="#5C4033"><font color="#5C4033">### SAMPLE ###<font></font></font></td></tr>
+</tbody></table>
+<a href="#top" name="Green">[Click for top]</a>
+<table cols="4" width="100%" border="" cellpadding="3"><tbody><tr><th colspan="6">Shades of Green</th></tr>
+<tr><th width="30%"><a href="#columns">Color Name</a></th><th width="10%"><a href="#credits">Credits</a></th><th width="10%"><a href="#columns">R;G;B Dec</a></th><th width="10%"><a href="#columns">RGB Hex</a></th><th width="10%"><a href="#columns">CSS Hex</a></th><th><a href="#samples">BG/FG color sample</a></th></tr>
+<!--290--><tr align="center"><td>Dark Green</td><td>N</td><td>47;79;47</td><td>2F4F2F</td><td>&nbsp;</td><td bgcolor="#2F4F2F"><font color="#2F4F2F">### SAMPLE ###<font></font></font></td></tr>
+<!--291--><tr align="center"><td>DarkGreen</td><td>X</td><td>0;100;0</td><td>006400</td><td>&nbsp;</td><td bgcolor="#006400"><font color="#006400">### SAMPLE ###<font></font></font></td></tr>
+<!--292--><tr align="center"><td>dark green copper</td><td>N</td><td>74;118;110</td><td>4A766E</td><td>&nbsp;</td><td bgcolor="#4A766E"><font color="#4A766E">### SAMPLE ###<font></font></font></td></tr>
+<!--293--><tr align="center"><td>DarkKhaki</td><td>X</td><td>189;183;107</td><td>BDB76B</td><td>&nbsp;</td><td bgcolor="#BDB76B"><font color="#BDB76B">### SAMPLE ###<font></font></font></td></tr>
+<!--294--><tr align="center"><td>DarkOliveGreen</td><td>X</td><td>85;107;47</td><td>556B2F</td><td>&nbsp;</td><td bgcolor="#556B2F"><font color="#556B2F">### SAMPLE ###<font></font></font></td></tr>
+<!--295--><tr align="center"><td>DarkOliveGreen1</td><td>X</td><td>202;255;112</td><td>CAFF70</td><td>&nbsp;</td><td bgcolor="#CAFF70"><font color="#CAFF70">### SAMPLE ###<font></font></font></td></tr>
+<!--296--><tr align="center"><td>DarkOliveGreen2</td><td>X</td><td>188;238;104</td><td>BCEE68</td><td>&nbsp;</td><td bgcolor="#BCEE68"><font color="#BCEE68">### SAMPLE ###<font></font></font></td></tr>
+<!--297--><tr align="center"><td>DarkOliveGreen3</td><td>X</td><td>162;205;90</td><td>A2CD5A</td><td>&nbsp;</td><td bgcolor="#A2CD5A"><font color="#A2CD5A">### SAMPLE ###<font></font></font></td></tr>
+<!--298--><tr align="center"><td>DarkOliveGreen4</td><td>X</td><td>110;139;61</td><td>6E8B3D</td><td>&nbsp;</td><td bgcolor="#6E8B3D"><font color="#6E8B3D">### SAMPLE ###<font></font></font></td></tr>
+<!--299--><tr align="center"><td>olive</td><td>V</td><td>128;128;0</td><td>808000</td><td>&nbsp;</td><td bgcolor="#808000"><font color="#808000">### SAMPLE ###<font></font></font></td></tr>
+<!--300--><tr align="center"><td>DarkSeaGreen</td><td>X</td><td>143;188;143</td><td>8FBC8F</td><td>&nbsp;</td><td bgcolor="#8FBC8F"><font color="#8FBC8F">### SAMPLE ###<font></font></font></td></tr>
+<!--301--><tr align="center"><td>DarkSeaGreen1</td><td>X</td><td>193;255;193</td><td>C1FFC1</td><td>&nbsp;</td><td bgcolor="#C1FFC1"><font color="#C1FFC1">### SAMPLE ###<font></font></font></td></tr>
+<!--302--><tr align="center"><td>DarkSeaGreen2</td><td>X</td><td>180;238;180</td><td>B4EEB4</td><td>&nbsp;</td><td bgcolor="#B4EEB4"><font color="#B4EEB4">### SAMPLE ###<font></font></font></td></tr>
+<!--303--><tr align="center"><td>DarkSeaGreen3</td><td>X</td><td>155;205;155</td><td>9BCD9B</td><td>&nbsp;</td><td bgcolor="#9BCD9B"><font color="#9BCD9B">### SAMPLE ###<font></font></font></td></tr>
+<!--304--><tr align="center"><td>DarkSeaGreen4</td><td>X</td><td>105;139;105</td><td>698B69</td><td>&nbsp;</td><td bgcolor="#698B69"><font color="#698B69">### SAMPLE ###<font></font></font></td></tr>
+<!--305--><tr align="center"><td>ForestGreen</td><td>X</td><td>34;139;34</td><td>228B22</td><td>&nbsp;</td><td bgcolor="#228B22"><font color="#228B22">### SAMPLE ###<font></font></font></td></tr>
+<!--306--><tr align="center"><td>GreenYellow</td><td>X</td><td>173;255;47</td><td>ADFF2F</td><td>&nbsp;</td><td bgcolor="#ADFF2F"><font color="#ADFF2F">### SAMPLE ###<font></font></font></td></tr>
+<!--307--><tr align="center"><td>LawnGreen</td><td>X</td><td>124;252;0</td><td>7CFC00</td><td>&nbsp;</td><td bgcolor="#7CFC00"><font color="#7CFC00">### SAMPLE ###<font></font></font></td></tr>
+<!--308--><tr align="center"><td>LightSeaGreen</td><td>X</td><td>32;178;170</td><td>20B2AA</td><td>&nbsp;</td><td bgcolor="#20B2AA"><font color="#20B2AA">### SAMPLE ###<font></font></font></td></tr>
+<!--309--><tr align="center"><td>LimeGreen</td><td>X</td><td>50;205;50</td><td>32CD32</td><td>&nbsp;</td><td bgcolor="#32CD32"><font color="#32CD32">### SAMPLE ###<font></font></font></td></tr>
+<!--310--><tr align="center"><td>MediumSeaGreen</td><td>X</td><td>60;179;113</td><td>3CB371</td><td>&nbsp;</td><td bgcolor="#3CB371"><font color="#3CB371">### SAMPLE ###<font></font></font></td></tr>
+<!--311--><tr align="center"><td>MediumSpringGreen</td><td>X</td><td>0;250;154</td><td>00FA9A</td><td>&nbsp;</td><td bgcolor="#00FA9A"><font color="#00FA9A">### SAMPLE ###<font></font></font></td></tr>
+<!--312--><tr align="center"><td>MintCream</td><td>X</td><td>245;255;250</td><td>F5FFFA</td><td>&nbsp;</td><td bgcolor="#F5FFFA"><font color="#F5FFFA">### SAMPLE ###<font></font></font></td></tr>
+<!--313--><tr align="center"><td>OliveDrab</td><td>X</td><td>107;142;35</td><td>6B8E23</td><td>&nbsp;</td><td bgcolor="#6B8E23"><font color="#6B8E23">### SAMPLE ###<font></font></font></td></tr>
+<!--314--><tr align="center"><td>OliveDrab1</td><td>X</td><td>192;255;62</td><td>C0FF3E</td><td>&nbsp;</td><td bgcolor="#C0FF3E"><font color="#C0FF3E">### SAMPLE ###<font></font></font></td></tr>
+<!--315--><tr align="center"><td>OliveDrab2</td><td>X</td><td>179;238;58</td><td>B3EE3A</td><td>&nbsp;</td><td bgcolor="#B3EE3A"><font color="#B3EE3A">### SAMPLE ###<font></font></font></td></tr>
+<!--316--><tr align="center"><td>OliveDrab3</td><td>X</td><td>154;205;50</td><td>9ACD32</td><td>&nbsp;</td><td bgcolor="#9ACD32"><font color="#9ACD32">### SAMPLE ###<font></font></font></td></tr>
+<!--317--><tr align="center"><td>OliveDrab4</td><td>X</td><td>105;139;34</td><td>698B22</td><td>&nbsp;</td><td bgcolor="#698B22"><font color="#698B22">### SAMPLE ###<font></font></font></td></tr>
+<!--318--><tr align="center"><td>PaleGreen</td><td>X</td><td>152;251;152</td><td>98FB98</td><td>&nbsp;</td><td bgcolor="#98FB98"><font color="#98FB98">### SAMPLE ###<font></font></font></td></tr>
+<!--319--><tr align="center"><td>PaleGreen1</td><td>X</td><td>154;255;154</td><td>9AFF9A</td><td>&nbsp;</td><td bgcolor="#9AFF9A"><font color="#9AFF9A">### SAMPLE ###<font></font></font></td></tr>
+<!--320--><tr align="center"><td>PaleGreen2</td><td>X</td><td>144;238;144</td><td>90EE90</td><td>&nbsp;</td><td bgcolor="#90EE90"><font color="#90EE90">### SAMPLE ###<font></font></font></td></tr>
+<!--321--><tr align="center"><td>PaleGreen3</td><td>X</td><td>124;205;124</td><td>7CCD7C</td><td>&nbsp;</td><td bgcolor="#7CCD7C"><font color="#7CCD7C">### SAMPLE ###<font></font></font></td></tr>
+<!--322--><tr align="center"><td>PaleGreen4</td><td>X</td><td>84;139;84</td><td>548B54</td><td>&nbsp;</td><td bgcolor="#548B54"><font color="#548B54">### SAMPLE ###<font></font></font></td></tr>
+<!--323--><tr align="center"><td>SeaGreen, SeaGreen4</td><td>X</td><td>46;139;87</td><td>2E8B57</td><td>&nbsp;</td><td bgcolor="#2E8B57"><font color="#2E8B57">### SAMPLE ###<font></font></font></td></tr>
+<!--324--><tr align="center"><td>SeaGreen1</td><td>X</td><td>84;255;159</td><td>54FF9F</td><td>&nbsp;</td><td bgcolor="#54FF9F"><font color="#54FF9F">### SAMPLE ###<font></font></font></td></tr>
+<!--325--><tr align="center"><td>SeaGreen2</td><td>X</td><td>78;238;148</td><td>4EEE94</td><td>&nbsp;</td><td bgcolor="#4EEE94"><font color="#4EEE94">### SAMPLE ###<font></font></font></td></tr>
+<!--326--><tr align="center"><td>SeaGreen3</td><td>X</td><td>67;205;128</td><td>43CD80</td><td>&nbsp;</td><td bgcolor="#43CD80"><font color="#43CD80">### SAMPLE ###<font></font></font></td></tr>
+<!--327--><tr align="center"><td>SpringGreen</td><td>X</td><td>0;255;127</td><td>00FF7F</td><td>&nbsp;</td><td bgcolor="#00FF7F"><font color="#00FF7F">### SAMPLE ###<font></font></font></td></tr>
+<!--328--><tr align="center"><td>SpringGreen1</td><td>X</td><td>0;255;127</td><td>00FF7F</td><td>&nbsp;</td><td bgcolor="#00FF7F"><font color="#00FF7F">### SAMPLE ###<font></font></font></td></tr>
+<!--329--><tr align="center"><td>SpringGreen2</td><td>X</td><td>0;238;118</td><td>00EE76</td><td>&nbsp;</td><td bgcolor="#00EE76"><font color="#00EE76">### SAMPLE ###<font></font></font></td></tr>
+<!--330--><tr align="center"><td>SpringGreen3</td><td>X</td><td>0;205;102</td><td>00CD66</td><td>&nbsp;</td><td bgcolor="#00CD66"><font color="#00CD66">### SAMPLE ###<font></font></font></td></tr>
+<!--331--><tr align="center"><td>SpringGreen4</td><td>X</td><td>0;139;69</td><td>008B45</td><td>&nbsp;</td><td bgcolor="#008B45"><font color="#008B45">#©2006&nbsp;walsh@njit.edu#<font></font></font></td></tr>
+<!--332--><tr align="center"><td>YellowGreen</td><td>X</td><td>154;205;50</td><td>9ACD32</td><td>&nbsp;</td><td bgcolor="#9ACD32"><font color="#9ACD32">### SAMPLE ###<font></font></font></td></tr>
+<!--333--><tr align="center"><td>chartreuse</td><td>X</td><td>127;255;0</td><td>7FFF00</td><td>&nbsp;</td><td bgcolor="#7FFF00"><font color="#7FFF00">### SAMPLE ###<font></font></font></td></tr>
+<!--334--><tr align="center"><td>chartreuse1</td><td>X</td><td>127;255;0</td><td>7FFF00</td><td>&nbsp;</td><td bgcolor="#7FFF00"><font color="#7FFF00">### SAMPLE ###<font></font></font></td></tr>
+<!--335--><tr align="center"><td>chartreuse2</td><td>X</td><td>118;238;0</td><td>76EE00</td><td>&nbsp;</td><td bgcolor="#76EE00"><font color="#76EE00">### SAMPLE ###<font></font></font></td></tr>
+<!--336--><tr align="center"><td>chartreuse3</td><td>X</td><td>102;205;0</td><td>66CD00</td><td>&nbsp;</td><td bgcolor="#66CD00"><font color="#66CD00">### SAMPLE ###<font></font></font></td></tr>
+<!--337--><tr align="center"><td>chartreuse4</td><td>X</td><td>69;139;0</td><td>458B00</td><td>&nbsp;</td><td bgcolor="#458B00"><font color="#458B00">### SAMPLE ###<font></font></font></td></tr>
+<!--338--><tr align="center"><td>green</td><td>N,X</td><td>0;255;0</td><td>00FF00</td><td>0f0</td><td bgcolor="#00FF00"><font color="#00FF00">### SAMPLE ###<font></font></font></td></tr>
+<!--339--><tr align="center"><td>green</td><td>V</td><td>0;128;0</td><td>008000</td><td>&nbsp;</td><td bgcolor="#008000"><font color="#008000">### SAMPLE ###<font></font></font></td></tr>
+<!--340--><tr align="center"><td>lime</td><td>V</td><td>0;255;0</td><td>00FF00</td><td>0f0</td><td bgcolor="#00FF00"><font color="#00FF00">### SAMPLE ###<font></font></font></td></tr>
+<!--341--><tr align="center"><td>green1</td><td>X</td><td>0;255;0</td><td>00FF00</td><td>0f0</td><td bgcolor="#00FF00"><font color="#00FF00">### SAMPLE ###<font></font></font></td></tr>
+<!--342--><tr align="center"><td>green2</td><td>X</td><td>0;238;0</td><td>00EE00</td><td>0e0</td><td bgcolor="#00EE00"><font color="#00EE00">### SAMPLE ###<font></font></font></td></tr>
+<!--343--><tr align="center"><td>green3</td><td>X</td><td>0;205;0</td><td>00CD00</td><td>&nbsp;</td><td bgcolor="#00CD00"><font color="#00CD00">### SAMPLE ###<font></font></font></td></tr>
+<!--344--><tr align="center"><td>green4</td><td>X</td><td>0;139;0</td><td>008B00</td><td>&nbsp;</td><td bgcolor="#008B00"><font color="#008B00">### SAMPLE ###<font></font></font></td></tr>
+<!--345--><tr align="center"><td>khaki</td><td>X</td><td>240;230;140</td><td>F0E68C</td><td>&nbsp;</td><td bgcolor="#F0E68C"><font color="#F0E68C">### SAMPLE ###<font></font></font></td></tr>
+<!--346--><tr align="center"><td>khaki1</td><td>X</td><td>255;246;143</td><td>FFF68F</td><td>&nbsp;</td><td bgcolor="#FFF68F"><font color="#FFF68F">### SAMPLE ###<font></font></font></td></tr>
+<!--347--><tr align="center"><td>khaki2</td><td>X</td><td>238;230;133</td><td>EEE685</td><td>&nbsp;</td><td bgcolor="#EEE685"><font color="#EEE685">### SAMPLE ###<font></font></font></td></tr>
+<!--348--><tr align="center"><td>khaki3</td><td>X</td><td>205;198;115</td><td>CDC673</td><td>&nbsp;</td><td bgcolor="#CDC673"><font color="#CDC673">### SAMPLE ###<font></font></font></td></tr>
+<!--349--><tr align="center"><td>khaki4</td><td>X</td><td>139;134;78</td><td>8B864E</td><td>&nbsp;</td><td bgcolor="#8B864E"><font color="#8B864E">### SAMPLE ###<font></font></font></td></tr>
+<!--625--><tr align="center"><td>Dark Olive Green</td><td>N</td><td>79;79;47</td><td>4F4F2F</td><td>&nbsp;</td><td bgcolor="#4F4F2F"><font color="#4F4F2F">### SAMPLE ###<font></font></font></td></tr>
+<!--636--><tr align="center"><td>Green Yellow <a href="#sic">[sic]</a></td><td>N</td><td>209;146;117</td><td>D19275</td><td>&nbsp;</td><td bgcolor="#D19275"><font color="#D19275">### SAMPLE ###<font></font></font></td></tr>
+<!--637--><tr align="center"><td>Hunter Green <a href="#sic">[sic]</a></td><td>N</td><td>142;35;35</td><td>8E2323</td><td>&nbsp;</td><td bgcolor="#8E2323"><font color="#8E2323">### SAMPLE ###<font></font></font></td></tr>
+<!--639--><tr align="center"><td>Forest Green,  Khaki,  Medium Aquamarine</td><td>N</td><td>35;142;35</td><td>238E23</td><td>&nbsp;</td><td bgcolor="#238E23"><font color="#238E23">### SAMPLE ###<font></font></font></td></tr>
+<!--648--><tr align="center"><td>Medium Forest Green</td><td>N</td><td>219;219;112</td><td>DBDB70</td><td>&nbsp;</td><td bgcolor="#DBDB70"><font color="#DBDB70">### SAMPLE ###<font></font></font></td></tr>
+<!--650--><tr align="center"><td>Medium Sea Green</td><td>N</td><td>66;111;66</td><td>426F42</td><td>&nbsp;</td><td bgcolor="#426F42"><font color="#426F42">### SAMPLE ###<font></font></font></td></tr>
+<!--652--><tr align="center"><td>Medium Spring Green</td><td>N</td><td>127;255;0</td><td>7FFF00</td><td>&nbsp;</td><td bgcolor="#7FFF00"><font color="#7FFF00">### SAMPLE ###<font></font></font></td></tr>
+<!--664--><tr align="center"><td>Pale Green</td><td>N</td><td>143;188;143</td><td>8FBC8F</td><td>&nbsp;</td><td bgcolor="#8FBC8F"><font color="#8FBC8F">### SAMPLE ###<font></font></font></td></tr>
+<!--671--><tr align="center"><td>Sea Green</td><td>N</td><td>35;142;104</td><td>238E68</td><td>&nbsp;</td><td bgcolor="#238E68"><font color="#238E68">### SAMPLE ###<font></font></font></td></tr>
+<!--677--><tr align="center"><td>Spring Green</td><td>N</td><td>0;255;127</td><td>00FF7F</td><td>&nbsp;</td><td bgcolor="#00FF7F"><font color="#00FF7F">### SAMPLE ###<font></font></font></td></tr>
+<!--689--><tr align="center"><td>Free Speech Green</td><td>F</td><td>9;249;17</td><td>09F911</td><td>&nbsp;</td><td bgcolor="#09F911"><font color="#09F911">### SAMPLE ###<font></font></font></td></tr>
+<!--690--><tr align="center"><td>Free Speech Aquamarine</td><td>F</td><td>2;157;116</td><td>029D74</td><td>&nbsp;</td><td bgcolor="#029D74"><font color="#029D74">### SAMPLE ###<font></font></font></td></tr>
+</tbody></table>
+<a href="#top" name="Orange">[Click for top]</a>
+<table cols="4" width="100%" border="" cellpadding="3"><tbody><tr><th colspan="6">Shades of Orange</th></tr>
+<tr><th width="30%"><a href="#columns">Color Name</a></th><th width="10%"><a href="#credits">Credits</a></th><th width="10%"><a href="#columns">R;G;B Dec</a></th><th width="10%"><a href="#columns">RGB Hex</a></th><th width="10%"><a href="#columns">CSS Hex</a></th><th><a href="#samples">BG/FG color sample</a></th></tr>
+<!--350--><tr align="center"><td>DarkOrange</td><td>X</td><td>255;140;0</td><td>FF8C00</td><td>&nbsp;</td><td bgcolor="#FF8C00"><font color="#FF8C00">### SAMPLE ###<font></font></font></td></tr>
+<!--351--><tr align="center"><td>DarkOrange1</td><td>X</td><td>255;127;0</td><td>FF7F00</td><td>&nbsp;</td><td bgcolor="#FF7F00"><font color="#FF7F00">### SAMPLE ###<font></font></font></td></tr>
+<!--352--><tr align="center"><td>DarkOrange2</td><td>X</td><td>238;118;0</td><td>EE7600</td><td>&nbsp;</td><td bgcolor="#EE7600"><font color="#EE7600">### SAMPLE ###<font></font></font></td></tr>
+<!--353--><tr align="center"><td>DarkOrange3</td><td>X</td><td>205;102;0</td><td>CD6600</td><td>&nbsp;</td><td bgcolor="#CD6600"><font color="#CD6600">### SAMPLE ###<font></font></font></td></tr>
+<!--354--><tr align="center"><td>DarkOrange4</td><td>X</td><td>139;69;0</td><td>8B4500</td><td>&nbsp;</td><td bgcolor="#8B4500"><font color="#8B4500">### SAMPLE ###<font></font></font></td></tr>
+<!--355--><tr align="center"><td>DarkSalmon</td><td>X</td><td>233;150;122</td><td>E9967A</td><td>&nbsp;</td><td bgcolor="#E9967A"><font color="#E9967A">### SAMPLE ###<font></font></font></td></tr>
+<!--356--><tr align="center"><td>LightCoral</td><td>X</td><td>240;128;128</td><td>F08080</td><td>&nbsp;</td><td bgcolor="#F08080"><font color="#F08080">### SAMPLE ###<font></font></font></td></tr>
+<!--357--><tr align="center"><td>LightSalmon</td><td>X</td><td>255;160;122</td><td>FFA07A</td><td>&nbsp;</td><td bgcolor="#FFA07A"><font color="#FFA07A">### SAMPLE ###<font></font></font></td></tr>
+<!--358--><tr align="center"><td>LightSalmon1</td><td>X</td><td>255;160;122</td><td>FFA07A</td><td>&nbsp;</td><td bgcolor="#FFA07A"><font color="#FFA07A">### SAMPLE ###<font></font></font></td></tr>
+<!--359--><tr align="center"><td>LightSalmon2</td><td>X</td><td>238;149;114</td><td>EE9572</td><td>&nbsp;</td><td bgcolor="#EE9572"><font color="#EE9572">### SAMPLE ###<font></font></font></td></tr>
+<!--360--><tr align="center"><td>LightSalmon3</td><td>X</td><td>205;129;98</td><td>CD8162</td><td>&nbsp;</td><td bgcolor="#CD8162"><font color="#CD8162">### SAMPLE ###<font></font></font></td></tr>
+<!--361--><tr align="center"><td>LightSalmon4</td><td>X</td><td>139;87;66</td><td>8B5742</td><td>&nbsp;</td><td bgcolor="#8B5742"><font color="#8B5742">### SAMPLE ###<font></font></font></td></tr>
+<!--362--><tr align="center"><td>PeachPuff</td><td>X</td><td>255;218;185</td><td>FFDAB9</td><td>&nbsp;</td><td bgcolor="#FFDAB9"><font color="#FFDAB9">### SAMPLE ###<font></font></font></td></tr>
+<!--363--><tr align="center"><td>PeachPuff1</td><td>X</td><td>255;218;185</td><td>FFDAB9</td><td>&nbsp;</td><td bgcolor="#FFDAB9"><font color="#FFDAB9">### SAMPLE ###<font></font></font></td></tr>
+<!--364--><tr align="center"><td>PeachPuff2</td><td>X</td><td>238;203;173</td><td>EECBAD</td><td>&nbsp;</td><td bgcolor="#EECBAD"><font color="#EECBAD">### SAMPLE ###<font></font></font></td></tr>
+<!--365--><tr align="center"><td>PeachPuff3</td><td>X</td><td>205;175;149</td><td>CDAF95</td><td>&nbsp;</td><td bgcolor="#CDAF95"><font color="#CDAF95">### SAMPLE ###<font></font></font></td></tr>
+<!--366--><tr align="center"><td>PeachPuff4</td><td>X</td><td>139;119;101</td><td>8B7765</td><td>&nbsp;</td><td bgcolor="#8B7765"><font color="#8B7765">### SAMPLE ###<font></font></font></td></tr>
+<!--367--><tr align="center"><td>bisque</td><td>X</td><td>255;228;196</td><td>FFE4C4</td><td>&nbsp;</td><td bgcolor="#FFE4C4"><font color="#FFE4C4">### SAMPLE ###<font></font></font></td></tr>
+<!--368--><tr align="center"><td>bisque1</td><td>X</td><td>255;228;196</td><td>FFE4C4</td><td>&nbsp;</td><td bgcolor="#FFE4C4"><font color="#FFE4C4">### SAMPLE ###<font></font></font></td></tr>
+<!--369--><tr align="center"><td>bisque2</td><td>X</td><td>238;213;183</td><td>EED5B7</td><td>&nbsp;</td><td bgcolor="#EED5B7"><font color="#EED5B7">### SAMPLE ###<font></font></font></td></tr>
+<!--370--><tr align="center"><td>bisque3</td><td>X</td><td>205;183;158</td><td>CDB79E</td><td>&nbsp;</td><td bgcolor="#CDB79E"><font color="#CDB79E">### SAMPLE ###<font></font></font></td></tr>
+<!--371--><tr align="center"><td>bisque4</td><td>X</td><td>139;125;107</td><td>8B7D6B</td><td>&nbsp;</td><td bgcolor="#8B7D6B"><font color="#8B7D6B">### SAMPLE ###<font></font></font></td></tr>
+<!--372--><tr align="center"><td>coral</td><td>N</td><td>255;127;0</td><td>FF7F00</td><td>&nbsp;</td><td bgcolor="#FF7F00"><font color="#FF7F00">### SAMPLE ###<font></font></font></td></tr>
+<!--373--><tr align="center"><td>coral</td><td>X</td><td>255;127;80</td><td>FF7F50</td><td>&nbsp;</td><td bgcolor="#FF7F50"><font color="#FF7F50">### SAMPLE ###<font></font></font></td></tr>
+<!--374--><tr align="center"><td>coral1</td><td>X</td><td>255;114;86</td><td>FF7256</td><td>&nbsp;</td><td bgcolor="#FF7256"><font color="#FF7256">### SAMPLE ###<font></font></font></td></tr>
+<!--375--><tr align="center"><td>coral2</td><td>X</td><td>238;106;80</td><td>EE6A50</td><td>&nbsp;</td><td bgcolor="#EE6A50"><font color="#EE6A50">### SAMPLE ###<font></font></font></td></tr>
+<!--376--><tr align="center"><td>coral3</td><td>X</td><td>205;91;69</td><td>CD5B45</td><td>&nbsp;</td><td bgcolor="#CD5B45"><font color="#CD5B45">### SAMPLE ###<font></font></font></td></tr>
+<!--377--><tr align="center"><td>coral4</td><td>X</td><td>139;62;47</td><td>8B3E2F</td><td>&nbsp;</td><td bgcolor="#8B3E2F"><font color="#8B3E2F">### SAMPLE ###<font></font></font></td></tr>
+<!--378--><tr align="center"><td>honeydew</td><td>X</td><td>240;255;240</td><td>F0FFF0</td><td>&nbsp;</td><td bgcolor="#F0FFF0"><font color="#F0FFF0">### SAMPLE ###<font></font></font></td></tr>
+<!--379--><tr align="center"><td>honeydew1</td><td>X</td><td>240;255;240</td><td>F0FFF0</td><td>&nbsp;</td><td bgcolor="#F0FFF0"><font color="#F0FFF0">### SAMPLE ###<font></font></font></td></tr>
+<!--380--><tr align="center"><td>honeydew2</td><td>X</td><td>224;238;224</td><td>E0EEE0</td><td>&nbsp;</td><td bgcolor="#E0EEE0"><font color="#E0EEE0">### SAMPLE ###<font></font></font></td></tr>
+<!--381--><tr align="center"><td>honeydew3</td><td>X</td><td>193;205;193</td><td>C1CDC1</td><td>&nbsp;</td><td bgcolor="#C1CDC1"><font color="#C1CDC1">### SAMPLE ###<font></font></font></td></tr>
+<!--382--><tr align="center"><td>honeydew4</td><td>X</td><td>131;139;131</td><td>838B83</td><td>&nbsp;</td><td bgcolor="#838B83"><font color="#838B83">### SAMPLE ###<font></font></font></td></tr>
+<!--383--><tr align="center"><td>orange</td><td>X</td><td>255;165;0</td><td>FFA500</td><td>&nbsp;</td><td bgcolor="#FFA500"><font color="#FFA500">### SAMPLE ###<font></font></font></td></tr>
+<!--384--><tr align="center"><td>orange1</td><td>X</td><td>255;165;0</td><td>FFA500</td><td>&nbsp;</td><td bgcolor="#FFA500"><font color="#FFA500">### SAMPLE ###<font></font></font></td></tr>
+<!--385--><tr align="center"><td>orange2</td><td>X</td><td>238;154;0</td><td>EE9A00</td><td>&nbsp;</td><td bgcolor="#EE9A00"><font color="#EE9A00">### SAMPLE ###<font></font></font></td></tr>
+<!--386--><tr align="center"><td>orange3</td><td>X</td><td>205;133;0</td><td>CD8500</td><td>&nbsp;</td><td bgcolor="#CD8500"><font color="#CD8500">### SAMPLE ###<font></font></font></td></tr>
+<!--387--><tr align="center"><td>orange4</td><td>X</td><td>139;90;0</td><td>8B5A00</td><td>&nbsp;</td><td bgcolor="#8B5A00"><font color="#8B5A00">### SAMPLE ###<font></font></font></td></tr>
+<!--388--><tr align="center"><td>salmon</td><td>X</td><td>250;128;114</td><td>FA8072</td><td>&nbsp;</td><td bgcolor="#FA8072"><font color="#FA8072">### SAMPLE ###<font></font></font></td></tr>
+<!--389--><tr align="center"><td>salmon1</td><td>X</td><td>255;140;105</td><td>FF8C69</td><td>&nbsp;</td><td bgcolor="#FF8C69"><font color="#FF8C69">### SAMPLE ###<font></font></font></td></tr>
+<!--390--><tr align="center"><td>salmon2</td><td>X</td><td>238;130;98</td><td>EE8262</td><td>&nbsp;</td><td bgcolor="#EE8262"><font color="#EE8262">### SAMPLE ###<font></font></font></td></tr>
+<!--391--><tr align="center"><td>salmon3</td><td>X</td><td>205;112;84</td><td>CD7054</td><td>&nbsp;</td><td bgcolor="#CD7054"><font color="#CD7054">### SAMPLE ###<font></font></font></td></tr>
+<!--392--><tr align="center"><td>salmon4</td><td>X</td><td>139;76;57</td><td>8B4C39</td><td>&nbsp;</td><td bgcolor="#8B4C39"><font color="#8B4C39">### SAMPLE ###<font></font></font></td></tr>
+<!--393--><tr align="center"><td>sienna</td><td>X</td><td>160;82;45</td><td>A0522D</td><td>&nbsp;</td><td bgcolor="#A0522D"><font color="#A0522D">### SAMPLE ###<font></font></font></td></tr>
+<!--394--><tr align="center"><td>sienna1</td><td>X</td><td>255;130;71</td><td>FF8247</td><td>&nbsp;</td><td bgcolor="#FF8247"><font color="#FF8247">### SAMPLE ###<font></font></font></td></tr>
+<!--395--><tr align="center"><td>sienna2</td><td>X</td><td>238;121;66</td><td>EE7942</td><td>&nbsp;</td><td bgcolor="#EE7942"><font color="#EE7942">### SAMPLE ###<font></font></font></td></tr>
+<!--396--><tr align="center"><td>sienna3</td><td>X</td><td>205;104;57</td><td>CD6839</td><td>&nbsp;</td><td bgcolor="#CD6839"><font color="#CD6839">### SAMPLE ###<font></font></font></td></tr>
+<!--397--><tr align="center"><td>sienna4</td><td>X</td><td>139;71;38</td><td>8B4726</td><td>&nbsp;</td><td bgcolor="#8B4726"><font color="#8B4726">### SAMPLE ###<font></font></font></td></tr>
+<!--644--><tr align="center"><td>Mandarian Orange</td><td>N</td><td>142;35;35</td><td>8E2323</td><td>&nbsp;</td><td bgcolor="#8E2323"><font color="#8E2323">### SAMPLE ###<font></font></font></td></tr>
+<!--662--><tr align="center"><td>Orange</td><td>N</td><td>255;127;0</td><td>FF7F00</td><td>&nbsp;</td><td bgcolor="#FF7F00"><font color="#FF7F00">### SAMPLE ###<font></font></font></td></tr>
+<!--663--><tr align="center"><td>Orange Red</td><td>N</td><td>255;36;0</td><td>FF2400</td><td>&nbsp;</td><td bgcolor="#FF2400"><font color="#FF2400">### SAMPLE ###<font></font></font></td></tr>
+</tbody></table>
+<a href="#top" name="Red">[Click for top]</a>
+<table cols="4" width="100%" border="" cellpadding="3"><tbody><tr><th colspan="6">Shades of Red</th></tr>
+<tr><th width="30%"><a href="#columns">Color Name</a></th><th width="10%"><a href="#credits">Credits</a></th><th width="10%"><a href="#columns">R;G;B Dec</a></th><th width="10%"><a href="#columns">RGB Hex</a></th><th width="10%"><a href="#columns">CSS Hex</a></th><th><a href="#samples">BG/FG color sample</a></th></tr>
+<!--398--><tr align="center"><td>DeepPink</td><td>X</td><td>255;20;147</td><td>FF1493</td><td>&nbsp;</td><td bgcolor="#FF1493"><font color="#FF1493">### SAMPLE ###<font></font></font></td></tr>
+<!--399--><tr align="center"><td>DeepPink1</td><td>X</td><td>255;20;147</td><td>FF1493</td><td>&nbsp;</td><td bgcolor="#FF1493"><font color="#FF1493">### SAMPLE ###<font></font></font></td></tr>
+<!--400--><tr align="center"><td>DeepPink2</td><td>X</td><td>238;18;137</td><td>EE1289</td><td>&nbsp;</td><td bgcolor="#EE1289"><font color="#EE1289">### SAMPLE ###<font></font></font></td></tr>
+<!--401--><tr align="center"><td>DeepPink3</td><td>X</td><td>205;16;118</td><td>CD1076</td><td>&nbsp;</td><td bgcolor="#CD1076"><font color="#CD1076">### SAMPLE ###<font></font></font></td></tr>
+<!--402--><tr align="center"><td>DeepPink4</td><td>X</td><td>139;10;80</td><td>8B0A50</td><td>&nbsp;</td><td bgcolor="#8B0A50"><font color="#8B0A50">### SAMPLE ###<font></font></font></td></tr>
+<!--403--><tr align="center"><td>HotPink</td><td>X</td><td>255;105;180</td><td>FF69B4</td><td>&nbsp;</td><td bgcolor="#FF69B4"><font color="#FF69B4">### SAMPLE ###<font></font></font></td></tr>
+<!--404--><tr align="center"><td>HotPink1</td><td>X</td><td>255;110;180</td><td>FF6EB4</td><td>&nbsp;</td><td bgcolor="#FF6EB4"><font color="#FF6EB4">### SAMPLE ###<font></font></font></td></tr>
+<!--405--><tr align="center"><td>HotPink2</td><td>X</td><td>238;106;167</td><td>EE6AA7</td><td>&nbsp;</td><td bgcolor="#EE6AA7"><font color="#EE6AA7">### SAMPLE ###<font></font></font></td></tr>
+<!--406--><tr align="center"><td>HotPink3</td><td>X</td><td>205;96;144</td><td>CD6090</td><td>&nbsp;</td><td bgcolor="#CD6090"><font color="#CD6090">### SAMPLE ###<font></font></font></td></tr>
+<!--407--><tr align="center"><td>HotPink4</td><td>X</td><td>139;58;98</td><td>8B3A62</td><td>&nbsp;</td><td bgcolor="#8B3A62"><font color="#8B3A62">### SAMPLE ###<font></font></font></td></tr>
+<!--408--><tr align="center"><td>IndianRed</td><td>X</td><td>205;92;92</td><td>CD5C5C</td><td>&nbsp;</td><td bgcolor="#CD5C5C"><font color="#CD5C5C">### SAMPLE ###<font></font></font></td></tr>
+<!--409--><tr align="center"><td>IndianRed1</td><td>X</td><td>255;106;106</td><td>FF6A6A</td><td>&nbsp;</td><td bgcolor="#FF6A6A"><font color="#FF6A6A">### SAMPLE ###<font></font></font></td></tr>
+<!--410--><tr align="center"><td>IndianRed2</td><td>X</td><td>238;99;99</td><td>EE6363</td><td>&nbsp;</td><td bgcolor="#EE6363"><font color="#EE6363">### SAMPLE ###<font></font></font></td></tr>
+<!--411--><tr align="center"><td>IndianRed3</td><td>X</td><td>205;85;85</td><td>CD5555</td><td>&nbsp;</td><td bgcolor="#CD5555"><font color="#CD5555">### SAMPLE ###<font></font></font></td></tr>
+<!--412--><tr align="center"><td>IndianRed4</td><td>X</td><td>139;58;58</td><td>8B3A3A</td><td>&nbsp;</td><td bgcolor="#8B3A3A"><font color="#8B3A3A">### SAMPLE ###<font></font></font></td></tr>
+<!--413--><tr align="center"><td>LightPink</td><td>X</td><td>255;182;193</td><td>FFB6C1</td><td>&nbsp;</td><td bgcolor="#FFB6C1"><font color="#FFB6C1">### SAMPLE ###<font></font></font></td></tr>
+<!--414--><tr align="center"><td>LightPink1</td><td>X</td><td>255;174;185</td><td>FFAEB9</td><td>&nbsp;</td><td bgcolor="#FFAEB9"><font color="#FFAEB9">### SAMPLE ###<font></font></font></td></tr>
+<!--415--><tr align="center"><td>LightPink2</td><td>X</td><td>238;162;173</td><td>EEA2AD</td><td>&nbsp;</td><td bgcolor="#EEA2AD"><font color="#EEA2AD">### SAMPLE ###<font></font></font></td></tr>
+<!--416--><tr align="center"><td>LightPink3</td><td>X</td><td>205;140;149</td><td>CD8C95</td><td>&nbsp;</td><td bgcolor="#CD8C95"><font color="#CD8C95">### SAMPLE ###<font></font></font></td></tr>
+<!--417--><tr align="center"><td>LightPink4</td><td>X</td><td>139;95;101</td><td>8B5F65</td><td>&nbsp;</td><td bgcolor="#8B5F65"><font color="#8B5F65">### SAMPLE ###<font></font></font></td></tr>
+<!--418--><tr align="center"><td>MediumVioletRed</td><td>X</td><td>199;21;133</td><td>C71585</td><td>&nbsp;</td><td bgcolor="#C71585"><font color="#C71585">### SAMPLE ###<font></font></font></td></tr>
+<!--419--><tr align="center"><td>MistyRose</td><td>X</td><td>255;228;225</td><td>FFE4E1</td><td>&nbsp;</td><td bgcolor="#FFE4E1"><font color="#FFE4E1">### SAMPLE ###<font></font></font></td></tr>
+<!--420--><tr align="center"><td>MistyRose1</td><td>X</td><td>255;228;225</td><td>FFE4E1</td><td>&nbsp;</td><td bgcolor="#FFE4E1"><font color="#FFE4E1">### SAMPLE ###<font></font></font></td></tr>
+<!--421--><tr align="center"><td>MistyRose2</td><td>X</td><td>238;213;210</td><td>EED5D2</td><td>&nbsp;</td><td bgcolor="#EED5D2"><font color="#EED5D2">### SAMPLE ###<font></font></font></td></tr>
+<!--422--><tr align="center"><td>MistyRose3</td><td>X</td><td>205;183;181</td><td>CDB7B5</td><td>&nbsp;</td><td bgcolor="#CDB7B5"><font color="#CDB7B5">### SAMPLE ###<font></font></font></td></tr>
+<!--423--><tr align="center"><td>MistyRose4</td><td>X</td><td>139;125;123</td><td>8B7D7B</td><td>&nbsp;</td><td bgcolor="#8B7D7B"><font color="#8B7D7B">### SAMPLE ###<font></font></font></td></tr>
+<!--424--><tr align="center"><td>OrangeRed</td><td>X</td><td>255;69;0</td><td>FF4500</td><td>&nbsp;</td><td bgcolor="#FF4500"><font color="#FF4500">### SAMPLE ###<font></font></font></td></tr>
+<!--425--><tr align="center"><td>OrangeRed1</td><td>X</td><td>255;69;0</td><td>FF4500</td><td>&nbsp;</td><td bgcolor="#FF4500"><font color="#FF4500">### SAMPLE ###<font></font></font></td></tr>
+<!--426--><tr align="center"><td>OrangeRed2</td><td>X</td><td>238;64;0</td><td>EE4000</td><td>&nbsp;</td><td bgcolor="#EE4000"><font color="#EE4000">### SAMPLE ###<font></font></font></td></tr>
+<!--427--><tr align="center"><td>OrangeRed3</td><td>X</td><td>205;55;0</td><td>CD3700</td><td>&nbsp;</td><td bgcolor="#CD3700"><font color="#CD3700">### SAMPLE ###<font></font></font></td></tr>
+<!--428--><tr align="center"><td>OrangeRed4</td><td>X</td><td>139;37;0</td><td>8B2500</td><td>&nbsp;</td><td bgcolor="#8B2500"><font color="#8B2500">### SAMPLE ###<font></font></font></td></tr>
+<!--429--><tr align="center"><td>PaleVioletRed</td><td>X</td><td>219;112;147</td><td>DB7093</td><td>&nbsp;</td><td bgcolor="#DB7093"><font color="#DB7093">### SAMPLE ###<font></font></font></td></tr>
+<!--430--><tr align="center"><td>PaleVioletRed1</td><td>X</td><td>255;130;171</td><td>FF82AB</td><td>&nbsp;</td><td bgcolor="#FF82AB"><font color="#FF82AB">### SAMPLE ###<font></font></font></td></tr>
+<!--431--><tr align="center"><td>PaleVioletRed2</td><td>X</td><td>238;121;159</td><td>EE799F</td><td>&nbsp;</td><td bgcolor="#EE799F"><font color="#EE799F">### SAMPLE ###<font></font></font></td></tr>
+<!--432--><tr align="center"><td>PaleVioletRed3</td><td>X</td><td>205;104;137</td><td>CD6889</td><td>&nbsp;</td><td bgcolor="#CD6889"><font color="#CD6889">### SAMPLE ###<font></font></font></td></tr>
+<!--433--><tr align="center"><td>PaleVioletRed4</td><td>X</td><td>139;71;93</td><td>8B475D</td><td>&nbsp;</td><td bgcolor="#8B475D"><font color="#8B475D">### SAMPLE ###<font></font></font></td></tr>
+<!--434--><tr align="center"><td>VioletRed</td><td>X</td><td>208;32;144</td><td>D02090</td><td>&nbsp;</td><td bgcolor="#D02090"><font color="#D02090">### SAMPLE ###<font></font></font></td></tr>
+<!--435--><tr align="center"><td>VioletRed1</td><td>X</td><td>255;62;150</td><td>FF3E96</td><td>&nbsp;</td><td bgcolor="#FF3E96"><font color="#FF3E96">### SAMPLE ###<font></font></font></td></tr>
+<!--436--><tr align="center"><td>VioletRed2</td><td>X</td><td>238;58;140</td><td>EE3A8C</td><td>&nbsp;</td><td bgcolor="#EE3A8C"><font color="#EE3A8C">### SAMPLE ###<font></font></font></td></tr>
+<!--437--><tr align="center"><td>VioletRed3</td><td>X</td><td>205;50;120</td><td>CD3278</td><td>&nbsp;</td><td bgcolor="#CD3278"><font color="#CD3278">### SAMPLE ###<font></font></font></td></tr>
+<!--438--><tr align="center"><td>VioletRed4</td><td>X</td><td>139;34;82</td><td>8B2252</td><td>&nbsp;</td><td bgcolor="#8B2252"><font color="#8B2252">### SAMPLE ###<font></font></font></td></tr>
+<!--439--><tr align="center"><td>firebrick</td><td>X</td><td>178;34;34</td><td>B22222</td><td>&nbsp;</td><td bgcolor="#B22222"><font color="#B22222">### SAMPLE ###<font></font></font></td></tr>
+<!--440--><tr align="center"><td>firebrick1</td><td>X</td><td>255;48;48</td><td>FF3030</td><td>&nbsp;</td><td bgcolor="#FF3030"><font color="#FF3030">### SAMPLE ###<font></font></font></td></tr>
+<!--441--><tr align="center"><td>firebrick2</td><td>X</td><td>238;44;44</td><td>EE2C2C</td><td>&nbsp;</td><td bgcolor="#EE2C2C"><font color="#EE2C2C">### SAMPLE ###<font></font></font></td></tr>
+<!--442--><tr align="center"><td>firebrick3</td><td>X</td><td>205;38;38</td><td>CD2626</td><td>&nbsp;</td><td bgcolor="#CD2626"><font color="#CD2626">### SAMPLE ###<font></font></font></td></tr>
+<!--443--><tr align="center"><td>firebrick4</td><td>X</td><td>139;26;26</td><td>8B1A1A</td><td>&nbsp;</td><td bgcolor="#8B1A1A"><font color="#8B1A1A">### SAMPLE ###<font></font></font></td></tr>
+<!--444--><tr align="center"><td>pink</td><td>X</td><td>255;192;203</td><td>FFC0CB</td><td>&nbsp;</td><td bgcolor="#FFC0CB"><font color="#FFC0CB">### SAMPLE ###<font></font></font></td></tr>
+<!--445--><tr align="center"><td>pink1</td><td>X</td><td>255;181;197</td><td>FFB5C5</td><td>&nbsp;</td><td bgcolor="#FFB5C5"><font color="#FFB5C5">### SAMPLE ###<font></font></font></td></tr>
+<!--446--><tr align="center"><td>pink2</td><td>X</td><td>238;169;184</td><td>EEA9B8</td><td>&nbsp;</td><td bgcolor="#EEA9B8"><font color="#EEA9B8">### SAMPLE ###<font></font></font></td></tr>
+<!--447--><tr align="center"><td>pink3</td><td>X</td><td>205;145;158</td><td>CD919E</td><td>&nbsp;</td><td bgcolor="#CD919E"><font color="#CD919E">### SAMPLE ###<font></font></font></td></tr>
+<!--448--><tr align="center"><td>pink4</td><td>X</td><td>139;99;108</td><td>8B636C</td><td>&nbsp;</td><td bgcolor="#8B636C"><font color="#8B636C">### SAMPLE ###<font></font></font></td></tr>
+<!--449--><tr align="center"><td>Flesh</td><td>N</td><td>245;204;176</td><td>F5CCB0</td><td>&nbsp;</td><td bgcolor="#F5CCB0"><font color="#F5CCB0">### SAMPLE ###<font></font></font></td></tr>
+<!--450--><tr align="center"><td>Feldspar</td><td>N</td><td>209;146;117</td><td>D19275</td><td>&nbsp;</td><td bgcolor="#D19275"><font color="#D19275">### SAMPLE ###<font></font></font></td></tr>
+<!--451--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>204;51;51</td><td>CC3333</td><td>c33</td><td bgcolor="#CC3333"><font color="#CC3333">### SAMPLE ###<font></font></font></td></tr>
+<!--452--><tr align="center"><td>red</td><td>N,V,X</td><td>255;0;0</td><td>FF0000</td><td>f00</td><td bgcolor="#FF0000"><font color="#FF0000">### SAMPLE ###<font></font></font></td></tr>
+<!--453--><tr align="center"><td>red1</td><td>X</td><td>255;0;0</td><td>FF0000</td><td>f00</td><td bgcolor="#FF0000"><font color="#FF0000">### SAMPLE ###<font></font></font></td></tr>
+<!--454--><tr align="center"><td>red2</td><td>X</td><td>238;0;0</td><td>EE0000</td><td>e00</td><td bgcolor="#EE0000"><font color="#EE0000">### SAMPLE ###<font></font></font></td></tr>
+<!--455--><tr align="center"><td>red3</td><td>X</td><td>205;0;0</td><td>CD0000</td><td>&nbsp;</td><td bgcolor="#CD0000"><font color="#CD0000">### SAMPLE ###<font></font></font></td></tr>
+<!--456--><tr align="center"><td>red4</td><td>X</td><td>139;0;0</td><td>8B0000</td><td>&nbsp;</td><td bgcolor="#8B0000"><font color="#8B0000">### SAMPLE ###<font></font></font></td></tr>
+<!--457--><tr align="center"><td>tomato</td><td>X</td><td>255;99;71</td><td>FF6347</td><td>&nbsp;</td><td bgcolor="#FF6347"><font color="#FF6347">### SAMPLE ###<font></font></font></td></tr>
+<!--458--><tr align="center"><td>tomato1</td><td>X</td><td>255;99;71</td><td>FF6347</td><td>&nbsp;</td><td bgcolor="#FF6347"><font color="#FF6347">### SAMPLE ###<font></font></font></td></tr>
+<!--459--><tr align="center"><td>tomato2</td><td>X</td><td>238;92;66</td><td>EE5C42</td><td>&nbsp;</td><td bgcolor="#EE5C42"><font color="#EE5C42">### SAMPLE ###<font></font></font></td></tr>
+<!--460--><tr align="center"><td>tomato3</td><td>X</td><td>205;79;57</td><td>CD4F39</td><td>&nbsp;</td><td bgcolor="#CD4F39"><font color="#CD4F39">### SAMPLE ###<font></font></font></td></tr>
+<!--461--><tr align="center"><td>tomato4</td><td>X</td><td>139;54;38</td><td>8B3626</td><td>&nbsp;</td><td bgcolor="#8B3626"><font color="#8B3626">### SAMPLE ###<font></font></font></td></tr>
+<!--633--><tr align="center"><td>Dusty Rose</td><td>N</td><td>133;99;99</td><td>856363</td><td>&nbsp;</td><td bgcolor="#856363"><font color="#856363">### SAMPLE ###<font></font></font></td></tr>
+<!--634--><tr align="center"><td>Firebrick</td><td>N</td><td>142;35;35</td><td>8E2323</td><td>&nbsp;</td><td bgcolor="#8E2323"><font color="#8E2323">### SAMPLE ###<font></font></font></td></tr>
+<!--638--><tr align="center"><td>Indian Red</td><td>N</td><td>245;204;176</td><td>F5CCB0</td><td>&nbsp;</td><td bgcolor="#F5CCB0"><font color="#F5CCB0">### SAMPLE ###<font></font></font></td></tr>
+<!--665--><tr align="center"><td>Pink</td><td>N</td><td>188;143;143</td><td>BC8F8F</td><td>&nbsp;</td><td bgcolor="#BC8F8F"><font color="#BC8F8F">### SAMPLE ###<font></font></font></td></tr>
+<!--669--><tr align="center"><td>Salmon</td><td>N</td><td>111;66;66</td><td>6F4242</td><td>&nbsp;</td><td bgcolor="#6F4242"><font color="#6F4242">### SAMPLE ###<font></font></font></td></tr>
+<!--670--><tr align="center"><td>Scarlet</td><td>N</td><td>140;23;23</td><td>8C1717</td><td>&nbsp;</td><td bgcolor="#8C1717"><font color="#8C1717">### SAMPLE ###<font></font></font></td></tr>
+<!--676--><tr align="center"><td>Spicy Pink</td><td>N</td><td>255;28;174</td><td>FF1CAE</td><td>&nbsp;</td><td bgcolor="#FF1CAE"><font color="#FF1CAE">### SAMPLE ###<font></font></font></td></tr>
+<!--691--><tr align="center"><td>Free Speech Magenta</td><td>F</td><td>227;91;216</td><td>E35BD8</td><td>&nbsp;</td><td bgcolor="#E35BD8"><font color="#E35BD8">### SAMPLE ###<font></font></font></td></tr>
+<!--694--><tr align="center"><td>Free Speech Red</td><td>F</td><td>192;0;0</td><td>C00000</td><td>&nbsp;</td><td bgcolor="#C00000"><font color="#C00000">### SAMPLE ###<font></font></font></td></tr>
+</tbody></table>
+<a href="#top" name="Violet">[Click for top]</a>
+<table cols="4" width="100%" border="" cellpadding="3"><tbody><tr><th colspan="6">Shades of Violet</th></tr>
+<tr><th width="30%"><a href="#columns">Color Name</a></th><th width="10%"><a href="#credits">Credits</a></th><th width="10%"><a href="#columns">R;G;B Dec</a></th><th width="10%"><a href="#columns">RGB Hex</a></th><th width="10%"><a href="#columns">CSS Hex</a></th><th><a href="#samples">BG/FG color sample</a></th></tr>
+<!--462--><tr align="center"><td>DarkOrchid</td><td>X</td><td>153;50;204</td><td>9932CC</td><td>&nbsp;</td><td bgcolor="#9932CC"><font color="#9932CC">### SAMPLE ###<font></font></font></td></tr>
+<!--463--><tr align="center"><td>DarkOrchid1</td><td>X</td><td>191;62;255</td><td>BF3EFF</td><td>&nbsp;</td><td bgcolor="#BF3EFF"><font color="#BF3EFF">### SAMPLE ###<font></font></font></td></tr>
+<!--464--><tr align="center"><td>DarkOrchid2</td><td>X</td><td>178;58;238</td><td>B23AEE</td><td>&nbsp;</td><td bgcolor="#B23AEE"><font color="#B23AEE">### SAMPLE ###<font></font></font></td></tr>
+<!--465--><tr align="center"><td>DarkOrchid3</td><td>X</td><td>154;50;205</td><td>9A32CD</td><td>&nbsp;</td><td bgcolor="#9A32CD"><font color="#9A32CD">### SAMPLE ###<font></font></font></td></tr>
+<!--466--><tr align="center"><td>DarkOrchid4</td><td>X</td><td>104;34;139</td><td>68228B</td><td>&nbsp;</td><td bgcolor="#68228B"><font color="#68228B">### SAMPLE ###<font></font></font></td></tr>
+<!--467--><tr align="center"><td>DarkViolet</td><td>X</td><td>148;0;211</td><td>9400D3</td><td>&nbsp;</td><td bgcolor="#9400D3"><font color="#9400D3">### SAMPLE ###<font></font></font></td></tr>
+<!--468--><tr align="center"><td>LavenderBlush</td><td>X</td><td>255;240;245</td><td>FFF0F5</td><td>&nbsp;</td><td bgcolor="#FFF0F5"><font color="#FFF0F5">### SAMPLE ###<font></font></font></td></tr>
+<!--469--><tr align="center"><td>LavenderBlush1</td><td>X</td><td>255;240;245</td><td>FFF0F5</td><td>&nbsp;</td><td bgcolor="#FFF0F5"><font color="#FFF0F5">### SAMPLE ###<font></font></font></td></tr>
+<!--470--><tr align="center"><td>LavenderBlush2</td><td>X</td><td>238;224;229</td><td>EEE0E5</td><td>&nbsp;</td><td bgcolor="#EEE0E5"><font color="#EEE0E5">### SAMPLE ###<font></font></font></td></tr>
+<!--471--><tr align="center"><td>LavenderBlush3</td><td>X</td><td>205;193;197</td><td>CDC1C5</td><td>&nbsp;</td><td bgcolor="#CDC1C5"><font color="#CDC1C5">### SAMPLE ###<font></font></font></td></tr>
+<!--472--><tr align="center"><td>LavenderBlush4</td><td>X</td><td>139;131;134</td><td>8B8386</td><td>&nbsp;</td><td bgcolor="#8B8386"><font color="#8B8386">### SAMPLE ###<font></font></font></td></tr>
+<!--473--><tr align="center"><td>MediumOrchid</td><td>X</td><td>186;85;211</td><td>BA55D3</td><td>&nbsp;</td><td bgcolor="#BA55D3"><font color="#BA55D3">### SAMPLE ###<font></font></font></td></tr>
+<!--474--><tr align="center"><td>MediumOrchid1</td><td>X</td><td>224;102;255</td><td>E066FF</td><td>&nbsp;</td><td bgcolor="#E066FF"><font color="#E066FF">### SAMPLE ###<font></font></font></td></tr>
+<!--475--><tr align="center"><td>MediumOrchid2</td><td>X</td><td>209;95;238</td><td>D15FEE</td><td>&nbsp;</td><td bgcolor="#D15FEE"><font color="#D15FEE">### SAMPLE ###<font></font></font></td></tr>
+<!--476--><tr align="center"><td>MediumOrchid3</td><td>X</td><td>180;82;205</td><td>B452CD</td><td>&nbsp;</td><td bgcolor="#B452CD"><font color="#B452CD">### SAMPLE ###<font></font></font></td></tr>
+<!--477--><tr align="center"><td>MediumOrchid4</td><td>X</td><td>122;55;139</td><td>7A378B</td><td>&nbsp;</td><td bgcolor="#7A378B"><font color="#7A378B">### SAMPLE ###<font></font></font></td></tr>
+<!--478--><tr align="center"><td>MediumPurple</td><td>X</td><td>147;112;219</td><td>9370DB</td><td>&nbsp;</td><td bgcolor="#9370DB"><font color="#9370DB">### SAMPLE ###<font></font></font></td></tr>
+<!--479--><tr align="center"><td>Medium Orchid</td><td>N</td><td>147;112;219</td><td>9370DB</td><td>&nbsp;</td><td bgcolor="#9370DB"><font color="#9370DB">### SAMPLE ###<font></font></font></td></tr>
+<!--480--><tr align="center"><td>MediumPurple1</td><td>X</td><td>171;130;255</td><td>AB82FF</td><td>&nbsp;</td><td bgcolor="#AB82FF"><font color="#AB82FF">### SAMPLE ###<font></font></font></td></tr>
+<!--481--><tr align="center"><td>Dark Orchid</td><td>N</td><td>153;50;205</td><td>9932CD</td><td>&nbsp;</td><td bgcolor="#9932CD"><font color="#9932CD">### SAMPLE ###<font></font></font></td></tr>
+<!--482--><tr align="center"><td>MediumPurple2</td><td>X</td><td>159;121;238</td><td>9F79EE</td><td>&nbsp;</td><td bgcolor="#9F79EE"><font color="#9F79EE">### SAMPLE ###<font></font></font></td></tr>
+<!--483--><tr align="center"><td>MediumPurple3</td><td>X</td><td>137;104;205</td><td>8968CD</td><td>&nbsp;</td><td bgcolor="#8968CD"><font color="#8968CD">### SAMPLE ###<font></font></font></td></tr>
+<!--484--><tr align="center"><td>MediumPurple4</td><td>X</td><td>93;71;139</td><td>5D478B</td><td>&nbsp;</td><td bgcolor="#5D478B"><font color="#5D478B">### SAMPLE ###<font></font></font></td></tr>
+<!--485--><tr align="center"><td>lavender</td><td>X</td><td>230;230;250</td><td>E6E6FA</td><td>&nbsp;</td><td bgcolor="#E6E6FA"><font color="#E6E6FA">### SAMPLE ###<font></font></font></td></tr>
+<!--486--><tr align="center"><td>magenta</td><td>N,X</td><td>255;0;255</td><td>FF00FF</td><td>f0f</td><td bgcolor="#FF00FF"><font color="#FF00FF">### SAMPLE ###<font></font></font></td></tr>
+<!--487--><tr align="center"><td>fuchsia</td><td>V</td><td>255;0;255</td><td>FF00FF</td><td>f0f</td><td bgcolor="#FF00FF"><font color="#FF00FF">### SAMPLE ###<font></font></font></td></tr>
+<!--488--><tr align="center"><td>magenta1</td><td>X</td><td>255;0;255</td><td>FF00FF</td><td>f0f</td><td bgcolor="#FF00FF"><font color="#FF00FF">### SAMPLE ###<font></font></font></td></tr>
+<!--489--><tr align="center"><td>magenta2</td><td>X</td><td>238;0;238</td><td>EE00EE</td><td>e0e</td><td bgcolor="#EE00EE"><font color="#EE00EE">### SAMPLE ###<font></font></font></td></tr>
+<!--490--><tr align="center"><td>magenta3</td><td>X</td><td>205;0;205</td><td>CD00CD</td><td>&nbsp;</td><td bgcolor="#CD00CD"><font color="#CD00CD">### SAMPLE ###<font></font></font></td></tr>
+<!--491--><tr align="center"><td>magenta4</td><td>X</td><td>139;0;139</td><td>8B008B</td><td>&nbsp;</td><td bgcolor="#8B008B"><font color="#8B008B">### SAMPLE ###<font></font></font></td></tr>
+<!--492--><tr align="center"><td>maroon</td><td>X</td><td>176;48;96</td><td>B03060</td><td>&nbsp;</td><td bgcolor="#B03060"><font color="#B03060">### SAMPLE ###<font></font></font></td></tr>
+<!--493--><tr align="center"><td>maroon1</td><td>X</td><td>255;52;179</td><td>FF34B3</td><td>&nbsp;</td><td bgcolor="#FF34B3"><font color="#FF34B3">### SAMPLE ###<font></font></font></td></tr>
+<!--494--><tr align="center"><td>maroon2</td><td>X</td><td>238;48;167</td><td>EE30A7</td><td>&nbsp;</td><td bgcolor="#EE30A7"><font color="#EE30A7">### SAMPLE ###<font></font></font></td></tr>
+<!--495--><tr align="center"><td>maroon3</td><td>X</td><td>205;41;144</td><td>CD2990</td><td>&nbsp;</td><td bgcolor="#CD2990"><font color="#CD2990">### SAMPLE ###<font></font></font></td></tr>
+<!--496--><tr align="center"><td>maroon4</td><td>X</td><td>139;28;98</td><td>8B1C62</td><td>&nbsp;</td><td bgcolor="#8B1C62"><font color="#8B1C62">### SAMPLE ###<font></font></font></td></tr>
+<!--497--><tr align="center"><td>orchid</td><td>X</td><td>218;112;214</td><td>DA70D6</td><td>&nbsp;</td><td bgcolor="#DA70D6"><font color="#DA70D6">### SAMPLE ###<font></font></font></td></tr>
+<!--498--><tr align="center"><td>Orchid</td><td>N</td><td>219;112;219</td><td>DB70DB</td><td>&nbsp;</td><td bgcolor="#DB70DB"><font color="#DB70DB">### SAMPLE ###<font></font></font></td></tr>
+<!--499--><tr align="center"><td>orchid1</td><td>X</td><td>255;131;250</td><td>FF83FA</td><td>&nbsp;</td><td bgcolor="#FF83FA"><font color="#FF83FA">### SAMPLE ###<font></font></font></td></tr>
+<!--500--><tr align="center"><td>orchid2</td><td>X</td><td>238;122;233</td><td>EE7AE9</td><td>&nbsp;</td><td bgcolor="#EE7AE9"><font color="#EE7AE9">### SAMPLE ###<font></font></font></td></tr>
+<!--501--><tr align="center"><td>orchid3</td><td>X</td><td>205;105;201</td><td>CD69C9</td><td>&nbsp;</td><td bgcolor="#CD69C9"><font color="#CD69C9">### SAMPLE ###<font></font></font></td></tr>
+<!--502--><tr align="center"><td>orchid4</td><td>X</td><td>139;71;137</td><td>8B4789</td><td>&nbsp;</td><td bgcolor="#8B4789"><font color="#8B4789">### SAMPLE ###<font></font></font></td></tr>
+<!--503--><tr align="center"><td>plum</td><td>X</td><td>221;160;221</td><td>DDA0DD</td><td>&nbsp;</td><td bgcolor="#DDA0DD"><font color="#DDA0DD">### SAMPLE ###<font></font></font></td></tr>
+<!--504--><tr align="center"><td>plum1</td><td>X</td><td>255;187;255</td><td>FFBBFF</td><td>fbf</td><td bgcolor="#FFBBFF"><font color="#FFBBFF">### SAMPLE ###<font></font></font></td></tr>
+<!--505--><tr align="center"><td>plum2</td><td>X</td><td>238;174;238</td><td>EEAEEE</td><td>&nbsp;</td><td bgcolor="#EEAEEE"><font color="#EEAEEE">### SAMPLE ###<font></font></font></td></tr>
+<!--506--><tr align="center"><td>plum3</td><td>X</td><td>205;150;205</td><td>CD96CD</td><td>&nbsp;</td><td bgcolor="#CD96CD"><font color="#CD96CD">### SAMPLE ###<font></font></font></td></tr>
+<!--507--><tr align="center"><td>plum4</td><td>X</td><td>139;102;139</td><td>8B668B</td><td>&nbsp;</td><td bgcolor="#8B668B"><font color="#8B668B">### SAMPLE ###<font></font></font></td></tr>
+<!--508--><tr align="center"><td>&nbsp;</td><td>&nbsp;</td><td>153;102;204</td><td>9966CC</td><td>96c</td><td bgcolor="#9966CC"><font color="#9966CC">### SAMPLE ###<font></font></font></td></tr>
+<!--509--><tr align="center"><td>purple</td><td>X</td><td>160;32;240</td><td>A020F0</td><td>&nbsp;</td><td bgcolor="#A020F0"><font color="#A020F0">### SAMPLE ###<font></font></font></td></tr>
+<!--510--><tr align="center"><td>purple</td><td>V</td><td>128;0;128</td><td>800080</td><td>&nbsp;</td><td bgcolor="#800080"><font color="#800080">### SAMPLE ###<font></font></font></td></tr>
+<!--511--><tr align="center"><td>purple1</td><td>X</td><td>155;48;255</td><td>9B30FF</td><td>&nbsp;</td><td bgcolor="#9B30FF"><font color="#9B30FF">### SAMPLE ###<font></font></font></td></tr>
+<!--512--><tr align="center"><td>purple2</td><td>X</td><td>145;44;238</td><td>912CEE</td><td>&nbsp;</td><td bgcolor="#912CEE"><font color="#912CEE">### SAMPLE ###<font></font></font></td></tr>
+<!--513--><tr align="center"><td>purple3</td><td>X</td><td>125;38;205</td><td>7D26CD</td><td>&nbsp;</td><td bgcolor="#7D26CD"><font color="#7D26CD">### SAMPLE ###<font></font></font></td></tr>
+<!--514--><tr align="center"><td>purple4</td><td>X</td><td>85;26;139</td><td>551A8B</td><td>&nbsp;</td><td bgcolor="#551A8B"><font color="#551A8B">### SAMPLE ###<font></font></font></td></tr>
+<!--515--><tr align="center"><td>thistle</td><td>X</td><td>216;191;216</td><td>D8BFD8</td><td>&nbsp;</td><td bgcolor="#D8BFD8"><font color="#D8BFD8">### SAMPLE ###<font></font></font></td></tr>
+<!--516--><tr align="center"><td>thistle1</td><td>X</td><td>255;225;255</td><td>FFE1FF</td><td>&nbsp;</td><td bgcolor="#FFE1FF"><font color="#FFE1FF">### SAMPLE ###<font></font></font></td></tr>
+<!--517--><tr align="center"><td>thistle2</td><td>X</td><td>238;210;238</td><td>EED2EE</td><td>&nbsp;</td><td bgcolor="#EED2EE"><font color="#EED2EE">### SAMPLE ###<font></font></font></td></tr>
+<!--518--><tr align="center"><td>thistle3</td><td>X</td><td>205;181;205</td><td>CDB5CD</td><td>&nbsp;</td><td bgcolor="#CDB5CD"><font color="#CDB5CD">### SAMPLE ###<font></font></font></td></tr>
+<!--519--><tr align="center"><td>thistle4</td><td>X</td><td>139;123;139</td><td>8B7B8B</td><td>&nbsp;</td><td bgcolor="#8B7B8B"><font color="#8B7B8B">### SAMPLE ###<font></font></font></td></tr>
+<!--520--><tr align="center"><td>violet</td><td>X</td><td>238;130;238</td><td>EE82EE</td><td>&nbsp;</td><td bgcolor="#EE82EE"><font color="#EE82EE">### SAMPLE ###<font></font></font></td></tr>
+<!--521--><tr align="center"><td>violet blue</td><td>N</td><td>159;95;159</td><td>9F5F9F</td><td>&nbsp;</td><td bgcolor="#9F5F9F"><font color="#9F5F9F">### SAMPLE ###<font></font></font></td></tr>
+<!--626--><tr align="center"><td>Dark Purple</td><td>N</td><td>135;31;120</td><td>871F78</td><td>&nbsp;</td><td bgcolor="#871F78"><font color="#871F78">### SAMPLE ###<font></font></font></td></tr>
+<!--646--><tr align="center"><td>Maroon</td><td>V</td><td>128;0;0</td><td>800000</td><td>&nbsp;</td><td bgcolor="#800000"><font color="#800000">### SAMPLE ###<font></font></font></td></tr>
+<!--654--><tr align="center"><td>Medium Violet Red</td><td>N</td><td>219;112;147</td><td>DB7093</td><td>&nbsp;</td><td bgcolor="#DB7093"><font color="#DB7093">### SAMPLE ###<font></font></font></td></tr>
+<!--659--><tr align="center"><td>Neon Pink</td><td>N</td><td>255;110;199</td><td>FF6EC7</td><td>&nbsp;</td><td bgcolor="#FF6EC7"><font color="#FF6EC7">### SAMPLE ###<font></font></font></td></tr>
+<!--666--><tr align="center"><td>Plum</td><td>N</td><td>234;173;234</td><td>EAADEA</td><td>&nbsp;</td><td bgcolor="#EAADEA"><font color="#EAADEA">### SAMPLE ###<font></font></font></td></tr>
+<!--680--><tr align="center"><td>Thistle</td><td>N</td><td>216;191;216</td><td>D8BFD8</td><td>&nbsp;</td><td bgcolor="#D8BFD8"><font color="#D8BFD8">### SAMPLE ###<font></font></font></td></tr>
+<!--681--><tr align="center"><td>Turquoise</td><td>N</td><td>173;234;234</td><td>ADEAEA</td><td>&nbsp;</td><td bgcolor="#ADEAEA"><font color="#ADEAEA">### SAMPLE ###<font></font></font></td></tr>
+<!--684--><tr align="center"><td>Violet</td><td>N</td><td>79;47;79</td><td>4F2F4F</td><td>&nbsp;</td><td bgcolor="#4F2F4F"><font color="#4F2F4F">### SAMPLE ###<font></font></font></td></tr>
+<!--685--><tr align="center"><td>Violet Red</td><td>N</td><td>204;50;153</td><td>CC3299</td><td>&nbsp;</td><td bgcolor="#CC3299"><font color="#CC3299">### SAMPLE ###<font></font></font></td></tr>
+</tbody></table>
+<a href="#top" name="White">[Click for top]</a>
+<table cols="4" width="100%" border="" cellpadding="3"><tbody><tr><th colspan="6">Shades of White</th></tr>
+<tr><th width="30%"><a href="#columns">Color Name</a></th><th width="10%"><a href="#credits">Credits</a></th><th width="10%"><a href="#columns">R;G;B Dec</a></th><th width="10%"><a href="#columns">RGB Hex</a></th><th width="10%"><a href="#columns">CSS Hex</a></th><th><a href="#samples">BG/FG color sample</a></th></tr>
+<!--522--><tr align="center"><td>AntiqueWhite</td><td>X</td><td>250;235;215</td><td>FAEBD7</td><td>&nbsp;</td><td bgcolor="#FAEBD7"><font color="#FAEBD7">### SAMPLE ###<font></font></font></td></tr>
+<!--523--><tr align="center"><td>AntiqueWhite1</td><td>X</td><td>255;239;219</td><td>FFEFDB</td><td>&nbsp;</td><td bgcolor="#FFEFDB"><font color="#FFEFDB">### SAMPLE ###<font></font></font></td></tr>
+<!--524--><tr align="center"><td>AntiqueWhite2</td><td>X</td><td>238;223;204</td><td>EEDFCC</td><td>&nbsp;</td><td bgcolor="#EEDFCC"><font color="#EEDFCC">### SAMPLE ###<font></font></font></td></tr>
+<!--525--><tr align="center"><td>AntiqueWhite3</td><td>X</td><td>205;192;176</td><td>CDC0B0</td><td>&nbsp;</td><td bgcolor="#CDC0B0"><font color="#CDC0B0">### SAMPLE ###<font></font></font></td></tr>
+<!--526--><tr align="center"><td>AntiqueWhite4</td><td>X</td><td>139;131;120</td><td>8B8378</td><td>&nbsp;</td><td bgcolor="#8B8378"><font color="#8B8378">### SAMPLE ###<font></font></font></td></tr>
+<!--527--><tr align="center"><td>FloralWhite</td><td>X</td><td>255;250;240</td><td>FFFAF0</td><td>&nbsp;</td><td bgcolor="#FFFAF0"><font color="#FFFAF0">### SAMPLE ###<font></font></font></td></tr>
+<!--528--><tr align="center"><td>GhostWhite</td><td>X</td><td>248;248;255</td><td>F8F8FF</td><td>&nbsp;</td><td bgcolor="#F8F8FF"><font color="#F8F8FF">### SAMPLE ###<font></font></font></td></tr>
+<!--529--><tr align="center"><td>NavajoWhite</td><td>X</td><td>255;222;173</td><td>FFDEAD</td><td>&nbsp;</td><td bgcolor="#FFDEAD"><font color="#FFDEAD">### SAMPLE ###<font></font></font></td></tr>
+<!--530--><tr align="center"><td>NavajoWhite1</td><td>X</td><td>255;222;173</td><td>FFDEAD</td><td>&nbsp;</td><td bgcolor="#FFDEAD"><font color="#FFDEAD">### SAMPLE ###<font></font></font></td></tr>
+<!--531--><tr align="center"><td>NavajoWhite2</td><td>X</td><td>238;207;161</td><td>EECFA1</td><td>&nbsp;</td><td bgcolor="#EECFA1"><font color="#EECFA1">### SAMPLE ###<font></font></font></td></tr>
+<!--532--><tr align="center"><td>NavajoWhite3</td><td>X</td><td>205;179;139</td><td>CDB38B</td><td>&nbsp;</td><td bgcolor="#CDB38B"><font color="#CDB38B">### SAMPLE ###<font></font></font></td></tr>
+<!--533--><tr align="center"><td>NavajoWhite4</td><td>X</td><td>139;121;94</td><td>8B795E</td><td>&nbsp;</td><td bgcolor="#8B795E"><font color="#8B795E">### SAMPLE ###<font></font></font></td></tr>
+<!--534--><tr align="center"><td>OldLace</td><td>X</td><td>253;245;230</td><td>FDF5E6</td><td>&nbsp;</td><td bgcolor="#FDF5E6"><font color="#FDF5E6">### SAMPLE ###<font></font></font></td></tr>
+<!--535--><tr align="center"><td>WhiteSmoke</td><td>X</td><td>245;245;245</td><td>F5F5F5</td><td>&nbsp;</td><td bgcolor="#F5F5F5"><font color="#F5F5F5">### SAMPLE ###<font></font></font></td></tr>
+<!--536--><tr align="center"><td>gainsboro</td><td>X</td><td>220;220;220</td><td>DCDCDC</td><td>&nbsp;</td><td bgcolor="#DCDCDC"><font color="#DCDCDC">### SAMPLE ###<font></font></font></td></tr>
+<!--537--><tr align="center"><td>ivory</td><td>X</td><td>255;255;240</td><td>FFFFF0</td><td>&nbsp;</td><td bgcolor="#FFFFF0"><font color="#FFFFF0">### SAMPLE ###<font></font></font></td></tr>
+<!--538--><tr align="center"><td>ivory1</td><td>X</td><td>255;255;240</td><td>FFFFF0</td><td>&nbsp;</td><td bgcolor="#FFFFF0"><font color="#FFFFF0">### SAMPLE ###<font></font></font></td></tr>
+<!--539--><tr align="center"><td>ivory2</td><td>X</td><td>238;238;224</td><td>EEEEE0</td><td>&nbsp;</td><td bgcolor="#EEEEE0"><font color="#EEEEE0">### SAMPLE ###<font></font></font></td></tr>
+<!--540--><tr align="center"><td>ivory3</td><td>X</td><td>205;205;193</td><td>CDCDC1</td><td>&nbsp;</td><td bgcolor="#CDCDC1"><font color="#CDCDC1">### SAMPLE ###<font></font></font></td></tr>
+<!--541--><tr align="center"><td>ivory4</td><td>X</td><td>139;139;131</td><td>8B8B83</td><td>&nbsp;</td><td bgcolor="#8B8B83"><font color="#8B8B83">### SAMPLE ###<font></font></font></td></tr>
+<!--542--><tr align="center"><td>linen</td><td>X</td><td>250;240;230</td><td>FAF0E6</td><td>&nbsp;</td><td bgcolor="#FAF0E6"><font color="#FAF0E6">### SAMPLE ###<font></font></font></td></tr>
+<!--543--><tr align="center"><td>seashell</td><td>X</td><td>255;245;238</td><td>FFF5EE</td><td>&nbsp;</td><td bgcolor="#FFF5EE"><font color="#FFF5EE">### SAMPLE ###<font></font></font></td></tr>
+<!--544--><tr align="center"><td>seashell1</td><td>X</td><td>255;245;238</td><td>FFF5EE</td><td>&nbsp;</td><td bgcolor="#FFF5EE"><font color="#FFF5EE">### SAMPLE ###<font></font></font></td></tr>
+<!--545--><tr align="center"><td>seashell2</td><td>X</td><td>238;229;222</td><td>EEE5DE</td><td>&nbsp;</td><td bgcolor="#EEE5DE"><font color="#EEE5DE">### SAMPLE ###<font></font></font></td></tr>
+<!--546--><tr align="center"><td>seashell3</td><td>X</td><td>205;197;191</td><td>CDC5BF</td><td>&nbsp;</td><td bgcolor="#CDC5BF"><font color="#CDC5BF">### SAMPLE ###<font></font></font></td></tr>
+<!--547--><tr align="center"><td>seashell4</td><td>X</td><td>139;134;130</td><td>8B8682</td><td>&nbsp;</td><td bgcolor="#8B8682"><font color="#8B8682">### SAMPLE ###<font></font></font></td></tr>
+<!--548--><tr align="center"><td>snow</td><td>X</td><td>255;250;250</td><td>FFFAFA</td><td>&nbsp;</td><td bgcolor="#FFFAFA"><font color="#FFFAFA">### SAMPLE ###<font></font></font></td></tr>
+<!--549--><tr align="center"><td>snow1</td><td>X</td><td>255;250;250</td><td>FFFAFA</td><td>&nbsp;</td><td bgcolor="#FFFAFA"><font color="#FFFAFA">### SAMPLE ###<font></font></font></td></tr>
+<!--550--><tr align="center"><td>snow2</td><td>X</td><td>238;233;233</td><td>EEE9E9</td><td>&nbsp;</td><td bgcolor="#EEE9E9"><font color="#EEE9E9">### SAMPLE ###<font></font></font></td></tr>
+<!--551--><tr align="center"><td>snow3</td><td>X</td><td>205;201;201</td><td>CDC9C9</td><td>&nbsp;</td><td bgcolor="#CDC9C9"><font color="#CDC9C9">### SAMPLE ###<font></font></font></td></tr>
+<!--552--><tr align="center"><td>snow4</td><td>X</td><td>139;137;137</td><td>8B8989</td><td>&nbsp;</td><td bgcolor="#8B8989"><font color="#8B8989">### SAMPLE ###<font></font></font></td></tr>
+<!--553--><tr align="center"><td>wheat</td><td>X</td><td>245;222;179</td><td>F5DEB3</td><td>&nbsp;</td><td bgcolor="#F5DEB3"><font color="#F5DEB3">### SAMPLE ###<font></font></font></td></tr>
+<!--554--><tr align="center"><td>wheat1</td><td>X</td><td>255;231;186</td><td>FFE7BA</td><td>&nbsp;</td><td bgcolor="#FFE7BA"><font color="#FFE7BA">### SAMPLE ###<font></font></font></td></tr>
+<!--555--><tr align="center"><td>wheat2</td><td>X</td><td>238;216;174</td><td>EED8AE</td><td>&nbsp;</td><td bgcolor="#EED8AE"><font color="#EED8AE">### SAMPLE ###<font></font></font></td></tr>
+<!--556--><tr align="center"><td>wheat3</td><td>X</td><td>205;186;150</td><td>CDBA96</td><td>&nbsp;</td><td bgcolor="#CDBA96"><font color="#CDBA96">### SAMPLE ###<font></font></font></td></tr>
+<!--557--><tr align="center"><td>wheat4</td><td>X</td><td>139;126;102</td><td>8B7E66</td><td>&nbsp;</td><td bgcolor="#8B7E66"><font color="#8B7E66">### SAMPLE ###<font></font></font></td></tr>
+<!--558--><tr align="center"><td>white</td><td>N,V,X</td><td>255;255;255</td><td>FFFFFF</td><td>fff</td><td bgcolor="#FFFFFF"><font color="#FFFFFF">### SAMPLE ###<font></font></font></td></tr>
+<!--667--><tr align="center"><td>Quartz</td><td>N</td><td>217;217;243</td><td>D9D9F3</td><td>&nbsp;</td><td bgcolor="#D9D9F3"><font color="#D9D9F3">### SAMPLE ###<font></font></font></td></tr>
+<!--686--><tr align="center"><td>Wheat</td><td>N</td><td>216;216;191</td><td>D8D8BF</td><td>&nbsp;</td><td bgcolor="#D8D8BF"><font color="#D8D8BF">### SAMPLE ###<font></font></font></td></tr>
+</tbody></table>
+<a href="#top" name="Yellow">[Click for top]</a>
+<table cols="4" width="100%" border="" cellpadding="3"><tbody><tr><th colspan="6">Shades of Yellow</th></tr>
+<tr><th width="30%"><a href="#columns">Color Name</a></th><th width="10%"><a href="#credits">Credits</a></th><th width="10%"><a href="#columns">R;G;B Dec</a></th><th width="10%"><a href="#columns">RGB Hex</a></th><th width="10%"><a href="#columns">CSS Hex</a></th><th><a href="#samples">BG/FG color sample</a></th></tr>
+<!--559--><tr align="center"><td>BlanchedAlmond</td><td>X</td><td>255;235;205</td><td>FFEBCD</td><td>&nbsp;</td><td bgcolor="#FFEBCD"><font color="#FFEBCD">### SAMPLE ###<font></font></font></td></tr>
+<!--560--><tr align="center"><td>DarkGoldenrod</td><td>X</td><td>184;134;11</td><td>B8860B</td><td>&nbsp;</td><td bgcolor="#B8860B"><font color="#B8860B">### SAMPLE ###<font></font></font></td></tr>
+<!--561--><tr align="center"><td>DarkGoldenrod1</td><td>X</td><td>255;185;15</td><td>FFB90F</td><td>&nbsp;</td><td bgcolor="#FFB90F"><font color="#FFB90F">### SAMPLE ###<font></font></font></td></tr>
+<!--562--><tr align="center"><td>DarkGoldenrod2</td><td>X</td><td>238;173;14</td><td>EEAD0E</td><td>&nbsp;</td><td bgcolor="#EEAD0E"><font color="#EEAD0E">### SAMPLE ###<font></font></font></td></tr>
+<!--563--><tr align="center"><td>DarkGoldenrod3</td><td>X</td><td>205;149;12</td><td>CD950C</td><td>&nbsp;</td><td bgcolor="#CD950C"><font color="#CD950C">### SAMPLE ###<font></font></font></td></tr>
+<!--564--><tr align="center"><td>DarkGoldenrod4</td><td>X</td><td>139;101;8</td><td>8B6508</td><td>&nbsp;</td><td bgcolor="#8B6508"><font color="#8B6508">### SAMPLE ###<font></font></font></td></tr>
+<!--565--><tr align="center"><td>LemonChiffon</td><td>X</td><td>255;250;205</td><td>FFFACD</td><td>&nbsp;</td><td bgcolor="#FFFACD"><font color="#FFFACD">### SAMPLE ###<font></font></font></td></tr>
+<!--566--><tr align="center"><td>LemonChiffon1</td><td>X</td><td>255;250;205</td><td>FFFACD</td><td>&nbsp;</td><td bgcolor="#FFFACD"><font color="#FFFACD">### SAMPLE ###<font></font></font></td></tr>
+<!--567--><tr align="center"><td>LemonChiffon2</td><td>X</td><td>238;233;191</td><td>EEE9BF</td><td>&nbsp;</td><td bgcolor="#EEE9BF"><font color="#EEE9BF">### SAMPLE ###<font></font></font></td></tr>
+<!--568--><tr align="center"><td>LemonChiffon3</td><td>X</td><td>205;201;165</td><td>CDC9A5</td><td>&nbsp;</td><td bgcolor="#CDC9A5"><font color="#CDC9A5">### SAMPLE ###<font></font></font></td></tr>
+<!--569--><tr align="center"><td>LemonChiffon4</td><td>X</td><td>139;137;112</td><td>8B8970</td><td>&nbsp;</td><td bgcolor="#8B8970"><font color="#8B8970">### SAMPLE ###<font></font></font></td></tr>
+<!--570--><tr align="center"><td>LightGoldenrod</td><td>X</td><td>238;221;130</td><td>EEDD82</td><td>&nbsp;</td><td bgcolor="#EEDD82"><font color="#EEDD82">### SAMPLE ###<font></font></font></td></tr>
+<!--571--><tr align="center"><td>LightGoldenrod1</td><td>X</td><td>255;236;139</td><td>FFEC8B</td><td>&nbsp;</td><td bgcolor="#FFEC8B"><font color="#FFEC8B">### SAMPLE ###<font></font></font></td></tr>
+<!--572--><tr align="center"><td>LightGoldenrod2</td><td>X</td><td>238;220;130</td><td>EEDC82</td><td>&nbsp;</td><td bgcolor="#EEDC82"><font color="#EEDC82">### SAMPLE ###<font></font></font></td></tr>
+<!--573--><tr align="center"><td>LightGoldenrod3</td><td>X</td><td>205;190;112</td><td>CDBE70</td><td>&nbsp;</td><td bgcolor="#CDBE70"><font color="#CDBE70">### SAMPLE ###<font></font></font></td></tr>
+<!--574--><tr align="center"><td>LightGoldenrod4</td><td>X</td><td>139;129;76</td><td>8B814C</td><td>&nbsp;</td><td bgcolor="#8B814C"><font color="#8B814C">### SAMPLE ###<font></font></font></td></tr>
+<!--575--><tr align="center"><td>LightGoldenrodYellow</td><td>X</td><td>250;250;210</td><td>FAFAD2</td><td>&nbsp;</td><td bgcolor="#FAFAD2"><font color="#FAFAD2">### SAMPLE ###<font></font></font></td></tr>
+<!--576--><tr align="center"><td>LightYellow</td><td>X</td><td>255;255;224</td><td>FFFFE0</td><td>&nbsp;</td><td bgcolor="#FFFFE0"><font color="#FFFFE0">### SAMPLE ###<font></font></font></td></tr>
+<!--577--><tr align="center"><td>LightYellow1</td><td>X</td><td>255;255;224</td><td>FFFFE0</td><td>&nbsp;</td><td bgcolor="#FFFFE0"><font color="#FFFFE0">### SAMPLE ###<font></font></font></td></tr>
+<!--578--><tr align="center"><td>LightYellow2</td><td>X</td><td>238;238;209</td><td>EEEED1</td><td>&nbsp;</td><td bgcolor="#EEEED1"><font color="#EEEED1">### SAMPLE ###<font></font></font></td></tr>
+<!--579--><tr align="center"><td>LightYellow3</td><td>X</td><td>205;205;180</td><td>CDCDB4</td><td>&nbsp;</td><td bgcolor="#CDCDB4"><font color="#CDCDB4">### SAMPLE ###<font></font></font></td></tr>
+<!--580--><tr align="center"><td>LightYellow4</td><td>X</td><td>139;139;122</td><td>8B8B7A</td><td>&nbsp;</td><td bgcolor="#8B8B7A"><font color="#8B8B7A">### SAMPLE ###<font></font></font></td></tr>
+<!--581--><tr align="center"><td>PaleGoldenrod</td><td>X</td><td>238;232;170</td><td>EEE8AA</td><td>&nbsp;</td><td bgcolor="#EEE8AA"><font color="#EEE8AA">### SAMPLE ###<font></font></font></td></tr>
+<!--582--><tr align="center"><td>PapayaWhip</td><td>X</td><td>255;239;213</td><td>FFEFD5</td><td>&nbsp;</td><td bgcolor="#FFEFD5"><font color="#FFEFD5">### SAMPLE ###<font></font></font></td></tr>
+<!--583--><tr align="center"><td>cornsilk</td><td>X</td><td>255;248;220</td><td>FFF8DC</td><td>&nbsp;</td><td bgcolor="#FFF8DC"><font color="#FFF8DC">### SAMPLE ###<font></font></font></td></tr>
+<!--584--><tr align="center"><td>cornsilk1</td><td>X</td><td>255;248;220</td><td>FFF8DC</td><td>&nbsp;</td><td bgcolor="#FFF8DC"><font color="#FFF8DC">### SAMPLE ###<font></font></font></td></tr>
+<!--585--><tr align="center"><td>cornsilk2</td><td>X</td><td>238;232;205</td><td>EEE8CD</td><td>&nbsp;</td><td bgcolor="#EEE8CD"><font color="#EEE8CD">### SAMPLE ###<font></font></font></td></tr>
+<!--586--><tr align="center"><td>cornsilk3</td><td>X</td><td>205;200;177</td><td>CDC8B1</td><td>&nbsp;</td><td bgcolor="#CDC8B1"><font color="#CDC8B1">### SAMPLE ###<font></font></font></td></tr>
+<!--587--><tr align="center"><td>cornsilk4</td><td>X</td><td>139;136;120</td><td>8B8878</td><td>&nbsp;</td><td bgcolor="#8B8878"><font color="#8B8878">### SAMPLE ###<font></font></font></td></tr>
+<!--588--><tr align="center"><td>goldenrod</td><td>X</td><td>218;165;32</td><td>DAA520</td><td>&nbsp;</td><td bgcolor="#DAA520"><font color="#DAA520">### SAMPLE ###<font></font></font></td></tr>
+<!--589--><tr align="center"><td>goldenrod1</td><td>X</td><td>255;193;37</td><td>FFC125</td><td>&nbsp;</td><td bgcolor="#FFC125"><font color="#FFC125">### SAMPLE ###<font></font></font></td></tr>
+<!--590--><tr align="center"><td>goldenrod2</td><td>X</td><td>238;180;34</td><td>EEB422</td><td>&nbsp;</td><td bgcolor="#EEB422"><font color="#EEB422">### SAMPLE ###<font></font></font></td></tr>
+<!--591--><tr align="center"><td>goldenrod3</td><td>X</td><td>205;155;29</td><td>CD9B1D</td><td>&nbsp;</td><td bgcolor="#CD9B1D"><font color="#CD9B1D">### SAMPLE ###<font></font></font></td></tr>
+<!--592--><tr align="center"><td>goldenrod4</td><td>X</td><td>139;105;20</td><td>8B6914</td><td>&nbsp;</td><td bgcolor="#8B6914"><font color="#8B6914">### SAMPLE ###<font></font></font></td></tr>
+<!--593--><tr align="center"><td>moccasin</td><td>X</td><td>255;228;181</td><td>FFE4B5</td><td>&nbsp;</td><td bgcolor="#FFE4B5"><font color="#FFE4B5">### SAMPLE ###<font></font></font></td></tr>
+<!--594--><tr align="center"><td>yellow</td><td>N,V,X</td><td>255;255;0</td><td>FFFF00</td><td>ff0</td><td bgcolor="#FFFF00"><font color="#FFFF00">### SAMPLE ###<font></font></font></td></tr>
+<!--595--><tr align="center"><td>yellow1</td><td>X</td><td>255;255;0</td><td>FFFF00</td><td>ff0</td><td bgcolor="#FFFF00"><font color="#FFFF00">### SAMPLE ###<font></font></font></td></tr>
+<!--596--><tr align="center"><td>yellow2</td><td>X</td><td>238;238;0</td><td>EEEE00</td><td>ee0</td><td bgcolor="#EEEE00"><font color="#EEEE00">### SAMPLE ###<font></font></font></td></tr>
+<!--597--><tr align="center"><td>yellow3</td><td>X</td><td>205;205;0</td><td>CDCD00</td><td>&nbsp;</td><td bgcolor="#CDCD00"><font color="#CDCD00">### SAMPLE ###<font></font></font></td></tr>
+<!--598--><tr align="center"><td>yellow4</td><td>X</td><td>139;139;0</td><td>8B8B00</td><td>&nbsp;</td><td bgcolor="#8B8B00"><font color="#8B8B00">### SAMPLE ###<font></font></font></td></tr>
+<!--600--><tr align="center"><td>gold</td><td>X</td><td>255;215;0</td><td>FFD700</td><td>&nbsp;</td><td bgcolor="#FFD700"><font color="#FFD700">### SAMPLE ###<font></font></font></td></tr>
+<!--601--><tr align="center"><td>gold1</td><td>X</td><td>255;215;0</td><td>FFD700</td><td>&nbsp;</td><td bgcolor="#FFD700"><font color="#FFD700">### SAMPLE ###<font></font></font></td></tr>
+<!--602--><tr align="center"><td>gold2</td><td>X</td><td>238;201;0</td><td>EEC900</td><td>&nbsp;</td><td bgcolor="#EEC900"><font color="#EEC900">### SAMPLE ###<font></font></font></td></tr>
+<!--603--><tr align="center"><td>gold3</td><td>X</td><td>205;173;0</td><td>CDAD00</td><td>&nbsp;</td><td bgcolor="#CDAD00"><font color="#CDAD00">### SAMPLE ###<font></font></font></td></tr>
+<!--604--><tr align="center"><td>gold4</td><td>X</td><td>139;117;0</td><td>8B7500</td><td>&nbsp;</td><td bgcolor="#8B7500"><font color="#8B7500">### SAMPLE ###<font></font></font></td></tr>
+<!--635--><tr align="center"><td>Goldenrod</td><td>N</td><td>219;219;112</td><td>DBDB70</td><td>&nbsp;</td><td bgcolor="#DBDB70"><font color="#DBDB70">### SAMPLE ###<font></font></font></td></tr>
+<!--649--><tr align="center"><td>Medium Goldenrod</td><td>N</td><td>234;234;174</td><td>EAEAAE</td><td>&nbsp;</td><td bgcolor="#EAEAAE"><font color="#EAEAAE">### SAMPLE ###<font></font></font></td></tr>
+<!--687--><tr align="center"><td>Yellow Green</td><td>N</td><td>153;204;50</td><td>99CC32</td><td>&nbsp;</td><td bgcolor="#99CC32"><font color="#99CC32">### SAMPLE ###<font></font></font></td></tr>
+</tbody></table>
+</p><p>
+<a href="#top" name="samples">[Click for top]</a>
+</p><h2>HTML behind the BG/FG color samples</h2>
+The "BG/FG color sample" is made by changing both the background and
+foreground colors.  The background is changed with 
+<pre>	&lt;... BGCOLOR="#xxxxxx" ...&gt;</pre> 
+and foreground is changed with 
+<pre>	&lt;FONT COLOR="#xxxxxx"&gt;</pre> 
+In these "xxxxxx" is the six hex digit of the color, such as 2F4F2F for
+<font color="#2F4F2F">Dark Green</font>.
+<p>
+You will see a solid block of color in the samples shown if your browser 
+supports both markups; or just "### SAMPLE ###" in color if just one is 
+supported.  (Almost all support both now.)
+</p><p>
+<a href="#top" name="columns">[Click for top]</a>
+</p><h2>Description of Columns</h2>
+<table border="" cellpadding="3">
+<tbody><tr><th>Color Name</th><td>
+	Names of colors as given in the various sources I used to create this table.
+	See "<a href="#credits">Credits</a>" below.  In some cases the sources contradict.
+	</td></tr>
+<tr><th>Credits</th><td>
+	See "<a href="#credits">Credits</a>" below.
+	</td></tr>
+<tr><th>R;G;B Dec</th><td>
+	The decimal version of the triplet describing this color.
+	</td></tr>
+<tr><th>RGB Hex</th><td>
+	The hexidemical version of the triplet describing this color.
+	</td></tr>
+<tr><th>CSS HEX</th><td>
+	The "short" or "abbreviated" version of the hex triplet used with Cascading Style Sheets (CSS).
+	</td></tr>
+<tr><th>BG/FG color sample</th><td>
+	 See <a href="#samples">HTML behind the BG/FG color samples</a> above.
+	</td></tr>
+</tbody></table>
+<p>
+<a href="#top" name="metallic">[Click for top]</a>
+</p><h2>The Problem with Metallic Colors</h2>
+Several times folks have written asking what the codes are for a metallic color,
+such as gold, silver, or copper.  It is my understanding that these tones 
+cannot be depicted with an RGB code because they are not composed of a single
+basic color:  Several different shades are mingled to produce a shiny-metal
+look.  The mingling of shades requires the use of a GIF, JPG or other image;
+it could be used as a
+background.
+If my understanding of this is a misunderstanding then I'd greatly
+apprecate enlightment.
+<p>
+Here are some attempts to make a metal color with just RGB, as depected at
+Netscape at 
+<a href="http://home1.netscape.com/home/bg/colorindex.html">http://home1.netscape.com/home/bg/colorindex.html</a>
+</p><p>
+<a href="#top" name="Metal">[Click for top]</a>
+<table cols="4" width="100%" border="" cellpadding="3"><tbody><tr><th colspan="6">Shades of Metal</th></tr>
+<tr><th width="30%"><a href="#columns">Color Name</a></th><th width="10%"><a href="#credits">Credits</a></th><th width="10%"><a href="#columns">R;G;B Dec</a></th><th width="10%"><a href="#columns">RGB Hex</a></th><th width="10%"><a href="#columns">CSS Hex</a></th><th><a href="#samples">BG/FG color sample</a></th></tr>
+<!--606--><tr align="center"><td>copper</td><td>N</td><td>184;115;51</td><td>B87333</td><td>&nbsp;</td><td bgcolor="#B87333"><font color="#B87333">### SAMPLE ###<font></font></font></td></tr>
+<!--607--><tr align="center"><td>cool copper</td><td>N</td><td>217;135;25</td><td>D98719</td><td>&nbsp;</td><td bgcolor="#D98719"><font color="#D98719">### SAMPLE ###<font></font></font></td></tr>
+<!--608--><tr align="center"><td>Green Copper</td><td>N</td><td>133;99;99</td><td>856363</td><td>&nbsp;</td><td bgcolor="#856363"><font color="#856363">### SAMPLE ###<font></font></font></td></tr>
+<!--610--><tr align="center"><td>brass</td><td>N</td><td>181;166;66</td><td>B5A642</td><td>&nbsp;</td><td bgcolor="#B5A642"><font color="#B5A642">### SAMPLE ###<font></font></font></td></tr>
+<!--611--><tr align="center"><td>bronze</td><td>N</td><td>140;120;83</td><td>8C7853</td><td>&nbsp;</td><td bgcolor="#8C7853"><font color="#8C7853">### SAMPLE ###<font></font></font></td></tr>
+<!--612--><tr align="center"><td>bronze II</td><td>N</td><td>166;125;61</td><td>A67D3D</td><td>&nbsp;</td><td bgcolor="#A67D3D"><font color="#A67D3D">### SAMPLE ###<font></font></font></td></tr>
+<!--614--><tr align="center"><td>bright gold</td><td>N</td><td>217;217;25</td><td>D9D919</td><td>&nbsp;</td><td bgcolor="#D9D919"><font color="#D9D919">### SAMPLE ###<font></font></font></td></tr>
+<!--615--><tr align="center"><td>Old Gold</td><td>N</td><td>207;181;59</td><td>CFB53B</td><td>&nbsp;</td><td bgcolor="#CFB53B"><font color="#CFB53B">### SAMPLE ###<font></font></font></td></tr>
+<!--616--><tr align="center"><td>CSS Gold</td><td>&nbsp;</td><td>204;153;0</td><td>CC9900</td><td>c90</td><td bgcolor="#CC9900"><font color="#CC9900">### SAMPLE ###<font></font></font></td></tr>
+<!--617--><tr align="center"><td>gold</td><td>N</td><td>205;127;50</td><td>CD7F32</td><td>&nbsp;</td><td bgcolor="#CD7F32"><font color="#CD7F32">### SAMPLE ###<font></font></font></td></tr>
+<!--619--><tr align="center"><td>silver</td><td>N</td><td>230;232;250</td><td>E6E8FA</td><td>&nbsp;</td><td bgcolor="#E6E8FA"><font color="#E6E8FA">### SAMPLE ###<font></font></font></td></tr>
+<!--620--><tr align="center"><td>Silver,  Grey</td><td>V</td><td>192;192;192</td><td>C0C0C0</td><td>&nbsp;</td><td bgcolor="#C0C0C0"><font color="#C0C0C0">### SAMPLE ###<font></font></font></td></tr>
+<!--622--><tr align="center"><td>Light Steel Blue</td><td>N</td><td>84;84;84</td><td>545454</td><td>&nbsp;</td><td bgcolor="#545454"><font color="#545454">### SAMPLE ###<font></font></font></td></tr>
+<!--623--><tr align="center"><td>Steel Blue</td><td>N</td><td>35;107;142</td><td>236B8E</td><td>&nbsp;</td><td bgcolor="#236B8E"><font color="#236B8E">### SAMPLE ###<font></font></font></td></tr>
+</tbody></table>
+</p><p>
+These metallics are, IMHO, lame.
+Anyone who happens to have samples of metalic looking GIFs that I might use
+for an example here are urged to email me.
+</p><p>
+A potential chrome metallic is
+<a href="http://isd.cme.nist.gov/graphics/backgrounds/chrome.gif">http://isd.cme.nist.gov/graphics/backgrounds/chrome.gif</a>, but unfortunately the image
+doesn't wrap properly (the edges show when used as a background).
+</p><p>
+Another metalic 
+<a href="http://www.space.net.au/%7Ejooste/art/others/backgrounds/ripplechrome.gif">http://www.space.net.au/~jooste/art/others/backgrounds/ripplechrome.gif</a> 
+also falls short of my expectations but it wraps perfectly and looks cool.
+(So I'm using it as my screen background :-)
+</p><p>
+My exact idea of good metallic rendering is found at 
+<a href="http://userpages.nkn.net/userpages-3d/chrome-icons.gif">http://userpages.nkn.net/userpages-3d/chrome-icons.gif</a>.  Unfortunately this image is of 
+the word "Icon" spelled out in chrome, so it cannot be used as a background.
+</p><p>
+Another metalic example is this
+"<a href="http://wp.netscape.com/assist/net_sites/bg/metal/brushed_aluminum.gif">brushed aluminum</a>";
+the <a href="http://wp.netscape.com/assist/net_sites/bg/backgrounds.html">same site</a>
+also has unconvincing examples of "grey aluminum" and "corrugated metal".
+</p><p>
+<a href="#top" name="other">[Click for top]</a>
+</p><h2>Other Resources</h2>
+<ul>
+<li><strong>
+<!-- formerly http://hp.vector.co.jp/authors/VA011243/wcolor_e.htm -->
+<a href="http://www.hikarun.com/e/">Whatcolor</a>
+</strong> Displays R;G;B for the pixel under mouse cursor; displays 
+corresponding names when known (about 1/2 of those shown above).  
+Intended for use by partially or totally color blind people, it is invaluable
+for matching colors to images when making HTML documents.  Shareware, I think 
+a real bargan $8.00 registration.
+<a href="http://www.hikarun.com/e/">http://www.hikarun.com/e/</a>.
+<!-- <font size=-2>(verified links 13-Aug-2001)</font> -->
+</li><li><strong>
+<a href="http://www.j-a-b.net/web/hue/colorspaces">Defining Colours</a>
+</strong>
+is a great explanation of how RGB and other color models work. It also has
+more info about what specific colors' names work with what browsers and CSS2.
+Also explains the difference between RGB and HSL color spaces.
+</li><li><strong>
+<a href="http://homepage.mac.com/jakesan/DHP/page0/page3/files/page3_1.gif" was_href="http://www.hypersolutions.org/images/rgbhex.gif">RGB Hex Triplet
+Color Chart</a></strong> Many of my co-workers have this very concise 200+ 
+colors with R;G;B chart on the wall behind their monitor.  Also very useful
+FG/BG/LINKs color calculator and other useful stuff from Douglas Jacobson at
+<a href="http://homepage.mac.com/jakesan/DHP">http://homepage.mac.com/jakesan/DHP</a>.
+<!-- Moved before 5/2005 <a href="http://www.hypersolutions.org/rgb.html"
+	>http://www.hypersolutions.org/rgb.html</a> -->
+<!-- <font size=-2>(Fixed as per Daehn.Dawn@mayo.edu 13-Aug-2001)</font> -->
+<!-- <font size=-2>(verified links 13-Aug-2001)</font> -->
+</li><li><strong><a href="http://www.two4u.com/cgi-bin/color/compose">Color Composing
+Machine</a></strong>Click-and-see interface, cranks out actual HTML 
+for background, text, and links
+that you
+can cut 'n paste into your hand-edited documents.  Other useful stuff, too. 
+<za href="http://www.two4u.com/color/">http://www.two4u.com/color/
+[Broken as of 19-May-2006]
+<!-- <font size=-2>(verified links 13-Aug-2001)</font> -->
+</za></li><li><strong><a href="http://www.tx4.us/moacolor.htm">The Mother of All HTML Color Charts</a></strong> is great if
+my list doesn't have enough (!) for you.
+</li><li><strong><a href="https://web.njit.edu/%7Ekevin/rgb.pdf">Printable PDF RGB Cheat Sheet</a></strong>
+abbreviated from my HTML version by Chris Dibble of Albert, Canada.
+</li><li><strong><a href="http://www.joowl.com/colrdispl.html">Jo Owl's Page of 
+Color Display</a></strong> will let you plug an RGB in and show you the
+actual color.  Also has a chart of 0-999 RGB values used in .WIF files.
+</li></ul>
+<p>
+<a href="#top" name="printing">[Click for top]</a>
+</p><h2>Printing This Page in Color</h2>
+The default settings of some browsers is to not print background colors or images, which means the
+color sample column will just contain "SAMPLE" printed over and over again.  You can turn on the 
+background color/image printing as follows:
+<table border="" cellpadding="3">
+<tbody><tr><td><a href="http://www.getfirefox.com/">Firefox</a>:</td><td>Click through
+	<b>File&#8594;PageSetup&#8594;Format&nbsp;&amp;&nbsp;Options</b>, 
+	then  check "<b>Print Background (colors &amp; images)</b>".</td></tr>
+<tr><td><a href="http://browser.netscape.com/">Netscape Navigator</a>:</td><td>Same as for Firefox.</td></tr>
+<tr><td><a href="http://www.microsoft.com/windows/ie">MS Internet Explorer</a></td><td>Click through
+	<b>Tools&#8594;Internet&nbsp;Options&#8594;Advanced</b>, then scroll down (about half the list) to "<b>Printing</b>" and check 
+	"<b>Print background colors and images</b>".</td></tr>
+<tr><td><a href="http://www.apple.com/safari">Safari</a>:</td><td>Click through
+	<b>File&#8594;Print&#8594;Copies&nbsp;&amp;&nbsp;Pages&#8594;Safari</b>, 
+	then check "<b>Print Backgrounds</b>" box.
+	<br><i>Unfortunately there is a bug in Safari (at least in 2.0.4) and "Print Backgrounds" doesn't do anything.</i>
+	A work-around is to 
+	<b>File&#8594;Print&#8594;Save as PDF</b>, then open the PDF and print it.
+	</td></tr>
+</tbody></table>
+Please see <a href="http://nemesis.lonestar.org/site/color_tips.html">this website</a> for hints for browsers
+not mentioned here.  If all else fails please email me, I'll see if I can find a way or maybe even change how the
+samples are presented.
+<p>
+There is a version of this document without the background image at 
+<a href="http://web.njit.edu/%7Ewalsh/rgb_nobg">http://web.njit.edu/~walsh/rgb_nobg</a>.
+</p><p>
+<a href="#top" name="credits">[Click for top]</a>
+</p><h2>Credits</h2>
+This is a composite of several color name sources, which are indicated by letters in the "Credits" column of the table as 
+follows:
+<table border="" cellpadding="3">
+<tbody><tr><td>Credit</td><td>Source</td></tr>
+<tr><th>X</th><td>
+Denotes colors named in MIT's Xconsortum red/green/blue (RGB) color 
+specifications, Xconsortum version 10.41, 1994.  On some versions of 
+Unix or Linux this is located at /usr/X11R6/lib/X11/rgb.txt
+</td></tr>
+<tr><th>N</th><td>Denotes colors named in Netscape's beta 1.1 "Colors" table located at 
+<a href="http://wp.netscape.com/home/bg/colorindex.html">http://wp.netscape.com/home/bg/colorindex.html</a>.
+The document seems to contain some odd errors, such as "Hunter Green" 
+and "Green Yellow" definded as shades of red/orange, I've filtered these
+ out.
+</td></tr>
+<tr><th>M</th><td>Denotes colors named in Microsoft documents [not yet complete]</td></tr>
+<tr><th>V</th><td>VGA colors.  According to 
+<a href="http://www.w3.org/MarkUp/Guide/Style">http://www.w3.org/MarkUp/Guide/Style</a>:
+<i>
+"These 16 colors are defined in HTML 3.2 and 4.01 and correspond to the basic VGA set on PCs. 
+Most browsers accept a wider set of color names but use of these is not recommended."
+</i>
+Unfortunatly this advice has been flummoxed by differences between the Xconsortum, Netscape, and Microsoft uses:  Not all all
+have documented the use of what color is provided, or the documentation disagrees about what color is presented.  For instance, 
+"green" and "lime" above have different values!
+</td></tr>
+<tr><th>F</th><td>
+The colors of the
+<a href="http://www.badmouth.net/free-speech-flag">Free Speech flag</a>,
+which I have taken the liberty of 
+naming Free Speech
+{<font bgcolor="#09f911">Green</font>,
+<font bgcolor="#029d74">Aquamarine</font>,
+<font bgcolor="#e35bd8">Magenta</font>,
+<font bgcolor="#4156c5">Blue</font>,
+<font bgcolor="#635688">Gray</font>,
+<font bgcolor="#c00000">Red</font>}
+as of 10-May-2007.
+The flag does not contain red for some reason, so please also see
+the colors swatch provided 
+by Tim Jarrett in his 
+<a href="http://www.jarretthousenorth.com/2007/05/03.html">JarretHouseNorth blog</a>.
+</td></tr>
+<tr><td>[none]</td><td>Unnamed colors provided for use of the CSS shortcut example 
+	(Please inform me if this color is named someplace.)
+	</td></tr>
+</tbody></table>
+Some duplicate and contradictory cases exist because of the multiple 
+sources.  When sources provided only decimal or hex values, I computed 
+the missing values.
+The first version of this document was in 1995 or 1996.
+Thanks to
+<!-- a href=http://www.kumagaya.or.jp/~kjmikasa/index.htm>Kenji Mikasa</a --> 
+<!-- a href="http://www.ksky.ne.jp/~kjmikasa/index.html">Kenji Mikasa</a --> 
+<a href="http://www.mikasa.onsaikan.com/index.html">Kenji Mikasa</a>
+for the idea of using BG/FG samples in 1996.
+<p>
+<a href="#top" name="grayvsgrey">[Click for top]</a>
+</p><h2>Gray vs Grey</h2>
+Here is not only a spelling issue, but the reason why you should always use RGB color numbers instead
+of names in your HTML and CSS documents:
+Except for headings in this document the distinction of spelling "gray" or "grey" comes from the sources
+shown in the <a href="#credits">credits</a>" section above.  Ordinarily, 
+<i>gr<b>a</b>y is an <b>A</b>merican color, and 
+gr<b>e</b>y is an <b>E</b>nglish colour</i>.  However it is also possible but not wise to
+use the color names (yes, the strings) in your HTML to control the colors displayed by the browser
+instead of using the numbers as shown in <a href="#samples">samples</a> above.   
+<p>
+The problem is that
+</p><pre>	&lt;BODY BGCOLOR="black"&gt;&lt;FONT COLOR="yellow"&gt;</pre>
+<table><tbody><tr><td bgcolor="black"><font color="yellow">You should see yellow letters on black background.</font></td></tr>
+</tbody></table>
+Will show yellow letters on black background on almost every browser, but
+<pre>	&lt;BODY BGCOLOR="black"&gt;&lt;FONT COLOR="plum"&gt;</pre>
+<table><tbody><tr><td bgcolor="black"><font color="plum">You should see plum letters on black background.</font></td></tr>
+</tbody></table>
+Will show plum letters on black background only on Netscape browser.
+Non-Netscape browswers <i>might</i> show black-on-black if they don't understand "plum" and
+default to font=black.
+<p>
+Likewise, an older version of the Xorg rgb.txt version lists both "grey" and "gray" spellings, but I imagine
+different internationalizations of Internet Explorer and other browsers might or might not know both
+spellings.
+</p><p>
+Worse yet, I should point out that the colors shown with "X" as the 
+<a href="#credits">credits</a> above, are associated
+with the X Window System (aka X11 or X) used with most Unix-like computer systems.  These colors
+can be specified by the name strings wherever a color is specified in X11 (configurations, resources,
+command lines, etc).  While a few browsers might understand some of the colors, I think in general
+they will not, and so you best best is always to specifiy the color by number in HTML.
+</p><p>
+<a href="#top" name="todo">[Click for top]</a>
+</p><h2>Todo</h2>
+The following were already suggested or are otherwise already in the works.  
+Fold in <i>Xorg: rgb.txt,v 1.3</i>, which includes "grey" colors and possibly other missing spellings.
+Fix broken external links to metalic color samples.
+Arrange colors more logically, probably based on numeric hues.
+Research Microsoft documenation to include colors understood by Internet Exploder.
+<p>
+<a href="#top" name="copying">[Click for top]</a>
+</p><h2>Copyright and Copy policy</h2>
+<ul>
+<li>This document is Copyright © 1996, 1999, 2001, 2004, 2005, 2006, 2007, 2008, 2010 by Kevin J. Walsh, 
+all rights are reserved.
+</li><li>The master copy of this document resides at
+<a href="http://web.njit.edu/%7Ewalsh/rgb.html">http://web.njit.edu/~walsh/rgb.html</a>
+</li><li>
+This document can be copied with or without modification provided that you
+indicate that it came from
+<a href="http://web.njit.edu/%7Ewalsh">http://web.njit.edu/~walsh</a> and that it is
+"Copyright © 2010 Kevin J. Walsh".
+</li><li>Please do let me know if you find any errorrs or inaccuracies.
+</li></ul>
+<p>
+<table width="100%"><tbody><tr>
+<td align="left">Thanks!</td>
+<td align="right">
+	<table cellpadding="0" cellspacing="1">
+	<tbody><tr height="3"><td width="3"></td><td bgcolor="black"></td><td width="3"></td></tr>
+	<tr height="3"><td></td><td width="3"></td><td bgcolor="black"></td></tr>
+	<tr height="3"><td bgcolor="black"></td><td bgcolor="black"></td><td bgcolor="black"></td></tr>
+	</tbody></table>
+</td></tr></tbody></table>
+<br>
+<!-- 17-Dec-1996 /KJW Added samples -->
+<!-- 21-Oct-1997 /KJW Enhanced samples so BG and FG used together -->
+<!-- 16-Apr-1998 /KJW Fixed duplicate and out of order grey scale colors -->
+<!-- 03-Feb-1999 /KJW Added section about metalic colors -->
+<!-- 10-Mar-1999 /KJW Added "(Triplet or Hex)" to title -->
+<!-- 09-Jun-1999 /KJW Clarification  copy policy -->
+<!-- 19-Aug-1999 /KJW Added other resources -->
+<!-- 13-Aug-2001 /KJW Updated some links, moved grey, made fixed widths -->
+<!-- 06-Jun-2002 /KJW Clarified copywright and copy policy -->
+<!-- 07-Nov-2002 /KJW Reclarified copywright and copy policy; verified links; moved samples commentary -->
+<!-- 10-Oct-2004 /KJW Updated some links -->
+<!-- 11-Jan-2005 /KJW Fixed typo -->
+<!-- 21-Apr-2006 /KJW Changed local link anchors, added printing section -->
+<!-- 19-May-2006 /KJW Added credits and CSS Hex, added color database -->
+<!-- 9-May-2007 /KJW Added "J" colors and credit -->
+<!-- 10-May-2007 /KJW Changed "J" credit to "F" -->
+<!-- 28-Jun-2007 /KJW Added to printing section -->
+<!-- 27-Apr-2008 /KJW Added favicon -->
+<!-- 23-Apr-2008 /KJW Changed all "CCS" to "CSS".  Woops! -->
+<!-- 25-Apr-2008 /KJW Added rgb.pdf, gray vs grey, todo -->
+<!-- 25-Apr-2010 /KJW Added http://www.joowl.com/colrdispl.html -->
+</p><hr>
+<table width="100%"><tbody><tr><td align="left">
+	<a href="mailto:walsh@njit.edu">walsh@njit.edu</a>
+	<a href="http://web.njit.edu/%7Ewalsh">/KJW</a>
+</td><td align="right">
+	<a href="https://web.njit.edu/%7Ekevin/disclaimer.html"><sub><font size="-10">disclaimer</font></sub></a>
+</td></tr></tbody></table>
+
+</zimg></body></html>
