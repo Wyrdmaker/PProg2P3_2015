@@ -37,7 +37,7 @@ trait GUI_Graphical_Elements {
 	val chocolate4 = new Color(139,69,19)
 	val medium_violet_red = new Color(199,21,133)
 	val hot_pink = new Color(255,105,180)
-	//#Bordures#//
+	//#Bordures#//Une usine à bordures
 	def border(colour: Color = black, thickness: Int = 1) = Swing.LineBorder(colour, thickness)
 }
 

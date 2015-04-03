@@ -17,13 +17,6 @@ abstract class Grid_Label extends Interactive_Label{
 	var state: String =""
 }
 
-/*trait Border_Label{
-	def blank()={	//Pour que Game_Frame_Contents puisse créer les variables 
-		opaque = false
-		text = ""
-	}
-}*/
-
 //Est ce qu'on pourrait se défaire du paramètrage de Grid avec Game_Label_Class en allant chercher le type Game_Label_Class de game ??
 
 //Crée un GridPanel d'une taille correspondant aux paramètres du jeu, puis le remplit avec des labels de la classe passée en argument.
@@ -45,24 +38,17 @@ class Grid[Game_Label_Class <: Grid_Label] (game: Game) extends GridPanel(game.n
 	}
 
 	minimumSize = new Dimension(game.square_size_x * nb_of_cols, game.square_size_y * nb_of_rows )
-
-	/*//Test
-	revalidate()
-	repaint()*/
 	
 	//Renvoit le label de la case (x,y) (x et y commencent à 0)
-	def access_xy(x: Int, y: Int) /*: Game_Label_Class*/={
-		/*if (0 <= y*nb_of_cols + x && y*nb_of_cols + x <= nb_of_cols*nb_of_rows){
-			contents(y*nb_of_cols + x + nb_of_cols+3 + y*2).asInstanceOf[Game_Label_Class]			
-		}
-		else{println("Anormal: on a donné à access_xy de coordonnées n'étant pas dans la grille")}
-		game.glb_factory().asInstanceOf[Game_Label_Class]	//Juste pour satisfaire le compilateur*/
+	def access_xy(x: Int, y: Int) ={
+		val n = y*nb_of_cols + x
+		if (n < 0 || n > nb_of_cols*nb_of_rows) {println("Anormal: on a donné à access_xy de Grid de coordonnées n'étant pas dans la grille")}
 		contents(y*nb_of_cols + x).asInstanceOf[Game_Label_Class]
 
 	}
 	//Renvoit le label de numéro n
 	def access_n(n: Int) ={
-		//contents(n + nb_of_cols+3 + 2*(n/nb_of_cols)).asInstanceOf[Game_Label_Class]
+		if (n < 0 || n > nb_of_cols*nb_of_rows) {println("Anormal: on a donné à access_n de Grid de coordonnées n'étant pas dans la grille")}
 		contents(n).asInstanceOf[Game_Label_Class]
 	}
 	//Renvoit la liste des labels de la grille
@@ -72,7 +58,7 @@ class Grid[Game_Label_Class <: Grid_Label] (game: Game) extends GridPanel(game.n
 
 	background = GUI_Mood.b_colour
 
-	//Permet au jeu de peindre sur le background du gridpanel (par exemple pour y mettre des images)
+	//Permet de peindre une image de background sur la grille
 	var background_painting: (Graphics2D, UIElement)=>Unit = (g:Graphics2D, uie:UIElement)=>()
 	override def paintComponent(g:Graphics2D){
 		super.paintComponent(g)
@@ -81,9 +67,7 @@ class Grid[Game_Label_Class <: Grid_Label] (game: Game) extends GridPanel(game.n
 
 	def set_image_background(img: java.awt.Image, left_margin: Int = 0, top_margin: Int = 0, right_margin: Int = 0, bottom_margin: Int=0)={
 		//Façon pratique de définir une image de background pour le GridPanel
-		val old_background_painting = background_painting
 		def new_background_painting(g:Graphics2D, uie:UIElement)={
-			old_background_painting(g,uie)
 			g.drawImage(img, left_margin, top_margin, uie.size.width - right_margin, uie.size.height - bottom_margin, null)
 		}
 		background_painting = new_background_painting

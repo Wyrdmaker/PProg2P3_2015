@@ -1,17 +1,11 @@
 import scala.swing._
 import scala.swing.event._
-//import scala.swing.BorderPanel.Position._
 import java.util.{Date, Locale}
 import java.text.DateFormat
 import java.text.DateFormat._
 import java.text.SimpleDateFormat
 import scala.math._
-//import java.awt.event.{ActionEvent, ActionListener}
 import javax.swing.{ImageIcon, Icon}
-import scala.collection.mutable.{Buffer}
-
-/*import java.net.URL
-import javax.sound.sampled._*/
 
 import Games.AngelWar._
 import GUI._
@@ -60,20 +54,6 @@ class AngelWar_Help_Frame extends Frame {
 		"	- Le nombre d'anges blancs de chaque ligne et chaque colonne correspond aux nombres indiqués sur les bords de la grille <br>" +
 		" Pour vous aider, vous pouvez poser des marqueurs sur certaines cases, lorsque vous pensez qu'aucun ange ne devrait être sur cette case." + 
 		"</p> </body> </html>"
-		/*"<audio controls> " +
-		"<source src=\"src/main/ressources/AngelWar/Enticement.mp3\" type=\"audio/mpeg\"> " +
-		"Your browser does not support the audio element. " +
-		"</audio> </html>"*/
-
-
-	/*val url = new URL("http://mywebpages.comcast.net/jdeshon2/wave_files/jad0001a.wav")
-	val audioIn = AudioSystem.getAudioInputStream(url)
-	val clip = AudioSystem.getClip
-	clip.open(audioIn)
-	clip.start*/
-
-
-	
 	background = GUI_Mood.b_colour
 	foreground = GUI_Mood.f_colour
 	opaque = true
@@ -108,10 +88,6 @@ object AngelWar extends Game{
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def color_parameter = string_game_parameters_def_list(0)._2
 	val has_numeric_parameters_0asWidth_1asHeight = true
-		
-	//Conservé pour futurs références mais inutile dans le démineur
-	/*def nb_of_bombs = game_parameter_1 //Ces deux fonctions font de nb_of_bombs un alias de la variable game_parameter_1
-	def nb_of_bombs_=(newval: Int) { game_parameter_1 = newval }*/
 
 	type Game_Label_Class = AngelWar_Label
 	def glb_factory () = { new Game_Label_Class } // "glb" -> "Game_Label_Class"
@@ -137,7 +113,7 @@ object AngelWar extends Game{
 				
 	}
 
-	def mod_board(board: Buffer[Buffer[Buffer[Int]]],x:Int,y:Int,tipe:Int = -5,free:Int = -5,x_ass:Int = -5,y_ass:Int = -5) = {
+	def mod_board(board: Array[Array[Array[Int]]],x:Int,y:Int,tipe:Int = -5,free:Int = -5,x_ass:Int = -5,y_ass:Int = -5) = {
 		if(tipe != -5){board(x)(y)(0) = tipe}
 		if(free != -5){board(x)(y)(1) = free}
 		if(x_ass != -5){board(x)(y)(2) = x_ass}
@@ -160,7 +136,7 @@ object AngelWar extends Game{
 		}
 	}
 
-	def unfree_adjacent_squares(board: Buffer[Buffer[Buffer[Int]]],x:Int, y:Int) = {
+	def unfree_adjacent_squares(board: Array[Array[Array[Int]]],x:Int, y:Int) = {
 		mod_board(board,x,y,free=0)
 		apply_f_to_adjacent_squares(x,y,true,(x,y)=>mod_board(board,x,y,free=0))
 	}
@@ -183,8 +159,8 @@ object AngelWar extends Game{
 
 		def regen () ={
 			//Cette fonction sera réappelée dans la boucle plus loin lorsque le processus de remplissage de la grille sera dans un cul-de-sac
-			solved_board = Buffer.fill(nb_of_cols, nb_of_rows)(Buffer(0, 1, -1, -1))
-			game_board = Buffer.fill(nb_of_cols, nb_of_rows)(Buffer(0, 1, -1, -1))
+			solved_board = Array.fill(nb_of_cols, nb_of_rows)(Array(0, 1, -1, -1))
+			game_board = Array.fill(nb_of_cols, nb_of_rows)(Array(0, 1, -1, -1))
 			//Représente le plateau d'une partie: cf lieu de la définition de ces variables, plus bas
 			//Convention: La matrice est un tableau ligne (x) de tableaux colonnes (y)
 			//Convention: Les cases sont comptées de gauche à droite et de haut en bas
@@ -335,9 +311,9 @@ object AngelWar extends Game{
 	//type_de_la_case: 0 pour "empty" | 1 pour "tent" | 2 pour "tree" | 3 pour les labels de condition 
 	//case_libre_pour_une_tente vaut 1 s'il n'y a aucune tente sur une case voisine (diagonales incluses) et 0 sinon
 	//case_associée: arbre associé à une tente ou tente associée à un arbre (-1 signifie pas de case associée)
-	var solved_board: Buffer[Buffer[Buffer[Int]]] = Buffer()	//Plateau résolu, généré en début de partie
-	var initial_game_board: Buffer[Buffer[Buffer[Int]]] = Buffer()	//Sauvegarde de game_board, juste avant le début de la partie	
-	var game_board: Buffer[Buffer[Buffer[Int]]] = Buffer()	//Plateau de jeu, utilisé pour le jeu
+	var solved_board: Array[Array[Array[Int]]] = Array()	//Plateau résolu, généré en début de partie
+	var initial_game_board: Array[Array[Array[Int]]] = Array()	//Sauvegarde de game_board, juste avant le début de la partie	
+	var game_board: Array[Array[Array[Int]]] = Array()	//Plateau de jeu, utilisé pour le jeu
 	var rows_conditions: Array[Int] = Array()	//Liste des nb de tentes pour chaque ligne
 	var cols_conditions: Array[Int] = Array()	//Liste des nb de tentes pour chaque colonnes
 	var error_nb: Int = 0 //Nombre d'erreurs, empèche de gagner, géré par les labels

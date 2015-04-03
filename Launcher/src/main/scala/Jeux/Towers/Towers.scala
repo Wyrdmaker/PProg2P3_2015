@@ -259,14 +259,6 @@ object Towers extends Game{
 		}
 }
 
-/*
-object Main {
-	def main(args: Array[String]) {
-		val ui = new UI(Towers)
-		ui.visible = true
-	}
-}*/
+} //accolade fermante du package Towers
 
-}
-
-}
+} //accolade fermante du package Games

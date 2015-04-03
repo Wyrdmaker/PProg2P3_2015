@@ -113,17 +113,11 @@ class Launcher_Content extends GridBagPanel {
 		custom_painting = unoverflyed_custom_painting
 		foreground = GUI_GE.silver
 		border = Swing.LineBorder(GUI_Mood.f_colour, 4)
-		//INUTILE, mais conservé pour référence future
-		/*border = javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.dark_orchid)
-		border = javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, GUI_GE.dark_golden_rod1, GUI_GE.yellow)
-		border = javax.swing.BorderFactory.createCompoundBorder(outside = Swing.LineBorder(GUI_GE.maroon4, 2), inside = Swing.LineBorder(GUI_GE.dark_golden_rod1, 2))*/
 		border = Swing.CompoundBorder(outside = Swing.LineBorder(GUI_Mood.b_colour, outer_border_thickness)
 										,inside = Swing.LineBorder(GUI_Mood.f_colour, inner_border_thickness))
 		font = new Font("Impact", 0, 20)
 		minimumSize = new Dimension(width, height)
 		preferredSize = new Dimension(width, height)
-		//INUTILE, mais conservé pour références futures
-		//val foreground_gradientpaint = new java.awt.GradientPaint(0, 0, GUI_GE.silver, 0, 10, darker_silver)
 		listenTo(mouse.moves, mouse.clicks)
 		def mouse_enter_reaction () ={	//Lorsque la souris entre dans la zone du label
 			this.custom_painting = overflyed_custom_painting

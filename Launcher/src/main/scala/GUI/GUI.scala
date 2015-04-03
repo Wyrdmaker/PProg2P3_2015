@@ -10,15 +10,6 @@ import java.awt.event._
 import scala.swing.ComboBox
 import javax.swing.{ImageIcon, Icon}
 
-//import scalafx._
-//import scalafx.scene.media.Media
-//import scalafx.scene.media.MediaPlayer
-//import javafx.scene.media.Media
-//import javafx.scene.media.MediaPlayer
-
-//import javax.sound._
-//import java.io._
-
 package GUI{
 
 object GUI_Mood{	//définit les couleurs de l'interface graphique
@@ -157,9 +148,6 @@ abstract class Game{
 	var main_character_text_on_launching : Array[String] = Array() 	//Cette variable contient les textes que peut dire le personnage principal lors du lancement du jeu
 	var main_character_text_on_win: Array[String] = Array("Bravo !", "Bien joué !", "Toutes mes félicitations !")
 	var main_character_text_on_lose: Array[String] = Array("Dommage", "Pas de chance", "Ce sont des choses qui arrivent...")
-	//var main_character_text_on_long_play: Array[String] = Array("Tu n'est pas très rapide...","Moi, à ta place, j'aurais déjà fini !")
-	//var main_character_acceptable_time: Int = 3	//Le temps au bout duquel le personnage principal dit au joueur qu'il traine (en minutes)
-	//var enabled_main_character_speak_on_long_play: Boolean = true	//Permet au jeu d'empecher le main_character de dire quelque chose quand la partie devient longue
 
 	val game_game_mode_list : IndexedSeq[Game_Mode] 	//Liste des modes de difficulté que le jeu veut proposer
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]): String	//Une fonction qui, aux résultat des champs numériques d'un formulaire
@@ -245,30 +233,20 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label, Game_Border_Label_Class
 		contents += outcome_label
 		if(game.timer_needed){contents += timer_label}
 	}
-	val gfc_game = game
-	/*var top_grid = new Border_Grid[gfc_game.Game_Border_Label_Class] (nb_of_cols, gfc_game.gblb_factory)
-	var right_grid = new Border_Grid[gfc_game.Game_Border_Label_Class] (nb_of_rows, gfc_game.gblb_factory)
-	var bottom_grid = new Border_Grid[gfc_game.Game_Border_Label_Class] (nb_of_cols, gfc_game.gblb_factory)
-	var left_grid = new Border_Grid[gfc_game.Game_Border_Label_Class] (nb_of_rows, gfc_game.gblb_factory)
-	*/
 	val vertical = Border_Grid_Vertical()
 	val horizontal = Border_Grid_Horizontal()
 
 	def label_factory () ={new Label }
-	/*var top_border_grid   = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
-	var right_border_grid  = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
-	var bottom_border_grid  = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
-	var left_border_grid  = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
-	*/
-	var top_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, horizontal)
-	var right_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, vertical)
-	var bottom_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, horizontal)
-	var left_border_grid /*: Border_Grid[Game_Border_Label_Class] = null*/ = new Border_Grid[Game_Border_Label_Class](game, vertical)
+	//On crée les bordures à l'avance, sans les afficher. Elles sont affichée si le jeu le demande via les fonctions set_qqchose_qqchose_grid
+	var top_border_grid = new Border_Grid[Game_Border_Label_Class](game, horizontal)	//Ligne de labels de bordure en haut de la grille
+	var right_border_grid = new Border_Grid[Game_Border_Label_Class](game, vertical)	//Colonnes de labels de bordure à droite de la grille
+	var bottom_border_grid = new Border_Grid[Game_Border_Label_Class](game, horizontal)	//Ligne de labels de bordure en bas de la grille
+	var left_border_grid = new Border_Grid[Game_Border_Label_Class](game, vertical)		//Colonnes de labels de bordure à gauche de la grille
 	val init_border_label : Game_Border_Label_Class = game.gblb_factory().asInstanceOf[Game_Border_Label_Class]
-	var top_left_border_label = init_border_label
-	var top_right_border_label = init_border_label
-	var bottom_left_border_label = init_border_label
-	var bottom_right_border_label = init_border_label
+	var top_left_border_label = init_border_label		//Label de bordure en haut à gauche de la grille
+	var top_right_border_label = init_border_label		//Label de bordure en haut à droite de la grille
+	var bottom_left_border_label = init_border_label	//Label de bordure en bas à gauche de la grille
+	var bottom_right_border_label = init_border_label	//Label de bordure en bas à droite de la grille
 
 	val nb_of_cols = game.nb_of_cols
 	val nb_of_rows = game.nb_of_rows
@@ -280,26 +258,22 @@ class Game_Frame_Content[Game_Label_Class <: Grid_Label, Game_Border_Label_Class
     	constraints(1, 1, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1))
 
 	def set_top_border_grid () ={
-		//top_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, horizontal, game.square_size_x, game.square_size_y)
 		top_border_grid = new Border_Grid[Game_Border_Label_Class] (game, horizontal)
 		add(top_border_grid,
 			constraints(1, 0, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1.0/nb_of_rows))
 	}
 	def set_right_border_grid () ={
-		//right_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
 		right_border_grid = new Border_Grid[Game_Border_Label_Class] (game, vertical)
 		add(right_border_grid,
 			constraints(2, 1, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1))
 		revalidate()
 	}
 	def set_bottom_border_grid () ={
-		//bottom_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_cols, game.gblb_factory, horizontal, game.square_size_x, game.square_size_y)
 		bottom_border_grid = new Border_Grid[Game_Border_Label_Class] (game, horizontal)
 		add(bottom_border_grid,
 			constraints(1, 2, fill = GridBagPanel.Fill.Both, weightx = 1, weighty = 1.0/nb_of_rows))
 	}
 	def set_left_border_grid () ={
-		//left_border_grid = new Border_Grid[Game_Border_Label_Class] (nb_of_rows, game.gblb_factory, vertical, game.square_size_x, game.square_size_y)
 		left_border_grid = new Border_Grid[Game_Border_Label_Class] (game, vertical)
 		add(left_border_grid,
 			constraints(0, 1, fill = GridBagPanel.Fill.Both, weightx = 1.0/nb_of_cols, weighty = 1))
@@ -333,57 +307,13 @@ case class GFC_Bottom extends GFC_Location
 case class GFC_Right extends GFC_Location
 case class GFC_Left extends GFC_Location
 
-/*Inutile Ici, conservé pour références futures
-//Une exception lancée par la fonction game_custom_mode d'un jeu lorsque les paramètres numériques renvoyés par le formulaire ne permettent pas de créer une partie du jeu
-case class Custom_Mode_Exception(value: String) extends Throwable{}
-*/
-
 //Cet objet permet au jeu d'accéder à son ui. Utilisation déconseillée mais on a parfois pas le choix
 object UI_Link {
 	var actual_ui: Frame = null
 }
 
-
 //UI est la fenetre principale des jeux
 class UI (game: Game) extends Frame {
-
-	//val music = new Media("src/main/resources/War_of_Angels.mp3")
-
-	/*music = "Enticement.mp3"
-	media_music = new Media(music)
-	media_player = new MediaPlayer(media_music)
-	media_player.play()*/
-
-	/*var audioInputStream : javax.sound.sampled.AudioInputStream = null;
-	var musicfile = new File("src/main/ressources/AngelWar/08McCann-VigiloConfido.wav")
-	println(musicfile)
- 	try{
- 			//obtention d'un flux audio à partir d'un fichier (objet File)
-      audioInputStream = javax.sound.sampled.AudioSystem.getAudioInputStream(musicfile);
-
-    } catch {
-    	case e: javax.sound.sampled.UnsupportedAudioFileException => {e.printStackTrace()}
-    	case e: IOException => {e.printStackTrace()}
-    }
-	//Il est nécessaire de connaître le format audio du fichier
-	// d'entrée
-	// pour permettre à java de créer l'objet DataLine adéquat
-	val audioFormat : javax.sound.sampled.AudioFormat= audioInputStream.getFormat();
-	 // En plus du format du flux audio d'entrée il est nécessaire de
-	 // spécifier le type de DataLine qu'on veut
-	 // ici le DataLine qu'on souhaite est un SourceDataLine qui permet
-	 // la
-	 // lecture (targetDataLine permet l'enregistrement).
-	var info : javax.sound.sampled.DataLine.Info = new javax.sound.sampled.DataLine.Info(javax.sound.sampled.SourceDataLine.class, audioFormat);
-	 // On récupère le DataLine adéquat et on l'ouvre
-	var line:  javax.sound.sampled.SourceDataLine ;
-	 try {
-	 line = javax.sound.sampled.AudioSystem.getLine(info).asInstanceOf[javax.sound.sampled.SourceDataLine];
-	           
-	 } catch  {
-	 	case e: javax.sound.sampled.LineUnavailableException => e.printStackTrace();
-	 }*/
-
 	 //Fait dire au personnage principal quelque chose lors du lancement du jeu (soit un message par défaut soit un des messages d'ouverture définis par le jeu)
 	if(game.main_character_text_on_launching == null){Main.main_character.say("C'est parti pour une partie de " + game.title + ".")}
 	else{Main.main_character.say_smth(game.main_character_text_on_launching :+ ("C'est parti pour une partie de " + game.title + "."))}
@@ -397,21 +327,16 @@ class UI (game: Game) extends Frame {
 	val timer = new javax.swing.Timer(1000, timer_listener)
 	timer.start()
 
-
-
-
 	val thisui = this
 	title = game.title
-	//resizable = false
 	contents = new Label(){
 		font = new Font("Arial", 1, 20)
-		//text = "Welcome to " + game.title + " ! ;)"
 		text = game.title
 		val lighter_maroon4 = new Color(179, 70, 138)
 		val darker_maroon4 = new Color(109, 0, 68)
 		val width = 300
 		val height = 300
-		this.peer.setOpaque(false);				//Cetteligne dit à la méthode paint de ne pas changer le background
+		this.peer.setOpaque(false);				//Cette ligne dit à la méthode paint de ne pas changer le background
 		override def paint(g: Graphics2D)={
 			val background_gradientpaint = new java.awt.GradientPaint(0, 0, lighter_maroon4, 0, thisui.size.height, darker_maroon4)
 			g.setPaint(background_gradientpaint)
@@ -436,7 +361,6 @@ class UI (game: Game) extends Frame {
 			val asked_random_seed = random_seed_form.nb_fields_results(0)
 			game.random_gen = new scala.util.Random(asked_random_seed)
 
-			//Action_Restart.action_restart()
 			Game_Starter.generic_game_starter()
 		}	
 	}
@@ -533,24 +457,6 @@ class UI (game: Game) extends Frame {
 			}
 		}
 	}
-	//Code qui servait à faire dire au personnage qqchose quand la partie devenait longue, retiré car ça se produisait même si on changeait de jeu entre temps
-	//#
-	/*var long_play_reactor = new Object with Reactor{
-		var listened_timer : Timer_Label = null
-		override def listenTo (ps: Publisher) ={
-			super.listenTo(ps)
-			listened_timer = ps
-		}
-		def clear () ={
-			deafTo(listened_timer)
-		}
-	}
-	listenTo(this)
-	reactions +={
-		case e: WindowClosing => {println("wc");long_play_reactor = null}
-	}*/
-	//#
-
 
 	class Generic_Game_Starter (game: Game, ui: Frame) {
 		def generic_game_starter (): Unit ={
@@ -563,53 +469,18 @@ class UI (game: Game) extends Frame {
 			game.game_beginning_time = new Date()
 
 			game.game_frame_content = new Game_Frame_Content[game.Game_Label_Class,game.Game_Border_Label_Class](game)
-				//Code qui servait à faire dire au personnage qqchose quand la partie devenait longue, retiré car ça se produisait même si on changeait de jeu entre temps
-				//#
-				/*if(game.enabled_main_character_speak_on_long_play){
-					//val long_play_reactor = new Object with Reactor 	//Cet objet va faire dire quelque chose au main character si la partie devient longue
-					//var active = true
-					long_play_reactor = new Object with Reactor{
-						listenTo(game.game_frame_content.timer_label)
-						reactions += {
-							case Minute_Tick(minute, timer) => {
-								if(minute == game.main_character_acceptable_time){
-									Main.main_character.say_smth(game.main_character_text_on_long_play)
-									deafTo(timer)
-								}
-							}
-							case Timer_Stop(timer_stopped) => {
-								deafTo(timer_stopped)
-							}
-						}		
-					}
-				}*/
-				//#
-			//MODIF
 			val outcome_label = game.game_frame_content.outcome_label
 			outcome_label.text = ""
 			
-			ui.contents = game.game_frame_content//.final_content
+			ui.contents = game.game_frame_content
 			UI_Link.actual_ui = thisui
 			game.game_starter()
-
-
-
-			//game_frame_content.bottom_panel.maximumSize = game_frame_content.bottom_panel.preferredSize
 			thisui.minimumSize = thisui.preferredSize
 			thisui.size = thisui.minimumSize
 
 		}
 	}
 	thisui.minimumSize = thisui.preferredSize
-	//Inutile mais conservé pour réfèrence future
-	/*
-	val resize_reactor = new Object with Reactor
-	resize_reactor.listenTo(thisui)
-	resize_reactor.reactions += {
-		case UIElementResized(uielement) => {
-			}
-		}
-	}*/
 }
 
 }	//Accolade fermante du package GUI

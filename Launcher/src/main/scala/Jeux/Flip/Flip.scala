@@ -76,10 +76,6 @@ object Flip extends Game{
 	def nb_of_starting_flips = numeric_game_parameters_def_list(2)._2
 	def color_parameter = string_game_parameters_def_list(0)._2
 	val has_numeric_parameters_0asWidth_1asHeight = true
-		
-	//Conservé pour futurs références mais inutile dans le démineur
-	/*def nb_of_bombs = game_parameter_1 //Ces deux fonctions font de nb_of_bombs un alias de la variable game_parameter_1
-	def nb_of_bombs_=(newval: Int) { game_parameter_1 = newval }*/
 
 	type Game_Label_Class = Flip_Label
 	def glb_factory () = { new Game_Label_Class } // "glb" -> "Game_Label_Class"
@@ -139,7 +135,7 @@ object Flip extends Game{
 		}
 		board = board.reverse
 
-		//board printer
+		//board printer, pour Debug
 		/*println(board.length)
 		 for (i <- 0 until nb_of_cols) {
 		 for ( j <- 0 until nb_of_rows) {
@@ -242,8 +238,6 @@ object Flip extends Game{
 	}
 	//flip applique le résultat d'un clic sur la case (x,y) de board
 	def flip (x: Int, y: Int) ={
-		//println("a_flip called with: " + x + ", " + y)
-		//println("infl_list: " + board(x)(y)._2)
 		val infl_list = board(x)(y)._2
 		for (i <- 0 to 7) {
 			if (infl_list(i) == true) {
@@ -272,15 +266,6 @@ object Flip extends Game{
 		}
 	}
 }
-
-/*
-object Main {
-	def main(args: Array[String]) {
-		val ui = new UI(Flip)
-		ui.visible = true
-	}
-}*/
-
 
 }	//accolade fermante du package Flip
 }	//accolade fermante du package Games

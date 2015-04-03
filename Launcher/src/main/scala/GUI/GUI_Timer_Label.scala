@@ -74,5 +74,4 @@ class Delayed_Action(delay: Int, action_to_perform: (Unit=> Unit)){
 }
 
 
-
 }	//Accolade fermante du package GUI

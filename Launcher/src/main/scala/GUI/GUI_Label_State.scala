@@ -6,7 +6,6 @@ import java.text.DateFormat
 import java.text.DateFormat._
 import java.text.SimpleDateFormat
 import java.awt.event.{ActionEvent, ActionListener}
-//import javax.swing.{ImageIcon, Icon}
 
 package GUI{
 

@@ -7,8 +7,6 @@ import java.text.DateFormat._
 import java.text.SimpleDateFormat
 import java.awt.event.{ActionEvent, ActionListener}
 
-//import javax.swing.{ImageIcon, Icon}
-
 package GUI{
 
 class Number_Field(init_string : String) extends TextField(init_string) {
@@ -36,80 +34,6 @@ class Secured_Number_Field(default_value: Int, inf_bound: Int, sup_bound: Int) e
 			else if (!(inf_bound <= this.text.toInt && this.text.toInt <= sup_bound) && !(inf_bound == sup_bound))
 					this.text = default_value.toString
 
-	}
-}
-
-//La classe Number Form permet de demander au joueur des renseignements chiffrés
-//Les noms des champs doivent etre fournis sous forme de IndexedSeq -> fields_names_list
-//Les couples d'Int de fields_bounds_list représentent le min et le max que l'utilisateur peut rentrer dans le formulaire pour chaque champs
-//( un couple de la forme (n,n) avec n un entier signifie pas de restriction )
-//La valeur par défaut des champs sera la moyenne du min et du max du champs en question
-class Number_Form(titre : String, fields_names_list : IndexedSeq[String], fields_bounds_list : IndexedSeq[(Int,Int)]) extends Dialog {
-	var result: IndexedSeq[Int] = fields_bounds_list map (couple => couple._1)
-	var form_accepted : Boolean = false
-	if (fields_names_list.length == fields_bounds_list.length) {
-		title = titre
-		modal = true
-		var number_fields_list = fields_bounds_list map (couple =>
-			couple match {
-				case (min_value,max_value) => new Number_Field(((max_value + min_value)/2).toString)
-			})
-		contents = new GridPanel(fields_names_list.length + 1, 2) {
-			for (i <- 0 until fields_names_list.length) {
-				var bounds_string = "  (" + fields_bounds_list(i)._1 + "/" + fields_bounds_list(i)._2 + ")"
-				if (fields_bounds_list(i)._1 == fields_bounds_list(i)._2) { bounds_string = ""}
-				contents += new Label(fields_names_list(i) + bounds_string + " : ")
-				contents += number_fields_list(i)
-			}
-			contents += new Label("")
-			contents += new Button("") {
-				action = Action("Fini")(submit)
-			}
-		}
-
-		def submit = {
-			var nonempty_condition = true
-			for (i <- 0 to result.length -1) { // Sert à vérifier que tout les champs du formulaire ont été remplis avant le clic sur le bouton "fini"
-				if (number_fields_list(i).text.length <= 0){
-					nonempty_condition = false
-					number_fields_list(i).text = ((fields_bounds_list(i)._1 + fields_bounds_list(i)._2)/2).toString
-				}
-			}
-			if (nonempty_condition == true) {
-				result = number_fields_list map (number_field => number_field.text.toInt)
-				var bound_condition = true
-				for (i <- 0 to result.length - 1 ) { // Sert à vérifier que les valeurs entrées dans les champs du formulaires sont bien dans les limites définies par fields_bounds_list
-													// Si ca n'est pas le cas, réinitialise la valeur du champ incorrect avec la moyenne de ses bornes inf et sup
-					if (!((fields_bounds_list(i)._1 <= result(i) && result(i) <= fields_bounds_list(i)._2)
-						|| fields_bounds_list(i)._1 == fields_bounds_list(i)._2)) {
-						bound_condition = false
-						number_fields_list(i).text = ((fields_bounds_list(i)._1 + fields_bounds_list(i)._2)/2).toString
-					}
-				}
-	
-				if (bound_condition) {	// Le formulaire a été correctement remplis, on "supprime la fenetre du formulaire et 
-										// la fonction qui a appelée le formulaire peut en récupérer les résultats dans l'IndexedSeq "result"
-					form_accepted = true
-					visible = false
-				}
-				else {
-					println("Les réponses aux formulaires ne sont pas dans les bornes définies")
-				
-				}
-			}
-			else {
-				println("Certains des champs du formulaire sont vides")
-			}
-			
-
-		}
-
-		visible = true
-	}
-	else {
-		println("Anormal: La classe Number_Form a été instanciée avec deux listes de tailles différentes")
-		println(fields_names_list.length)
-		println(fields_bounds_list.length)
 	}
 }
 //La classe Form est une version améliorée de la classe Number_Form dans l'idée (mais ces deux classes sont indépendantes et s'utilisent différemment)
@@ -197,60 +121,39 @@ class Form(titre : String, nb_fields_def_list: IndexedSeq[(String,Int,Int)], com
 
 		}
 		def submit = {
-			//publish(new EditDone(null))
-			//Construction de nb_fields_results (IndexedSeq contenant les résultats des champs numériques)
-			/*if(!no_nb_fields) {	//#Inutile car les Secured_Number_Fields empéchent de laisser des champs vides
-				var nonempty_condition = true
-				for (i <- 0 to nb_fields_results.length -1) { // Sert à vérifier que tout les champs du formulaire ont été remplis avant le clic sur le bouton "fini"
-					if (nb_fields_list(i).text.length <= 0){
-						nonempty_condition = false
+			nb_fields_results = nb_fields_list map (nb_field => nb_field.text.toInt)
+			special_condition(nb_fields_results) match {
+				case "OK" => {
+					// Le formulaire a été correctement remplis, on "supprime la fenetre du formulaire et 
+					// la fonction qui a appelée le formulaire peut en récupérer les résultats dans l'IndexedSeq "nb_fields_results"
+					form_accepted = true
+					this_form.visible = false
+				}
+				case error_message => {
+					//Les réponses aux champs numériques du formulaire ne satisfont pas la special_condition
+					//On remet les valeurs de tout les champs numériques à leurs valeurs par défaut et
+					//on affiche une fenetre contenant le message d'erreur renvoyé par special_condition.
+					//Cette fenetre disparait quand on clique sur le bouton
+					for (i <- 0 until nb_fields_list.length) {
 						nb_fields_def_list(i) match {
 							case (field_name, inf_bound, sup_bound) =>
 								nb_fields_list(i).text = ((inf_bound + sup_bound)/2).toString
-						}
-
+							}
 					}
-				}
-				if (nonempty_condition == true) {*/
-					nb_fields_results = nb_fields_list map (nb_field => nb_field.text.toInt)
-					special_condition(nb_fields_results) match {
-						case "OK" => {
-							// Le formulaire a été correctement remplis, on "supprime la fenetre du formulaire et 
-							// la fonction qui a appelée le formulaire peut en récupérer les résultats dans l'IndexedSeq "nb_fields_results"
-							form_accepted = true
-							this_form.visible = false
+					var error_message_window = new Dialog {
+						modal = true
+						val this_dialog = this
+						title = "Formulaire mal remplis"
+						def close_error_window ={
+							this_dialog.visible = false
 						}
-						case error_message => {
-							//Les réponses aux champs numériques du formulaire ne satisfont pas la special_condition
-							//On remet les valeurs de tout les champs numériques à leurs valeurs par défaut et
-							//on affiche une fenetre contenant le message d'erreur renvoyé par special_condition.
-							//Cette fenetre disparait quand on clique sur le bouton
-							for (i <- 0 until nb_fields_list.length) {
-								nb_fields_def_list(i) match {
-									case (field_name, inf_bound, sup_bound) =>
-										nb_fields_list(i).text = ((inf_bound + sup_bound)/2).toString
-									}
-							}
-							var error_message_window = new Dialog {
-								modal = true
-								val this_dialog = this
-								title = "Formulaire mal remplis"
-								def close_error_window ={
-									this_dialog.visible = false
-								}
-								contents = new Button(error_message) {
-									action = Action(error_message)(close_error_window)
-								}
-							}
-							error_message_window.visible = true
+						contents = new Button(error_message) {
+							action = Action(error_message)(close_error_window)
 						}
-					}	
-				/*	//#Inutile car les Secured_Number_Fields empéchent de laisser des champs vides								
+					}
+					error_message_window.visible = true
 				}
-				else {
-					println("Certains des champs du formulaire sont vides")
-				}
-			}*/
+			}	
 			//Construction de comboboxes_results (IndexedSeq contenant les résultats des comboboxes)
 			if (!no_comboboxes) {
 				comboboxes_results = comboboxes_list map (combobox => combobox.item)
@@ -258,6 +161,7 @@ class Form(titre : String, nb_fields_def_list: IndexedSeq[(String,Int,Int)], com
 		}
 	}
 	contents = form_panel
+	centerOnScreen()
 	visible = true
 }
 }	//Accolade fermante du package GUI
