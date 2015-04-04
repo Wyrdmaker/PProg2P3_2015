@@ -42,13 +42,13 @@ class Grid[Game_Label_Class <: Grid_Label] (game: Game) extends GridPanel(game.n
 	//Renvoit le label de la case (x,y) (x et y commencent à 0)
 	def access_xy(x: Int, y: Int) ={
 		val n = y*nb_of_cols + x
-		if (n < 0 || n > nb_of_cols*nb_of_rows) {println("Anormal: on a donné à access_xy de Grid de coordonnées n'étant pas dans la grille")}
+		if (n < 0 || n > nb_of_cols*nb_of_rows) {println("Anormal: on a demandé à access_xy de Grid un label n'étant pas dans la grille")}
 		contents(y*nb_of_cols + x).asInstanceOf[Game_Label_Class]
 
 	}
 	//Renvoit le label de numéro n
 	def access_n(n: Int) ={
-		if (n < 0 || n > nb_of_cols*nb_of_rows) {println("Anormal: on a donné à access_n de Grid de coordonnées n'étant pas dans la grille")}
+		if (n < 0 || n > nb_of_cols*nb_of_rows) {println("Anormal: on a demandé à access_n de Grid un label n'étant pas dans la grille")}
 		contents(n).asInstanceOf[Game_Label_Class]
 	}
 	//Renvoit la liste des labels de la grille
@@ -79,7 +79,7 @@ case class Border_Grid_Horizontal extends Border_Grid_Orientation
 case class Border_Grid_Vertical extends Border_Grid_Orientation
 
 
-class Border_Grid[Label_Class <: Label] (game: Game, /*length:Int, lb_factory: (() => Label_Class),*/ orientation: Border_Grid_Orientation/*, square_size_x:Int, square_size_y:Int*/) extends GridPanel(1, 1){
+class Border_Grid[Label_Class <: Label] (game: Game, orientation: Border_Grid_Orientation) extends GridPanel(1, 1){
 	val nb_of_cols = game.nb_of_cols
 	val nb_of_rows = game.nb_of_rows
 	var length: Int = 0 
@@ -92,14 +92,10 @@ class Border_Grid[Label_Class <: Label] (game: Game, /*length:Int, lb_factory: (
 		contents += {game.gblb_factory}
 	}
 	minimumSize = new Dimension(game.square_size_x * length, game.square_size_y)
-
-	/*//Test
-	revalidate()
-	repaint()*/
 	
 	//Renvoit le label de numéro n
 	def access_n(n: Int) ={
-		//contents(n + nb_of_cols+3 + 2*(n/nb_of_cols)).asInstanceOf[Game_Label_Class]
+		if (n < 0 || n > (length-1)) {println("Anormal: on a demandé à access_n de Border_Grid un label n'étant pas dans la grille")}
 		contents(n).asInstanceOf[Label_Class]
 	}
 	//Renvoit la liste des labels de la grille

@@ -23,12 +23,12 @@
 
 \begin{document}
 \maketitle
-\textbf{Abstract :} Dans cette phase, nous avons implémenté les jeux Tent, Towers, Flip et Life en utilisant les fonctionalités graphiques disponibles dans notre interface GUI.
+\textbf{Abstract :} Dans cette phase, nous avons implémenté les jeux Tent, Towers et Flip en utilisant les fonctionalités graphiques disponibles dans notre interface GUI.
 
-\subsection*{Modifications}
+\subsection*{Modifications apportées à l'interface graphique}
 \begin{itemize}
-\item Les nouveaux jeux requéraient l'ajout de bordures de label sur les côtés de la grille. Elles devaient être indépendantes du reste de la grille car leur comportement (non cliquable, couleur différente) différait des labels habituels. Par ailleurs, les options de génération d'une grille ne devaient pas changer (taille) et chaque jeu utilisait de façon différente cette nouvelle fonctionnalité (aucune bordure, seulement en bas et à droite, partout). Nous avons donc implémenté une nouvelle structure gérant ces différents cas sans altérer le fonctionnement habituel de GUI.
-\item Certains jeux n'étaient utilisables que dans une configuration de grille carrée, nous avons du gérer ce cas particuliers qui consistait à fixer une coordonnée en fonction de l'autre.
+\item Les nouveaux jeux requéraient l'ajout de labels sur les côtés de la grille, pour afficher des conditions. Ces bordures de labels devaient être indépendantes de la grille et contenir un autre type de labels car leur comportement (non cliquable, couleur différente) différait. Par ailleurs, les options de génération d'une grille ne devaient pas changer (taille) et chaque jeu utilisait de façon différente cette nouvelle fonctionnalité (aucune bordure, seulement en bas et à droite, partout). Nous avons donc implémenté une nouvelle structure gérant ces différents cas sans altérer le fonctionnement habituel de GUI. Il s'agit de plusieurs fonctions fournies par le contenu graphique généré pour un jeu (Game-Frame-Content), que le jeu peut appeler lors du lancement d'une nouvelle partie pour obtenir les bordures de labels qu'il souhaite. Ces bordures sont remplies avec des labels de la classe Game-Border-Label-Class, définie par le jeu.
+\item Pour certains jeux, le menu de partie custom généré par l'interface graphique permettait de générer des grilles rectangulaires pour des jeux devant se jouer sur des grilles carrées. Dorénavant, chaque jeu doit définir deux méthodes permettant à l'interface graphique de connaître la largeur et la hauteur de la grille.
 \end{itemize}
 
 \end{document}
