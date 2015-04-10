@@ -149,8 +149,12 @@ class Form(titre : String, nb_fields_def_list: IndexedSeq[(String,Int,Int)], com
 						}
 						contents = new Button(error_message) {
 							action = Action(error_message)(close_error_window)
+							opaque = true
+							background = GUI_Mood.b_colour
+							foreground = GUI_Mood.f_colour
 						}
 					}
+					error_message_window.centerOnScreen()
 					error_message_window.visible = true
 				}
 			}	
