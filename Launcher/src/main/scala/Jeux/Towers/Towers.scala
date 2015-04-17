@@ -83,7 +83,10 @@ object Towers extends Game{
 	def gblb_factory () = {new Game_Border_Label_Class}
 	def about_frame_factory () = { new Towers_About_Frame }
 	def help_frame_factory () = { new Towers_Help_Frame }
-		var border_labels : Array[Seq[Game_Border_Label_Class]] = Array()
+	var border_labels : Array[Seq[Game_Border_Label_Class]] = Array()
+
+	main_character_text_on_launching = main_character_text_on_launching ++ Array("Mettons à l'épreuve tes talents d'urbaniste.","Les maires ont vraiment des demandes bizarres parfois.")
+	main_character_text_on_win = main_character_text_on_win ++ Array("Et comment on fait pour accéder aux tours du milieu maintenant ?", "Une nouvelle ville à écraser sous ma botte !","Et les espaces verts ?")
 
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(4),IndexedSeq("Facile", "Classique")),
