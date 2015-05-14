@@ -86,7 +86,7 @@ object Demineur extends Game{
 
 	//##Game parameters##
 	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 4, 25), ("Hauteur", 0, 4, 25), ("Mines", 0, 10, 10))
-	var string_game_parameters_def_list = IndexedSeq(("Difficulté", "Facile", IndexedSeq("Facile", "Moyenne", "Difficile", "Absurde")), ("Mode de Couleur", "Classique", IndexedSeq("Classique", "Creepy-Glauque", "RVB", "Automne", "Océan")))
+	var string_game_parameters_def_list = IndexedSeq(("Difficulté", "Facile", IndexedSeq("Facile", "Moyenne", "Difficile", "Absurde")), ("Mode de Couleur", "Classique", IndexedSeq("Classique", "Creepy-Glauque", "RVB", "Automne", "Océan")), ("Mode Débug Solveur", "Désactivé", IndexedSeq("Désactivé","Activé")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def nb_of_bombs = numeric_game_parameters_def_list(2)._2 //Ces deux fonctions réalisent un alias du champd valeur du 3ième paramètre numérique du Démineur
@@ -107,9 +107,9 @@ object Demineur extends Game{
 	main_character_text_on_win = main_character_text_on_win ++ Array("Et un champ de mines nettoyé. Un !")
 
 	val game_game_mode_list = IndexedSeq(
-		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique")),
-		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique")),
-		Game_Mode(IndexedSeq(16, 16, 99),IndexedSeq("Difficile", "Classique"))	
+		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique", "Désactivé")),
+		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique", "Désactivé")),
+		Game_Mode(IndexedSeq(16, 16, 99),IndexedSeq("Difficile", "Classique", "Désactivé"))	
 	)
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]) ={ //form_nb_fields_result(0) = nb_of_cols, form_nb_fields_result(1) = nb_of_rows, form_nb_fields_result(2) = nb_of_bombs
 		//val return_value = form_nb_fields_result(1) * form_nb_fields_result(0) > 9 && form_nb_fields_result(2) + 9 <= form_nb_fields_result(1) * form_nb_fields_result(0)
@@ -193,12 +193,167 @@ object Demineur extends Game{
 			label_1.foreground = DGE.dark_golden_rod1
 	}
 
+	def debug_mode ():Boolean={
+		string_game_parameters_def_list(2)._2==("Activé")
+	}
+
 	//Est appelée lors du premier clic sur un label.
 	//Place les bombes parmi les labels de la grille (autre que le label cliqué et ses 8 voisins).
 	//Indique ensuite à chaque label (autre que ceux contenant une bombe) le nombre de ses voisins contenant une bombe -> label.value
 	def place_bombs(n_origin_label : Int) = {
-		val grid = game_frame_content.grid
-		var bombs_left = nb_of_bombs
+		case class Interruption_in_Debug_Mode(message:String) extends Throwable{}
+		def place_bombs_action()={
+
+			val grid = game_frame_content.grid
+			var bombs_left = nb_of_bombs 
+
+			def debug_stop(message:String) ={
+				if(debug_mode){
+					println(message + "  (Press Enter to continue/q to quit)")
+					val line = Console.readLine
+					if(line=="q"){/*throw new Interruption_in_Debug_Mode("Interruption_in_Debug_Mode")*/ System.exit(0)}
+				}
+			}
+
+			var game_board: Array[String] = Array()
+			//Tableau stockant les valeurs des cases
+			//la valeur d'une case est: - "?" pour les cases non initialisées
+			//							- "#" pour les cases non initialisées ne devant pas recevoir de bombes (celles adjacentes à la première case cliquée)
+			//							- "b" si la case contient une bombe
+			//							- "n" où n est le nombre de bombes adjacentes (diagonales incluses)
+			def generate_a_game_board () ={
+				if(debug_mode()){println("Generation")}
+				//Remplit game_board en plaçant les bombes et en calculant les valeurs des cases
+				bombs_left = nb_of_bombs
+				game_board = Array.fill(nb_of_cols*nb_of_rows){("?")}
+				neighbour(n_origin_label).foreach(n => game_board(n) = "#")
+				while (bombs_left > 0) {
+					var random = random_gen.nextInt(nb_of_rows * nb_of_cols)
+					if (game_board(random) == "?") {
+						game_board(random) = "b"
+						bombs_left -= 1
+					}
+				}
+				
+				for (n <- 0 to (nb_of_rows*nb_of_cols-1)){
+					val value = game_board(n)
+					if(value != "b"){
+						var new_value = 0
+						neighbour(n).foreach(number =>{
+							if (game_board(number) == "b") {new_value +=1}
+						})
+						game_board(n) = new_value.toString
+					}
+				}		
+			}
+			val difficulty:Int = string_game_parameters_def_list(0)._2 match{
+				case "Facile" => 0
+				case "Moyenne" => 1
+				case "Difficile" => 2
+				case "Absurde" => 3
+			}
+			def apply_game_board() ={
+				//Affecte aux labels de la grille les valeurs qu'ils ont dans game_board
+				game_frame_content.grid.get_contents.foreach(label => label.value = game_board(label.numero))
+			}
+
+			def solve_game_board ():Boolean ={
+				if(debug_mode()){println("Résolution débutée")}
+				//Essaye de résoudre la partie définit par game_board et renvoit true si réussite et false si échec
+
+				val deduction_board: Array[Int] = Array.fill(nb_of_cols*nb_of_rows){0}
+				//Tableau stockant les connaissances du solveur sur le game_board 
+				//Pour chaque case: 1 => Le solveur connait la valeur de la case
+				//					0 => Le solveur ignore la valeur de la case
+				val unknown_neighbours_board: Array[Int] = Array.fill(nb_of_cols*nb_of_rows){0}
+				//Tableau stockant le nombre de cases voisines inconnues de chaque case
+				for (n <- 0 to (nb_of_rows*nb_of_cols-1)){unknown_neighbours_board(n)=(neighbour(n)).length}
+				//Remplissage du tableau unknown_neighbours_board
+				var nb_of_found_bombs = 0
+				val knowledge_frontier: scala.collection.mutable.Set[Int] = collection.mutable.Set()
+				//Stocke les numéros des cases connues du solveur tq au moins une case voisine (diagonales incluses) soit inconnue
+				def discovered(n_discovered_square:Int)={
+					//Fonction à appeler lorsque le solveur a déterminé la valeur d'une case
+					if(debug_mode){
+						game_frame_content.grid.access_n(n_discovered_square).debug_set_purple_border()
+						debug_stop("Discovery")
+						game_frame_content.grid.access_n(n_discovered_square).debug_reveal()
+					}
+					deduction_board(n_discovered_square)=1
+					neighbour(n_discovered_square).foreach(n => {
+						unknown_neighbours_board(n)-=1
+						if (unknown_neighbours_board(n)<=7){knowledge_frontier += n}
+						if (unknown_neighbours_board(n)==0){knowledge_frontier -= n}
+					})
+					if(debug_mode){game_frame_content.grid.access_n(n_discovered_square).debug_set_black_border()}
+				}
+				def spread_knowledge(n:Int):Unit={
+					//Appliqué sur un label connu du solveur et ayant une valeur de 0, découvre les cases adjacentes et récursivement si les valeurs des cases dévoilées sont 0
+					if(deduction_board(n)==1 && game_board(n)=="0"){
+						neighbour(n).foreach(m => {if(deduction_board(m)==0){discovered(m);spread_knowledge(m)}})
+					}
+				}
+				discovered(n_origin_label)
+				spread_knowledge(n_origin_label)
+
+				return(false)
+			}
+
+			var nb_of_game_creation_tries = 0
+			val nb_of_game_creation_tries_limit = 20
+			var game_solved = false
+			if(debug_mode()){println("Difficulté: " + difficulty)}
+			while((nb_of_game_creation_tries < nb_of_game_creation_tries_limit) && !game_solved){
+				generate_a_game_board()
+				if(debug_mode){
+					game_frame_content.grid.get_contents().foreach(label => label.debug_hide())
+					apply_game_board()
+				}
+				game_solved = solve_game_board()
+				if(debug_mode){if(game_solved){println("Résolution réussie")} else {println("Résolution échouée")}}
+				nb_of_game_creation_tries += 1
+				debug_stop("Boucle Création-Résolution")
+				//if(debug_mode){game_frame_content.grid.access_n(random_gen.nextInt(nb_of_cols*nb_of_rows)).background = DGE.dark_golden_rod1}
+				//if(debug_mode){game_frame_content.grid.access_n(random_gen.nextInt(nb_of_cols*nb_of_rows)).reveal()}
+				//if(debug_mode){game_frame_content.grid.access_n(random_gen.nextInt(nb_of_cols*nb_of_rows)).hide()}
+			}
+			apply_game_board()
+		}
+		/*var interruption_in_debug_mode_launched = false
+		var game_creation_thread = new Thread {
+			override def run {
+				try {
+					place_bombs_action()					
+				}	catch {
+					case e: Interruption_in_Debug_Mode => {
+						println("Interruption on Debug Mode")
+						interruption_in_debug_mode_launched = true
+					}
+				}
+
+			}
+		}*/
+
+		var game_creation_thread = new Thread {
+			override def run {
+				place_bombs_action()					
+			}
+		}
+
+		if(debug_mode){
+			game_frame_content.grid.get_contents.foreach(label => label.debug_deaf_to_mouse())
+			game_frame_content.grid.access_n(n_origin_label).debug_set_black_border()
+			//##
+
+			game_creation_thread.start()
+			println("thread start")
+			//##
+		}
+		else{place_bombs_action()}
+
+
+
+		/*
 		neighbour(n_origin_label).foreach(n => grid.access_n(n).value = "#")
 		while (bombs_left > 0) {
 			var random = random_gen.nextInt(nb_of_rows * nb_of_cols)
@@ -219,6 +374,8 @@ object Demineur extends Game{
 				label.value = new_value.toString
 			}
 		)
+
+		*/
 
 	}
 	//Un label qui se découvre avec une valeur égale à 0 (ie aucun de ses voisins ne contient de bombes) appelle cette fonction pour que ses voisins se découvrent

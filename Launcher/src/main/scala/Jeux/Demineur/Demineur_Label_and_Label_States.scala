@@ -86,6 +86,17 @@ class Demineur_Label extends Grid_Label with Demineur_Label_States_Manager /*wit
 	font = new Font("Arial", 1, 32) // 0 pour normal, 1 pour gras, 2 pour italique ...
 	preferredSize = new Dimension(Demineur.square_size_x, Demineur.square_size_y)
 
+	//## Utilisé dans place_bombs lorsque le debug_mode est actif
+	//Rend le label sourd à la souris, utilisé dans le mode débug du solveur
+	def debug_deaf_to_mouse()={deafTo(mouse.moves, mouse.clicks)}
+	def debug_set_black_border()={border = DGE.border(DGE.black)}
+	def debug_set_purple_border()={border = DGE.border(DGE.violet_fluo,3)}
+	def debug_set_blue_border()={border = DGE.border(DGE.blue,3)}
+	def debug_reveal()={text=value;change_to_state(this,"explored")}
+	def debug_hide()={text="";change_to_state(this,"unexplored")}
+	//##
+
+
 	init()
 
 	def init() : Unit = {
@@ -136,6 +147,11 @@ class Demineur_Label extends Grid_Label with Demineur_Label_States_Manager /*wit
 			if (value == "?") {//ie ce label est le premier à etre cliqué dans cette partie
 				Demineur.place_bombs(numero)
 			}
+
+			//##
+			if(Demineur.debug_mode()){return ()}
+			//##
+
 			change_to_state(this,"explored")
 			value match {
 				case "b" =>
@@ -147,7 +163,8 @@ class Demineur_Label extends Grid_Label with Demineur_Label_States_Manager /*wit
 					Demineur.spread(numero)
 				case _   =>
 					text = value
-					foreground = DGE.demineur_color_list(text.toInt)
+					//Inutile car déjà fait dans change_to_state(this,"empty")
+					//foreground = DGE.demineur_color_list(text.toInt)
 			}
 		}
 	}
