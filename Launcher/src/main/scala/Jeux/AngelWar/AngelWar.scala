@@ -212,7 +212,7 @@ object AngelWar extends Game{
 				nb_of_trees = (ceil((nb_of_cols * nb_of_rows) / 5) - 1).toInt
 			}
 		}
-		game_board = solved_board
+		game_board = solved_board.clone()
 
 		//Construire les tableaux rows_conditions et cols_conditions en comptant les tentes
 		rows_conditions = Array()
@@ -291,6 +291,7 @@ object AngelWar extends Game{
 			check_rows_condition(0,x)//c'est bien x mais vu comme un y
 			check_cols_condition(x,0)
 			for (y <- 0 until nb_of_rows){
+				if(game_board(x)(y)(0)==2){remove_tent(x,y)}
 				game_frame_content.grid.access_xy(x, y).init(game_board(x)(y)(0))
 			}	
 		}
@@ -308,7 +309,7 @@ object AngelWar extends Game{
 	//##AngelWar Variables## // Variables internes au AngelWar
 	//solved_board et game_board sont des matrices de tableaux de quatres entiers:
 	//(type_de_la_case, case_libre_pour_une_tente?, x_de_la_case_associée, y_de_la_case_associée)	
-	//type_de_la_case: 0 pour "empty" | 1 pour "tent" | 2 pour "tree" | 3 pour les labels de condition 
+	//type_de_la_case: 0 pour "empty" | 1 pour "tree" | 2 pour "tent" | 3 pour les labels de condition 
 	//case_libre_pour_une_tente vaut 1 s'il n'y a aucune tente sur une case voisine (diagonales incluses) et 0 sinon
 	//case_associée: arbre associé à une tente ou tente associée à un arbre (-1 signifie pas de case associée)
 	var solved_board: Array[Array[Array[Int]]] = Array()	//Plateau résolu, généré en début de partie
