@@ -329,7 +329,7 @@ object Demineur extends Game{
 				def rule_easy_1 (n:Int):List[(Int,Boolean)]={
 					//rule_number = 01
 					/*Essaie d'appliquer la règle de déduction:
-					"Lorsque le nombre de voisins non-dévoilés est égal au numéro de la case, tout les voisins sont des mines"
+					"Lorsque le nombre de voisins non-dévoilés (- le nombre de voisins mines dévoilés) est égal au numéro de la case, tout les voisins sont des mines"
 					Renvoie un tableau contenant les découvertes réalisées (format: (n°case,bombe?))
 					*/
 					if(rule_easy_1_application_board(n)==true){println("Attention: on a appliqué rule_easy_1 sur une case qui en avait déjà fait l'objet")}
@@ -408,6 +408,7 @@ object Demineur extends Game{
 						if(rule_result.length != 0){
 							//La règle a déduit quelque chose
 							println("règle facile 1")
+							println(rule_result)
 							rule_result.foreach(n_case_bomb_inference =>{
 								if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
 									//Déduction fausse
@@ -422,6 +423,7 @@ object Demineur extends Game{
 						if(rule_result.length != 0){
 							//La règle a déduit quelque chose
 							println("règle facile 2")
+							println(rule_result)
 							rule_result.foreach(n_case_bomb_inference =>{
 								if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
 									//Déduction fausse
