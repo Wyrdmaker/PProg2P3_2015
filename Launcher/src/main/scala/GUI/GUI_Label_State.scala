@@ -21,7 +21,7 @@ abstract class Label_State[Game_Label_Class <: Grid_Label] {
 	val background: Color
 	val foreground: Color
 	val text: String
-	var changing_text_enabled: Boolean = true
+	var changing_text_enabled: Boolean = true //Si true, un changement d'état vers cet état ne changera pas le text du label
 	var custom_painting: ((Graphics2D,Label) => Unit) = ((g:Graphics2D, l:UIElement) => ())
 	//var icon: javax.swing.Icon = null
 

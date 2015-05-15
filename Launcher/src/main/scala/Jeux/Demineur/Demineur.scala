@@ -109,7 +109,10 @@ object Demineur extends Game{
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique", "Désactivé")),
 		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique", "Désactivé")),
-		Game_Mode(IndexedSeq(16, 16, 99),IndexedSeq("Difficile", "Classique", "Désactivé"))	
+		Game_Mode(IndexedSeq(16, 16, 99),IndexedSeq("Difficile", "Classique", "Désactivé")),
+		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique", "Activé")),
+		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique", "Activé")),
+		Game_Mode(IndexedSeq(16, 16, 99),IndexedSeq("Difficile", "Classique", "Activé"))
 	)
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]) ={ //form_nb_fields_result(0) = nb_of_cols, form_nb_fields_result(1) = nb_of_rows, form_nb_fields_result(2) = nb_of_bombs
 		//val return_value = form_nb_fields_result(1) * form_nb_fields_result(0) > 9 && form_nb_fields_result(2) + 9 <= form_nb_fields_result(1) * form_nb_fields_result(0)
@@ -207,13 +210,7 @@ object Demineur extends Game{
 			val grid = game_frame_content.grid
 			var bombs_left = nb_of_bombs 
 
-			def debug_stop(message:String) ={
-				if(debug_mode){
-					println(message + "  (Press Enter to continue/q to quit)")
-					val line = Console.readLine
-					if(line=="q"){/*throw new Interruption_in_Debug_Mode("Interruption_in_Debug_Mode")*/ System.exit(0)}
-				}
-			}
+			//Ancienne position de la fonction debug_stop
 
 			var game_board: Array[String] = Array()
 			//Tableau stockant les valeurs des cases
@@ -258,6 +255,7 @@ object Demineur extends Game{
 			}
 
 			def solve_game_board ():Boolean ={
+
 				if(debug_mode()){println("Résolution débutée")}
 				//Essaye de résoudre la partie définit par game_board et renvoit true si réussite et false si échec
 
@@ -272,31 +270,187 @@ object Demineur extends Game{
 				var nb_of_found_bombs = 0
 				val knowledge_frontier: scala.collection.mutable.Set[Int] = collection.mutable.Set()
 				//Stocke les numéros des cases connues du solveur tq au moins une case voisine (diagonales incluses) soit inconnue
+				val rule_easy_1_application_board: Array[Boolean] = Array.fill(nb_of_cols*nb_of_rows){false}
+				//tableau stockant pour chaque case si la règle easy 1 a été appliquée dessus
+				val rule_easy_2_application_board: Array[Boolean] = Array.fill(nb_of_cols*nb_of_rows){false}
+				//tableau stockant pour chaque case si la règle easy 2 a été appliquée dessus
+				for (i <- 0 to (nb_of_rows*nb_of_cols-1)){
+					//Sert à empécher d'essayer d'appliquer les règles faciles 1 et 2 sur des cases de bombes
+					if(game_board(i)=="b"){
+						rule_easy_1_application_board(i)=true
+						rule_easy_2_application_board(i)=true
+					}
+				}
+				var is_game_solved = false
+				//true si le solveur a réussi à trouver les mines
+				//Ne plus déclarer de val/var non-encapsulées à partir d'ici. Sinon, ça ne compile pas: "forward reference extends over definition of val/var ___"
+				def kf_add(n:Int)={knowledge_frontier += n; if(debug_mode){set_kf_border(n)}}
+				def kf_rem(n:Int)={knowledge_frontier -= n; if(debug_mode){set_default_border(n)}}
+				def set_kf_border(n:Int)={game_frame_content.grid.access_n(n).debug_set_blue_border()}
+				def set_discovery_border(n:Int)={game_frame_content.grid.access_n(n).debug_set_purple_border()}
+
+				def known(n:Int):Boolean={deduction_board(n)==1}
+				//Renvoie vrai si la case n est connue du solveur
+				def add_knowledge(n:Int)={deduction_board(n)=1}
+				//Change le contenu de deduction_board pour refléter le fait que le solveur ait déduit une nouvelle case
+				def value(n:Int):String={game_board(n)}
+				//renvoie la valeur d'une case
+
+				def set_default_border(n:Int)={game_frame_content.grid.access_n(n).debug_set_black_border()}
 				def discovered(n_discovered_square:Int)={
 					//Fonction à appeler lorsque le solveur a déterminé la valeur d'une case
 					if(debug_mode){
-						game_frame_content.grid.access_n(n_discovered_square).debug_set_purple_border()
-						debug_stop("Discovery")
+						set_discovery_border(n_discovered_square)
+						//game_frame_content.grid.access_n(n_discovered_square).debug_set_purple_border()
+						debug_stop("Discovery ("+ (n_discovered_square%nb_of_cols)+","+(n_discovered_square/nb_of_cols)+")")
 						game_frame_content.grid.access_n(n_discovered_square).debug_reveal()
+						if(knowledge_frontier(n_discovered_square)){set_kf_border(n_discovered_square)}
 					}
-					deduction_board(n_discovered_square)=1
+					add_knowledge(n_discovered_square)
 					neighbour(n_discovered_square).foreach(n => {
 						unknown_neighbours_board(n)-=1
-						if (unknown_neighbours_board(n)<=7){knowledge_frontier += n}
-						if (unknown_neighbours_board(n)==0){knowledge_frontier -= n}
+						if (unknown_neighbours_board(n)<=7 && known(n)){kf_add(n)/*knowledge_frontier += n*/}
+						if (unknown_neighbours_board(n)==0 && known(n)){kf_rem(n)/*knowledge_frontier -= n*/}
 					})
-					if(debug_mode){game_frame_content.grid.access_n(n_discovered_square).debug_set_black_border()}
+					if(debug_mode){
+						if(unknown_neighbours_board(n_discovered_square)<=7){kf_add(n_discovered_square)}
+					}
+					//if(debug_mode){set_default_border(n_discovered_square);/*game_frame_content.grid.access_n(n_discovered_square).debug_set_black_border()*/}
 				}
 				def spread_knowledge(n:Int):Unit={
 					//Appliqué sur un label connu du solveur et ayant une valeur de 0, découvre les cases adjacentes et récursivement si les valeurs des cases dévoilées sont 0
-					if(deduction_board(n)==1 && game_board(n)=="0"){
-						neighbour(n).foreach(m => {if(deduction_board(m)==0){discovered(m);spread_knowledge(m)}})
+					if(known(n) && game_board(n)=="0"){
+						neighbour(n).foreach(m => {if(!known(m)){discovered(m);spread_knowledge(m)}})
 					}
 				}
 				discovered(n_origin_label)
 				spread_knowledge(n_origin_label)
 
-				return(false)
+				def rule_easy_1 (n:Int):List[(Int,Boolean)]={
+					//rule_number = 01
+					/*Essaie d'appliquer la règle de déduction:
+					"Lorsque le nombre de voisins non-dévoilés est égal au numéro de la case, tout les voisins sont des mines"
+					Renvoie un tableau contenant les découvertes réalisées (format: (n°case,bombe?))
+					*/
+					if(rule_easy_1_application_board(n)==true){println("Attention: on a appliqué rule_easy_1 sur une case qui en avait déjà fait l'objet")}
+					rule_easy_1_application_board(n)=true
+					val unknown_neighbours = neighbour(n).filter(m => (!known(m)))
+					var return_value: List[(Int,Boolean)] = List()
+					if(unknown_neighbours.length==value(n).toInt){
+						return_value = unknown_neighbours.map(o => (o,true))
+						//unknown_neighbours.foreach(o => return_value += (o,true))
+					}
+					return return_value
+				}
+
+				def rule_easy_2 (n:Int):List[(Int,Boolean)]={
+					//rule number = 02
+					/*Essaie d'appliquer la règle de déduction:
+					"Lorsque le nombre de mines connues parmi les voisins est égal au numéro de la case, tout les voisins dont des mines"
+					Renvoie un tableau contenant les découvertes réalisées (format: (n°case,bombe?))
+					*/
+					if(rule_easy_2_application_board(n)==true){println("Attention: on a appliqué rule_easy_2 sur une case qui en avait déjà fait l'objet")}
+					rule_easy_2_application_board(n)=true
+					var return_value: List[(Int,Boolean)] = List()
+					val neighbours = neighbour(n)
+					val unknown_neighbours = neighbours.filter(m => (!known(m)))
+					val nb_of_known_bomb_neighbours = neighbours.filter(m => ((known(m))&&(value(m)=="b"))).length
+					if(nb_of_known_bomb_neighbours==value(n).toInt){
+						return_value = unknown_neighbours.map(o => (o,false))
+						//unknown_neighbours.foreach(o => return_value += (o,false))
+					}
+					return return_value
+				}
+
+				def next_square_for_rule_easy_1 ():Int={
+					//renvoie la première case sur laquelle on puisse appliquer rule_easy_1. Renvoie -1 si une telle case n'existe pas
+					knowledge_frontier.find(n => !rule_easy_1_application_board(n)) match{
+						case Some(m) => m
+						case None => -1
+					}
+				}
+				def next_square_for_rule_easy_2 ():Int={
+					//renvoie la première case sur laquelle on puisse appliquer rule_easy_2. Renvoie -1 si une telle case n'existe pas
+					knowledge_frontier.find(n => !rule_easy_2_application_board(n)) match{
+						case Some(m) => m
+						case None => -1
+					}
+				}
+
+				def check_inference(n_inferred_square:Int,bomb_inference:Boolean):Boolean={
+					//Vérifie une déduction d'une règle en comparant avec le game_board
+					if(!((game_board(n_inferred_square)=="b")==bomb_inference)){
+						//Déduction fausse
+						return false
+					}
+					return true
+				}
+
+				def handle_rule_discovery(n_discovered_square:Int,bomb_infered:Boolean)={
+					discovered(n_discovered_square)
+					neighbour(n_discovered_square).foreach(n => {
+						if(game_board(n)!="b"){
+							rule_easy_1_application_board(n)=false
+							rule_easy_2_application_board(n)=false
+						}
+					})
+					if(game_board(n_discovered_square)=="b"){
+						nb_of_found_bombs+=1
+						if(nb_of_found_bombs==nb_of_bombs){is_game_solved=true}
+					}
+				}
+
+				//Partie applicateur de règles
+				while(((next_square_for_rule_easy_1()!= -1)||(next_square_for_rule_easy_2()!= -1))&& !is_game_solved){
+					//var n = 0
+					while(/*(n = */next_square_for_rule_easy_1()/*)*/!= -1){
+						val rule_result = rule_easy_1(next_square_for_rule_easy_1()/*n*/)
+						if(rule_result.length != 0){
+							//La règle a déduit quelque chose
+							println("règle facile 1")
+							rule_result.foreach(n_case_bomb_inference =>{
+								if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
+									//Déduction fausse
+									println("La règle facile 1 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
+								}
+								handle_rule_discovery(n_case_bomb_inference._1,n_case_bomb_inference._2)
+							})							
+						}
+					}
+					while(/*(n = */next_square_for_rule_easy_2()/*)*/!= -1){
+						val rule_result = rule_easy_2(next_square_for_rule_easy_2()/*n*/)
+						if(rule_result.length != 0){
+							//La règle a déduit quelque chose
+							println("règle facile 2")
+							rule_result.foreach(n_case_bomb_inference =>{
+								if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
+									//Déduction fausse
+									println("La règle facile 2 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
+								}
+								handle_rule_discovery(n_case_bomb_inference._1,n_case_bomb_inference._2)
+							})							
+						}
+					}
+				}
+
+
+				def debug_stop(message:String):Unit ={
+					if(debug_mode){
+						println(message + "  (Entrer pour continuer/q pour quitter)")
+						val line = Console.readLine
+						if(line=="q"){/*throw new Interruption_in_Debug_Mode("Interruption_in_Debug_Mode")*/ System.exit(0)}
+						if(line=="kf"){
+							println("x?")
+							val x = Console.readLine.toInt
+							println("y?")
+							val y = Console.readLine.toInt
+							println(knowledge_frontier(x + y*nb_of_cols))
+							debug_stop("Autre chose ?")}
+					}
+				}
+				
+				if(debug_mode){if(is_game_solved){debug_stop("Résolution réussie")} else {debug_stop("Résolution échouée")}}
+				return(is_game_solved)
 			}
 
 			var nb_of_game_creation_tries = 0
@@ -304,15 +458,16 @@ object Demineur extends Game{
 			var game_solved = false
 			if(debug_mode()){println("Difficulté: " + difficulty)}
 			while((nb_of_game_creation_tries < nb_of_game_creation_tries_limit) && !game_solved){
+				if(debug_mode){println("Boucle Création-Résolution")}
 				generate_a_game_board()
 				if(debug_mode){
 					game_frame_content.grid.get_contents().foreach(label => label.debug_hide())
 					apply_game_board()
 				}
 				game_solved = solve_game_board()
-				if(debug_mode){if(game_solved){println("Résolution réussie")} else {println("Résolution échouée")}}
+
 				nb_of_game_creation_tries += 1
-				debug_stop("Boucle Création-Résolution")
+
 				//if(debug_mode){game_frame_content.grid.access_n(random_gen.nextInt(nb_of_cols*nb_of_rows)).background = DGE.dark_golden_rod1}
 				//if(debug_mode){game_frame_content.grid.access_n(random_gen.nextInt(nb_of_cols*nb_of_rows)).reveal()}
 				//if(debug_mode){game_frame_content.grid.access_n(random_gen.nextInt(nb_of_cols*nb_of_rows)).hide()}
