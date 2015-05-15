@@ -299,28 +299,29 @@ object Demineur extends Game{
 				def set_default_border(n:Int)={game_frame_content.grid.access_n(n).debug_set_black_border()}
 				def discovered(n_discovered_square:Int)={
 					//Fonction à appeler lorsque le solveur a déterminé la valeur d'une case
-					if(debug_mode){
-						set_discovery_border(n_discovered_square)
-						//game_frame_content.grid.access_n(n_discovered_square).debug_set_purple_border()
-						debug_stop("Discovery ("+ (n_discovered_square%nb_of_cols)+","+(n_discovered_square/nb_of_cols)+")")
-						game_frame_content.grid.access_n(n_discovered_square).debug_reveal()
-						if(knowledge_frontier(n_discovered_square)){set_kf_border(n_discovered_square)}
-					}
-					add_knowledge(n_discovered_square)
-					neighbour(n_discovered_square).foreach(n => {
-						unknown_neighbours_board(n)-=1
-						if (unknown_neighbours_board(n)<=7 && known(n)){kf_add(n)/*knowledge_frontier += n*/}
-						if (unknown_neighbours_board(n)==0 && known(n)){kf_rem(n)/*knowledge_frontier -= n*/}
-					})
-					if(debug_mode){
+					if(!known(n_discovered_square)){
+						if(debug_mode){
+							set_discovery_border(n_discovered_square)
+							//game_frame_content.grid.access_n(n_discovered_square).debug_set_purple_border()
+							debug_stop("Découverte ("+ (n_discovered_square%nb_of_cols)+","+(n_discovered_square/nb_of_cols)+")")
+							game_frame_content.grid.access_n(n_discovered_square).debug_reveal()
+							//if(knowledge_frontier(n_discovered_square)){set_kf_border(n_discovered_square)}
+						}
+						add_knowledge(n_discovered_square)
+						neighbour(n_discovered_square).foreach(n => {
+							unknown_neighbours_board(n)-=1
+							if (unknown_neighbours_board(n)<=7 && known(n)){kf_add(n)/*knowledge_frontier += n*/}
+							if (unknown_neighbours_board(n)<=0 && known(n)){kf_rem(n)/*knowledge_frontier -= n*/}
+						})
 						if(unknown_neighbours_board(n_discovered_square)<=7){kf_add(n_discovered_square)}
+						if(unknown_neighbours_board(n_discovered_square)<=0){kf_rem(n_discovered_square)}
+						spread_knowledge(n_discovered_square)
 					}
-					//if(debug_mode){set_default_border(n_discovered_square);/*game_frame_content.grid.access_n(n_discovered_square).debug_set_black_border()*/}
 				}
 				def spread_knowledge(n:Int):Unit={
 					//Appliqué sur un label connu du solveur et ayant une valeur de 0, découvre les cases adjacentes et récursivement si les valeurs des cases dévoilées sont 0
 					if(known(n) && game_board(n)=="0"){
-						neighbour(n).foreach(m => {if(!known(m)){discovered(m);spread_knowledge(m)}})
+						neighbour(n).foreach(m => {if(!known(m)){discovered(m)/*;spread_knowledge(m)*/}})
 					}
 				}
 				discovered(n_origin_label)
@@ -329,14 +330,15 @@ object Demineur extends Game{
 				def rule_easy_1 (n:Int):List[(Int,Boolean)]={
 					//rule_number = 01
 					/*Essaie d'appliquer la règle de déduction:
-					"Lorsque le nombre de voisins non-dévoilés (- le nombre de voisins mines dévoilés) est égal au numéro de la case, tout les voisins sont des mines"
+					"Lorsque le nombre de voisins non-dévoilés est égal à la valeur de la case (- le nombre de voisins mines dévoilés), tout les voisins sont des mines"
 					Renvoie un tableau contenant les découvertes réalisées (format: (n°case,bombe?))
 					*/
 					if(rule_easy_1_application_board(n)==true){println("Attention: on a appliqué rule_easy_1 sur une case qui en avait déjà fait l'objet")}
 					rule_easy_1_application_board(n)=true
-					val unknown_neighbours = neighbour(n).filter(m => (!known(m)))
+					var nb_of_known_bomb_neighbours=0
+					val unknown_neighbours = neighbour(n).filter(m => {if((game_board(m)=="b")&&known(m)){nb_of_known_bomb_neighbours+=1};!known(m)})
 					var return_value: List[(Int,Boolean)] = List()
-					if(unknown_neighbours.length==value(n).toInt){
+					if(unknown_neighbours.length==(value(n).toInt - nb_of_known_bomb_neighbours)){
 						return_value = unknown_neighbours.map(o => (o,true))
 						//unknown_neighbours.foreach(o => return_value += (o,true))
 					}
@@ -401,39 +403,43 @@ object Demineur extends Game{
 				}
 
 				//Partie applicateur de règles
-				while(((next_square_for_rule_easy_1()!= -1)||(next_square_for_rule_easy_2()!= -1))&& !is_game_solved){
-					//var n = 0
-					while(/*(n = */next_square_for_rule_easy_1()/*)*/!= -1){
-						val rule_result = rule_easy_1(next_square_for_rule_easy_1()/*n*/)
-						if(rule_result.length != 0){
-							//La règle a déduit quelque chose
-							println("règle facile 1")
-							println(rule_result)
-							rule_result.foreach(n_case_bomb_inference =>{
-								if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
-									//Déduction fausse
-									println("La règle facile 1 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
-								}
-								handle_rule_discovery(n_case_bomb_inference._1,n_case_bomb_inference._2)
-							})							
+				def easy_rules_loop()={
+					while(((next_square_for_rule_easy_1()!= -1)||(next_square_for_rule_easy_2()!= -1))&& !is_game_solved){
+						//var n = 0
+						while(/*(n = */next_square_for_rule_easy_1()/*)*/!= -1){
+							val rule_result = rule_easy_1(next_square_for_rule_easy_1()/*n*/)
+							if(rule_result.length != 0){
+								//La règle a déduit quelque chose
+								println("règle facile 1")
+								println(rule_result)
+								rule_result.foreach(n_case_bomb_inference =>{
+									if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
+										//Déduction fausse
+										println("La règle facile 1 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
+									}
+									handle_rule_discovery(n_case_bomb_inference._1,n_case_bomb_inference._2)
+								})							
+							}
 						}
-					}
-					while(/*(n = */next_square_for_rule_easy_2()/*)*/!= -1){
-						val rule_result = rule_easy_2(next_square_for_rule_easy_2()/*n*/)
-						if(rule_result.length != 0){
-							//La règle a déduit quelque chose
-							println("règle facile 2")
-							println(rule_result)
-							rule_result.foreach(n_case_bomb_inference =>{
-								if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
-									//Déduction fausse
-									println("La règle facile 2 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
-								}
-								handle_rule_discovery(n_case_bomb_inference._1,n_case_bomb_inference._2)
-							})							
+						while(/*(n = */next_square_for_rule_easy_2()/*)*/!= -1){
+							val rule_result = rule_easy_2(next_square_for_rule_easy_2()/*n*/)
+							if(rule_result.length != 0){
+								//La règle a déduit quelque chose
+								println("règle facile 2")
+								println(rule_result)
+								rule_result.foreach(n_case_bomb_inference =>{
+									if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
+										//Déduction fausse
+										println("La règle facile 2 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
+									}
+									handle_rule_discovery(n_case_bomb_inference._1,n_case_bomb_inference._2)
+								})							
+							}
 						}
 					}
 				}
+
+				easy_rules_loop()
 
 
 				def debug_stop(message:String):Unit ={
@@ -451,7 +457,16 @@ object Demineur extends Game{
 					}
 				}
 				
-				if(debug_mode){if(is_game_solved){debug_stop("Résolution réussie")} else {debug_stop("Résolution échouée")}}
+				if(debug_mode){
+					if(is_game_solved){
+						println("Difficulté: " + difficulty)
+						debug_stop("Résolution réussie")
+					}
+					else {
+						println("Difficulté: " + difficulty)
+						debug_stop("Résolution échouée")
+					}
+				}
 				return(is_game_solved)
 			}
 
@@ -460,7 +475,7 @@ object Demineur extends Game{
 			var game_solved = false
 			if(debug_mode()){println("Difficulté: " + difficulty)}
 			while((nb_of_game_creation_tries < nb_of_game_creation_tries_limit) && !game_solved){
-				if(debug_mode){println("Boucle Création-Résolution")}
+				if(debug_mode){println("Boucle Création-Résolution, essai "+(nb_of_game_creation_tries + 1))}
 				generate_a_game_board()
 				if(debug_mode){
 					game_frame_content.grid.get_contents().foreach(label => label.debug_hide())
