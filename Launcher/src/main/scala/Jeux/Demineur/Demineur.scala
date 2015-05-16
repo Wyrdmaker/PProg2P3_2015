@@ -274,6 +274,11 @@ object Demineur extends Game{
 				//tableau stockant pour chaque case si la règle easy 1 a été appliquée dessus
 				val rule_easy_2_application_board: Array[Boolean] = Array.fill(nb_of_cols*nb_of_rows){false}
 				//tableau stockant pour chaque case si la règle easy 2 a été appliquée dessus
+				val rule_medium_1_application_board: Array[Array[Boolean]] = Array.fill(nb_of_cols*nb_of_rows){Array.fill(nb_of_cols*nb_of_rows){false}}
+				//tableau stockant pour chaque couple de case si la règle medium 1 a été appliquée dessus 
+				//(on accéde à une case du tableau en utilisant les numéros de case du couple dans l'ordre croissant)
+				val premise_board: Array[Boolean] = Array.fill(nb_of_rows*nb_of_cols){false}
+				//tableau stockant pour chaque case si c'est actuellement une prémisse ou non (sert uniquement dans un but graphique)
 				for (i <- 0 to (nb_of_rows*nb_of_cols-1)){
 					//Sert à empécher d'essayer d'appliquer les règles faciles 1 et 2 sur des cases de bombes
 					if(game_board(i)=="b"){
@@ -286,8 +291,10 @@ object Demineur extends Game{
 				//Ne plus déclarer de val/var non-encapsulées à partir d'ici. Sinon, ça ne compile pas: "forward reference extends over definition of val/var ___"
 				def kf_add(n:Int)={knowledge_frontier += n; if(debug_mode){set_kf_border(n)}}
 				def kf_rem(n:Int)={knowledge_frontier -= n; if(debug_mode){set_default_border(n)}}
-				def set_kf_border(n:Int)={game_frame_content.grid.access_n(n).debug_set_blue_border()}
+				def set_kf_border(n:Int)={if(!premise_board(n)){game_frame_content.grid.access_n(n).debug_set_blue_border()}}
 				def set_discovery_border(n:Int)={game_frame_content.grid.access_n(n).debug_set_purple_border()}
+				def set_premise_border(n:Int)={game_frame_content.grid.access_n(n).debug_set_cyan_border()}
+				def rem_premise_border(n:Int)={if(knowledge_frontier(n)){set_kf_border(n)}else{set_default_border(n)}}
 
 				def known(n:Int):Boolean={deduction_board(n)==1}
 				//Renvoie vrai si la case n est connue du solveur
@@ -328,7 +335,7 @@ object Demineur extends Game{
 				spread_knowledge(n_origin_label)
 
 				def rule_easy_1 (n:Int):List[(Int,Boolean)]={
-					//rule_number = 01
+					//rule_number = 01 USELESS
 					/*Essaie d'appliquer la règle de déduction:
 					"Lorsque le nombre de voisins non-dévoilés est égal à la valeur de la case (- le nombre de voisins mines dévoilés), tout les voisins sont des mines"
 					Renvoie un tableau contenant les découvertes réalisées (format: (n°case,bombe?))
@@ -346,7 +353,7 @@ object Demineur extends Game{
 				}
 
 				def rule_easy_2 (n:Int):List[(Int,Boolean)]={
-					//rule number = 02
+					//rule number = 02 USELESS
 					/*Essaie d'appliquer la règle de déduction:
 					"Lorsque le nombre de mines connues parmi les voisins est égal au numéro de la case, tout les voisins dont des mines"
 					Renvoie un tableau contenant les découvertes réalisées (format: (n°case,bombe?))
@@ -362,6 +369,14 @@ object Demineur extends Game{
 						//unknown_neighbours.foreach(o => return_value += (o,false))
 					}
 					return return_value
+				}
+
+				def rule_medium_1 (n1:Int,n2:Int):List[(Int,Boolean)]={
+					/*Essaie d'appliquer la règle de déduction:
+					"Soient V1,V2 les voisins non révélés de n1 et n2. Soient m1 et m2 les valeurs de n1 et n2
+					-Lorsque V1 [inter] V2 [différent de] [ensemble vide] et que |V1\V2|=m1-m2, alors V1\V2 ne comporte que des mines et V2\V1 ne comporte aucune mine
+					(-Lorsque V1 [inclut dans] V2, le nombre de mines dans V2\V1 est égal à m2-m1)()
+					*/
 				}
 
 				def next_square_for_rule_easy_1 ():Int={
@@ -402,38 +417,63 @@ object Demineur extends Game{
 					}
 				}
 
-				//Partie applicateur de règles
+				def add_premise(n:Int)={
+					premise_board(n)=true
+					set_premise_border(n)
+				}
+
+				def rem_premise(n:Int)={
+					premise_board(n)=false
+					rem_premise_border(n)
+				}
+
+				//Applique les règles easy 1 et easy 2 tant que c'est possible
 				def easy_rules_loop()={
 					while(((next_square_for_rule_easy_1()!= -1)||(next_square_for_rule_easy_2()!= -1))&& !is_game_solved){
 						//var n = 0
 						while(/*(n = */next_square_for_rule_easy_1()/*)*/!= -1){
-							val rule_result = rule_easy_1(next_square_for_rule_easy_1()/*n*/)
+							val premise = next_square_for_rule_easy_1()
+							val rule_result = rule_easy_1(premise/*n*/)
 							if(rule_result.length != 0){
 								//La règle a déduit quelque chose
-								println("règle facile 1")
-								println(rule_result)
+								if(debug_mode){
+									println("règle facile 1")
+									println(rule_result)
+									add_premise(premise)									
+								}
 								rule_result.foreach(n_case_bomb_inference =>{
 									if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
 										//Déduction fausse
-										println("La règle facile 1 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
+										if(debug_mode){
+											println("La règle facile 1 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
+										}
 									}
 									handle_rule_discovery(n_case_bomb_inference._1,n_case_bomb_inference._2)
-								})							
+								})
+								if(debug_mode){rem_premise(premise)}					
 							}
 						}
 						while(/*(n = */next_square_for_rule_easy_2()/*)*/!= -1){
-							val rule_result = rule_easy_2(next_square_for_rule_easy_2()/*n*/)
+							val premise = next_square_for_rule_easy_2()
+							val rule_result = rule_easy_2(premise/*n*/)
 							if(rule_result.length != 0){
 								//La règle a déduit quelque chose
-								println("règle facile 2")
-								println(rule_result)
+								if(debug_mode){
+									println("règle facile 2")
+									println(rule_result)
+									add_premise(premise)									
+								}
+
 								rule_result.foreach(n_case_bomb_inference =>{
 									if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
 										//Déduction fausse
-										println("La règle facile 2 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
+										if(debug_mode){
+											println("La règle facile 2 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
+										}
 									}
 									handle_rule_discovery(n_case_bomb_inference._1,n_case_bomb_inference._2)
-								})							
+								})
+								if(debug_mode){rem_premise(premise)}				
 							}
 						}
 					}
@@ -457,7 +497,7 @@ object Demineur extends Game{
 					}
 				}
 				
-				if(debug_mode){
+				if(true/*debug_mode*/){
 					if(is_game_solved){
 						println("Difficulté: " + difficulty)
 						debug_stop("Résolution réussie")
@@ -471,11 +511,17 @@ object Demineur extends Game{
 			}
 
 			var nb_of_game_creation_tries = 0
+
+			//Choisissez l'un des deux modes suivant: 
+			//##BOUNDED MODE##
 			val nb_of_game_creation_tries_limit = 20
+			//##ENDLESS MODE##
+			//def nb_of_game_creation_tries_limit = nb_of_game_creation_tries + 1
+
 			var game_solved = false
 			if(debug_mode()){println("Difficulté: " + difficulty)}
 			while((nb_of_game_creation_tries < nb_of_game_creation_tries_limit) && !game_solved){
-				if(debug_mode){println("Boucle Création-Résolution, essai "+(nb_of_game_creation_tries + 1))}
+				println("Boucle Création-Résolution, essai "+(nb_of_game_creation_tries + 1))
 				generate_a_game_board()
 				if(debug_mode){
 					game_frame_content.grid.get_contents().foreach(label => label.debug_hide())
@@ -489,6 +535,7 @@ object Demineur extends Game{
 				//if(debug_mode){game_frame_content.grid.access_n(random_gen.nextInt(nb_of_cols*nb_of_rows)).reveal()}
 				//if(debug_mode){game_frame_content.grid.access_n(random_gen.nextInt(nb_of_cols*nb_of_rows)).hide()}
 			}
+			if(nb_of_game_creation_tries==nb_of_game_creation_tries_limit){println("Nombre maximum de tentatives de création-résolution atteint, instance aléatoire proposée")}
 			apply_game_board()
 		}
 		/*var interruption_in_debug_mode_launched = false

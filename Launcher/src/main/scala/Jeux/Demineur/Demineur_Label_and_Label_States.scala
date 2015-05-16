@@ -92,6 +92,7 @@ class Demineur_Label extends Grid_Label with Demineur_Label_States_Manager /*wit
 	def debug_set_black_border()={border = DGE.border(DGE.black)}
 	def debug_set_purple_border()={border = DGE.border(DGE.violet_fluo,3)}
 	def debug_set_blue_border()={border = DGE.border(DGE.blue,3)}
+	def debug_set_cyan_border()={border = DGE.border(DGE.cyan,3)}
 	def debug_reveal()={text=value;change_to_state(this,"explored")}
 	def debug_hide()={text="";change_to_state(this,"unexplored")}
 	//##
