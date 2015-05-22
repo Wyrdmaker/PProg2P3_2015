@@ -119,7 +119,7 @@ class Demineur_Label extends Grid_Label with Demineur_Label_States_Manager /*wit
 	override def mouse_leftclic_reaction () ={
 		if (!flag)
 			Demineur.launch_game_timer() //lance le timer au premier clic sur une case de l'utilisateur
-			discover()
+			if(!flag){discover()}
 	}
 	override def mouse_rightclic_reaction () = {
 		flag_unflag()

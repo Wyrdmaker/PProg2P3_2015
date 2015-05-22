@@ -86,7 +86,7 @@ object Demineur extends Game{
 
 	//##Game parameters##
 	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 4, 25), ("Hauteur", 0, 4, 25), ("Mines", 0, 10, 10))
-	var string_game_parameters_def_list = IndexedSeq(("Difficulté", "Facile", IndexedSeq("Facile", "Moyenne", "Difficile", "Absurde")), ("Mode de Couleur", "Classique", IndexedSeq("Classique", "Creepy-Glauque", "RVB", "Automne", "Océan")), ("Mode Débug Solveur", "Désactivé", IndexedSeq("Désactivé","Activé")))
+	var string_game_parameters_def_list = IndexedSeq(("Difficulté", "Facile", IndexedSeq("Facile", "Moyenne", "Difficile", "Absurde")), ("Mode de Couleur", "Classique", IndexedSeq("Classique", "Creepy-Glauque", "RVB", "Automne", "Océan")), ("Mode Spectateur", "Désactivé", IndexedSeq("Désactivé","Activé")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def nb_of_bombs = numeric_game_parameters_def_list(2)._2 //Ces deux fonctions réalisent un alias du champd valeur du 3ième paramètre numérique du Démineur
@@ -375,8 +375,24 @@ object Demineur extends Game{
 					/*Essaie d'appliquer la règle de déduction:
 					"Soient V1,V2 les voisins non révélés de n1 et n2. Soient m1 et m2 les valeurs de n1 et n2
 					-Lorsque V1 [inter] V2 [différent de] [ensemble vide] et que |V1\V2|=m1-m2, alors V1\V2 ne comporte que des mines et V2\V1 ne comporte aucune mine
-					(-Lorsque V1 [inclut dans] V2, le nombre de mines dans V2\V1 est égal à m2-m1)()
+					-Lorsque V1 [inclut dans] V2, le nombre de mines dans V2\V1 est égal à m2-m1
 					*/
+					val n1_neighbours = neighbour(n1)
+					val n1_unknown_neighbours = n1_neighbours.filter(m => (!known(m)))
+					if(debug_mode){println("voisins inconnus de n1 = " + n1_unknown_neighbours)}
+					if(n1_unknown_neighbours.length==0){return List() }
+
+					val n2_neighbours = neighbour(n2)
+					val n2_unknown_neighbours = n2_neighbours.filter(m => (!known(m)))
+					if(debug_mode){println("voisins inconnus de n2 = " + n2_unknown_neighbours)}
+					if(n2_unknown_neighbours.length==0){return(List())}
+
+					val common_unknown_neighbours = n1_unknown_neighbours.intersect(n2_unknown_neighbours)
+					if(debug_mode){println("voisins inconnus dans l'intersection = " + common_unknown_neighbours)}
+					
+					val n1_value=value(n1).toInt - n1_neighbours.filter(m => ((known(m))&&(value(m)=="b"))).length
+					val n2_value=value(n1).toInt - n2_neighbours.filter(m => ((known(m))&&(value(m)=="b"))).length
+					return (List())
 				}
 
 				def next_square_for_rule_easy_1 ():Int={
