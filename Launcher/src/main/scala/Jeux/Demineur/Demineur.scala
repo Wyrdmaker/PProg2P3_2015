@@ -255,9 +255,9 @@ object Demineur extends Game{
 			}
 
 			def solve_game_board ():Boolean ={
+				//Essaye de résoudre la partie définit par game_board et renvoit true si réussite et false si échec
 
 				if(debug_mode()){println("Résolution débutée")}
-				//Essaye de résoudre la partie définit par game_board et renvoit true si réussite et false si échec
 
 				val deduction_board: Array[Int] = Array.fill(nb_of_cols*nb_of_rows){0}
 				//Tableau stockant les connaissances du solveur sur le game_board 
@@ -286,8 +286,11 @@ object Demineur extends Game{
 						rule_easy_2_application_board(i)=true
 					}
 				}
-				var is_game_solved = false
 				//true si le solveur a réussi à trouver les mines
+				var is_game_solved = false
+				//Sert dans la boucle de résolution, vrai si l'itération a découvert une case
+				var progression = false
+
 				//Ne plus déclarer de val/var non-encapsulées à partir d'ici. Sinon, ça ne compile pas: "forward reference extends over definition of val/var ___"
 				def kf_add(n:Int)={knowledge_frontier += n; if(debug_mode){set_kf_border(n)}}
 				def kf_rem(n:Int)={knowledge_frontier -= n; if(debug_mode){set_default_border(n)}}
@@ -377,23 +380,90 @@ object Demineur extends Game{
 					-Lorsque V1 [inter] V2 [différent de] [ensemble vide] et que |V1\V2|=m1-m2, alors V1\V2 ne comporte que des mines et V2\V1 ne comporte aucune mine
 					-Lorsque V1 [inclut dans] V2, le nombre de mines dans V2\V1 est égal à m2-m1
 					*/
+					//if(rule_medium_1_application_board(n1)(n2)==true){println("Attention: on a appliqué rule_medium_1 sur un couple qui en avait déjà fait l'objet")}
+					//rule_medium_1_application_board(n1)(n2)=true					
+					var result:List[(Int,Boolean)] =List()
+
+					if(debug_mode){println("n1=" + n1 + ", n2=" + n2)}
 					val n1_neighbours = neighbour(n1)
-					val n1_unknown_neighbours = n1_neighbours.filter(m => (!known(m)))
-					if(debug_mode){println("voisins inconnus de n1 = " + n1_unknown_neighbours)}
-					if(n1_unknown_neighbours.length==0){return List() }
+					val v1 = n1_neighbours.filter(m => (!known(m)))
+					if(debug_mode){println("voisins inconnus de n1 = " + v1)}
+					if(v1.length==0){return List() }
 
 					val n2_neighbours = neighbour(n2)
-					val n2_unknown_neighbours = n2_neighbours.filter(m => (!known(m)))
-					if(debug_mode){println("voisins inconnus de n2 = " + n2_unknown_neighbours)}
-					if(n2_unknown_neighbours.length==0){return(List())}
+					val v2 = n2_neighbours.filter(m => (!known(m)))
+					if(debug_mode){println("voisins inconnus de n2 = " + v2)}
+					if(v2.length==0){return(List())}
 
-					val common_unknown_neighbours = n1_unknown_neighbours.intersect(n2_unknown_neighbours)
-					if(debug_mode){println("voisins inconnus dans l'intersection = " + common_unknown_neighbours)}
+					val v1_int_v2 = v1.intersect(v2)
+					if(debug_mode){println("voisins inconnus dans l'intersection = " + v1_int_v2)}
 					
-					val n1_value=value(n1).toInt - n1_neighbours.filter(m => ((known(m))&&(value(m)=="b"))).length
-					val n2_value=value(n1).toInt - n2_neighbours.filter(m => ((known(m))&&(value(m)=="b"))).length
-					return (List())
+					val m1=value(n1).toInt - n1_neighbours.filter(m => ((known(m))&&(value(m)=="b"))).length
+					val m2=value(n2).toInt - n2_neighbours.filter(m => ((known(m))&&(value(m)=="b"))).length
+
+					if(v1_int_v2.length > 0){
+						val v1_without_v2 = v1.diff(v2)
+						val v2_without_v1 = v2.diff(v1)
+						val v1_without_v2_l = v1_without_v2.length
+						val v2_without_v1_l = v2_without_v1.length
+						//Premier tiret de la règle
+						if(v1_without_v2_l == m1 - m2){
+							result = result ::: v1_without_v2.map(m => (m,true))
+							result = result ::: ((v2_without_v1).map(m => (m,false)))
+						}
+						if(debug_mode){println("res1="+result)}
+						//La règle symétrique
+						if(v2_without_v1_l == m2 - m1){
+							result = result ::: v2_without_v1.map(m => (m,true))
+							result = result ::: ((v1_without_v2).map(m => (m,false)))
+						}
+						if(debug_mode){println("res2="+result)}
+						//Deuxième tiret de la règle
+						if(v1_without_v2_l==0){
+							if(m2-m1==0){
+								result = result ::: (v2_without_v1.map(m => (m,false)))
+							}
+							else{
+								if(v2_without_v1_l==m2-m1){
+									result = result ::: (v2_without_v1.map(m => (m,true)))
+								}
+							}
+							
+						}
+						if(debug_mode){println("res3="+result)}
+						//la règle symétrique
+						if(v2_without_v1_l==0){
+							if(m1-m2==0){
+								result = result ::: (v1_without_v2.map(m => (m,false)))
+							}
+							else{
+								if(v1_without_v2_l==m1-m2){
+									result = result ::: (v1_without_v2.map(m => (m,true)))
+								}
+							}
+							
+						}
+						if(debug_mode){println("res4="+result)}						
+
+					}
+					return (result)
 				}
+
+				/*def next_couple_for_rule_medium_1():(Int,Int)={
+					//renvoie le premier couple de cases sur lequel on puisse appliquer rule_medium_1. Renvoie (-1,-1) si un tel couple n'existe pas
+					//cherche un couple (n1,n2) tel que les deux soient dans la knowledge_frontier, que n1<n2, que n2 soit "à portée" de n1 (pour qu'ils puissent avoir des voisins communs)
+					//et que la règle medium 1 n'ait pas déjà été appliquée sur ce couple
+					var v_n2 = -1
+					knowledge_frontier.find(n1 => {
+						knowledge_frontier.find(n2 => ((n2>n1)&&(n2<=n1 + 2*nb_of_cols + 2)&&!rule_medium_1_application_board(n1)(n2))) match{
+						case Some(n2) => {v_n2=n2;true}
+						case None => (false)
+						}
+					}) match{
+						case Some(n1) =>(n1,n2)
+						case None => (-1,-1)
+					}
+				}*/
 
 				def next_square_for_rule_easy_1 ():Int={
 					//renvoie la première case sur laquelle on puisse appliquer rule_easy_1. Renvoie -1 si une telle case n'existe pas
@@ -423,8 +493,13 @@ object Demineur extends Game{
 					discovered(n_discovered_square)
 					neighbour(n_discovered_square).foreach(n => {
 						if(game_board(n)!="b"){
+							//on a découvert cette case
 							rule_easy_1_application_board(n)=false
 							rule_easy_2_application_board(n)=false
+							/*rule_medium_1_application_board(n)=Array.fill(nb_of_cols*nb_of_rows){false}
+							for( i <- 0 to n-1) {
+								rule_medium_1_application_board(i)(n)=false
+							}*/
 						}
 					})
 					if(game_board(n_discovered_square)=="b"){
@@ -446,12 +521,13 @@ object Demineur extends Game{
 				//Applique les règles easy 1 et easy 2 tant que c'est possible
 				def easy_rules_loop()={
 					while(((next_square_for_rule_easy_1()!= -1)||(next_square_for_rule_easy_2()!= -1))&& !is_game_solved){
-						//var n = 0
-						while(/*(n = */next_square_for_rule_easy_1()/*)*/!= -1){
+
+						while(next_square_for_rule_easy_1() != -1){
 							val premise = next_square_for_rule_easy_1()
-							val rule_result = rule_easy_1(premise/*n*/)
+							val rule_result = rule_easy_1(premise)
 							if(rule_result.length != 0){
 								//La règle a déduit quelque chose
+								progression=true
 								if(debug_mode){
 									println("règle facile 1")
 									println(rule_result)
@@ -469,11 +545,12 @@ object Demineur extends Game{
 								if(debug_mode){rem_premise(premise)}					
 							}
 						}
-						while(/*(n = */next_square_for_rule_easy_2()/*)*/!= -1){
+						while(next_square_for_rule_easy_2()!= -1){
 							val premise = next_square_for_rule_easy_2()
-							val rule_result = rule_easy_2(premise/*n*/)
+							val rule_result = rule_easy_2(premise)
 							if(rule_result.length != 0){
 								//La règle a déduit quelque chose
+								progression=true
 								if(debug_mode){
 									println("règle facile 2")
 									println(rule_result)
@@ -495,12 +572,53 @@ object Demineur extends Game{
 					}
 				}
 
-				easy_rules_loop()
+				def medium_rules_1_everywhere()={
+					//on applique medium_rule_1 sur les couples (n1,n2) tel que les deux soient dans la knowledge_frontier, que n1<n2, que n2 soit "à portée" de n1 
+					//(pour qu'ils puissent avoir des voisins communs)
+					knowledge_frontier.foreach(n1 => knowledge_frontier.foreach(n2 =>{
+							var right_limit=n1 + min(2,nb_of_cols-n1%nb_of_cols-1)
+							var left_limit=n1 - min(2,n1%nb_of_cols)
+							if((value(n1)!="b")&&(value(n2)!="b")&&(n1 < n2)&&((n2<=right_limit)||((left_limit+nb_of_cols<=n2)&&(n2<=right_limit+nb_of_cols))||((left_limit+2*nb_of_cols<=n2)&&(n2<=right_limit+2*nb_of_cols)))){
+								val rule_result = rule_medium_1(n1,n2)
+								if(rule_result.length != 0){
+									//La règle a déduit quelque chose
+									progression=true
+									if(debug_mode){
+										println("règle medium 1")
+										println(rule_result)
+										add_premise(n1)
+										add_premise(n2)									
+									}
+									rule_result.foreach(n_case_bomb_inference =>{
+										if(!check_inference(n_case_bomb_inference._1,n_case_bomb_inference._2)){
+											//Déduction fausse
+											if(debug_mode){
+												println("La règle medium 1 s'est trompée dans la déduction de la case ("+n_case_bomb_inference._1%nb_of_cols+","+n_case_bomb_inference._1/nb_of_cols+")")
+											}
+										}
+										handle_rule_discovery(n_case_bomb_inference._1,n_case_bomb_inference._2)
+									})
+									if(debug_mode){rem_premise(n1);rem_premise(n2)}					
+								}
+							}
+						}
+					))
+				}
+				progression=true
+				difficulty match{
+					case 0 => 	easy_rules_loop()
+					case 1 => 	while(!is_game_solved&&progression){
+														progression=false
+														easy_rules_loop()
+														medium_rules_1_everywhere()
+								}
+					case _ => println("difficulty=" + difficulty.toString)
+				}
 
 
 				def debug_stop(message:String):Unit ={
 					if(debug_mode){
-						println(message + "  (Entrer pour continuer/q pour quitter)")
+						println(message + "  (Entrer pour continuer/Ctrl-C pour quitter)")
 						val line = Console.readLine
 						if(line=="q"){/*throw new Interruption_in_Debug_Mode("Interruption_in_Debug_Mode")*/ System.exit(0)}
 						if(line=="kf"){
@@ -530,9 +648,9 @@ object Demineur extends Game{
 
 			//Choisissez l'un des deux modes suivant: 
 			//##BOUNDED MODE##
-			val nb_of_game_creation_tries_limit = 20
+			//val nb_of_game_creation_tries_limit = 20
 			//##ENDLESS MODE##
-			//def nb_of_game_creation_tries_limit = nb_of_game_creation_tries + 1
+			def nb_of_game_creation_tries_limit = nb_of_game_creation_tries + 1
 
 			var game_solved = false
 			if(debug_mode()){println("Difficulté: " + difficulty)}
