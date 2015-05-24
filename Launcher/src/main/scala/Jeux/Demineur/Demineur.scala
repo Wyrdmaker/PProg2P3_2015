@@ -690,6 +690,7 @@ object Demineur extends Game{
 														progression=false
 														easy_rules_loop()
 														medium_rules_1_loop()
+														easy_rules_loop()
 														rule_hard_1_loop()
 								}
 					case _ => {println("Solveur désactivé");is_game_solved=true}
