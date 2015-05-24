@@ -86,7 +86,7 @@ object Demineur extends Game{
 
 	//##Game parameters##
 	var numeric_game_parameters_def_list = IndexedSeq(("Largeur", 0, 4, 25), ("Hauteur", 0, 4, 25), ("Mines", 0, 10, 10))
-	var string_game_parameters_def_list = IndexedSeq(("Difficulté", "Facile", IndexedSeq("Facile", "Moyenne", "Difficile", "Libre")), ("Mode de Couleur", "Classique", IndexedSeq("Classique", "Creepy-Glauque", "RVB", "Automne", "Océan")), ("Mode Spectateur", "Désactivé", IndexedSeq("Désactivé","Activé")))
+	var string_game_parameters_def_list = IndexedSeq(("Difficulté", "Facile", IndexedSeq("Facile", "Moyenne", "Difficile", "Libre")), ("Mode de Couleur", "Classique", IndexedSeq("Classique", "Creepy-Glauque", "RVB", "Automne", "Océan")), ("Mode Spectateur", "Désactivé", IndexedSeq("Joueur","Spectateur")))
 	def nb_of_rows = numeric_game_parameters_def_list(1)._2  //fait de nb_of_rows un alias de la valeur du paramètre Height (ne marche que pour la lecture)
 	def nb_of_cols = numeric_game_parameters_def_list(0)._2  //fait de nb_of_cols un alias de la valeur du paramètre Width (ne marche que pour la lecture)
 	def nb_of_bombs = numeric_game_parameters_def_list(2)._2 //Ces deux fonctions réalisent un alias du champd valeur du 3ième paramètre numérique du Démineur
@@ -108,13 +108,13 @@ object Demineur extends Game{
 	main_character_text_on_launching = main_character_text_on_launching ++ Array("Le mode de difficulté \"Libre\" permet d'avoir une grille totalement aléatoire.","Ce jeu me rappelle la fois où j'ai tué mon clone.<br>Hi, hi, hi, c'était vraiment trop bien !","Tu pense que ce jeu est inclus dans la formation des vrais démineurs ?","Oooh, qu'il est mignon ce champ de mines !")
 
 	val game_game_mode_list = IndexedSeq(
-		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique", "Désactivé")),
-		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique", "Désactivé")),
-		Game_Mode(IndexedSeq(16, 16, 65),IndexedSeq("Difficile", "Classique", "Désactivé")),
-		Game_Mode(IndexedSeq(25, 25, 150),IndexedSeq("Difficile", "Classique", "Désactivé")),
-		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique", "Activé")),
-		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique", "Activé")),
-		Game_Mode(IndexedSeq(16, 16, 65),IndexedSeq("Difficile", "Classique", "Activé"))
+		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique", "Joueur")),
+		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique", "Joueur")),
+		Game_Mode(IndexedSeq(16, 16, 65),IndexedSeq("Difficile", "Classique", "Joueur")),
+		Game_Mode(IndexedSeq(25, 25, 150),IndexedSeq("Difficile", "Classique", "Joueur")),
+		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique", "Spectateur")),
+		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique", "Spectateur")),
+		Game_Mode(IndexedSeq(16, 16, 65),IndexedSeq("Difficile", "Classique", "Spectateur"))
 	)
 	def custom_game_parameters_conditions (form_nb_fields_result: IndexedSeq[Int]) ={ //form_nb_fields_result(0) = nb_of_cols, form_nb_fields_result(1) = nb_of_rows, form_nb_fields_result(2) = nb_of_bombs
 		//val return_value = form_nb_fields_result(1) * form_nb_fields_result(0) > 9 && form_nb_fields_result(2) + 9 <= form_nb_fields_result(1) * form_nb_fields_result(0)
@@ -200,7 +200,7 @@ object Demineur extends Game{
 
 	def debug_mode ():Boolean={
 		//"debug_mode" = "Mode Spectateur"
-		string_game_parameters_def_list(2)._2==("Activé")
+		string_game_parameters_def_list(2)._2==("Spectateur")
 	}
 
 	//Est appelée lors du premier clic sur un label.
