@@ -570,7 +570,7 @@ object Demineur extends Game{
 					}
 				}
 
-				def medium_rules_1_everywhere()={
+				def medium_rules_1_loop()={
 					//Applique la règle medium 1 tant que c'est possible
 					//on applique medium_rule_1 sur les couples (n1,n2) tel que 
 					//les deux soient dans la knowledge_frontier, que n1<n2, que n2 soit "à portée" de n1 (pour qu'ils puissent avoir des voisins communs)
@@ -684,12 +684,12 @@ object Demineur extends Game{
 					case 1 => 	while(!is_game_solved&&progression){
 														progression=false
 														easy_rules_loop()
-														medium_rules_1_everywhere()
+														medium_rules_1_loop()
 								}
 					case 2 => 	while(!is_game_solved&&progression){
 														progression=false
 														easy_rules_loop()
-														medium_rules_1_everywhere()
+														medium_rules_1_loop()
 														rule_hard_1_loop()
 								}
 					case _ => {println("Solveur désactivé");is_game_solved=true}
