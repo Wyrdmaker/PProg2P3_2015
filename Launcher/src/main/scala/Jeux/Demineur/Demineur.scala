@@ -111,6 +111,7 @@ object Demineur extends Game{
 		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique", "Désactivé")),
 		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique", "Désactivé")),
 		Game_Mode(IndexedSeq(16, 16, 65),IndexedSeq("Difficile", "Classique", "Désactivé")),
+		Game_Mode(IndexedSeq(25, 25, 150),IndexedSeq("Difficile", "Classique", "Désactivé")),
 		Game_Mode(IndexedSeq(9, 9, 10),IndexedSeq("Facile", "Classique", "Activé")),
 		Game_Mode(IndexedSeq(16, 16, 40),IndexedSeq("Moyenne", "Classique", "Activé")),
 		Game_Mode(IndexedSeq(16, 16, 65),IndexedSeq("Difficile", "Classique", "Activé"))
@@ -210,9 +211,7 @@ object Demineur extends Game{
 		def place_bombs_action()={
 
 			val grid = game_frame_content.grid
-			var bombs_left = nb_of_bombs 
-
-			//Ancienne position de la fonction debug_stop
+			var bombs_left = nb_of_bombs
 
 			var game_board: Array[String] = Array()
 			//Tableau stockant les valeurs des cases
@@ -250,6 +249,7 @@ object Demineur extends Game{
 				case "Moyenne" => 1
 				case "Difficile" => 2
 				case "Libre" => 3
+				case _ => {println("Attention: Mode dé difficulé non reconnu");3}
 			}
 			def apply_game_board() ={
 				//Affecte aux labels de la grille les valeurs qu'ils ont dans game_board
@@ -263,25 +263,33 @@ object Demineur extends Game{
 					println("Résolution débutée")
 				 	Larissa.say_smth(Array("Un mode spectateur pour un démineur !!!<br>Et pourquoi pas une fonction pour conserver ses replays tant qu'on y est ?",
 						"Je parie que je peux résoudre cette grille avant le solveur !",
-						"Tu pourrais pas coder d'autres jeux au lieu de regarder ton ordinateur jouer au démineur ?"))}
+						"Tu pourrais pas coder d'autres jeux au lieu de regarder ton ordinateur jouer au démineur ?"))
+				 }
 
 				val deduction_board: Array[Int] = Array.fill(nb_of_cols*nb_of_rows){0}
 				//Tableau stockant les connaissances du solveur sur le game_board 
 				//Pour chaque case: 1 => Le solveur connait la valeur de la case
 				//					0 => Le solveur ignore la valeur de la case
+
 				val unknown_neighbours_board: Array[Int] = Array.fill(nb_of_cols*nb_of_rows){0}
 				//Tableau stockant le nombre de cases voisines inconnues de chaque case
+
 				for (n <- 0 to (nb_of_rows*nb_of_cols-1)){unknown_neighbours_board(n)=(neighbour(n)).length}
 				//Remplissage du tableau unknown_neighbours_board
+
 				var nb_of_found_bombs = 0
 				val knowledge_frontier: scala.collection.mutable.Set[Int] = collection.mutable.Set()
 				//Stocke les numéros des cases connues du solveur tq au moins une case voisine (diagonales incluses) soit inconnue
+
 				val rule_easy_1_application_board: Array[Boolean] = Array.fill(nb_of_cols*nb_of_rows){false}
 				//tableau stockant pour chaque case si la règle easy 1 a été appliquée dessus
+
 				val rule_easy_2_application_board: Array[Boolean] = Array.fill(nb_of_cols*nb_of_rows){false}
 				//tableau stockant pour chaque case si la règle easy 2 a été appliquée dessus
+
 				val premise_board: Array[Boolean] = Array.fill(nb_of_rows*nb_of_cols){false}
-				//tableau stockant pour chaque case si c'est actuellement une prémisse ou non (sert uniquement dans un but graphique
+				//tableau stockant pour chaque case si c'est actuellement une prémisse ou non (sert uniquement dans un but graphique)
+
 				for (i <- 0 to (nb_of_rows*nb_of_cols-1)){
 					//Sert à empécher d'essayer d'appliquer les règles faciles 1 et 2 sur des cases de bombes
 					if(game_board(i)=="b"){
@@ -291,12 +299,12 @@ object Demineur extends Game{
 				}
 				//true si le solveur a réussi à trouver les mines
 				var is_game_solved = false
-				//Sert dans la boucle de résolution, vrai si l'itération a découvert une case
+				//Sert dans la boucle de résolution, vrai si l'itération a découvert une nouvelle case
 				var progression = false
-				//Sert uniquement au mode debug/spectateur (pour laisser le solveur agir sur la grille en cours)
+				//Sert uniquement au mode debug/spectateur (pour laisser le solveur finir la grille en cours)
 				var finish =false
 
-				//Ne plus déclarer de val/var non-encapsulées à partir d'ici. Sinon, ça ne compile pas: "forward reference extends over definition of val/var ___"
+				//Ne plus déclarer de val/var non-encapsulées à partir d'ici. Sinon, ça ne compile pas: "forward reference extends over definition of val/var ..."
 				def kf_add(n:Int)={knowledge_frontier += n; if(debug_mode){set_kf_border(n)}}
 				def kf_rem(n:Int)={knowledge_frontier -= n; if(debug_mode){set_default_border(n)}}
 				def set_kf_border(n:Int)={if(!premise_board(n)){game_frame_content.grid.access_n(n).debug_set_blue_border()}}
@@ -305,7 +313,7 @@ object Demineur extends Game{
 				def rem_premise_border(n:Int)={if(knowledge_frontier(n)){set_kf_border(n)}else{set_default_border(n)}}
 
 				def known(n:Int):Boolean={deduction_board(n)==1}
-				//Renvoie vrai si la case n est connue du solveur
+				//Renvoie vrai ssi la case n est connue du solveur
 				def add_knowledge(n:Int)={deduction_board(n)=1}
 				//Change le contenu de deduction_board pour refléter le fait que le solveur ait déduit une nouvelle case
 				def value(n:Int):String={game_board(n)}
@@ -317,16 +325,14 @@ object Demineur extends Game{
 					if(!known(n_discovered_square)){
 						if(debug_mode){
 							set_discovery_border(n_discovered_square)
-							//game_frame_content.grid.access_n(n_discovered_square).debug_set_purple_border()
 							debug_stop("Découverte ("+ n_discovered_square+")")
 							game_frame_content.grid.access_n(n_discovered_square).debug_reveal()
-							//if(knowledge_frontier(n_discovered_square)){set_kf_border(n_discovered_square)}
 						}
 						add_knowledge(n_discovered_square)
 						neighbour(n_discovered_square).foreach(n => {
 							unknown_neighbours_board(n)-=1
-							if (unknown_neighbours_board(n)<=7 && known(n)){kf_add(n)/*knowledge_frontier += n*/}
-							if (unknown_neighbours_board(n)<=0 && known(n)){kf_rem(n)/*knowledge_frontier -= n*/}
+							if (unknown_neighbours_board(n)<=7 && known(n)){kf_add(n)}
+							if (unknown_neighbours_board(n)<=0 && known(n)){kf_rem(n)}
 						})
 						if(unknown_neighbours_board(n_discovered_square)<=7){kf_add(n_discovered_square)}
 						if(unknown_neighbours_board(n_discovered_square)<=0){kf_rem(n_discovered_square)}
@@ -339,11 +345,11 @@ object Demineur extends Game{
 						neighbour(n).foreach(m => {if(!known(m)){discovered(m)/*;spread_knowledge(m)*/}})
 					}
 				}
+				//Découvre la case où le jouer a cliqué et ses voisines
 				discovered(n_origin_label)
 				spread_knowledge(n_origin_label)
 
 				def rule_easy_1 (n:Int):List[(Int,Boolean)]={
-					//rule_number = 01 USELESS
 					/*Essaie d'appliquer la règle de déduction:
 					"Lorsque le nombre de voisins non-dévoilés est égal à la valeur de la case (- le nombre de voisins mines dévoilés), tout les voisins sont des mines"
 					Renvoie un tableau contenant les découvertes réalisées (format: (n°case,bombe?))
@@ -361,7 +367,6 @@ object Demineur extends Game{
 				}
 
 				def rule_easy_2 (n:Int):List[(Int,Boolean)]={
-					//rule number = 02 USELESS
 					/*Essaie d'appliquer la règle de déduction:
 					"Lorsque le nombre de mines connues parmi les voisins est égal au numéro de la case, tout les voisins dont des mines"
 					Renvoie un tableau contenant les découvertes réalisées (format: (n°case,bombe?))
@@ -384,9 +389,7 @@ object Demineur extends Game{
 					"Soient V1,V2 les voisins non révélés de n1 et n2. Soient m1 et m2 les valeurs de n1 et n2
 					-Lorsque V1 [inter] V2 [différent de] [ensemble vide] et que |V1\V2|=m1-m2, alors V1\V2 ne comporte que des mines et V2\V1 ne comporte aucune mine
 					-Lorsque V1 [inclut dans] V2, le nombre de mines dans V2\V1 est égal à m2-m1
-					*/
-					//if(rule_medium_1_application_board(n1)(n2)==true){println("Attention: on a appliqué rule_medium_1 sur un couple qui en avait déjà fait l'objet")}
-					//rule_medium_1_application_board(n1)(n2)=true					
+					*/				
 					var result:List[(Int,Boolean)] =List()
 
 					//if(debug_mode){println("n1=" + n1 + ", n2=" + n2)}
@@ -417,7 +420,7 @@ object Demineur extends Game{
 							result = result ::: ((v2_without_v1).map(m => (m,false)))
 						}
 						//if(debug_mode){println("res1="+result)}
-						//La règle symétrique
+						//La règle symétrique du premier tiret de la règle
 						if(v2_without_v1_l == m2 - m1){
 							result = result ::: v2_without_v1.map(m => (m,true))
 							result = result ::: ((v1_without_v2).map(m => (m,false)))
@@ -436,7 +439,7 @@ object Demineur extends Game{
 							
 						}
 						//if(debug_mode){println("res3="+result)}
-						//la règle symétrique
+						//la règle symétrique du deuxième tiret de la règle
 						if(v2_without_v1_l==0){
 							if(m1-m2==0){
 								result = result ::: (v1_without_v2.map(m => (m,false)))
@@ -479,7 +482,10 @@ object Demineur extends Game{
 				}
 
 				def handle_rule_discovery(n_discovered_square:Int,bomb_infered:Boolean)={
-					
+					//Gére une découverte de case en:
+					//- indiquant dans les tableaux rule_easy_1_application_board et rule_easy_2_application_board que la case découverte peut de nouveau être utilisée par ces règles
+					//- incrémentant le nb de bombes découvertes si pertinent
+					//- appelant la fonction discovered sur la case découverte
 					if(debug_mode){
 						if(known(n_discovered_square) && value(n_discovered_square)=="b"){
 							println("La bombe en case " + n_discovered_square + " avait déjà été découverte")
@@ -494,17 +500,17 @@ object Demineur extends Game{
 					})
 					if(game_board(n_discovered_square)=="b"){
 						nb_of_found_bombs+=1
-						maj_nb_flag(1)
+						if(debug_mode){/*Graphique*/maj_nb_flag(1)}
 						if(nb_of_found_bombs==nb_of_bombs){is_game_solved=true}
 					}
 					discovered(n_discovered_square)
 				}
-
+				//Graphique
 				def add_premise(n:Int)={
 					premise_board(n)=true
 					set_premise_border(n)
 				}
-
+				//Graphique
 				def rem_premise(n:Int)={
 					premise_board(n)=false
 					rem_premise_border(n)
@@ -565,8 +571,9 @@ object Demineur extends Game{
 				}
 
 				def medium_rules_1_everywhere()={
-					//on applique medium_rule_1 sur les couples (n1,n2) tel que les deux soient dans la knowledge_frontier, que n1<n2, que n2 soit "à portée" de n1 
-					//(pour qu'ils puissent avoir des voisins communs)
+					//Applique la règle medium 1 tant que c'est possible
+					//on applique medium_rule_1 sur les couples (n1,n2) tel que 
+					//les deux soient dans la knowledge_frontier, que n1<n2, que n2 soit "à portée" de n1 (pour qu'ils puissent avoir des voisins communs)
 					knowledge_frontier.foreach(n1 => knowledge_frontier.foreach(n2 =>{
 							var right_limit=n1 + min(2,nb_of_cols-n1%nb_of_cols-1)
 							var left_limit=n1 - min(2,n1%nb_of_cols)
@@ -600,14 +607,15 @@ object Demineur extends Game{
 				def rule_hard_1():(List[(Int,Boolean)],scala.collection.immutable.Set[Int])={
 					//Si il existe c1,..cn tq l'ensemble de leurs voisins non déterminés soient disjoint deux à deux et que la somme de leur nombre
 					//de mines non déterminées est égale au nombre restant de mines à trouver, alors toutes les cases hors de ces voisins n'ont pas de mines
-					if(debug_mode){println("rule hard 1 in")}
-					//Renvoie le couple (déductionde la règle, ensemble des c1,..cn)
+					//Renvoie le couple (déductions de la règle, ensemble des c1,..cn)
+					
+					if(debug_mode){println("essai de rule hard 1")}
 					val nb_unknown_bombs = nb_of_bombs - nb_of_found_bombs
 					var final_unknow_neighbours_set: scala.collection.immutable.Set[Int]= scala.collection.immutable.Set()
 					def f_unknown_neighbour_set(n:Int)={neighbour(n).filter(m => !known(m))}
-					//var possible_squares_set: scala.collection.immutable.Set[Int] = collection.immutable.Set()
 					def find_set(nb_captured_bombs:Int, c_set: scala.collection.immutable.Set[Int], unknown_neighbours_set: scala.collection.immutable.Set[Int], choosable_squares_set: scala.collection.immutable.Set[Int]):Option[(scala.collection.immutable.Set[Int],scala.collection.immutable.Set[Int])]={
-						//renvoie le couple (ensemble des voisins inconnues des c1,..cn;ensemble des c1,..cn)
+						//renvoie le couple (ensemble des voisins inconnus des c1,..cn;ensemble des c1,..cn)
+						//Essaie récursivement d'ajouter des éléments de choosable_squares_set à c_set pour capturer toutes les mines restantes
 						if(nb_captured_bombs==nb_unknown_bombs){return(Some(unknown_neighbours_set,c_set))}
 						else{
 							if(choosable_squares_set.size!=0){
@@ -638,6 +646,7 @@ object Demineur extends Game{
 					}
 				}
 
+				//Essaie d'appliquer la règle hard 1 tant que c'est possible
 				def rule_hard_1_loop()={
 					var rule_hard_1_yields = true
 					while(rule_hard_1_yields){
@@ -704,7 +713,7 @@ object Demineur extends Game{
 					}
 				}
 				
-				if(true/*debug_mode*/){
+				if(true){
 					if(is_game_solved){
 						finish=false
 						println("Difficulté: " + difficulty)
@@ -725,9 +734,9 @@ object Demineur extends Game{
 
 			//Choisissez l'un des deux modes suivant: 
 			//##BOUNDED MODE##
-			//val nb_of_game_creation_tries_limit = 20
+			val nb_of_game_creation_tries_limit = 1000
 			//##ENDLESS MODE##
-			def nb_of_game_creation_tries_limit = nb_of_game_creation_tries + 1
+			//def nb_of_game_creation_tries_limit = nb_of_game_creation_tries + 1
 
 			var game_solved = false
 			if(debug_mode()){println("Difficulté: " + difficulty)}
@@ -764,6 +773,8 @@ object Demineur extends Game{
 			}
 		}*/
 
+		/*On ne lance le solveur dans un autre thread que si le mode debug/spectateur est activé (permet de laisser le thread principal à swing pour qu'il
+			puisse s'occuper de la partie graphique(si on ne fait pas ça, les debug_stop du solveur empéchent swing de faire quoi que ce soit))*/
 		var game_creation_thread = new Thread {
 			override def run {
 				place_bombs_action()					

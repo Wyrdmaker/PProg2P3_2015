@@ -46,7 +46,7 @@ object Main {
 
 	val main_character = Larissa
 	main_character.visible = true
-	main_character.say_smth(Array("Bienvenue dans mon monde !","J'ai hâte de commencer à jouer !","Alors ?<br>A quoi va-t-on jouer aujourd'hui ?", "Enchantée,<br>Moi, c'est Larissa"))
+	main_character.say_smth(Array("Bienvenue dans mon monde !","J'ai hâte de commencer à jouer !","Alors ?<br>A quoi va-t-on jouer aujourd'hui ?", "Enchantée,<br>Moi, c'est Larissa", "Tu pourrais me coder un Advance Wars ?<br> S'te plait ! S'te plait ! S'te plait !"))
 }
 
 class Launcher_Content extends GridBagPanel { 
