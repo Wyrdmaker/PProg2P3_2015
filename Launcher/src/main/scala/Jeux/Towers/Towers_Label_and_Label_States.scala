@@ -81,7 +81,6 @@ class Towers_Label extends Grid_Label with Towers_Label_States_Manager /*with To
 		num = 0
 		text = value.toString
                 change_to_state(this, "1")
-		foreground = TGE.blue
                 listenTo(mouse.moves, mouse.clicks)
         }
 	

@@ -84,14 +84,14 @@ object Towers extends Game{
 	def gblb_factory () = {new Game_Border_Label_Class}
 	def about_frame_factory () = { new Towers_About_Frame }
 	def help_frame_factory () = { new Towers_Help_Frame }
-	var border_labels : Array[Seq[Game_Border_Label_Class]] = Array()
+	var border_labels: Array[Seq[Game_Border_Label_Class]] = Array()
 	var motif_futur: Array[Array[Array[Int]]] = Array()
 
 	val game_game_mode_list = IndexedSeq(
 		Game_Mode(IndexedSeq(4),IndexedSeq("Facile", "Classique","Joueur")),
 		Game_Mode(IndexedSeq(4),IndexedSeq("Difficile", "Classique","Joueur")),
 		Game_Mode(IndexedSeq(5),IndexedSeq("Facile", "Classique","Joueur")),
-		Game_Mode(IndexedSeq(4),IndexedSeq("Difficile", "Classique","Joueur")),
+		Game_Mode(IndexedSeq(5),IndexedSeq("Difficile", "Classique","Joueur")),
 		Game_Mode(IndexedSeq(6),IndexedSeq("Libre", "Classique","Joueur"))	
 	)
 
@@ -224,7 +224,10 @@ object Towers extends Game{
 		{
 			Towers.init_map()
                         Towers.launch_game_timer()
-                        Towers.game_frame_content.grid.get_contents.foreach(label => label.init())
+                        Towers.game_frame_content.grid.get_contents.foreach(label => {
+				label.init()
+				label.clean()
+			})
 			return
 		}
 
@@ -239,6 +242,8 @@ object Towers extends Game{
 					Towers.init_map()
 					Towers.game_frame_content.grid.get_contents.foreach(label => label.init())
 					resoluble = Towers.solver(debug_mode)
+					if (difficulty == 1)
+						resoluble = !resoluble
 				}
 				Towers.game_frame_content.grid.get_contents.foreach(label => label.clean())
 				Towers.launch_game_timer()
@@ -246,8 +251,11 @@ object Towers extends Game{
 		}
 		th.start()
 	}
-	def game_action_restart() : Unit = {
-		Towers.game_frame_content.grid.get_contents.foreach(label => label.init())
+	def game_action_restart(): Unit = {
+		Towers.game_frame_content.grid.get_contents.foreach(label => {
+			label.init()
+			label.clean()
+		})
 		Towers.grid_check()
 		Towers.launch_game_timer()
 	}
@@ -261,7 +269,7 @@ object Towers extends Game{
 	}
 
 
-	def suppress_value(v : Int, cur_x : Int, cur_y : Int) = {
+	def suppress_value(v: Int, cur_x: Int, cur_y: Int) = {
 		val grid = game_frame_content.grid
 		for (x <- 0 until size) {
 			var cur_label = grid.access_xy(x, cur_y)
@@ -330,7 +338,6 @@ object Towers extends Game{
 			return v
 		}
 		def value_motif(n: Int): Array[Int] = {
-			if (deb) println(n + " : ")
 			var p: Int = size - 1
 			var v: Int = n
 			var m: Array[Int] = Array.fill(size){1}
@@ -341,6 +348,14 @@ object Towers extends Game{
 				v = v / (size + 1)
 			}
 			return m
+		}
+		if (deb)
+		{
+			println("--------------------------------------------\nSolveur activé\n")
+			g.get_contents.foreach(label => {
+				label.text = label.value.toString
+	                	label.foreground = TGE.blue
+			})
 		}
 		var nb_trouve = 0
 		var continue = true
@@ -359,7 +374,6 @@ object Towers extends Game{
 				var gauche = border_labels(0)(x).condition - 1
 				var droite = border_labels(2)(x).condition - 1
 				var v = motif_futur(gauche)(droite)(motif_value(m))
-				if (deb) println("\n" + v)
 				if (v > 0)
 				{
 					var m2 = value_motif(v)
@@ -369,12 +383,15 @@ object Towers extends Game{
 						{
 							nb_trouve = nb_trouve + 1
 							continue = true
-							if (deb) println("***" + nb_trouve)
+							if (deb) println("Nombre de cases dévoilées : " + nb_trouve)
 						}
-                                        	g.access_xy(x, y).text = m2(y).toString
 						g.access_xy(x, y).num = m2(y)
-						g.access_xy(x, y).foreground = TGE.red
-						if (deb) println(m2(y))
+						if (deb)
+                                                {
+                                                        println(m2(y))
+                                                        g.access_xy(x, y).foreground = TGE.red
+                                                        g.access_xy(x, y).text = m2(y).toString
+                                                }
                                 	}
 				}
 				if (deb) Console.readLine
@@ -391,7 +408,6 @@ object Towers extends Game{
 				var gauche = border_labels(3)(y).condition - 1
                                 var droite = border_labels(1)(y).condition - 1
                                 var v = motif_futur(gauche)(droite)(motif_value(m))
-                                if (deb) println("\n" + v)
                                 if (v > 0)
                                 {
                                         var m2 = value_motif(v)
@@ -401,12 +417,15 @@ object Towers extends Game{
                                                 {
 							continue = true
                                                         nb_trouve = nb_trouve + 1
-                                                        if (deb) println("***" + nb_trouve)
+                                                        if (deb) println("Nombre de cases dévoilées : " + nb_trouve)
                                                 }
-                                                g.access_xy(x, y).text = m2(x).toString
 						g.access_xy(x, y).num = m2(x)
-						g.access_xy(x, y).foreground = TGE.red
-                                                if (deb) println(m2(x))
+                                                if (deb)
+						{
+							println(m2(x))
+							g.access_xy(x, y).foreground = TGE.red
+							g.access_xy(x, y).text = m2(x).toString
+						}
                                         }
                                 }
                                 if (deb) Console.readLine
@@ -414,12 +433,12 @@ object Towers extends Game{
 		}
 		if (nb_trouve == size * size)
 		{
-			if (deb) println("ok")
+			if (deb) println("Difficulté : Facile")
 			return true
 		}
 		else
 		{
-			if (deb) println("no")
+			if (deb) println("Difficulté : Difficile")
 			return false
 		}
         }
