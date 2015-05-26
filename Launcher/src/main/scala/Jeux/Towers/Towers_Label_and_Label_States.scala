@@ -58,12 +58,30 @@ class Towers_Label extends Grid_Label with Towers_Label_States_Manager /*with To
 	font = new Font("Arial", 1, 32) // 0 pour normal, 1 pour gras, 2 pour italique ...
 	preferredSize = new Dimension(Towers.square_size_x, Towers.square_size_y)
 
+	// Valeur à la création
+	def default() : Unit = {
+		assigned = false
+        	value = 0
+        	value_t = fill[Boolean](Towers.size)(true)
+        	nb_val = 0
+        	condition = 0
+        	num = 0
+	}
+
+	// Enlever les résultats du solver
+	def clean() : Unit = {
+		text = ""
+		num = 0
+		Towers.grid_check()
+	}
+
 	// Initialisation des cases
 	def init() : Unit = {
                 condition = -1
 		num = 0
-		text = ""
+		text = value.toString
                 change_to_state(this, "1")
+		foreground = TGE.blue
                 listenTo(mouse.moves, mouse.clicks)
         }
 	
